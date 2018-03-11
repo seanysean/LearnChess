@@ -1,0 +1,174 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: sans-serif;
+    background: #eee;
+}
+a {
+    text-decoration: none;
+}
+.top .top-navigation .main-links,
+.top .top-navigation .main-links .main-dropdown,
+.top .top-navigation .main-links a,
+.top .top-navigation .main-links .main-dropdown .dropdown a,
+.top .top-navigation .icon-links a,
+.page .main {
+    display: inline-block;
+}
+.top, .page {
+    width: 50%;
+    margin: 10px auto;
+}
+.top .top-above {
+    margin-bottom: 5px;
+}
+.top .top-above .learnchess-link {
+    font-size: 20px;
+    color: #777;
+    font-weight: 100;
+}
+.top .top-above .learnchess-link .extension {
+    color: #555;
+}
+.top .top-above .learnchess-link:hover {
+    color: #555;
+}
+.top .top-above .profile-link {
+    float: right;
+    color: #555;
+}
+.top .top-above .profile-link:hover {
+    color: #222;
+}
+.top .top-navigation {
+    background: RGBa(0,0,0,0.1);
+}
+.top .top-navigation .main-links {
+    font-size: 0;
+}
+.top .top-navigation .main-links .main-dropdown {
+    position: relative;
+}
+.top .top-navigation .main-links .main-dropdown a:hover::after {
+    display: none;
+}
+.top .top-navigation .main-links .main-dropdown .dropdown {
+    position: absolute;
+    background: #eee;
+    top: 56px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s linear;
+    border-top: 2px solid #888;
+    width: 200px;
+}
+.top .top-navigation .main-links .main-dropdown .dropdown a {
+    padding: 10px;
+    width: 50%;
+    text-align: center;
+    color: #888;
+    font-weight: 100;
+}
+.top .top-navigation .main-links .main-dropdown .dropdown a:hover {
+    color: #555;
+}
+.top .top-navigation .main-links .main-dropdown > a:hover + .dropdown, 
+.top .top-navigation .main-links .main-dropdown:hover .dropdown {
+    opacity: 1;
+    pointer-events: auto;
+}
+.top .top-navigation .main-links a {
+    padding: 20px;
+    color: #333;
+    font-weight: 500;
+    position: relative;
+    font-size: 16px;
+}
+.top .top-navigation .main-links a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #555;
+    transition: 0.25s linear;
+}
+.top .top-navigation .main-links a:hover::after {
+    width: 100%;
+}
+.top .top-navigation .icon-links {
+    float: right;
+}
+.top .top-navigation .icon-links a {
+    padding: 20px;
+    color: #555;
+}
+.top .top-navigation .icon-links a:hover {
+    color: #222;
+}
+.page .main {
+    width: 70%;
+}
+.page .right {
+    width: 27%;
+    float: right;
+}
+.page .block {
+    background: #fff;
+    box-shadow: 0 0 5px RGBa(0,0,0,0.1);
+    width: 100%;
+    margin-top: 10px;
+    height: 100px;
+    border-radius: 3px;
+}
+.site-message {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background: #3893e8;
+    color: #eee;
+    left: 0;
+}
+.site-message a {
+    color: #fff;
+}
+.site-message a:hover {
+    color: #eee;
+}
+.site-message span {
+    color: #fff;
+    font-size: 20px;
+}
+.site-message .message-type {
+    margin-right: 10px;
+}
+.site-message .close {
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}
+.site-message .fa-close:hover {
+    color: #ddd;
+}
+/*a {
+    color: #3893e8;
+    position: relative;
+}
+a::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 2px;
+    width: 0;
+    bottom: 0;
+    transition: 0.25s linear;
+    background: #3893e8;
+}
+a:hover::after {
+    width: 100%;
+}*/
