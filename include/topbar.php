@@ -1,18 +1,28 @@
 <div class="top-above">
     <a class="learnchess-link" href="/">LearnChess<span class="extension"></a>
-    <a class="profile-link" href="#">Username</a>
+    <?php if(isset($_SESSION['username'])) { ?>
+        <span class="right"><a class="profile-link" href="#"><?php echo $_SESSION['username']; ?></a></span>
+    <?php } else { ?>
+        <span class="right"><a class="profile-link" href="/login">Login</a> / <a class="profile-link" href="/register">Register</a></span>
+    <?php } ?>
 </div>
 <nav class="top-navigation">
     <div class="main-links">
-        <a href="/home.php">Home</a>
+        <a href="/home">Home</a>
         <div class="main-dropdown">
             <a href="#">More</a>
             <div class="dropdown">
-                <a href="/about.php">About</a>
+                <a href="/about">About</a>
             </div>
         </div>
     </div>
-    <div class="icon-links">
-        <a href="#" class="fa fa-cog"></a>
+    <?php if(isset($_SESSION['username'])) { ?><div class="icon-links">
+        <div class="icon-dropdown">
+            <a class="fa fa-cog"></a>
+            <div class="dropdown">
+                <a href="/logout"><span class="fa fa-sign-out"></span> Logout</a>
+            </div>
+        </div>
     </div>
-</div>
+    <?php } ?>
+</nav>

@@ -5,9 +5,63 @@ body {
     font-family: sans-serif;
     background: #eee;
 }
+
+/* Global styles */
 a {
+    color: #3893e8;
     text-decoration: none;
+    transition: 0.25s linear;
+    opacity: 0.7;
 }
+a:hover {
+    opacity: 1;
+}
+.right {
+    float: right;
+}
+.button {
+    padding: 10px;
+    display: inline-block;
+    border: none;
+    color: #555;
+    font-size: 15px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    transition: 0.25s ease;
+    top: 0;
+}
+.button span {
+    z-index: 2;
+    position: relative;
+    transition: 0.25s ease;
+}
+.button::after {
+    content: "";
+    display: block;
+    position: absolute;
+    background: #3893e8;
+    height: 100% !important;
+    width: 0;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: 0.25s ease !important;
+}
+.button:hover {
+    box-shadow: 0 3px 5px RGBa(0,0,0,0.3);
+    top: -3px;
+}
+.button:hover span {
+    color: #fff;
+}
+.button:hover::after {
+    width: 100%;
+}
+
+/* 'Topbar' */
+
 .top .top-navigation .main-links,
 .top .top-navigation .main-links .main-dropdown,
 .top .top-navigation .main-links a,
@@ -16,12 +70,18 @@ a {
 .page .main {
     display: inline-block;
 }
-.top, .page {
+.top, .page, footer {
     width: 50%;
     margin: 10px auto;
 }
+.top a::after {
+    display: none;
+}
 .top .top-above {
     margin-bottom: 5px;
+}
+.top .top-above a {
+    transition: none;
 }
 .top .top-above .learnchess-link {
     font-size: 20px;
@@ -35,48 +95,16 @@ a {
     color: #555;
 }
 .top .top-above .profile-link {
-    float: right;
     color: #555;
 }
 .top .top-above .profile-link:hover {
     color: #222;
 }
 .top .top-navigation {
-    background: RGBa(0,0,0,0.1);
+    background: #eaeaea;
 }
 .top .top-navigation .main-links {
     font-size: 0;
-}
-.top .top-navigation .main-links .main-dropdown {
-    position: relative;
-}
-.top .top-navigation .main-links .main-dropdown a:hover::after {
-    display: none;
-}
-.top .top-navigation .main-links .main-dropdown .dropdown {
-    position: absolute;
-    background: #eee;
-    top: 56px;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.25s linear;
-    border-top: 2px solid #888;
-    width: 200px;
-}
-.top .top-navigation .main-links .main-dropdown .dropdown a {
-    padding: 10px;
-    width: 50%;
-    text-align: center;
-    color: #888;
-    font-weight: 100;
-}
-.top .top-navigation .main-links .main-dropdown .dropdown a:hover {
-    color: #555;
-}
-.top .top-navigation .main-links .main-dropdown > a:hover + .dropdown, 
-.top .top-navigation .main-links .main-dropdown:hover .dropdown {
-    opacity: 1;
-    pointer-events: auto;
 }
 .top .top-navigation .main-links a {
     padding: 20px;
@@ -85,20 +113,42 @@ a {
     position: relative;
     font-size: 16px;
 }
-.top .top-navigation .main-links a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: block;
-    width: 0;
-    height: 2px;
-    background: #555;
-    transition: 0.25s linear;
+.top .top-navigation .main-links a:hover {
+    background: #e7e7e7;
 }
-.top .top-navigation .main-links a:hover::after {
-    width: 100%;
+.top .top-navigation .main-links .main-dropdown,
+.top .top-navigation .icon-links .icon-dropdown {
+    position: relative;
+}
+.top .top-navigation .main-links .main-dropdown .dropdown,
+.top .top-navigation .icon-links .icon-dropdown .dropdown {
+    position: absolute;
+    background: #eaeaea;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s linear;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+.top .top-navigation .main-links .main-dropdown .dropdown a,
+.top .top-navigation .icon-links .icon-dropdown .dropdown a {
+    padding: 10px;
+    width: 50%;
+    text-align: center;
+    color: #888;
+    font-weight: 100;
+}
+.top .top-navigation .main-links .main-dropdown .dropdown a:hover,
+.top .top-navigation .icon-links .icon-dropdown .dropdown a:hover {
+    color: #555;
+}
+.top .top-navigation .main-links .main-dropdown > a:hover + .dropdown,
+.top .top-navigation .icon-links .icon-dropdown > a:hover + .dropdown,
+.top .top-navigation .main-links .main-dropdown:hover .dropdown,
+.top .top-navigation .icon-links .icon-dropdown:hover .dropdown {
+    opacity: 1;
+    pointer-events: auto;
 }
 .top .top-navigation .icon-links {
     float: right;
@@ -107,13 +157,40 @@ a {
     padding: 20px;
     color: #555;
 }
-.top .top-navigation .icon-links a:hover {
-    color: #222;
+.top .top-navigation .icon-links .icon-dropdown .dropdown {
+    right: 0;
+    width: 100px;
+}
+.top .top-navigation .icon-links .icon-dropdown .dropdown a {
+    display: block;
+    width: 100%;
+}
+/* .page stuff */
+.page a {
+    position: relative;
+}
+.page a::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 1px;
+    width: 0;
+    bottom: 0;
+    left: 0;
+    transition: 0.25s linear;
+    background: #3893e8;
+}
+.page a:hover::after {
+    width: 100%;
 }
 .page .main {
     width: 70%;
 }
-.page .right {
+.page .main.center {
+    margin: 30px auto;
+    display: block;
+}
+.page .right-area {
     width: 27%;
     float: right;
 }
@@ -122,9 +199,31 @@ a {
     box-shadow: 0 0 5px RGBa(0,0,0,0.1);
     width: 100%;
     margin-top: 10px;
-    height: 100px;
+    padding: 10px;
     border-radius: 3px;
 }
+.page .block .block-title {
+    font-weight: 100;
+    color: #444;
+    margin: 10px;
+}
+.page .block .block-title.center {
+    text-align: center;
+}
+.page .block .block-title .alternate {
+    font-size: 13px;
+    float: right;
+}
+.page .block .block-title .alternate .alt-text,
+.page .block .block-title .alternate .button {
+    vertical-align: middle;
+} 
+.page .block .block-title .alternate .alt-text {
+    display: inline-block;
+    padding: 10px;
+}
+/* Other */
+
 .site-message {
     position: fixed;
     bottom: 0;
@@ -133,6 +232,7 @@ a {
     background: #3893e8;
     color: #eee;
     left: 0;
+    z-index: 10;
 }
 .site-message a {
     color: #fff;
@@ -155,20 +255,3 @@ a {
 .site-message .fa-close:hover {
     color: #ddd;
 }
-/*a {
-    color: #3893e8;
-    position: relative;
-}
-a::after {
-    content: "";
-    position: absolute;
-    display: block;
-    height: 2px;
-    width: 0;
-    bottom: 0;
-    transition: 0.25s linear;
-    background: #3893e8;
-}
-a:hover::after {
-    width: 100%;
-}*/

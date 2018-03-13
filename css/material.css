@@ -1,0 +1,47 @@
+form {
+    margin-top: 50px;
+    display: block;
+}
+form .input-container {
+    height: 50px;
+    margin-top: 30px;
+    display: block;
+    position: relative;
+}
+form .input-container input {
+    display: block;
+    width: 100%;
+    padding: 5px 0;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    outline: none;
+    font-size: 15px;
+    color: #555;
+}
+form .input-container label {
+    position: absolute;
+    top: -20px;
+    color: #aaa;
+    transition: 0.25s linear;
+    font-weight: 100;
+}
+form .input-container .line {
+    display: block;
+    height: 2px;
+    background: #3893e8;
+    position: relative;
+    top: -2px;
+    transition: 0.25s ease;
+    margin: auto;
+    width: 0;
+}
+form .input-container input:focus + label {
+    color: #3893e8;
+}
+form .input-container input:focus ~ .line {
+    width: 100%;
+}
+form p {
+    color: #999;
+    font-weight: 100;
+}
