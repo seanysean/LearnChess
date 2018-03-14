@@ -1,19 +1,13 @@
 <?php 
 session_start();
 require "./include/connect.php";
+require "./include/formsecurity.php";
 if(isset($_SESSION['username'])) {
     header('Location: home.php');
 }
-function secure($input) {
-    $input = preg_replace("/[^a-z1-9\-\_]/i", "", $input);
-    $input = trim($input);
-    $input = stripslashes($input);
-    $input = htmlspecialchars($input);
-    return $input;
-}
 if (isset($_POST['username']) and isset($_POST['password'])) {
-    $username = secure($_POST['username']);
-    $password = secure($_POST['password']);
+    $username = preg_replace("/[^a-z1-9\-\_]/i", "",secure($_POST['username']));
+    $password = preg_replace("/[^a-z1-9\-\_]/i", "",secure($_POST['password']));
     $sql = "SELECT * FROM `users` WHERE username='$username'";
     $result = mysqli_query($connection,$sql) or die(mysqli_error($connection));
     $count = mysqli_num_rows($result);
@@ -46,7 +40,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
                     <h1 class="block-title">Login
                         <span class="alternate">
                             <span class="alt-text">New to LearnChess?</span>
-                            <a class="button" href="/register">
+                            <a class="button nocolor" href="/register">
                                 <span>
                                     <i class="fa fa-sign-in"></i>
                                     Register
@@ -61,15 +55,15 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
                         <div class="input-container">
                             <input type="text" name="username" minlength="4" id="username" maxlength="17" pattern="[a-zA-Z1-9_-]{4,17}" title="Allowed characters: 1-9a-z_-" spellcheck="false" required>
                             <label for="username">Username</label>
-                            <i class="line"></i>
+                            <span class="line"></span>
                         </div>
                         <div class="input-container">
                             <input type="password" name="password" minlength="5" id="password" maxlength="20" pattern="[a-zA-Z1-9_-]{5,20}" title="Allowed characters: 1-9a-z_-" required>
                             <label for="password">Password</label>
-                            <i class="line"></i>
+                            <span class="line"></span>
                         </div>
                         <p>Welcome back.</p>
-                        <button class="button" type="submit"><span><i class="fa fa-check"></i> Login</span></button>
+                        <button class="button blue" type="submit"><span><i class="fa fa-check"></i> Login</span></button>
                     </form>
                 </div>
             </div>

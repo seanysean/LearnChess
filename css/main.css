@@ -19,6 +19,9 @@ a:hover {
 .right {
     float: right;
 }
+
+/* .button styling */
+
 .button {
     padding: 10px;
     display: inline-block;
@@ -32,6 +35,13 @@ a:hover {
     transition: 0.25s ease;
     top: 0;
 }
+.button.full {
+    display: block;
+}
+.button.red {
+    background: RGBa(225,0,0,0.1);
+    color: #777;
+}
 .button span {
     z-index: 2;
     position: relative;
@@ -41,13 +51,24 @@ a:hover {
     content: "";
     display: block;
     position: absolute;
-    background: #3893e8;
     height: 100% !important;
     width: 0;
     top: 0;
     left: 0;
     z-index: 1;
     transition: 0.25s ease !important;
+}
+.button.nocolor::after {
+    background: #f4f4f4 !important;
+}
+.button.blue::after {
+    background: #3893e8 !important;
+}
+.button.red::after {
+    background: #e84438 !important;
+}
+.button.green::after {
+    background: #4caf50 !important;
 }
 .button:hover {
     box-shadow: 0 3px 5px RGBa(0,0,0,0.3);
@@ -56,8 +77,15 @@ a:hover {
 .button:hover span {
     color: #fff;
 }
+.button.nocolor:hover span {
+    color: #555;
+}
 .button:hover::after {
     width: 100%;
+}
+.button:active {
+    outline: none;
+    box-shadow: 0 1px 5px RGBa(0,0,0,0.3);
 }
 
 /* 'Topbar' */
@@ -130,6 +158,7 @@ a:hover {
     width: 200px;
     border: 1px solid #ddd;
     border-top: none;
+    z-index: 10;
 }
 .top .top-navigation .main-links .main-dropdown .dropdown a,
 .top .top-navigation .icon-links .icon-dropdown .dropdown a {
@@ -160,16 +189,20 @@ a:hover {
 .top .top-navigation .icon-links .icon-dropdown .dropdown {
     right: 0;
     width: 100px;
+    z-index: 10;
 }
 .top .top-navigation .icon-links .icon-dropdown .dropdown a {
     display: block;
     width: 100%;
 }
 /* .page stuff */
-.page a {
+.page {
+    color: #777;
+}
+.page .main a {
     position: relative;
 }
-.page a::after {
+.page .main a::after {
     content: "";
     position: absolute;
     display: block;
@@ -180,7 +213,7 @@ a:hover {
     transition: 0.25s linear;
     background: #3893e8;
 }
-.page a:hover::after {
+.page .main a:hover::after {
     width: 100%;
 }
 .page .main {
@@ -190,9 +223,15 @@ a:hover {
     margin: 30px auto;
     display: block;
 }
-.page .right-area {
+.page .right-area,
+.page .left-area {
     width: 27%;
+}
+.page .right-area {
     float: right;
+}
+.page .left-area {
+    float: left;
 }
 .page .block {
     background: #fff;
@@ -201,6 +240,9 @@ a:hover {
     margin-top: 10px;
     padding: 10px;
     border-radius: 3px;
+}
+.page .block.transparent {
+    background: transparent;
 }
 .page .block .block-title {
     font-weight: 100;

@@ -3,12 +3,17 @@ form {
     display: block;
 }
 form .input-container {
-    height: 50px;
+    min-height: 50px;
     margin-top: 30px;
     display: block;
     position: relative;
 }
-form .input-container input {
+form .input-container.half {
+    display: inline-block;
+    width: 47%;
+}
+form .input-container input,
+form .input-container textarea {
     display: block;
     width: 100%;
     padding: 5px 0;
@@ -17,6 +22,22 @@ form .input-container input {
     outline: none;
     font-size: 15px;
     color: #555;
+}
+form .input-container textarea {
+    resize: vertical;
+}
+form .input-container textarea::-webkit-scrollbar {
+    background: #fff;
+    width: 10px;
+}
+form .input-container textarea::-webkit-scrollbar-thumb {
+    background: #f7f7f7;
+}
+form .input-container textarea::-webkit-scrollbar-thumb:hover {
+    background: #eee;
+}
+form .input-container textarea::-webkit-scrollbar-thumb:active {
+    background: #d7d7d7;
 }
 form .input-container label {
     position: absolute;
@@ -35,10 +56,12 @@ form .input-container .line {
     margin: auto;
     width: 0;
 }
-form .input-container input:focus + label {
+form .input-container input:focus + label,
+form .input-container textarea:focus + label {
     color: #3893e8;
 }
-form .input-container input:focus ~ .line {
+form .input-container input:focus ~ .line,
+form .input-container textarea:focus ~ .line {
     width: 100%;
 }
 form p {
