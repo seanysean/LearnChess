@@ -1,4 +1,8 @@
 <?php
+include "connect.php";
+#l is true if user is logged in.
+$l = isset($_SESSION['username']);
+
 function secure($input,$nlines=false) {
     #nlines is for <textarea>s.
     $input = stripslashes($input);

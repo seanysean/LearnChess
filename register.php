@@ -1,8 +1,7 @@
 <?php 
 session_start();
-require "./include/connect.php";
-require "./include/formsecurity.php";
-if(isset($_SESSION['username'])) {
+include "include/functions.php";
+if(isset($l)) {
     header('Location: home.php');
 }
 function verify($input,$min,$max) {

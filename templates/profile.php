@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../include/connect.php";
+include "../include/functions.php";
 $accountid = $account['id'];
 $sql = "SELECT name,lichess,about FROM `users` WHERE id='$accountid'";
 $result = mysqli_query($connection,$sql);
@@ -31,7 +31,7 @@ if ($result) {
                 <div class="block">
                     <h1 class="block-title">
                         <?php echo $account['username'] ?>
-                        <?php if(isset($_SESSION['userid']) and $accountid === $_SESSION['userid']) { ?>
+                        <?php if($l and $accountid === $_SESSION['userid']) { ?>
                         <span class="alternate">
                             <a href="/settings/profile" class="button blue"><span><i class="fa fa-pencil"></i> Edit profile</span></a>
                         </span>

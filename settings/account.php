@@ -1,8 +1,7 @@
 <?php
 session_start();
-require "../include/formsecurity.php";
-require "../include/connect.php";
-if (!isset($_SESSION['username'])) {
+include "../include/functions.php";
+if (!$l) {
     header('Location: /');
 }
 if(isset($_POST['password'])) {

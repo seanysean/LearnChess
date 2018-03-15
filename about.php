@@ -1,3 +1,6 @@
+<?php session_start();
+include "include/functions.php";
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,12 +15,12 @@
             <div class="main">
                 <div class="block"></div>
             </div>
-            <div class="right">
+            <div class="right-area">
                 <div class="block"></div>
             </div>
         </div>
         <footer>
-
+            <?php include_once "./include/footer.php" ?>
         </footer>
         <script src="js/global.js"></script>
     </body>
