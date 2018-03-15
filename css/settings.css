@@ -1,0 +1,57 @@
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: none;
+    background: #fff;
+    z-index: 20;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 50px RGBa(0,0,0,0.3);
+    color: #555;
+    font-weight: 100;
+}
+#popup .popup-title {
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+    font-size: 25px;
+    color: #777;
+    margin: 0;
+    padding: 10px;
+    background: #f9f9f9;
+}
+#popup .popup-content {
+    padding: 5px;
+}
+#popup .button.full {
+    margin-top: 5px;
+}
+form .button {
+    margin-top: 20px;
+}
+.links-section {
+    padding: 0 !important;
+    box-shadow: none !important;
+    background-color: #f4f4f4 !important;
+}
+.links-section a {
+    color: #777;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+.links-section a.current {
+    background: #eee;
+    opacity: 1;
+}
+.links-section a:hover:not(.current) {
+    background: #eee;
+}
+.links-section a.current::after {
+    font-family: "FontAwesome";
+    content: "\f105";
+    position: absolute;
+    right: 10px;
+}

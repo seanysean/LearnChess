@@ -10,11 +10,10 @@ body {
 a {
     color: #3893e8;
     text-decoration: none;
-    transition: 0.25s linear;
-    opacity: 0.7;
+    transition: 0.25s ease;
 }
 a:hover {
-    opacity: 1;
+    color: #1d7bd3;
 }
 .right {
     float: right;
@@ -26,17 +25,18 @@ a:hover {
     padding: 10px;
     display: inline-block;
     border: none;
-    color: #555;
     font-size: 15px;
     cursor: pointer;
     position: relative;
     border-radius: 3px;
     overflow: hidden;
-    transition: 0.25s ease;
+    transition: .25s ease !important;
     top: 0;
+    font-family: sans-serif !important;
 }
 .button.full {
     display: block;
+    width: 100%;
 }
 .button.red {
     background: RGBa(225,0,0,0.1);
@@ -45,7 +45,8 @@ a:hover {
 .button span {
     z-index: 2;
     position: relative;
-    transition: 0.25s ease;
+    transition: .25s color linear;
+    color: #444;
 }
 .button::after {
     content: "";
@@ -54,9 +55,10 @@ a:hover {
     height: 100% !important;
     width: 0;
     top: 0;
+    bottom: 0;
     left: 0;
     z-index: 1;
-    transition: 0.25s ease !important;
+    transition: .25s ease !important;
 }
 .button.nocolor::after {
     background: #f4f4f4 !important;
@@ -100,6 +102,7 @@ a:hover {
 }
 .top, .page, footer {
     width: 50%;
+    height: auto;
     margin: 10px auto;
 }
 .top a::after {
@@ -199,6 +202,11 @@ a:hover {
 .page {
     color: #777;
 }
+.page .main a,
+footer a {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+}
 .page .main a {
     position: relative;
 }
@@ -231,7 +239,7 @@ a:hover {
     float: right;
 }
 .page .left-area {
-    float: left;
+    display: inline-block;
 }
 .page .block {
     background: #fff;
@@ -247,7 +255,7 @@ a:hover {
 .page .block .block-title {
     font-weight: 100;
     color: #444;
-    margin: 10px;
+    margin: 10px 0;
 }
 .page .block .block-title.center {
     text-align: center;
@@ -263,6 +271,13 @@ a:hover {
 .page .block .block-title .alternate .alt-text {
     display: inline-block;
     padding: 10px;
+}
+.page .block .no-contributions {
+    color: #aaa;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 100;
 }
 /* Other */
 
