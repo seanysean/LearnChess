@@ -46,7 +46,7 @@ a:hover {
     z-index: 2;
     position: relative;
     transition: .25s color linear;
-    color: #444;
+    color: #555;
 }
 .button::after {
     content: "";

@@ -64,7 +64,31 @@ form .input-container input:focus ~ .line,
 form .input-container textarea:focus ~ .line {
     width: 100%;
 }
+form .input-response {
+    position: relative;
+    top: -10px;
+    left: -5px;
+    font-weight: 400;
+}
+form .input-response:first-letter {
+    text-transform: uppercase;
+}
+form .input-response.valid {
+    color: #4caf50;
+}
+form .input-response.valid::before {
+    font-family: "FontAwesome";
+    content: "\f00c";
+}
+form .input-response.invalid {
+    color: #e84438;
+}
+form .input-response.invalid::before {
+    font-family: "FontAwesome";
+    content: "\f00d";
+}
 form p {
     color: #999;
     font-weight: 100;
+    margin: 5px;
 }
