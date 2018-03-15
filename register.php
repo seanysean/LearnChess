@@ -23,6 +23,16 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO `users` (username,password) VALUES ('$username','$hashed_password')";
             $result = mysqli_query($connection,$sql);
+            $getLastIdSQL = "SELECT id FROM `users` ORDER BY id DESC LIMIT 1";
+            $getLastIdQ = mysqli_query($connection,$getLastIdSQL);
+            $lastID = $getLastIdQ->fetch_assoc()['id'];
+            $lowerUsername = strtolower($username);
+            $memberProfile = fopen("member/$lowerUsername.php",'x');
+            $pageCode = "<?php
+\$account = Array('username'=>'$username','id'=>'$lastID');
+require \"../templates/profile.php\";";
+            fwrite($memberProfile,$pageCode);
+            fclose($memberProfile);
             if ($result) {
                 $smsg = '<p>Account successfully created! Thank you for joining, you can now <a href="/login">Log in</a>.</p>';
             }
