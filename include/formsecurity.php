@@ -7,8 +7,7 @@ function secure($input,$nlines=false) {
     $input = str_replace('"','&quote;',$input);
     if ($nlines) {
         $input = preg_replace('/\n/','<br />',$input);
-    } else {
-        $input = trim($input);
     }
+    $input = trim($input);
     return $input;
 }
