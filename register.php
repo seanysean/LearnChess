@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include "include/functions.php";
-if(isset($l)) {
+if($l) {
     header('Location: home.php');
 }
 function verify($input,$min,$max) {
