@@ -1,0 +1,26 @@
+.puzzles-to-review {
+    margin-top: 30px;
+    display: block;
+    width: 100%;
+}
+.puzzles-to-review tbody tr td {
+    padding: 5px;
+}
+.puzzles-to-review form {
+    display: inline-block;
+}
+.puzzles-to-review form .button:hover {
+    top: 0;
+    box-shadow: none;
+}
+.puzzles-to-review form .button::after,
+.puzzles-to-review form .button span {
+    transition: 0.1s ease !important;
+}
+.puzzles-to-review form .button {
+    background: #fff;
+    height: 40px;
+    width: 40px;
+    margin-bottom: 10px !important;
+    display: block !important;
+}
