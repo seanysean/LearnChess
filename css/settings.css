@@ -28,6 +28,14 @@
 #popup .button.full {
     margin-top: 5px;
 }
+#popup .cancel {
+    color: #888;
+    display: block;
+    margin-top: 10px;
+}
+#popup .cancel:hover {
+    color: #3893e8;
+}
 form .button {
     margin-top: 20px;
 }

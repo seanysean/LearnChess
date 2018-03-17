@@ -43,6 +43,7 @@ if(isset($_POST['password'])) {
                         <span class="line"></span>
                     </div>
                     <button type="submit" class="button red full"><span><i class="fa fa-close"></i> Close my account</span></button>
+                    <a class="cancel" href="/member/<?php echo strtolower($_SESSION['username']) ?>">Cancel</a>
                 </form>
             </div>
         </div>
