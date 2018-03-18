@@ -24,3 +24,20 @@
     margin-bottom: 10px !important;
     display: block !important;
 }
+.your-puzzles h3 {
+    font-weight: 100;
+    color: #333;
+    font-size: 20px;
+    margin: 10px 0;
+}
+.your-puzzles .puzzle {
+    display: block;
+    font-family: "Roboto";
+    font-weight: 100;
+    
+}
+#chessground {
+    width: 500px;
+    height: 500px;
+    margin: 10px auto;
+}

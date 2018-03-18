@@ -18,7 +18,6 @@ a:hover {
 .right {
     float: right;
 }
-
 /* .button styling */
 
 .button {
@@ -218,7 +217,7 @@ footer a {
     width: 0;
     bottom: 0;
     left: 0;
-    transition: 0.25s linear;
+    transition: 0.1s linear;
     background: #3893e8;
 }
 .page .main a:hover::after {
@@ -230,6 +229,9 @@ footer a {
 .page .main.center {
     margin: 30px auto;
     display: block;
+}
+.page .main.full {
+    width: 100%;
 }
 .page .right-area,
 .page .left-area {
@@ -246,6 +248,7 @@ footer a {
     box-shadow: 0 0 5px RGBa(0,0,0,0.1);
     width: 100%;
     margin-top: 10px;
+    margin-bottom: 30px;
     padding: 10px;
     border-radius: 3px;
 }
@@ -272,12 +275,18 @@ footer a {
     display: inline-block;
     padding: 10px;
 }
-.page .block .no-contributions {
+.page .nothing-to-see {
     color: #aaa;
     text-transform: uppercase;
-    font-size: 12px;
-    text-align: center;
     font-weight: 100;
+}
+.page .main .nothing-to-see {
+    font-size: 15px;
+}
+.page .right-area .nothing-to-see,
+.page .left-area .nothing-to-see {
+    font-size: 13px;
+    text-align: center;
 }
 /* Other */
 

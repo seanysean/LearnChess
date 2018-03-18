@@ -8,7 +8,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
     $fen = secure($_POST['fen']);
     $pgn = secure($_POST['pgn']);
     $authorID = $_SESSION['userid'];
-    $sql = "INSERT INTO `puzzles` (fen,pgn,author_id) VALUES ('$fen','$pgn','$authorID')";
+    $sql = "INSERT INTO `puzzles_to_review` (fen,pgn,author_id) VALUES ('$fen','$pgn','$authorID')";
     $result = mysqli_query($connection,$sql);
     if ($result) {
         $msg = '<p>Puzzle created successfully! You will be notified when is is approved or disapproved.</p>';

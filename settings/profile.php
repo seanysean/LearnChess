@@ -62,12 +62,20 @@ if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about'])) 
                         <p><a href="/member/<?php echo $_SESSION['username'] ?>">View your profile</a></p>
                         <?php } ?>
                         <div class="input-container half">
-                            <input name="name" type="text" id="name" <?php if(isset($db_name)) { echo "value=\"$db_name\""; } ?>>
+                            <input name="name" type="text" id="name" <?php if (isset($name)) {
+                                                                        echo "value=\"$name\"";
+                                                                    } else if(isset($db_name)) {
+                                                                        echo "value=\"$db_name\""; 
+                                                                    } ?>>
                             <label for="name">Name</label>
                             <span class="line"></span>
                         </div>
                         <div class="input-container half right">
-                            <input name="lichess" type="text" id="lichess" spellcheck="false" <?php if(isset($db_lichess)) { echo "value=\"$db_lichess\""; } ?>>
+                            <input name="lichess" type="text" id="lichess" spellcheck="false" <?php if (isset($lichess)) {
+                                                                                                echo "value=\"$lichess\"";
+                                                                                              } else if(isset($db_lichess)) {
+                                                                                                echo "value=\"$db_lichess\""; 
+                                                                                              } ?>>
                             <label for="lichess">Lichess Username</label>
                             <span class="line"></span>
                         </div>

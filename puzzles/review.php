@@ -8,15 +8,20 @@ if(!$l or !isAllowed('puzzle')) {
     $r = explode(' ',$review);
     $pID = $r[1];
     if ($r[0] === 'accept') {
-        $sql = "UPDATE `puzzles` SET approved='1',reviewed='1' WHERE id='$pID'";
-        $result = mysqli_query($connection,$sql);
-        if ($result) {
+        $authorID = secure($_POST['authorID']);
+        $pgn = secure($_POST['pgn']);
+        $fen = secure($_POST['fen']);
+        $sql1 = "INSERT INTO `puzzles_approved` (fen,pgn,author_id) VALUES ('$fen','$pgn','$authorID');";
+        $sql2 = "DELETE FROM `puzzles_to_review` WHERE id='$pID'";
+        $result1 = mysqli_query($connection,$sql1);
+        $result2 = mysqli_query($connection,$sql2);
+        if ($result1 and $result2) {
             $msg = "<p>Puzzle $pID accepted.</p>";
         } else {
             $msg = "<p>Something went really wrong.</p>";
         }
     } else if ($r[0] === 'delete') {
-        $sql = "UPDATE `puzzles` SET reviewed='1' WHERE id='$pID'";
+        $sql = "DELETE FROM `puzzles_to_review` WHERE id='$pID'";
         $result = mysqli_query($connection,$sql);
         if ($result) {
             $msg = "<p>Puzzle $pID deleted.</p>";
@@ -43,7 +48,10 @@ if(!$l or !isAllowed('puzzle')) {
                     <h1 class="block-title"><span class="fa fa-dashboard"></span> Review puzzles</h1>
                     <?php if(isset($msg)) {
                         echo $msg;
-                    } ?>
+                    }
+                    $sql = "SELECT * FROM `puzzles_to_review` ORDER BY id DESC";
+                    $result = mysqli_query($connection,$sql);
+                    if (mysqli_num_rows($result) > 0) { ?>
                     <table class="puzzles-to-review">
                         <thead>
                             <tr>
@@ -55,18 +63,15 @@ if(!$l or !isAllowed('puzzle')) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $sql = "SELECT * FROM `puzzles` WHERE approved='0' AND reviewed='0' ORDER BY id DESC";
-                            $result = mysqli_query($connection,$sql);
-                            if (mysqli_num_rows($result) > 0) {
-                                while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-                                    $authorID = $row['author_id'];
-                                    $getUsername = "SELECT username FROM `users` WHERE id='$authorID' LIMIT 1";
-                                    $userResult = mysqli_query($connection,$getUsername);
-                                    $id = $row['id'];
-                                    $author = $userResult->fetch_assoc()['username'];
-                                    $fen = $row['fen'];
-                                    $pgn = $row['pgn'];
+                        <?php
+                        while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+                            $authorID = $row['author_id'];
+                            $getUsername = "SELECT username FROM `users` WHERE id='$authorID' LIMIT 1";
+                            $userResult = mysqli_query($connection,$getUsername);
+                            $id = $row['id'];
+                            $author = $userResult->fetch_assoc()['username'];
+                            $fen = explode(' ',$row['fen'])[0];
+                            $pgn = $row['pgn'];
                             ?>
                             <tr>
                                 <td><?php echo $id ?></td>
@@ -76,6 +81,9 @@ if(!$l or !isAllowed('puzzle')) {
                                 <td><span class="choice">
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                                         <input type="hidden" value="accept <?php echo $id ?>" name="review">
+                                        <input type="hidden" value="<?php echo $authorID ?>" name="authorID">
+                                        <input type="hidden" value="<?php echo $fen ?>" name="fen">
+                                        <input type="hidden" value="<?php echo $pgn ?>" name="pgn">
                                         <button type="submit" class="button green"><span><i class="fa fa-check"></i></span></button>
                                     </form>
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -87,24 +95,8 @@ if(!$l or !isAllowed('puzzle')) {
                             <?php 
                                 }
                             } else {
-                                echo "<p>No puzzles for review</p>";
+                                echo "<p class=\"nothing-to-see\">No puzzles for review</p>";
                             } ?>
-                            <!--<tr>
-                                <td>2</td>
-                                <td><a class="author" href="#">Seanysean</a></td>
-                                <td><a class="fen" href="#">rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR</a></td>
-                                <td><span class="pgn">1. h4 h6 2. Bh1 Rb7 3. Kb9 1. h4 h6 2. Bh1 Rb7 3. Kb9 1. h4 h6 2. Bh1 Rb7 3. Kb9 1. h4 h6 2. Bh1 Rb7 3. Kb9 1. h4 h6 2. Bh1 Rb7 3. Kb9</span></td>
-                                <td><span class="choice">
-                                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                                        <input type="hidden" value="accept" name="review">
-                                        <button type="submit" class="button green"><span><i class="fa fa-check"></i></span></button>
-                                    </form>
-                                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                                        <input type="hidden" value="delete" name="review">
-                                        <button type="submit" class="button red"><span><i class="fa fa-close"></i></span></button>
-                                    </form>
-                                </span></td>
-                            </tr>-->
                         </tbody>
                     </table>
                 </div>

@@ -52,7 +52,7 @@ if ($result) {
             <div class="right-area">
                 <div class="block">
                     <h1 class="block-title">Contributions</h1>
-                    <p class="no-contributions">No contributions made yet</p>
+                    <p class="nothing-to-see">No contributions made yet</p>
                 </div>
             </div>
         </div>

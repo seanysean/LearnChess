@@ -1,12 +1,18 @@
 <?php
 session_start();
 include "../include/functions.php";
+$sql = "SELECT id FROM `puzzles_to_review`";
+$result = mysqli_query($connection,$sql);
+if ($result) {
+    $unreviewedCount = mysqli_num_rows($result);
+}
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Approved puzzles • LearnChess</title>
         <?php include_once "../include/head.php" ?>
+        <link href="../css/puzzles.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div class="top">
@@ -15,9 +21,9 @@ include "../include/functions.php";
         <div class="page">
             <div class="main <?php if(!$l) { echo 'center'; } ?>">
                 <div class="block">
-                    <h1 class="block-title">Approved puzzles<?php if(isAllowed('puzzle')) { ?>
+                    <h1 class="block-title">Approved puzzles<?php if($l and isAllowed('puzzle')) { ?>
                         <span class="alternate">
-                            <a class="button blue" href="review"><span><i class="fa fa-dashboard"></i> Review new puzzles</a>
+                            <a class="button blue" href="review"><span><i class="fa fa-dashboard"></i> Review new puzzles <?php if($unreviewedCount > 0) { echo "($unreviewedCount)"; } ?></a>
                         </span>
                     <?php } ?>
                     </h1>
@@ -27,14 +33,36 @@ include "../include/functions.php";
             <div class="right-area">
                 <div class="block">
                     <h1 class="block-title center">Your puzzles</h1>
-                    <a href="new" class="button nocolor full">
+                    <a href="new" class="button green full">
                         <span>
                             <i class="fa fa-plus"></i>
                             New puzzle
                         </span>
                     </a>
                     <div class="your-puzzles">
-                        <p class="no-contributions">No puzzles submitted</p>
+                        <?php
+                        $myID = $_SESSION['userid'];
+                        $sql = "SELECT id FROM `puzzles_to_review` WHERE author_id='$myID'";
+                        $result = mysqli_query($connection,$sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            $rows = mysqli_num_rows($result);
+                            echo "<h3>$rows puzzles in review</h3>";
+                        } else { ?>
+                        <p class="nothing-to-see">No puzzles in review</p>
+                        <?php } 
+                        $sql2 = "SELECT id FROM `puzzles_approved` WHERE author_id='$myID' ORDER BY id DESC";
+                        $result2 = mysqli_query($connection,$sql2);
+                        if (mysqli_num_rows($result2) > 0) {
+                            $rows = mysqli_num_rows($result2);
+                            echo "<h3>$rows accepted puzzles</h3>";
+                            while($row = mysqli_fetch_array($result2,MYSQLI_ASSOC)) {
+                                $puzzleID = $row['id'];
+                                ?>
+                                <a href="view/<?php echo $puzzleID ?>" class="puzzle">Puzzle <?php echo $puzzleID ?></span>
+                        <?php }
+                        } else { ?>
+                        <p class="nothing-to-see">No accepted puzzles</p>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
