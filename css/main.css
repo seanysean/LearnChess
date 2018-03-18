@@ -260,6 +260,10 @@ footer a {
     color: #444;
     margin: 10px 0;
 }
+.page .left-area .block .block-title,
+.page .right-area .block .block-title {
+    font-size: 25px;
+}
 .page .block .block-title.center {
     text-align: center;
 }

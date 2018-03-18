@@ -70,7 +70,7 @@ if(!$l or !isAllowed('puzzle')) {
                             $userResult = mysqli_query($connection,$getUsername);
                             $id = $row['id'];
                             $author = $userResult->fetch_assoc()['username'];
-                            $fen = explode(' ',$row['fen'])[0];
+                            $fen = $row['fen'];
                             $pgn = $row['pgn'];
                             ?>
                             <tr>

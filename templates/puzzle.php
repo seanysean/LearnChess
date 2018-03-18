@@ -30,14 +30,23 @@ if ($result) {
                     <div id="chessground"></div>
                 </div>
             </div>
-            <div class="right-area"></div>
+            <div class="right-area">
+                <div class="block">
+                    <h3>Copy URL</h1>
+                    <p id="puzzleURL"></p>
+                    <h3>Copy FEN</h1>
+                    <p id="puzzleFEN"></p>
+                </div>
+            </div>
         </div>
         <footer>
             <?php include_once "../../include/footer.php"; ?>
         </footer>
         <script>
-        const fen = '<?php echo $fen ?>';
+        const fen = '<?php echo $fen ?>',
+              pgn = '<?php echo $pgn ?>';
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
         <script src="/js/chessground.min.js"></script>
         <script src="/js/puzzles.js"></script>
     </body>
