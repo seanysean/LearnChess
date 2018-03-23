@@ -62,10 +62,40 @@
     display: block;
     font-family: "Roboto";
     font-weight: 100;
-    
 }
 #chessground {
     width: 500px;
     height: 500px;
     margin: 10px auto;
+}
+.editor-container {
+    margin: 30px 0;
+}
+.editor-container .spare,
+.editor-container .board {
+    margin: 10px auto;
+    width: 300px;
+    overflow: hidden;
+}
+.editor-container .spare {
+    height: 50px;
+    background: #f8f8f8;
+    border-radius: 3px;
+    display: flex;
+}
+.editor-container .spare piece {
+    height: 100%;
+    flex-grow: 1;
+    cursor: pointer;
+}
+.editor-container .spare piece.selectedPiece {
+    background-color: RGBa(0,0,0,0.1);
+    box-shadow: inset 0 0 5px RGBa(0,137,255,0.3);
+}
+.editor-container .board {
+    height: 300px;
+}
+.editor-container #clrSelect {
+    display: block;
+    margin: auto;
 }

@@ -1,6 +1,7 @@
 const chess = new Chess(fen), config = {
     fen: fen,
     coordinates: false,
+    turnColor: getColor(chess.turn()),
     orientation: getColor(chess.turn()),
     movable: {
         free: false,
@@ -14,11 +15,11 @@ const chess = new Chess(fen), config = {
         enabled: false
     },
     animation: {
-        duration: 5000
+        duration: 300
     }
 }, cg = Chessground(document.getElementById('chessground'),config);
 
-splitPGN = pgn.split(/[1-9][.][ ]/).join('').split(' '),
+splitPGN = pgn.split(/[1-9][.][.][.] |[1-9][.] /).join('').split(' '),
 halfMove = 0;
 
 function toDests(c) {

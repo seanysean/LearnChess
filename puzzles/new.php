@@ -23,6 +23,8 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
         <title>Create new puzzle • LearnChess</title>
         <?php include_once "../include/head.php" ?>
         <link href="../css/material.css" rel="stylesheet" type="text/css">
+        <link href="../css/puzzles.css" rel="stylesheet" type="text/css">
+        <link href="../css/chessground.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div class="top">
@@ -33,6 +35,26 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
                 <div class="block">
                     <h1 class="block-title center">Create new puzzle</h1>
                     <a href="all">Back to puzzles</a>
+                    <div class="editor-container">
+                        <div class="spare">
+                            <piece class="black king" data-piece="black king"></piece>
+                            <piece class="black queen" data-piece="black queen"></piece>
+                            <piece class="black rook" data-piece="black rook"></piece>
+                            <piece class="black bishop" data-piece="black bishop"></piece>
+                            <piece class="black knight" data-piece="black knight"></piece>
+                            <piece class="black pawn" data-piece="black pawn"></piece>
+                        </div>
+                        <div id="cg" class="board"></div>
+                        <div class="spare">
+                            <piece class="white king" data-piece="white king"></piece>
+                            <piece class="white queen" data-piece="white queen"></piece>
+                            <piece class="white rook" data-piece="white rook"></piece>
+                            <piece class="white bishop" data-piece="white bishop"></piece>
+                            <piece class="white knight" data-piece="white knight"></piece>
+                            <piece class="white pawn" data-piece="white pawn"></piece>
+                        </div>
+                        <button class="button blue" id="clrSelect"><span><i class="fa fa-close"></i> Clear selection</span></button>
+                    </div>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                         <?php if(isset($msg)) { echo $msg; } ?>
                         <div class="input-container">
@@ -59,5 +81,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
             <?php include_once "../include/footer.php" ?>
         </footer>
         <script src="../js/global.js"></script>
+        <script src="../js/chessground.min.js"></script>
+        <script src="../js/boardeditor.js"></script>
     </body>
 </html>
