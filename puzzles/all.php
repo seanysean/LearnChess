@@ -13,6 +13,7 @@ if ($result) {
         <title>Approved puzzles • LearnChess</title>
         <?php include_once "../include/head.php" ?>
         <link href="../css/puzzles.css" rel="stylesheet" type="text/css">
+        <link href="../css/chessground.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div class="top">
@@ -27,6 +28,28 @@ if ($result) {
                         </span>
                     <?php } ?>
                     </h1>
+                    <div class="accepted-puzzles">
+                    <?php
+                    $sql = "SELECT * FROM `puzzles_approved`";
+                    $result = mysqli_query($connection,$sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+                            $fen = $row['fen'];
+                            $pID = $row['id'];
+                            $authorID = $row['author_id'];
+                            $sql2 = "SELECT username FROM `users` WHERE id='$authorID'";
+                            $result2 = mysqli_query($connection,$sql2);
+                            $author = $result2->fetch_assoc()['username'];
+                        ?>
+                        <div class="puzzle-container">
+                            <a href="<?php echo "view/$pID" ?>" class="puzzle" data-fen="<?php echo $fen ?>"></a>
+                            <div class="credits">Created by <a href="<?php echo strtolower($author) ?>"><?php echo $author ?></a></div>
+                        </div>
+                    <?php }
+                    } else {
+                        echo "<p class=\"nothing-to-see center\">No approved puzzles. <a href=\"new\">Why not make one?</a></p>";
+                    } ?>
+                    </div>
                 </div>
             </div>
             <?php if($l) { ?>
@@ -72,5 +95,14 @@ if ($result) {
             <?php include_once "../include/footer.php" ?>
         </footer>
         <script src="../js/global.js"></script>
+        <script src="../js/chessground.min.js"></script>
+        <script src="../js/loadposition.js"></script>
+        <script>
+        const puzzlePreviews = document.querySelectorAll('[data-fen]');
+        puzzlePreviews.forEach(e=>{
+            const fen = e.getAttribute('data-fen');
+            loadPosition(e,fen);
+        });
+        </script>
     </body>
 </html>

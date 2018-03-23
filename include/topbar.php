@@ -1,5 +1,5 @@
 <div class="top-above">
-    <a class="learnchess-link" href="/">LearnChess<span class="extension"></span></a>
+    <a class="learnchess-link" href="/">LearnChess<span class="extension">.tk</span></a>
     <?php if($l) { ?>
         <span class="right"><a class="profile-link" href="/member/<?php echo strtolower($_SESSION['username']); ?>"><?php echo $_SESSION['username']; ?></a></span>
     <?php } else { ?>

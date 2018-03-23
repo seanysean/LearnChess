@@ -37,7 +37,7 @@ if ($result) {
                         </span>
                         <?php } ?>
                     </h1>
-                    <?php if(isset($thisUsersLichessProfile)) {
+                    <?php if(strlen($thisUsersLichessProfile) > 0) {
                         echo "<a href=\"https://lichess.org/@/$thisUsersLichessProfile\">View lichess profile</a>";
                     } ?>
                     <?php if(isset($thisUsersName)) { ?>

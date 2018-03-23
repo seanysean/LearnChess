@@ -1,3 +1,31 @@
+.accepted-puzzles {
+    text-align: center;
+}
+.accepted-puzzles .puzzle-container {
+    width: 10vw;
+    display: inline-block;
+    margin: 5px;
+}
+.accepted-puzzles .puzzle-container .puzzle {
+    width: 10vw;
+    height: 10vw;
+    display: block;
+    overflow: hidden;
+}
+.accepted-puzzles .puzzle-container .puzzle::after {
+    display: none;
+}
+.accepted-puzzles .puzzle-container .credits {
+    padding: 5px;
+    color: #999;
+    font-weight: 100;
+    font-family: "Roboto",sans-serif;
+    transition: 0.25s linear;
+    border: 1px solid #eee;
+}
+.accepted-puzzles .puzzle-container .puzzle:hover + .credits {
+    background: #f7f7f7;
+}
 .puzzles-to-review {
     margin-top: 30px;
     display: block;
