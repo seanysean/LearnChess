@@ -99,3 +99,59 @@
     display: block;
     margin: auto;
 }
+.copyings h3 {
+    font-family: "Roboto";
+    font-weight: 100;
+    margin: 5px;
+}
+.copyings p {
+    margin: 10px 5px;
+    font-family: "Roboto";
+    font-weight: 100;
+    word-break: break-all;
+}
+.feedback {
+    padding: 0 !important;
+}
+.feedback #response {
+    padding: 25px 30px;
+    font-size: 20px;
+}
+.feedback #response.neutral {
+    background: #eee;
+}
+.feedback #response.correct,
+.feedback #response.incorrect {
+    color: #f3f3f3;
+}
+.feedback #response.correct {
+    background: #73ca76;
+}
+.feedback #response.incorrect {
+    background: #ca7373;
+}
+.feedback .give-a-trophy {
+    background: #5bb55e;
+    color: #fff;
+    font-family: "Roboto";
+    font-weight: 100;
+    height: 30px;
+    line-height: 30px;
+}
+.feedback .give-a-trophy button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    height: 30px;
+    transition: 0.25s linear;
+}
+.feedback .give-a-trophy button:hover {
+    background: #73ca76;
+    box-shadow: inset 0 0 5px #5bb55e;
+}
+.feedback .give-a-trophy button:active {
+    background: #91e094;
+    box-shadow: inset 0 0 10px #5bb55e;
+}

@@ -15,6 +15,9 @@ a {
 a:hover {
     color: #1d7bd3;
 }
+button:active {
+    outline: none;
+}
 .right {
     float: right;
 }
@@ -58,6 +61,20 @@ a:hover {
     left: 0;
     z-index: 1;
     transition: .25s ease !important;
+}
+.button.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.button.disabled:hover {
+    box-shadow: none;
+    top: 0;
+}
+.button.disabled:hover span {
+    color: #333;
+}
+.button.disabled:after {
+    background: #f9f9f9 !important;
 }
 .button.nocolor::after {
     background: #f4f4f4 !important;
@@ -251,9 +268,11 @@ footer a {
     margin-bottom: 30px;
     padding: 10px;
     border-radius: 3px;
+    overflow: hidden;
 }
 .page .block.transparent {
     background: transparent;
+    box-shadow: none;
 }
 .page .block .block-title {
     font-weight: 100;

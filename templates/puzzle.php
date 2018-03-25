@@ -7,6 +7,7 @@ if ($result) {
     $res = $result->fetch_assoc();
     $pgn = $res['pgn'];
     $fen = $res['fen'];
+    $trophies = $res['trophies'];
 }
 ?>
 <!DOCTYPE html>
@@ -31,11 +32,14 @@ if ($result) {
                 </div>
             </div>
             <div class="right-area">
-                <div class="block">
+                <div class="block copyings">
                     <h3>Copy URL</h1>
                     <p id="puzzleURL"></p>
                     <h3>Copy FEN</h1>
                     <p id="puzzleFEN"></p>
+                </div>
+                <div class="block feedback" id="res-container">
+                    <div id="response" class="neutral"><i class="fa fa-spinner"></i> Loading</div>
                 </div>
             </div>
         </div>
@@ -44,7 +48,9 @@ if ($result) {
         </footer>
         <script>
         const fen = '<?php echo $fen ?>',
-              pgn = '<?php echo $pgn ?>';
+              pgn = '<?php echo $pgn ?>',
+              pID = '<?php echo $pID ?>',
+              trophies = '<?php echo $trophies ?>';
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
         <script src="/js/chessground.min.js"></script>

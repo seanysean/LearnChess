@@ -17,11 +17,30 @@ const chess = new Chess(fen), config = {
     animation: {
         duration: 300
     }
-}, cg = Chessground(document.getElementById('chessground'),config);
+}, cg = Chessground(document.getElementById('chessground'),config), res = document.getElementById('response');
 
+let turn = chess.turn() === 'w' ? 'White':'Black';
+res.innerHTML = `<i class="fa fa-info-circle"></i> ${turn} to move`;
 splitPGN = pgn.split(/[1-9][.][.][.] |[1-9][.] /).join('').split(' '),
 halfMove = 0;
 
+function showResponse(s,d) {
+    if (s && !d) {
+        res.innerHTML = '<i class="fa fa-check"></i> Good move';
+        res.classList = 'correct';
+    } else if (s && d) {
+        res.innerHTML = '<i class="fa fa-check"></i> Puzzle solved';
+        res.classList = 'correct';
+        const el = document.createElement('div');
+        el.classList = 'give-a-trophy';
+        el.innerHTML = `<button type="submit" id="trophy" class="trophy"><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
+        document.getElementById('res-container').appendChild(el);
+        document.getElementById('trophy').addEventListener('click',updateTrophies);
+    } else {
+        res.innerHTML = '<i class="fa fa-close"></i> Wrong move';
+        res.classList = 'incorrect';
+    }
+}
 function toDests(c) {
     const dests = {};
     c.SQUARES.forEach(s => {
@@ -36,7 +55,7 @@ function checkMove(c,cg) {
         const m = chess.move(mObj);
         console.log(splitPGN[halfMove]);
         if (splitPGN[halfMove] && m.san === splitPGN[halfMove]) {
-            console.log('Good move!');
+            showResponse(true,false);
             if (splitPGN[halfMove + 1]) {
                 const m2 = chess.move(splitPGN[++halfMove]);
                 cg.move(m2.from,m2.to);
@@ -49,17 +68,35 @@ function checkMove(c,cg) {
                 });
                 halfMove++;
             } else {
-                console.log('Puzzle solved!');
+                showResponse(true,true);
             }
         } else if (!splitPGN[halfMove]) {
-            console.log('Puzzle solved!');
+            showResponse(true,true);
         }else {
-            console.log('Wrong move!!!');
+            showResponse(false,false);
         }
     }
 }
 function getColor(c) {
     return c === 'w' ? 'white':'black';
+}
+function updateTrophies(e) {
+    const t = document.getElementById('tCount');
+    t.innerHTML = '...';
+    const xhr = new XMLHttpRequest(),
+          url = '/puzzles/star',
+          data = `trophy=1&puzzle=${pID}`;
+    xhr.responseType = 'json';
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === xhr.DONE) {
+            const res = xhr.response;
+            console.log(res);
+            t.innerHTML = Number(trophies) + 1;
+        }
+    }
+    xhr.open('POST',url);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    xhr.send(data);
 }
 cg.set({
     movable: {
