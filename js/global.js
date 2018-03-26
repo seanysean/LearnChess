@@ -27,3 +27,36 @@ function makeMessage() {
     message.appendChild(close);
     document.body.appendChild(message);
 }
+
+const userInfo = document.createElement('div');
+userInfo.classList = 'userinfo-box';
+document.body.appendChild(userInfo);
+const userInfoLinks = document.querySelectorAll('[userinfo]');
+userInfoLinks.forEach(l=>{
+    l.addEventListener('mouseover',e=>{
+        userInfo.style.display = 'block';
+        userInfo.innerHTML = '<div class="loading-container"><div class="loader"></div></div>';
+        userInfo.style.left = l.offsetLeft + 'px';
+        userInfo.style.top = l.offsetTop - userInfo.offsetHeight + 'px';
+        const xhr = new XMLHttpRequest();
+              url = `/userinfo?u=${l.getAttribute('userinfo')}`;
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) {
+                const res = xhr.response;
+                userInfo.innerHTML = res;
+                userInfo.style.top = l.offsetTop -  userInfo.offsetHeight + 'px';
+            }
+        }
+        xhr.open('GET',url);
+        xhr.send();
+    });
+    l.addEventListener('mouseleave',e=>{
+        userInfo.style.display = 'none';
+    });
+});
+userInfo.addEventListener('mouseover',()=>{
+    userInfo.style.display = 'block';
+});
+userInfo.addEventListener('mouseleave',()=>{
+    userInfo.style.display = 'none';
+});

@@ -7,6 +7,7 @@ body {
 }
 
 /* Global styles */
+
 a {
     color: #3893e8;
     text-decoration: none;
@@ -31,6 +32,22 @@ button:active {
 .state.offline {
     color: #898e8a;
 }
+/* .uilink styling */
+
+.uilink {
+    color: #444;
+    font-weight: 400;
+}
+.uilink:hover {
+    color: #555;
+}
+.uilink::after {
+    display: none !important;
+}
+.uilink .state {
+    font-size: 13px;
+}
+
 /* .button styling */
 
 .button {
@@ -114,6 +131,63 @@ button:active {
 .button:active {
     outline: none;
     box-shadow: 0 1px 5px RGBa(0,0,0,0.3);
+}
+
+/* .userinfo-box */
+
+.userinfo-box {
+    position: absolute;
+    background: #fff;
+    font-weight: 100;
+    border: 1px solid #eee;
+    box-shadow: 0 0 5px RGBa(0,0,0,0.2);
+    width: 150px;
+    z-index: 10;
+    display: none;
+}
+.userinfo-box .ui-top {
+    padding: 3px;
+    border-bottom: 1px solid #eee;
+}
+.userinfo-box .top .uilink {
+    display: block !important;
+    width: 70px !important;
+}
+.userinfo-box .loading-container {
+    padding: 10px;
+    display: relative;
+    height: 40px;
+}
+.userinfo-box .padding {
+    padding: 10px;
+}
+.userinfo-box .padding.no-account {
+    min-height: 40px;
+    font-size: 15px;
+    text-align: center;
+    padding: 10px;
+    color: #888;
+}
+.userinfo-box .loading-container .loader {
+    height: 20px;
+    width: 20px;
+    border: 2px solid transparent;
+    border-right-color: #3893e8;
+    border-bottom-color: #3893e8;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    animation: 0.8s rotate linear infinite;
+}
+@keyframes rotate {
+    0% {
+        transform: translate(-50%,-50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%,-50%) rotate(360deg);
+    }
 }
 
 /* 'Topbar' */
@@ -224,11 +298,13 @@ button:active {
     display: block;
     width: 100%;
 }
-/* .page stuff */
+
+/* .page */
+
 .page {
     color: #777;
 }
-.page .main a,
+.page .main a:not(.uilink),
 footer a {
     font-family: "Roboto", sans-serif;
     font-weight: 100;

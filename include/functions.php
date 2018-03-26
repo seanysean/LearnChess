@@ -22,3 +22,17 @@ function isAllowed($type) {
         return ($pEdited[1] === '1') ? true : false;
     }
 }
+function createUserLink($id) {
+    global $connection;
+    $sql = "SELECT * FROM `users` WHERE id='$id'";
+    $result = mysqli_query($connection,$sql);
+    if ($result) {
+        $r = $result->fetch_assoc();
+        $username = $r['username'];
+        $user = strtolower($username);
+        $online = $r['online'] === '1' ? 'online' : 'offline';
+        echo "<a class=\"uilink\" href=\"/member/$user\" userinfo=\"$id\"><i class=\"state fa fa-circle $online\"></i> $username</a>";
+    } else {
+        echo "<span>User not found</span>";
+    }
+}

@@ -37,13 +37,10 @@ if ($result) {
                             $fen = $row['fen'];
                             $pID = $row['id'];
                             $authorID = $row['author_id'];
-                            $sql2 = "SELECT username FROM `users` WHERE id='$authorID'";
-                            $result2 = mysqli_query($connection,$sql2);
-                            $author = $result2->fetch_assoc()['username'];
                         ?>
                         <div class="puzzle-container">
                             <a href="<?php echo "view/$pID" ?>" class="puzzle" data-fen="<?php echo $fen ?>"></a>
-                            <div class="credits">Created by <a href="<?php echo '/member/'.strtolower($author) ?>"><?php echo $author ?></a></div>
+                            <div class="credits">Created by <br /><?php createUserLink($authorID) ?></div>
                         </div>
                     <?php }
                     } else {
