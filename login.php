@@ -12,6 +12,8 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
     $count = mysqli_num_rows($result);
     $loginInfo = $result->fetch_assoc();
     if ($count === 1 and $loginInfo['active'] === '1' and password_verify($password,$loginInfo['password'])) {
+        $sql = "UPDATE `users` SET online='1' WHERE username='$username'";
+        mysqli_query($connection,$sql);
         $_SESSION['username'] = $loginInfo['username'];
         $_SESSION['userid'] = $loginInfo['id'];
         $_SESSION['permissions'] = ''.$loginInfo['permissions'];

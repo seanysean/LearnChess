@@ -21,6 +21,16 @@ button:active {
 .right {
     float: right;
 }
+.state {
+    display: inline-block;
+    vertical-align: middle;
+}
+.state.online {
+    color: #71bd74;
+}
+.state.offline {
+    color: #898e8a;
+}
 /* .button styling */
 
 .button {
