@@ -43,7 +43,7 @@ if ($result) {
                         ?>
                         <div class="puzzle-container">
                             <a href="<?php echo "view/$pID" ?>" class="puzzle" data-fen="<?php echo $fen ?>"></a>
-                            <div class="credits">Created by <a href="<?php echo strtolower($author) ?>"><?php echo $author ?></a></div>
+                            <div class="credits">Created by <a href="<?php echo '/member/'.strtolower($author) ?>"><?php echo $author ?></a></div>
                         </div>
                     <?php }
                     } else {
