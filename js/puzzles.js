@@ -19,7 +19,8 @@ const chess = new Chess(fen), config = {
     }
 }, cg = Chessground(document.getElementById('chessground'),config), res = document.getElementById('response');
 
-let turn = chess.turn() === 'w' ? 'White':'Black';
+let turn = chess.turn() === 'w' ? 'White':'Black',
+    gaveTrophy = false;
 res.innerHTML = `<i class="fa fa-info-circle"></i> ${turn} to move`;
 splitPGN = pgn.split(/[1-9][.][.][.] |[1-9][.] /).join('').split(' '),
 halfMove = 0;
@@ -81,22 +82,26 @@ function getColor(c) {
     return c === 'w' ? 'white':'black';
 }
 function updateTrophies(e) {
-    const t = document.getElementById('tCount');
-    t.innerHTML = '...';
-    const xhr = new XMLHttpRequest(),
-          url = '/puzzles/star',
-          data = `trophy=1&puzzle=${pID}`;
-    xhr.responseType = 'json';
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === xhr.DONE) {
-            const res = xhr.response;
-            console.log(res);
-            t.innerHTML = Number(trophies) + 1;
+    if (!gaveTrophy) {
+        const t = document.getElementById('tCount');
+        t.innerHTML = '...';
+        const xhr = new XMLHttpRequest(),
+              url = '/puzzles/star',
+              data = `trophy=1&puzzle=${pID}`;
+        xhr.responseType = 'json';
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) {
+                const res = xhr.response;
+                console.log(res);
+                t.innerHTML = Number(trophies) + 1;
+                document.getElementById('trophy').style.pointerEvents = 'none';
+            }
         }
+        xhr.open('POST',url);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+        xhr.send(data);
+        gaveTrophy = true;
     }
-    xhr.open('POST',url);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    xhr.send(data);
 }
 cg.set({
     movable: {
