@@ -1,5 +1,5 @@
 // To remove the one ad.
-if (document.domain === 'learnchess.000webhostapp.com') {
+if (document.domain === 'learnchess.tk') {
     setTimeout(()=>{
         const divs = document.getElementsByTagName('DIV');
         divs[divs.length - 1].style.display = 'none';

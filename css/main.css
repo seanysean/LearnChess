@@ -15,10 +15,12 @@ a {
 a:hover {
     color: #1d7bd3;
 }
+button:active {
+    outline: none;
+}
 .right {
     float: right;
 }
-
 /* .button styling */
 
 .button {
@@ -59,6 +61,20 @@ a:hover {
     left: 0;
     z-index: 1;
     transition: .25s ease !important;
+}
+.button.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.button.disabled:hover {
+    box-shadow: none;
+    top: 0;
+}
+.button.disabled:hover span {
+    color: #333;
+}
+.button.disabled:after {
+    background: #f9f9f9 !important;
 }
 .button.nocolor::after {
     background: #f4f4f4 !important;
@@ -218,7 +234,7 @@ footer a {
     width: 0;
     bottom: 0;
     left: 0;
-    transition: 0.25s linear;
+    transition: 0.1s linear;
     background: #3893e8;
 }
 .page .main a:hover::after {
@@ -230,6 +246,9 @@ footer a {
 .page .main.center {
     margin: 30px auto;
     display: block;
+}
+.page .main.full {
+    width: 100%;
 }
 .page .right-area,
 .page .left-area {
@@ -246,16 +265,23 @@ footer a {
     box-shadow: 0 0 5px RGBa(0,0,0,0.1);
     width: 100%;
     margin-top: 10px;
+    margin-bottom: 30px;
     padding: 10px;
     border-radius: 3px;
+    overflow: hidden;
 }
 .page .block.transparent {
     background: transparent;
+    box-shadow: none;
 }
 .page .block .block-title {
     font-weight: 100;
     color: #444;
     margin: 10px 0;
+}
+.page .left-area .block .block-title,
+.page .right-area .block .block-title {
+    font-size: 25px;
 }
 .page .block .block-title.center {
     text-align: center;
@@ -272,12 +298,18 @@ footer a {
     display: inline-block;
     padding: 10px;
 }
-.page .block .no-contributions {
+.page .nothing-to-see {
     color: #aaa;
     text-transform: uppercase;
-    font-size: 12px;
-    text-align: center;
     font-weight: 100;
+}
+.page .main .nothing-to-see {
+    font-size: 15px;
+}
+.page .right-area .nothing-to-see,
+.page .left-area .nothing-to-see {
+    font-size: 13px;
+    text-align: center;
 }
 /* Other */
 

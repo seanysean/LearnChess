@@ -15,3 +15,10 @@ function secure($input,$nlines=false) {
     $input = trim($input);
     return $input;
 }
+function isAllowed($type) {
+    # Valid $types: 'puzzle'.
+    $pEdited = str_split($_SESSION['permissions']);
+    if ($type === "puzzle") {
+        return ($pEdited[1] === '1') ? true : false;
+    }
+}

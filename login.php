@@ -14,6 +14,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
     if ($count === 1 and $loginInfo['active'] === '1' and password_verify($password,$loginInfo['password'])) {
         $_SESSION['username'] = $loginInfo['username'];
         $_SESSION['userid'] = $loginInfo['id'];
+        $_SESSION['permissions'] = ''.$loginInfo['permissions'];
         header('Location: home');
     } else if ($loginInfo['active'] === '0') {
         $msg = '<p>This account was closed.</p>';
