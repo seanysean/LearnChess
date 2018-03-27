@@ -8,7 +8,7 @@
 </div>
 <nav class="top-navigation">
     <div class="main-links">
-        <a href="/home">Home</a>
+        <?php if($l) { echo "<a href=\"/home\">Home</a>"; } ?>
         <a href="/puzzles/all">Puzzles</a>
         <!--<div class="main-dropdown">
             <a href="#">More</a>

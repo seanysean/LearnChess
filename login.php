@@ -2,7 +2,7 @@
 session_start();
 include "include/functions.php";
 if($l) {
-    header('Location: home.php');
+    header('Location: home');
 }
 if (isset($_POST['username']) and isset($_POST['password'])) {
     $username = preg_replace("/[^a-z1-9\-\_]/i", "",secure($_POST['username']));

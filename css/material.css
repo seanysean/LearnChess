@@ -67,7 +67,6 @@ form .input-container textarea:focus ~ .line {
 form .input-response {
     position: relative;
     top: -10px;
-    left: -5px;
     font-weight: 400;
 }
 form .input-response:first-letter {
