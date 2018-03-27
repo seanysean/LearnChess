@@ -404,19 +404,20 @@ footer a {
     bottom: 0;
     width: 100%;
     padding: 20px;
-    background: #3893e8;
-    color: #eee;
+    color: #3893e8;
+    background: #d9d9d9;
     left: 0;
     z-index: 10;
 }
 .site-message a {
-    color: #fff;
+    color: #1988ea;
+    font-size: 15px;
 }
 .site-message a:hover {
-    color: #eee;
+    color: #3893e8;
 }
 .site-message span {
-    color: #fff;
+    color: #3893e8;
     font-size: 20px;
 }
 .site-message .message-type {
