@@ -2,7 +2,7 @@
 session_start();
 include "include/functions.php";
 if($l) {
-    header('Location: home.php');
+    header('Location: home');
 }
 function verify($input,$min,$max) {
     if ((strlen($input) > $min) and (strlen($input) < $max)) {
@@ -76,7 +76,7 @@ require \"../templates/profile.php\";";
                     ?>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <div class="input-container">
-                            <input type="text" name="username" minlength="4" id="username" maxlength="17" pattern="[a-zA-Z1-9_-]{4,17}" title="4 to 17 Characters. Allowed characters: 1-9a-z_-" spellcheck="false" autocomplete="off" required>
+                            <input type="text" name="username" minlength="4" id="username" maxlength="17" pattern="[a-zA-Z1-9_-]{4,17}" title="4 to 17 Characters. Allowed characters: 1-9a-z_-" spellcheck="false" autocomplete="off"<?php if(isset($_GET['username'])) { echo " value=\"".$_GET['username']."\""; } ?> autofocus required>
                             <label for="username">Username</label>
                             <span class="line"></span>
                         </div>

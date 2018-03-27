@@ -1,46 +1,73 @@
 <?php session_start();
 include "include/functions.php";
+if (!$l) {
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>LearnChess</title>
-        <?php include_once "./include/head.php" ?>
+        <title>Get Better At Chess With LearnChess</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/landing.css" type="text/css" rel="stylesheet">
         <link href="css/chessground.css" type="text/css" rel="stylesheet">
-        <style>
-        #puzzleOfTheDay {
-            width: 200px;
-            height: 200px;
-            transition: 0.25s opacity ease;
-        }
-        #puzzleOfTheDay:hover {
-            opacity: 0.5;
-        }
-        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
     </head>
     <body>
-        <div class="top">
-            <?php include_once "./include/topbar.php" ?>
-        </div>
-        <div class="page">
-            <div class="main">
-                <div class="block"></div>
+        <div class="topbar" id="topbar">
+            <a class="site-name" href="/">LearnChess<span class="extension">.tk</span></a>
+            <div class="right">
+                <a href="login"><span>Login</span></a>
+                <a href="register"><span>Register</span></a>
             </div>
-            <div class="right-area">
-                <div class="block">
-                    <h1 class="block-title center">Puzzle of the day</h1>
-                    <a href="puzzles/view/3"><div id="puzzleOfTheDay"></div></a>
+        </div>
+        <div class="main">
+            <div class="content">
+                <div class="left">
+                    <img class="main-image" src="https://lichess1.org/assets/images/board/svg/brown.svg" alt="Get better at chess online for free at LearnChess" />
+                </div>
+                <div class="right">
+                    <h1>Improve your chess skills for free</h1>
+                    <p>Practice with puzzles</p>
+                </div>
+            </div>
+        </div>
+        <div class="section puzzles">
+            <div class="content">
+                <div class="left">
+                    <h1>Puzzles</h1>
+                    <p>Solving chess puzzles and tactics is a known way to get better at chess. Here at LearnChess you can do it for free. <a href="/puzzles/view/1">Try one</a></p>
+                </div>
+                <div class="right">
+                    <div class="fa fa-puzzle-piece icon"></div>
+                </div>
+            </div>
+        </div>
+        <div class="section pricing">
+            <div class="content">
+                <div class="left">
+                    <div class="fa fa-check-square icon"></div>
+                </div>
+                <div class="right">
+                    <h1>Pricing</h1>
+                    <p>Everything is absolutely free. There are no ads and no premium accounts.</p>
+                    <div class="username-container">
+                        <input id="username" type="text" required>
+                        <label for="username">Enter username</label>
+                        <a id="start" href="/register">Get started</a>
+                    </div>
                 </div>
             </div>
         </div>
         <footer>
-            <?php include_once "./include/footer.php" ?>
+            <span class="site-name">LearnChess <span class="year">2018</span></span>
+            <div class="right">
+                <a href="#">Open source</a> • <a href="#">Puzzles</a>
+            </div>
         </footer>
-        <script src="js/global.js"></script>
-        <script src="js/chessground.min.js"></script>
-        <script src="js/loadposition.js"></script>
-        <script>
-        loadPosition(document.getElementById('puzzleOfTheDay'),'rnbqkbnr/pppp2pp/5p2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R');
-        </script>
+        <script src="js/landing.js"></script>
     </body>
 </html>
+<?php } else {
+    header('Location: home');
+}

@@ -1,0 +1,292 @@
+* {
+    box-sizing: border-box;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+body {
+    font-family: sans-serif;
+}
+a {
+    text-decoration: none;
+}
+.topbar {
+    position: fixed;
+    width: 100%;
+    padding: 50px;
+    z-index: 10;
+    transition: 0.25s ease;
+}
+.topbar.small {
+    padding: 20px;
+    background: RGBa(50,50,50,0.7);
+    box-shadow: 0 0 10px RGBa(0,0,0,0.5);
+}
+.topbar .site-name {
+    color: #bbb;
+    font-family: "Roboto",sans-serif;
+    font-size: 25px;
+    display: inline-block;
+    position: relative;
+}
+.topbar .site-name .extension {
+    color: #999;
+    font-family: sans-serif;
+    font-size: 25px;
+}
+.topbar.small .site-name .extension {
+    color: #bbb;
+}
+.topbar .site-name::after {
+    content: "";
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    display: block;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    animation: 1s orbit linear infinite;
+    transition: 0.25s linear opacity;
+    opacity: 0;
+}
+@keyframes orbit {
+    0%,100% {
+        top: -10%;
+        left: -10%;
+    }
+    40% {
+        left: 100%;
+        top: -10%;
+    }
+    50% {
+        left: 100%;
+        top: 95%;
+    }
+    90% {
+        left: -10%;
+        top: 95%;
+    }
+}
+.topbar .site-name:hover::after {
+    opacity: 1;
+}
+.topbar .right {
+    display: inline-block;
+    position: absolute;
+    right: 3%;
+    transition: 0.25s ease;
+}
+.topbar.small .right {
+    right: 1%;
+}
+.topbar .right a {
+    position: relative;
+    padding: 10px;
+    top: 0;
+    display: inline-block;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    overflow: hidden;
+    transition: .25s ease !important;
+    font-family: sans-serif;
+    margin: 0 5px;
+}
+.topbar.small .right a {
+    position: relative;
+    top: -5px;
+}
+.topbar .right a span {
+    position: relative;
+    z-index: 2;
+    color: #ddd;
+    transition: 0.25s color ease;
+}
+.topbar .right a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100% !important;
+    width: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    transition: .25s ease !important;
+}
+.topbar .right a::after {
+    background: #fff !important;
+}
+.topbar .right a:hover span {
+    color: #444;
+}
+.topbar .right a:hover::after {
+    width: 100%;
+}
+.main {
+    height: 100%;
+    width: 100%;
+    background-color: #827058;
+    background-image: linear-gradient(to right, #18181a,#262822,#39342b,#232a27);
+    background-image: url(https://images.unsplash.com/photo-1510614558204-9ac056202cc2?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=44cc8b77a328b1d7f0058e33fcffd5d6);
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    padding: 100px;
+}
+.main .content,
+.section .content {
+    height: 70%;
+    width: 50%;
+    overflow: hidden;
+    margin: 50px auto;
+}
+.main .content .left,
+.main .content .right,
+.section .content .left,
+.section .content .right {
+    width: 45%;
+    display: inline-block;
+    height: 100%;
+}
+.main .content .left .main-image {
+    width: 100%;
+    opacity: 0.5;
+}
+.main .content .right,
+.section .content .right {
+    float: right;
+}
+.main .content .right {
+    color: #eee;
+    font-family: "Roboto",sans-serif;
+}
+.main .content .right h1 {
+    font-size: 50px;
+    margin: 20px 0;
+}
+.section {
+    padding: 20px;
+}
+.section .content .left {
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+}
+.section .content .right {
+}
+.section .content .icon {
+    font-size: 200px;
+    color: #aaa;
+    text-shadow: 0 2px 5px RGBa(0,0,0,0.3);
+}
+.section .content h1 {
+    font-weight: 100;
+    font-size: 35px;
+}
+.section .content a {
+    transition: 0.1s ease;
+}
+.section .content a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+.section.puzzles {
+    background: #eee;
+    color: #777;
+}
+.section.puzzles a {
+    color: #686868;
+}
+.section.pricing {
+    background: #777;
+    color: #fff;
+}
+.section.pricing a {
+    color: #e8e8e8;
+}
+.section.pricing .left {
+    text-align: right;
+    padding-right: 100px;
+    border-right-color: #999;
+}
+.section.pricing .left .icon {
+    color: #ddd;
+}
+.section.pricing .username-container {
+    font-size: 0;
+    position: relative;
+    box-shadow: 0 0 10px RGBa(0,0,0,0.5);
+    border-radius: 5px;
+    width: 95%;
+    top: 0;
+    transition: 0.25s ease;
+}
+.section.pricing .username-container:hover {
+    top: -2px;
+    box-shadow: 0 0 30px RGBa(0,0,0,0.5);
+}
+.section.pricing .username-container #username {
+    background: transparent;
+    border: 3px solid #aaa;
+    outline-color: #aaa;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px 0 0 5px;
+    color: #fff !important;
+    transition: 0.25s linear;
+    width: 70%;
+}
+.section.pricing .username-container label {
+    font-size: 15px;
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    pointer-events: none;
+    transition: 0.1s linear;
+}
+.section.pricing .username-container #start {
+    color: #fff;
+    background: #aaa;
+    padding: 10px;
+    border: 3px solid #aaa;
+    font-size: 15px;
+    border-radius: 0 5px 5px 0;
+    width: 30%;
+    display: inline-block;
+    transition: 0.25s ease;
+}
+.section.pricing .username-container #start:hover {
+    background: transparent;
+    border-color: transparent;
+    text-decoration: none;
+}
+.section.pricing .username-container #username:focus + label,
+.section.pricing .username-container #username:valid + label {
+    opacity: 0;
+}
+footer {
+    padding: 20px;
+    background: #555;
+    color: #aaa;
+}
+footer .site-name {
+    font-size: 20px;
+    background: RGBa(0,0,0,0.1);
+    padding: 5px;
+}
+footer .site-name .year {
+    color: #9f9f9f;
+}
+footer .right {
+    float: right;
+}
+footer .right a {
+    color: #bbb;
+}
+footer .right a:hover {
+    color: #eee;
+}
