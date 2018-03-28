@@ -62,7 +62,7 @@ if (!$l) {
         <footer>
             <span class="site-name">LearnChess <span class="year">2018</span></span>
             <div class="right">
-                <a href="#">Open source</a> • <a href="#">Puzzles</a>
+                <a href="https://github.com/seanysean/LearnChess" target="_blank">Open source <i class="fa fa-external-link"></i></a> • <a href="/puzzles/all">Puzzles</a>
             </div>
         </footer>
         <script src="js/landing.js"></script>

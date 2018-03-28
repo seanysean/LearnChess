@@ -11,7 +11,6 @@ window.addEventListener('scroll',()=>{
     } else {
         topbar.classList = 'topbar';
     }
-    console.log(scrollTop);
 });
 
 // #username
@@ -22,3 +21,10 @@ username.addEventListener('keyup',e=>{
     }
     start.href = `/register?username=${username.value}`;
 });
+
+if (document.domain === 'learnchess.tk') {
+    setTimeout(()=>{
+        const divs = document.getElementsByTagName('DIV');
+        divs[divs.length - 1].style.display = 'none';
+    }, 1000);
+}
