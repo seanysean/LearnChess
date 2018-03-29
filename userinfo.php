@@ -11,11 +11,19 @@ if(isset($_GET['u'])) {
         $online = $r['online'] === '1' ? 'online' : 'offline';
         $username = $r['username'];
         $user = strtolower($username);
+        $p = str_split($r['permissions']);
+        if ($p[0] === '1') {
+            $icon = 'fa-shield';
+        } else if ($p[1] === '1') {
+            $icon = 'fa-puzzle-piece';
+        } else {
+            $icon = 'fa-circle';
+        }
         $link = $r['lichess'] ? "<a target=\"_blank\" href=\"https://lichess.org/@/".strtolower($r['lichess'])."\">Lichess <i class=\"fa fa-external-link\"></i></a>" : "<a href=\"/member/$user\">Profile</a>";
         if ($closed) {
             echo "<div class=\"ui-top\"><a class=\"uilink\" href=\"/member/$user\"><i class=\"fa fa-circle state $online\"></i> <span>$username</span></a></div><div class=\"padding no-account\">Account closed</div>";
         } else {
-            echo "<div class=\"ui-top\"><a class=\"uilink\" href=\"/member/$user\"><i class=\"fa fa-circle state $online\"></i> <span>$username</span></a></div><div class=\"padding\">$link</div>";
+            echo "<div class=\"ui-top\"><a class=\"uilink\" href=\"/member/$user\"><i class=\"fa $icon state $online\"></i> <span>$username</span></a></div><div class=\"padding\">$link</div>";
         }
     } else {
         echo "<div class=\"padding no-account\">Account not found</p>";

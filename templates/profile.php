@@ -2,7 +2,7 @@
 session_start();
 include "../include/functions.php";
 $accountid = $account['id'];
-$sql = "SELECT name,lichess,about,online FROM `users` WHERE id='$accountid'";
+$sql = "SELECT `name`,`lichess`,`about`,`online`,`permissions` FROM `users` WHERE id='$accountid'";
 $result = mysqli_query($connection,$sql);
 if ($result) {
     $res = $result->fetch_assoc();
@@ -14,6 +14,14 @@ if ($result) {
     }
     if (isset($res['about'])) {
         $aboutThisUser = $res['about'];
+    }
+    $p = str_split($res['permissions']);
+    if ($p[0] === '1') {
+        $icon = 'fa-shield';
+    } else if ($p[1] === '1') {
+        $icon = 'fa-puzzle-piece';
+    } else {
+        $icon = 'fa-circle';
     }
     $online = $res['online'];
 }
@@ -31,7 +39,7 @@ if ($result) {
             <div class="main">
                 <div class="block">
                     <h1 class="block-title">
-                        <span class="fa fa-circle state<?php echo $online === '1' ? ' online' : ' offline' ?>"></span> <?php echo $account['username'] ?>
+                        <span class="fa <?php echo $icon ?> state<?php echo $online === '1' ? ' online' : ' offline' ?>"></span> <?php echo $account['username'] ?>
                         <?php if($l and $accountid === $_SESSION['userid']) { ?>
                         <span class="alternate">
                             <a href="/settings/profile" class="button blue"><span><i class="fa fa-pencil"></i> Edit profile</span></a>

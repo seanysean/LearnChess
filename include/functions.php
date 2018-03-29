@@ -30,14 +30,22 @@ function isAllowed($type) {
 }
 function createUserLink($id) {
     global $connection;
-    $sql = "SELECT * FROM `users` WHERE id='$id'";
+    $sql = "SELECT `username`,`permissions`,`online` FROM `users` WHERE id='$id'";
     $result = mysqli_query($connection,$sql);
     if ($result) {
         $r = $result->fetch_assoc();
         $username = $r['username'];
+        $p = str_split($r['permissions']);
+        if ($p[0] === '1') {
+            $icon = 'fa-shield';
+        } else if ($p[1] === '1') {
+            $icon = 'fa-puzzle-piece';
+        } else {
+            $icon = 'fa-circle';
+        }
         $user = strtolower($username);
         $online = $r['online'] === '1' ? 'online' : 'offline';
-        echo "<a class=\"uilink\" href=\"/member/$user\" userinfo=\"$id\"><i class=\"state fa fa-circle $online\"></i> $username</a>";
+        echo "<a class=\"uilink\" href=\"/member/$user\" userinfo=\"$id\"><i class=\"state fa $icon $online\"></i> $username</a>";
     } else {
         echo "<span>User not found</span>";
     }

@@ -25,6 +25,7 @@ button:active {
 .state {
     display: inline-block;
     vertical-align: middle;
+    text-shadow: 1px 1px 0 #ccc
 }
 .state.online {
     color: #71bd74;
@@ -139,19 +140,14 @@ button:active {
     position: absolute;
     background: #fff;
     font-weight: 100;
-    border: 1px solid #eee;
     box-shadow: 0 0 5px RGBa(0,0,0,0.2);
     width: 150px;
     z-index: 10;
     display: none;
 }
 .userinfo-box .ui-top {
-    padding: 3px;
+    padding: 5px;
     border-bottom: 1px solid #eee;
-}
-.userinfo-box .top .uilink {
-    display: block !important;
-    width: 70px !important;
 }
 .userinfo-box .loading-container {
     padding: 10px;
@@ -428,6 +424,6 @@ footer a {
     right: 20px;
     cursor: pointer;
 }
-.site-message .fa-close:hover {
-    color: #ddd;
+.site-message .close:hover {
+    color: #2678c5;
 }
