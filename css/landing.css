@@ -164,6 +164,8 @@ a {
 .main .content .right h1 {
     font-size: 50px;
     margin: 20px 0;
+    font-family: "Roboto",sans-serif;
+    font-weight: 400;
 }
 .section {
     padding: 20px;
