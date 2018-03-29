@@ -34,7 +34,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
             <div class="main full">
                 <div class="block">
                     <h1 class="block-title center">Create new puzzle</h1>
-                    <a href="all">Back to puzzles</a>
+                    <a href="all"><i class="fa fa-arrow-left"></i> Back to puzzles</a>
                     <div class="editor-container">
                         <div class="spare">
                             <piece class="black king" data-piece="black king"></piece>
@@ -53,12 +53,19 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
                             <piece class="white knight" data-piece="white knight"></piece>
                             <piece class="white pawn" data-piece="white pawn"></piece>
                         </div>
+                        <div class="tools">
+                            <button id="flip" class="flat-button blue"><i class="fa fa-retweet"></i></button>
+                            <a id="analyze" target="_blank" href="https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR" class="flat-button blue"><i class="fa fa-search"></i></a>
+                            <button id="initial" class="flat-button blue"><i class="fa fa-undo"></i></button>
+                            <button id="color" class="flat-button blue"><i class="fa fa-circle-o"></i></button>
+                            <button id="empty" class="flat-button blue"><i class="fa fa-trash"></i></button>
+                        </div>
                         <button class="button blue" id="clrSelect"><span><i class="fa fa-close"></i> Clear selection</span></button>
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                         <?php if(isset($msg)) { echo $msg; } ?>
                         <div class="input-container">
-                            <input name="fen" id="fen" type="text" spellcheck="false" required>
+                            <input name="fen" id="fen" type="text" spellcheck="false" value="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR" required>
                             <label for="fen">Enter FEN</label>
                             <span class="line"></span>
                         </div>
@@ -67,7 +74,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
                             <label for="fen">PGN Moves</label>
                             <span class="line"></span>
                         </div>
-                        <button class="button green" type="submit">
+                        <button class="button blue" type="submit">
                             <span>
                                 <i class="fa fa-check"></i>
                                 Create puzzle

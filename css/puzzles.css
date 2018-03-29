@@ -72,15 +72,15 @@
     margin: 30px 0;
 }
 .editor-container .spare,
-.editor-container .board {
-    margin: 10px auto;
+.editor-container .board,
+.editor-container .tools {
+    margin: auto;
     width: 300px;
     overflow: hidden;
 }
 .editor-container .spare {
     height: 50px;
     background: #f8f8f8;
-    border-radius: 3px;
     display: flex;
 }
 .editor-container .spare piece {
@@ -95,9 +95,17 @@
 .editor-container .board {
     height: 300px;
 }
+.editor-container .tools {
+    background: #eee;
+    display: flex;
+}
+.editor-container .tools .flat-button {
+    flex-grow: 1;
+    color: #555 !important;
+}
 .editor-container #clrSelect {
     display: block;
-    margin: auto;
+    margin: 20px auto;
 }
 .copyings h3 {
     font-family: "Roboto";

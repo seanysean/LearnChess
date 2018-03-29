@@ -1,3 +1,5 @@
+let turn = 'white';
+
 const config = {
     coordinates: false,
     draggable: {
@@ -13,7 +15,6 @@ let selection = false;
 
 function setPiece(s) {
     if (selection) {
-        updateFEN();
         const pieces = cg.state.pieces;
         const selectedPiece = document.querySelector('.selectedPiece').getAttribute('data-piece').split(' ');
         pieces[s] = {
@@ -21,15 +22,50 @@ function setPiece(s) {
             role: selectedPiece[1]
         }
         cg.setPieces(pieces);
+        updateFEN();
     }
 }
+
+const tools = {
+    flip: document.getElementById('flip'),
+    analyze: document.getElementById('analyze'),
+    initial: document.getElementById('initial'),
+    color: document.getElementById('color'),
+    empty: document.getElementById('empty')
+}
+tools.flip.addEventListener('click',()=>{
+    cg.toggleOrientation();
+});
+tools.initial.addEventListener('click',()=>{
+    cg.set({
+        fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'
+    });
+    updateFEN();
+});
+tools.color.addEventListener('click',()=>{
+    if (turn === 'white') { 
+        turn = 'black';
+        tools.color.children[0].classList = 'fa fa-circle';
+    } else {
+        turn = 'white';
+        tools.color.children[0].classList = 'fa fa-circle-o';
+    }
+});
+tools.empty.addEventListener('click',()=>{
+    cg.set({
+        fen: '8/8/8/8/8/8/8/8'
+    });
+    updateFEN();
+});
+
 function updateFEN() {
     document.getElementById('fen').value = cg.getFen();
+    tools.analyze.href = 'https://lichess.org/analysis/' + cg.getFen();
 }
 
 const dataPieces = document.querySelectorAll('[data-piece]'),
       clrSelect = document.getElementById('clrSelect'),
-      fenInput = document.getElementById('fen')
+      fenInput = document.getElementById('fen');
 dataPieces.forEach(p=>{
     p.addEventListener('click',()=>{
         let selectedPiece = document.getElementsByClassName('selectedPiece')[0];
