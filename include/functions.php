@@ -3,6 +3,12 @@ include "connect.php";
 #l is true if user is logged in.
 $l = isset($_SESSION['username']);
 
+if ($l) {
+    $currentSessionID = $_SESSION['userid'];
+    $updateActivitySQL = "UPDATE `users` SET last_active=CURRENT_TIMESTAMP WHERE id='$currentSessionID'";
+    mysqli_query($connection,$updateActivitySQL);
+}
+
 function secure($input,$nlines=false) {
     #nlines is for <textarea>s.
     $input = stripslashes($input);

@@ -5,3 +5,5 @@ php_value display_errors 1
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
+php_value session.cookie_lifetime 1500
+php_value session.gc_maxlifetime 1500
