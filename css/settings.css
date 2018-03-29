@@ -36,6 +36,9 @@
 #popup .cancel:hover {
     color: #3893e8;
 }
+form {
+    margin-top: 20px;
+}
 form .button {
     margin-top: 20px;
 }
