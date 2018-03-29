@@ -14,16 +14,19 @@ if(isset($_GET['u'])) {
         $p = str_split($r['permissions']);
         if ($p[0] === '1') {
             $icon = 'fa-shield';
+            $hint = 'data-hint="Admin"';
         } else if ($p[1] === '1') {
             $icon = 'fa-puzzle-piece';
+            $hint = 'data-hint="Puzzle reviewer"';
         } else {
             $icon = 'fa-circle';
+            $hint = '';
         }
         $link = $r['lichess'] ? "<a target=\"_blank\" href=\"https://lichess.org/@/".strtolower($r['lichess'])."\">Lichess <i class=\"fa fa-external-link\"></i></a>" : "<a href=\"/member/$user\">Profile</a>";
         if ($closed) {
             echo "<div class=\"ui-top\"><a class=\"uilink\" href=\"/member/$user\"><i class=\"fa fa-circle state $online\"></i> <span>$username</span></a></div><div class=\"padding no-account\">Account closed</div>";
         } else {
-            echo "<div class=\"ui-top\"><a class=\"uilink\" href=\"/member/$user\"><i class=\"fa $icon state $online\"></i> <span>$username</span></a></div><div class=\"padding\">$link</div>";
+            echo "<div class=\"ui-top\"><a class=\"uilink\" href=\"/member/$user\"><span $hint><i class=\"fa $icon state $online\"></i></span> <span>$username</span></a></div><div class=\"padding\">$link</div>";
         }
     } else {
         echo "<div class=\"padding no-account\">Account not found</p>";

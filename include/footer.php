@@ -1,1 +1,1 @@
-<a href="#">Go nowhere</a>
+<a href="#" data-hint="This is temporary">Go nowhere</a>

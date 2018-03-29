@@ -23,7 +23,7 @@ if ($result) {
             <div class="main <?php if(!$l) { echo 'center'; } ?>">
                 <div class="block">
                     <h1 class="block-title">Approved puzzles<?php if($l and isAllowed('puzzle')) { ?>
-                        <span class="alternate">
+                        <span class="alternate" <?php if($unreviewedCount > 0) { echo "data-hint=\"There are $unreviewedCount unreviewed puzzles\""; } else { echo 'data-hint="There are no more puzzles to review"'; } ?>>
                             <a class="button <?php if($unreviewedCount > 0) { echo "blue"; } else { echo "disabled"; } ?>" <?php if($unreviewedCount > 0) { echo "href=\"review\""; } ?>><span><i class="fa fa-dashboard"></i> Review new puzzles <?php if($unreviewedCount > 0) { echo "($unreviewedCount)"; } ?></a>
                         </span>
                     <?php } ?>
@@ -52,7 +52,7 @@ if ($result) {
             <?php if($l) { ?>
             <div class="right-area">
                 <div class="block">
-                    <h1 class="block-title">Your puzzles <span class="alternate"><a href="new" class="button green full"><span><i class="fa fa-plus"></i></span></a></span></h1>
+                    <h1 class="block-title">Your puzzles <span class="alternate" data-hint="Create new puzzle"><a href="new" class="button blue"><span><i class="fa fa-plus"></i></span></a></span></h1>
                     <div class="your-puzzles">
                         <?php
                         $myID = $_SESSION['userid'];

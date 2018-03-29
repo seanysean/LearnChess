@@ -154,6 +154,36 @@ button:active {
     content: none !important;
 }
 
+/* [data-hint] */
+
+[data-hint] {
+    position: relative;
+    display: inline-block;
+}
+[data-hint]::after {
+    content: attr(data-hint);
+    opacity: 0;
+    margin-top: -5px;
+    transition: 0.1s ease;
+    display: block;
+    position: absolute;
+    font-size: 13px;
+    background: RGBa(0,0,0,0.5);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.7);
+    z-index: 5;
+    min-width: 100%;
+    pointer-events: none;
+}
+[data-hint]:hover::after {
+    opacity: 1;
+    margin-top: 0;
+    transform: translateX(-50%) scale(1);
+}
+
 /* .userinfo-box */
 
 .userinfo-box {
@@ -370,7 +400,6 @@ footer a {
     margin-bottom: 30px;
     padding: 10px;
     border-radius: 3px;
-    overflow: hidden;
 }
 .page .block.transparent {
     background: transparent;

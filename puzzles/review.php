@@ -76,7 +76,7 @@ if(!$l or !isAllowed('puzzle')) {
                             <tr>
                                 <td><?php echo $id ?></td>
                                 <td><a class="author" target="_blank" href="/member/<?php echo strtolower($author) ?>"><?php echo $author ?></a></td>
-                                <td><a class="fen" target="_blank" href="https://lichess.org/editor/<?php echo $fen ?>"><?php echo $fen ?> <i class="fa fa-external-link"></i></a></td>
+                                <td><span data-hint="View position on lichess"><a class="fen" target="_blank" href="https://lichess.org/editor/<?php echo $fen ?>"><?php echo $fen ?> <i class="fa fa-external-link"></i></a></span></td>
                                 <td><span class="pgn"><?php echo $pgn ?></span></td>
                                 <td><span class="choice">
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -84,11 +84,11 @@ if(!$l or !isAllowed('puzzle')) {
                                         <input type="hidden" value="<?php echo $authorID ?>" name="authorID">
                                         <input type="hidden" value="<?php echo $fen ?>" name="fen">
                                         <input type="hidden" value="<?php echo $pgn ?>" name="pgn">
-                                        <button type="submit" class="button green"><span><i class="fa fa-check"></i></span></button>
+                                        <span data-hint="Approve puzzle"><button type="submit" class="flat-button"><span><i class="fa fa-check"></i></span></button></span>
                                     </form>
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                                         <input type="hidden" value="delete <?php echo $id ?>" name="review">
-                                        <button type="submit" class="button red"><span><i class="fa fa-close"></i></span></button>
+                                        <span data-hint="Delete puzzle"><button type="submit" class="flat-button"><span><i class="fa fa-close"></i></span></button></span>
                                     </form>
                                 </span></td>
                             </tr>

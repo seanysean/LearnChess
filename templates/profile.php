@@ -18,10 +18,13 @@ if ($result) {
     $p = str_split($res['permissions']);
     if ($p[0] === '1') {
         $icon = 'fa-shield';
+        $hint = ' data-hint="Admin"';
     } else if ($p[1] === '1') {
         $icon = 'fa-puzzle-piece';
+        $hint = ' data-hint="Puzzle reviewer"';
     } else {
         $icon = 'fa-circle';
+        $hint = '';
     }
     $online = $res['online'];
 }
@@ -39,7 +42,10 @@ if ($result) {
             <div class="main">
                 <div class="block">
                     <h1 class="block-title">
-                        <span class="fa <?php echo $icon ?> state<?php echo $online === '1' ? ' online' : ' offline' ?>"></span> <?php echo $account['username'] ?>
+                        <span<?php echo $hint ?>>
+                            <span class="fa <?php echo $icon ?> state<?php echo $online === '1' ? ' online' : ' offline' ?>"></span>
+                        </span>
+                        <?php echo $account['username'] ?>
                         <?php if($l and $accountid === $_SESSION['userid']) { ?>
                         <span class="alternate">
                             <a href="/settings/profile" class="button blue"><span><i class="fa fa-pencil"></i> Edit profile</span></a>
