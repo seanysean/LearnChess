@@ -72,7 +72,7 @@ if ($result) {
                             while($row = mysqli_fetch_array($result2,MYSQLI_ASSOC)) {
                                 $puzzleID = $row['id'];
                                 ?>
-                                <a href="view/<?php echo $puzzleID ?>" class="puzzle">Puzzle <?php echo $puzzleID ?></span>
+                                <a href="view/<?php echo $puzzleID ?>" class="puzzle">Puzzle <?php echo $puzzleID ?></a>
                         <?php }
                         } else { ?>
                         <p class="nothing-to-see">No accepted puzzles</p>
