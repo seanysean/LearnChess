@@ -55,7 +55,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
                     } ?>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <div class="input-container">
-                            <input type="text" name="username" minlength="4" id="username" maxlength="17" pattern="[a-zA-Z1-9_-]{4,17}" title="Allowed characters: 1-9a-z_-" spellcheck="false" required>
+                            <input type="text" name="username" minlength="4" id="username" maxlength="17" pattern="[a-zA-Z1-9_-]{4,17}" title="Allowed characters: 1-9a-z_-" spellcheck="false" autofocus required>
                             <label for="username">Username</label>
                             <span class="line"></span>
                         </div>
