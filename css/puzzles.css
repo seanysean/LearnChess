@@ -75,7 +75,6 @@
 .editor-container .tools {
     margin: auto;
     width: 300px;
-    overflow: hidden;
 }
 .editor-container .spare {
     height: 50px;
@@ -98,13 +97,14 @@
     background: #eee;
     display: flex;
 }
-.editor-container .tools .flat-button {
+.editor-container .tools .btn {
     flex-grow: 1;
     color: #555 !important;
+    position: relative;
 }
-.editor-container #clrSelect {
-    display: block;
-    margin: 20px auto;
+.editor-container .tools .btn .flat-button {
+    height: 100%;
+    width: 100%;
 }
 .copyings h3 {
     font-family: "Roboto";

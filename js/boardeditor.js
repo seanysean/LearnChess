@@ -31,7 +31,8 @@ const tools = {
     analyze: document.getElementById('analyze'),
     initial: document.getElementById('initial'),
     color: document.getElementById('color'),
-    empty: document.getElementById('empty')
+    empty: document.getElementById('empty'),
+    clearSelection: document.getElementById('clrSelect')
 }
 tools.flip.addEventListener('click',()=>{
     cg.toggleOrientation();
@@ -45,10 +46,12 @@ tools.initial.addEventListener('click',()=>{
 tools.color.addEventListener('click',()=>{
     if (turn === 'white') { 
         turn = 'black';
-        tools.color.children[0].classList = 'fa fa-circle';
+        tools.color.children[0].children[0].classList = 'fa fa-circle';
+        tools.color.setAttribute('data-hint','Black to play');
     } else {
         turn = 'white';
-        tools.color.children[0].classList = 'fa fa-circle-o';
+        tools.color.children[0].children[0].classList = 'fa fa-circle-o';
+        tools.color.setAttribute('data-hint','White to play');
     }
 });
 tools.empty.addEventListener('click',()=>{
@@ -57,6 +60,10 @@ tools.empty.addEventListener('click',()=>{
     });
     updateFEN();
 });
+tools.clearSelection.addEventListener('click',()=>{
+    document.getElementsByClassName('selectedPiece')[0].classList.remove('selectedPiece');
+    selection = false;
+});
 
 function updateFEN() {
     document.getElementById('fen').value = cg.getFen();
@@ -64,7 +71,6 @@ function updateFEN() {
 }
 
 const dataPieces = document.querySelectorAll('[data-piece]'),
-      clrSelect = document.getElementById('clrSelect'),
       fenInput = document.getElementById('fen');
 dataPieces.forEach(p=>{
     p.addEventListener('click',()=>{
@@ -75,10 +81,6 @@ dataPieces.forEach(p=>{
         p.classList.add('selectedPiece');
         selection = true;
     });
-});
-clrSelect.addEventListener('click',()=>{
-    document.getElementsByClassName('selectedPiece')[0].classList.remove('selectedPiece');
-    selection = false;
 });
 fenInput.addEventListener('keyup',()=>{
     cg.set({
