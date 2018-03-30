@@ -46,9 +46,14 @@ if ($result) {
                             <span class="fa <?php echo $icon ?> state<?php echo $online === '1' ? ' online' : ' offline' ?>"></span>
                         </span>
                         <?php echo $account['username'] ?>
-                        <?php if($l and $accountid === $_SESSION['userid']) { ?>
+                        <?php if($l and ($accountid === $_SESSION['userid'] or isAllowed('admin'))) { ?>
                         <span class="alternate">
+                            <?php if($accountid === $_SESSION['userid']) { ?>
                             <a href="/settings/profile" class="button blue"><span><i class="fa fa-pencil"></i> Edit profile</span></a>
+                            <?php } else if (isAllowed('admin')) { 
+                                $usrnm = $account['username']; ?>
+                                <a href="/admin/search?username=<?php echo $usrnm ?>" class="button blue"><span><i class="fa fa-shield"></i> View and edit info</span></a>
+                            <?php } ?>
                         </span>
                         <?php } ?>
                     </h1>

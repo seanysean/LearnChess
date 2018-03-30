@@ -18,6 +18,9 @@
         </div>-->
     </div>
     <?php if($l) { ?><div class="icon-links">
+        <?php if (isAllowed('admin')) { ?>
+        <a class="fa fa-shield" href="/admin/search" data-hint="Admin"></a>
+        <?php } ?>
         <div class="icon-dropdown">
             <a class="fa fa-cog" href="/settings/account"></a>
             <div class="dropdown">

@@ -24,7 +24,9 @@ function secure($input,$nlines=false) {
 function isAllowed($type) {
     # Valid $types: 'puzzle'.
     $pEdited = str_split($_SESSION['permissions']);
-    if ($type === "puzzle") {
+    if ($type === 'admin') {
+        return ($pEdited[0] === '1') ? true : false;
+    } else if ($type === 'puzzle') {
         return ($pEdited[1] === '1') ? true : false;
     }
 }

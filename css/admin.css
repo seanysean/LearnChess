@@ -1,0 +1,21 @@
+form {
+    margin-top: 0;
+}
+.autocomplete {
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    z-index: 5;
+    box-shadow: 0 3px 10px RGBa(0,0,0,0.1);
+    border: 1px solid #eee;
+    display: none;
+}
+.autocomplete .user,
+.autocomplete p {
+    padding: 10px;
+    font-size: 17px;
+}
+.autocomplete .user:hover {
+    background: #f7f7f7;
+    cursor: pointer;
+}
