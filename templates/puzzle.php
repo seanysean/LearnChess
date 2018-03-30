@@ -55,5 +55,6 @@ if ($result) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
         <script src="/js/chessground.min.js"></script>
         <script src="/js/puzzles.js"></script>
+        <script src="/js/global.js"></script>
     </body>
 </html>
