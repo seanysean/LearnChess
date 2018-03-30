@@ -22,7 +22,11 @@ function secure($input,$nlines=false) {
     return $input;
 }
 function isAllowed($type) {
-    # Valid $types: 'puzzle'.
+    # Valid $types: 'admin','puzzle'.
+    global $l;
+    if (!$l) {
+        return false;
+    }
     $pEdited = str_split($_SESSION['permissions']);
     if ($type === 'admin') {
         return ($pEdited[0] === '1') ? true : false;
