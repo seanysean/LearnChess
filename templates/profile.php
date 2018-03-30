@@ -66,7 +66,7 @@ if ($result) {
                     <div class="info-bar">
                         
                     </div>
-                    <div class="about"><?php echo $aboutThisUser ?></div>
+                    <div class="about" id="about"><?php echo $aboutThisUser ?></div>
                 </div>
             </div>
             <div class="right-area">
@@ -77,5 +77,6 @@ if ($result) {
             </div>
         </div>
         <script src="../js/global.js"></script>
+        <script src="../js/profile.js"></script>
     </body>
 </head>
