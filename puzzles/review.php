@@ -16,7 +16,15 @@ if(!$l or !isAllowed('puzzle')) {
         $result1 = mysqli_query($connection,$sql1);
         $result2 = mysqli_query($connection,$sql2);
         if ($result1 and $result2) {
-            $msg = "<p>Puzzle $pID accepted.</p>";
+            $sql3 = "SELECT id FROM `puzzles_approved` ORDER BY id DESC LIMIT 1";
+            $result3 = mysqli_query($connection,$sql3);
+            $newID = $result3->fetch_assoc()['id'];
+            $newPuzzleFile = fopen("view/$newID.php",'x');
+            fwrite($newPuzzleFile,"<?php
+\$pID = $newID;
+include '../../templates/puzzle.php';");
+            fclose($newPuzzleFile);
+            $msg = "<p>Puzzle <a href=\"view/$newID\">$pID</a> accepted.</p>";
         } else {
             $msg = "<p>Something went really wrong.</p>";
         }
