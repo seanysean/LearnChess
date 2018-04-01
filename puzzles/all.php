@@ -30,7 +30,7 @@ if ($result) {
                     </h1>
                     <div class="accepted-puzzles">
                     <?php
-                    $sql = "SELECT * FROM `puzzles_approved`";
+                    $sql = "SELECT * FROM `puzzles_approved` ORDER BY id DESC";
                     $result = mysqli_query($connection,$sql);
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
