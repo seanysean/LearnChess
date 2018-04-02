@@ -248,6 +248,50 @@ button:active {
     }
 }
 
+/* #Popup */
+
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: none;
+    background: #fff;
+    z-index: 20;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 50px RGBa(0,0,0,0.3);
+    color: #555;
+    font-weight: 100;
+    min-width: 300px;
+}
+#popup .popup-title {
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+    font-size: 25px;
+    color: #777;
+    margin: 0;
+    padding: 10px;
+    background: #f9f9f9;
+}
+#popup .popup-content {
+    padding: 5px;
+}
+#popup .button.full {
+    margin-top: 5px;
+}
+#popup .cancel {
+    color: #888;
+    margin-left:  10px;
+    margin-top: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+#popup .cancel:hover {
+    color: #3893e8;
+}
+
 /* 'Topbar' */
 
 .top .top-navigation .main-links,

@@ -19,3 +19,16 @@ form {
     background: #f7f7f7;
     cursor: pointer;
 }
+.edit {
+    transition: 0.25s ease;
+    opacity: 0;
+    cursor: pointer;
+    position: relative;
+    left: 20px;
+}
+.edit:hover {
+    color: #333;
+}
+.info:hover .edit {
+    opacity: 1;
+}

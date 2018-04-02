@@ -38,3 +38,18 @@ document.addEventListener('click',()=>{
         autocomplete.style.display = 'none';
     }
 });
+
+document.querySelectorAll('.edit').forEach(el=>{
+    el.addEventListener('click',()=>{
+        let id = el.id.split('edit')[1];
+        console.log(id);
+        document.getElementById('label').innerHTML = `Edit ${id}`;
+        document.getElementById('info').value = document.getElementById(id).innerHTML;
+        document.getElementById('info').focus();
+        document.getElementById('info').name = id;
+        document.getElementById('popup').style.display = 'block';
+    });
+});
+document.getElementById('cancel').addEventListener('click',()=>{
+    document.getElementById('popup').style.display = 'none';
+});

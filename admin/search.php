@@ -27,6 +27,26 @@ if (!$l || !isAllowed('admin')) {
         <link href="/css/admin.css" type="text/css" rel="stylesheet">
     </head>
     <body>
+        <div id="popup">
+            <h1 class="popup-title"><i class="fa fa-shield"></i> Edit</h1>
+            <div class="popup-content">
+                <form action="updateinfo" method="post">
+                    <input type="hidden" name="id" value="<?php echo $id ?>">
+                    <div class="input-container" id="input" spellcheck="false">
+                        <input id="info">
+                        <label id="label" for="info">Edit name</label>
+                        <span class="line"></span>
+                    </div>
+                    <button class="button blue" type="submit">
+                        <span>
+                            <i class="fa fa-pencil"></i>
+                            Update info
+                        </span>
+                    </button>
+                    <span class="cancel" id="cancel">Cancel</span>
+                </form>
+            </div>
+        </div>
         <div class="top">
         <?php include_once "../include/topbar.php" ?>
         </div>
@@ -54,14 +74,14 @@ if (!$l || !isAllowed('admin')) {
                     <p>That account does not exist</p>
                     <?php } else { ?>
                     <h1 class="block-title">Information about <?php echo $username ?></h1>
-                    <p><b>Profile:</b> <?php echo createUserLink($id) ?>
-                    <p><b>ID:</b> <?php echo $id ?></p>
-                    <p><b>Account open:</b> <?php echo $open ?></p>
-                    <p><b>Account created:</b> <?php echo $created ?></p>
-                    <p><b>Name:</b> <?php echo $name ?></p>
-                    <p><b>About:</b> <?php echo $about ?></p>
-                    <p><b>Lichess username:</b> <?php echo $lichess ?></p>
-                    <p><b>Permissions:</b> <?php echo $permissions ?></p>
+                    <p class="info"><b>Profile:</b> <?php echo createUserLink($id) ?></p>
+                    <p class="info"><b>ID:</b> <?php echo $id ?></p>
+                    <p class="info"><b>Account open:</b> <span id="open"><?php echo $open ?></span><span id="editopen" class="edit fa fa-pencil"></span></p>
+                    <p class="info"><b>Account created:</b> <?php echo $created ?></p>
+                    <p class="info"><b>Name:</b> <span id="name"><?php echo $name ?></span><span id="editname" class="edit fa fa-pencil"></span></p>
+                    <p class="info"><b>About:</b> <span id="about"><?php echo $about ?></span><span id="editabout" class="edit fa fa-pencil"></span></p>
+                    <p class="info"><b>Lichess username:</b> <span id="lichess"><?php echo $lichess ?></span><span id="editlichess" class="edit fa fa-pencil"></span></p>
+                    <p class="info"><b>Permissions:</b> <?php echo $permissions ?></p>
                     <?php } ?>
                 </div>
                 <?php } ?>
