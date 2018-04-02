@@ -1,4 +1,5 @@
-let turn = 'white';
+let turn = 'white',
+    isNextStep = false;
 
 const config = {
     coordinates: false,
@@ -27,6 +28,7 @@ function setPiece(s) {
 }
 
 const tools = {
+    container: document.getElementById('t-cont'),
     flip: document.getElementById('flip'),
     analyze: document.getElementById('analyze'),
     initial: document.getElementById('initial'),
@@ -66,7 +68,10 @@ tools.clearSelection.addEventListener('click',()=>{
 });
 
 function updateFEN() {
-    document.getElementById('fen').value = cg.getFen();
+    if (isNextStep) {
+        return;
+    }
+    document.getElementById('fen').value = cg.getFen() + (turn === 'white' ? ' w' : ' b') + ' - - 0 1';
     tools.analyze.href = 'https://lichess.org/analysis/' + cg.getFen();
 }
 
@@ -86,4 +91,74 @@ fenInput.addEventListener('keyup',()=>{
     cg.set({
         fen: fenInput.value
     });
+});
+
+// Next step...
+
+const nextStep = document.getElementById('next');
+nextStep.addEventListener('click',()=>{
+    if (selection) {
+        document.getElementsByClassName('selectedPiece')[0].classList.remove('selectedPiece');
+        selection = false;
+    }
+    isNextStep = true;
+    document.getElementById('fen-cont').style.display = 'none';
+    tools.container.style.display = 'none';
+    nextStep.style.display = 'none';
+    document.getElementById('pgn-cont').style.display = 'block';
+    document.getElementById('submit').style.display = 'inline-block';
+    document.getElementById('cancel').style.display = 'inline-block';
+    const spares = document.querySelectorAll('.spare');
+    spares.forEach(el=>{
+        el.style.display = 'none';
+    });
+    const chess = new Chess(cg.getFen() + (turn === 'white' ? ' w' : ' b') + ' - - 0 1');
+    document.getElementById('fen').value = chess.fen();
+    cg.set({
+        turnColor: getColor(chess.turn()),
+        movable: {
+            free: false,
+            dests: toDests(chess),
+            events: {
+                after: changeTurn(chess,cg)
+            }
+        },
+        draggable: {
+            deleteOnDropOff: false
+        }
+    });
+    function toDests(c) {
+        const dests = {};
+        c.SQUARES.forEach(s => {
+            const ms = c.moves({square: s, verbose: true});
+            if (ms.length) dests[s] = ms.map(m => m.to);
+        });
+        return dests;
+    }
+    function getColor(m) {
+        return m === 'w' ? 'white' : 'black';
+    }
+    function removeHeaders(pgn) {
+        let splitPgn = pgn.split(']\n\n'),
+            moves = splitPgn[splitPgn.length - 1];
+        if (moves.startsWith('1. ...')) {
+            let spliced = moves.split('');
+            spliced.splice(0,6,'1...');
+            return spliced.join('');
+        }
+        return moves;
+    }
+    function changeTurn(c,cground) {
+        return (o, d) => {
+            c.move({from: o, to: d});
+            cground.set({
+                turnColor: getColor(c.turn()),
+                movable: {
+                  color: getColor(c.turn()),
+                  dests: toDests(c)
+                }
+            });
+            document.getElementById('pgn').value = removeHeaders(c.pgn());
+        }
+    }
 });

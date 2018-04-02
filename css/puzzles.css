@@ -162,3 +162,14 @@
     background: #91e094;
     box-shadow: inset 0 0 10px #5bb55e;
 }
+#fen-cont {
+    margin-bottom: 37px;
+}
+.next-step {
+    float: right;
+    margin-top: -40px;
+}
+.button.new {
+    vertical-align:middle;
+    margin: 5px;
+}

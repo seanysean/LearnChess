@@ -4,7 +4,7 @@ include "../include/functions.php";
 if(!$l) {
     header('Location: /login');
 }
-if(isset($_POST['fen']) and isset($_POST['pgn'])) {
+if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
     $fen = secure($_POST['fen']);
     $pgn = secure($_POST['pgn']);
     $authorID = $_SESSION['userid'];
@@ -35,6 +35,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
                 <div class="block">
                     <h1 class="block-title center">Create new puzzle</h1>
                     <a href="all"><i class="fa fa-arrow-left"></i> Back to puzzles</a>
+                    <?php if(isset($msg)) { echo $msg; } ?>
                     <div class="editor-container">
                         <div class="spare">
                             <piece class="black king" data-piece="black king"></piece>
@@ -53,7 +54,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
                             <piece class="white knight" data-piece="white knight"></piece>
                             <piece class="white pawn" data-piece="white pawn"></piece>
                         </div>
-                        <div class="tools">
+                        <div class="tools" id="t-cont">
                             <span class="btn hint-text-center" data-hint="Flip board"><button id="flip" class="flat-button"><i class="fa fa-retweet"></i></button></span>
                             <span class="btn hint-text-center" data-hint="Analyze on lichess"><a id="analyze" target="_blank" href="https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR" class="flat-button blue"><i class="fa fa-search"></i></a></span>
                             <span class="btn hint-text-center" data-hint="Reset board"><button id="initial" class="flat-button"><i class="fa fa-undo"></i></button></span>
@@ -63,23 +64,29 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
                         </div>
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-                        <?php if(isset($msg)) { echo $msg; } ?>
-                        <div class="input-container">
-                            <input name="fen" id="fen" type="text" spellcheck="false" value="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR" required>
+                        <div class="input-container" id="fen-cont">
+                            <input name="fen" id="fen" type="text" spellcheck="false" value="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1" required>
                             <label for="fen">Enter FEN</label>
                             <span class="line"></span>
                         </div>
-                        <div class="input-container">
+                        <span class="button blue next-step" id="next"><span>Next <i class="fa fa-long-arrow-right"></i></span></span>
+                        <div class="input-container" id="pgn-cont" style="display: none">
                             <input name="pgn" id="pgn" type="text" spellcheck="false" required>
-                            <label for="fen">PGN Moves</label>
+                            <label for="pgn">PGN Moves</label>
                             <span class="line"></span>
                         </div>
-                        <button class="button blue" type="submit">
+                        <button class="button blue new" id="submit" type="submit" style="display: none">
                             <span>
                                 <i class="fa fa-check"></i>
-                                Create puzzle
+                                Submit puzzle
                             </span>
                         </button>
+                        <a class="button red new" id="cancel" href="new" style="display: none">
+                            <span>
+                                <i class="fa fa-trash"></i>
+                                Cancel
+                            </span>
+                        </a>
                     </form>
                 </div>
             </div>
@@ -89,6 +96,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn'])) {
         </footer>
         <script src="../js/global.js"></script>
         <script src="../js/chessground.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
         <script src="../js/boardeditor.js"></script>
     </body>
 </html>

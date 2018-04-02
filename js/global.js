@@ -1,3 +1,5 @@
+console.log('LearnChess is open source! View project here: https://github.com/seanysean/LearnChess');
+
 // To remove the one ad.
 if (document.domain === 'learnchess.tk') {
     setTimeout(()=>{
