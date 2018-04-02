@@ -18,6 +18,9 @@
         </div>-->
     </div>
     <?php if($l) { ?><div class="icon-links">
+        <?php if (isAllowed('puzzle')) { ?>
+        <a class="fa fa-puzzle-piece hint-text-center" href="/puzzles/review" data-hint="Review puzzles"></a>
+        <?php } ?>
         <?php if (isAllowed('admin')) { ?>
         <a class="fa fa-shield hint-text-center" href="/admin/search" data-hint="Admin"></a>
         <?php } ?>
