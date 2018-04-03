@@ -33,6 +33,11 @@ button:active {
 .state.offline {
     color: #898e8a;
 }
+.nothing-to-see {
+    color: #aaa;
+    text-transform: uppercase;
+    font-weight: 100;
+}
 /* .uilink styling */
 
 .uilink {
@@ -177,7 +182,7 @@ button:active {
     border-radius: 5px;
     left: 50%;
     transform: translateX(-50%) scale(0.7);
-    z-index: 5;
+    z-index: 15;
     min-width: 100%;
     pointer-events: none;
     font-family: sans-serif;
@@ -186,6 +191,25 @@ button:active {
     opacity: 1;
     margin-top: 0;
     transform: translateX(-50%) scale(1);
+}
+
+/* [data-count] */
+
+[data-count] {
+    position: relative;
+}
+[data-count]::after {
+    content: attr(data-count);
+    position: absolute;
+    font-family: "Roboto",sans-serif;
+    background: #3893e8;
+    color: #fff;
+    padding: 3px;
+    font-size: 13px;
+    border-radius: 3px;
+    text-shadow: 1px 1px #888;
+    right: -4px;
+    top: -7px;
 }
 
 /* .userinfo-box */
@@ -298,7 +322,7 @@ button:active {
 .top .top-navigation .main-links .main-dropdown,
 .top .top-navigation .main-links a,
 .top .top-navigation .main-links .main-dropdown .dropdown a,
-.top .top-navigation .icon-links a,
+.top .top-navigation .icon-links .icon ,
 .page .main {
     display: inline-block;
 }
@@ -385,12 +409,69 @@ button:active {
 .top .top-navigation .icon-links {
     float: right;
 }
-.top .top-navigation .icon-links a {
+.top .top-navigation .icon-links .icon {
     padding: 20px;
     color: #555;
+    cursor: pointer;
+    font-size: 20px;
 }
-.top .top-navigation .icon-links a::after {
+.top .top-navigation .icon-links .icon::after {
     top: 50px;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container {
+    position: absolute;
+    width: 200px;
+    right: 0;
+    background: #fff;
+    margin-top: 15px;
+    box-shadow: 0 0 10px RGBa(0,0,0,0.2);
+    display: none;
+    z-index: 10;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container::before {
+    content: "";
+    border: 10px solid transparent;
+    border-bottom-color: #fff;
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    z-index: 1;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container::after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    box-shadow: 0 0 10px RGBa(0,0,0,0.5);
+    transform: rotate(-45deg);
+    top: -7px;
+    right: 25px;
+    z-index: -1;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .nothing-to-see {
+    text-align: center;
+    text-transform: none;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .notification {
+    padding: 10px;
+    color: #555;
+    font-weight: 100;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    transition: none !important;
+    display: block;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .notification:hover,
+.top .top-navigation .icon-links .icon-dropdown .n-container .notification.read {
+    background: #f8f8f8;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .notification .icon-type {
+    font-size: 40px;
+    float: left;
+    margin-right: 10px;
+    color: #aaa; 
 }
 .top .top-navigation .icon-links .icon-dropdown .dropdown {
     right: 0;
@@ -485,11 +566,6 @@ footer a {
 .page .block .block-title .alternate .alt-text {
     display: inline-block;
     padding: 10px;
-}
-.page .nothing-to-see {
-    color: #aaa;
-    text-transform: uppercase;
-    font-weight: 100;
 }
 .page .main .nothing-to-see {
     font-size: 15px;

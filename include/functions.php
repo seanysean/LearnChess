@@ -34,6 +34,11 @@ function isAllowed($type) {
         return ($pEdited[1] === '1') ? true : false;
     }
 }
+function createNotification($icon,$to,$message) {
+    global $connection;
+    $sql = "INSERT INTO `notifications` (`icon`,`to_id`,`message`) VALUES ('$icon','$to','$message')";
+    mysqli_query($connection,$sql);
+}
 function createUserLink($id) {
     global $connection;
     $sql = "SELECT `username`,`permissions`,`online` FROM `users` WHERE id='$id'";

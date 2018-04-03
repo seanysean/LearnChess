@@ -8,6 +8,67 @@ if (document.domain === 'learnchess.tk') {
     }, 1000);
 }
 
+let openNotification = false;
+const n = {
+    icon: document.getElementById('notification-icon'),
+    cont: document.getElementById('notification-container'),
+    count: document.getElementById('dCount'),
+}
+n.icon.addEventListener('click',()=>{
+    if (openNotification) {
+        n.cont.style.display = 'none';
+        openNotification = false;
+    } else {
+        n.cont.style.display = 'block';
+        openNotification = true
+    }
+});
+document.addEventListener('click',e=>{
+    if (e.target !== n.icon) {
+        n.cont.style.display = 'none';
+        openNotification = false;
+    }
+});
+function checkNotifications() {
+    const xhr = new XMLHttpRequest();
+          url = `/notifications?_=${Math.random()}`;
+    xhr.responseType = 'json';
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === xhr.DONE) {
+            const res = xhr.response;
+            let unreadCount = 0;
+            n.cont.innerHTML = '';
+            if (res[0].message !== '-') {
+                res.forEach(n=>{
+                    let el = document.createElement('a');
+                    el.href = '#';
+                    el.classList.add('notification');
+                    if (n.unread === '0') {
+                        el.classList.add('read');
+                    } else {
+                        unreadCount++;
+                    }
+                    el.innerHTML = `<i class="icon-type fa ${n.icon}"></i> ${n.message}`;
+                    document.getElementById('notification-container').appendChild(el);
+                });
+                if (unreadCount > 0) {
+                    n.count.setAttribute('data-count',unreadCount);
+                    console.log(unreadCount);
+                } else {
+                    n.count.removeAttribute('data-count');
+                }
+            } else {
+                n.cont.innerHTML = '<p class="nothing-to-see">No notifications</p>';
+                n.count.removeAttribute('data-count');
+            }
+        }
+    }
+    xhr.open('GET',url);
+    xhr.send();
+}
+setInterval(checkNotifications, 5000);
+checkNotifications();
+
 let mClosed = sessionStorage.getItem('closed');
 if (!mClosed) {
     mClosed = 'false';

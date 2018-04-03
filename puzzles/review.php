@@ -7,8 +7,8 @@ if(!$l or !isAllowed('puzzle')) {
     $review = secure($_POST['review']);
     $r = explode(' ',$review);
     $pID = $r[1];
+    $authorID = secure($_POST['authorID']);
     if ($r[0] === 'accept') {
-        $authorID = secure($_POST['authorID']);
         $pgn = secure($_POST['pgn']);
         $fen = secure($_POST['fen']);
         $sql1 = "INSERT INTO `puzzles_approved` (fen,pgn,author_id) VALUES ('$fen','$pgn','$authorID');";
@@ -25,6 +25,7 @@ if(!$l or !isAllowed('puzzle')) {
 include '../../templates/puzzle.php';");
             fclose($newPuzzleFile);
             $msg = "<p>Puzzle <a href=\"view/$newID\">$pID</a> accepted.</p>";
+            createNotification('fa-puzzle-piece',$authorID,'Your puzzle was accepted!');
         } else {
             $msg = "<p>Something went really wrong.</p>";
         }
@@ -33,6 +34,7 @@ include '../../templates/puzzle.php';");
         $result = mysqli_query($connection,$sql);
         if ($result) {
             $msg = "<p>Puzzle $pID deleted.</p>";
+            createNotification('fa-puzzle-piece',$authorID,'Your puzzle was declined.');
         } else {
             $msg = "<p>Something went really wrong.</p>";
         }
@@ -96,6 +98,7 @@ include '../../templates/puzzle.php';");
                                     </form>
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                                         <input type="hidden" value="delete <?php echo $id ?>" name="review">
+                                        <input type="hidden" value="<?php echo $authorID ?>" name="authorID">
                                         <span data-hint="Delete puzzle"><button type="submit" class="flat-button"><span><i class="fa fa-close"></i></span></button></span>
                                     </form>
                                 </span></td>
