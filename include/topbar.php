@@ -1,3 +1,12 @@
+<?php
+if (isAllowed('puzzle')) {
+    $sql1234 = "SELECT id FROM `puzzles_to_review`";
+    $result1234 = mysqli_query($connection,$sql1234);
+    if ($result1234) {
+        $puzzleUnreviewedCount = mysqli_num_rows($result1234);
+    }
+}
+?>
 <div class="top-above">
     <a class="learnchess-link" href="/">LearnChess<span class="extension">.tk</span></a>
     <?php if($l) { ?>
@@ -19,7 +28,7 @@
     </div>
     <?php if($l) { ?><div class="icon-links">
         <?php if (isAllowed('puzzle')) { ?>
-        <a class="fa fa-puzzle-piece hint-text-center" href="/puzzles/review" data-hint="Review puzzles"></a>
+            <a class="fa fa-puzzle-piece hint-text-center icon" href="/puzzles/review" data-hint="Review puzzles"><?php if($puzzleUnreviewedCount > 0) { ?><span data-count="<?php echo $puzzleUnreviewedCount ?>"></span><?php } ?></a>
         <?php } ?>
         <?php if (isAllowed('admin')) { ?>
         <a class="fa fa-shield hint-text-center icon" href="/admin/search" data-hint="Admin"></a>
