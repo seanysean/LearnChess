@@ -7,6 +7,11 @@ if ($l) {
     $currentSessionID = $_SESSION['userid'];
     $updateActivitySQL = "UPDATE `users` SET last_active=CURRENT_TIMESTAMP WHERE id='$currentSessionID'";
     mysqli_query($connection,$updateActivitySQL);
+    $closedAccountQuery = "SELECT active FROM `users` WHERE id='$currentSessionID'";
+    $closedAccountResult = mysqli_query($connection,$closedAccountQuery);
+    if ($closedAccountResult->fetch_assoc()['active'] === '0') {
+        header('Location: /logout');
+    }
 }
 
 function secure($input,$nlines=false) {

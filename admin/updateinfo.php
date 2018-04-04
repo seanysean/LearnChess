@@ -9,9 +9,13 @@ if (!$l or !isAllowed('admin')) {
     if(isset($_POST['open'])) {
         $open = secure($_POST['open']);
         $num = strtolower($open) === 'no' ? '0' : '1';
-        $sql = "UPDATE `users` SET active='$num' WHERE id='$id'";
+        $sql = "UPDATE `users` SET `active`='$num' WHERE `id`='$id'";
         $result = mysqli_query($connection,$sql);
         if ($result) {
+            if ($num === '0') {
+                $sql = "UPDATE `users` SET `online`='0' WHERE `id`='$id'";
+                mysqli_query($connection,$sql);
+            }
             $success = true;
         }
     } else if(isset($_POST['name'])) {
