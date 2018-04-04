@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../include/functions.php";
+include "sidebar.php";
 if (!$l || !isAllowed('admin')) {
     header('Location: /');
 } else if (isset($_GET['username'])) {
@@ -51,7 +52,10 @@ if (!$l || !isAllowed('admin')) {
         <?php include_once "../include/topbar.php" ?>
         </div>
         <div class="page">
-            <div class="main center">
+            <div class="left-area">
+            <?php sidebar('search'); ?>
+            </div>
+            <div class="main right">
                 <div class="block">
                     <h1 class="block-title"><i class="fa fa-shield"></i> Admin</h1>
                 </div>
