@@ -2,7 +2,7 @@
 session_start();
 include "../include/functions.php";
 $accountid = $account['id'];
-$sql = "SELECT `name`,`lichess`,`about`,`online`,`permissions` FROM `users` WHERE id='$accountid'";
+$sql = "SELECT * FROM `users` WHERE id='$accountid'";
 $result = mysqli_query($connection,$sql);
 if ($result) {
     $res = $result->fetch_assoc();
@@ -27,6 +27,7 @@ if ($result) {
         $hint = '';
     }
     $online = $res['online'];
+    $active = $res['active'] === '1' ? true : false;
 }
 ?>
 <!DOCTYPE html>
@@ -59,14 +60,17 @@ if ($result) {
                     </h1>
                     <?php if(isset($thisUsersName)) { ?>
                     <p class="name"><?php echo $thisUsersName ?></p>
-                    <?php } ?>
-                    <?php if(strlen($thisUsersLichessProfile) > 0) {
+                    <?php } if (!$active) {
+                        echo "<h2><i class=\"fa fa-ban\"></i> Account closed</h2>";
+                    } else {
+                    if(strlen($thisUsersLichessProfile) > 0) {
                         echo "<a class=\"lichess\" target=\"_blank\" href=\"https://lichess.org/@/$thisUsersLichessProfile\">View lichess profile <i class=\"fa fa-external-link\"></i></a>";
                     } ?>
                     <div class="info-bar">
                         
                     </div>
                     <div class="about" id="about"><?php echo $aboutThisUser ?></div>
+                    <?php } ?>
                 </div>
             </div>
             <div class="right-area">
@@ -76,6 +80,9 @@ if ($result) {
                 </div>
             </div>
         </div>
+        <footer>
+        <?php include "../include/footer.php" ?>
+        </footer>
         <script src="../js/global.js"></script>
         <script src="../js/profile.js"></script>
     </body>
