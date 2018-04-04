@@ -76,16 +76,13 @@ include '../../templates/puzzle.php';");
                         <?php
                         while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
                             $authorID = $row['author_id'];
-                            $getUsername = "SELECT username FROM `users` WHERE id='$authorID' LIMIT 1";
-                            $userResult = mysqli_query($connection,$getUsername);
                             $id = $row['id'];
-                            $author = $userResult->fetch_assoc()['username'];
                             $fen = $row['fen'];
                             $pgn = $row['pgn'];
                             ?>
                             <tr>
                                 <td><?php echo $id ?></td>
-                                <td><a class="author" target="_blank" href="/member/<?php echo strtolower($author) ?>"><?php echo $author ?></a></td>
+                                <td><?php echo createUserLink($authorID) ?></td>
                                 <td><span data-hint="View position on lichess"><a class="fen" target="_blank" href="https://lichess.org/editor/<?php echo $fen ?>"><?php echo $fen ?> <i class="fa fa-external-link"></i></a></span></td>
                                 <td><span class="pgn"><?php echo $pgn ?></span></td>
                                 <td><span class="choice">
