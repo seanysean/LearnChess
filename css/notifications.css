@@ -1,0 +1,38 @@
+.container {
+    margin-top: 20px;
+}
+.notif {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 100;
+    position: relative;
+}
+.notif form {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    z-index: 5;
+}
+.notif.read {
+    background: #f7f7f7;
+}
+.notif:not(.read):hover {
+    background: #fdfdfd;
+}
+.notif:not(.read):hover .mark-read {
+    color: #555;
+}
+.notif-icon {
+    font-size: 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.mark-read {
+    cursor: pointer;
+    color: #eee;
+}
+.mark-read::after {
+    min-width: 100px;
+}
