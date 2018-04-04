@@ -19,7 +19,7 @@ form .button {
     background: #eee;
     opacity: 1;
 }
-.links-section a:hover:not(.current) {
+.links-section a:hover {
     background: #eee;
 }
 .links-section a.current::after {

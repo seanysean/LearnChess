@@ -148,6 +148,7 @@ button:active {
     border-radius: 0;
     color: #555;
     text-align: center;
+    transition: none;
 }
 .flat-button:hover {
     background: RGBa(0,0,0,0.1);
@@ -454,8 +455,37 @@ button:active {
 .top .top-navigation .icon-links .icon-dropdown .n-container .nothing-to-see {
     text-align: center;
     text-transform: none;
+    background: #fff;
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 20px;
 }
-.top .top-navigation .icon-links .icon-dropdown .n-container .notification {
+.top .top-navigation .icon-links .icon-dropdown .n-container .flat-button {
+    padding: 5px;
+    display: block;
+    color: #777;
+    width: 100%;
+    font-weight: 100;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .flat-button:hover {
+    background: #f7f7f7;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .inner-container {
+    height: 171px;
+    overflow: auto;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .inner-container::-webkit-scrollbar {
+    background: #fff;
+    width: 10px;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .inner-container::-webkit-scrollbar-thumb {
+    background: #eee;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .inner-container::-webkit-scrollbar-thumb:hover {
+    background: #ddd;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification {
     padding: 10px;
     color: #555;
     font-weight: 100;
@@ -464,11 +494,12 @@ button:active {
     transition: none !important;
     display: block;
 }
-.top .top-navigation .icon-links .icon-dropdown .n-container .notification:hover,
-.top .top-navigation .icon-links .icon-dropdown .n-container .notification.read {
+.top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification:hover,
+.top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification.read,
+.top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .flat-button:hover {
     background: #f8f8f8;
 }
-.top .top-navigation .icon-links .icon-dropdown .n-container .notification .icon-type {
+.top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification .icon-type {
     font-size: 40px;
     float: left;
     margin-right: 10px;
@@ -496,20 +527,6 @@ footer a {
 }
 .page .main a {
     position: relative;
-}
-.page .main a::after {
-    content: "";
-    position: absolute;
-    display: block;
-    height: 1px;
-    width: 0;
-    bottom: 0;
-    left: 0;
-    transition: 0.1s linear;
-    background: #3893e8;
-}
-.page .main a:hover::after {
-    width: 100%;
 }
 .page .main {
     width: 70%;

@@ -1,1 +1,1 @@
-<a href="#" data-hint="This is temporary">Go nowhere</a>
+<a href="/changes">View recent changes</a>

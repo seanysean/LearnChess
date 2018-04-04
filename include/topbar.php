@@ -36,6 +36,8 @@ if (isAllowed('puzzle')) {
         <div class="icon-dropdown">
             <i class="fa fa-bell hint-text-center icon" data-hint="Notifications" id="notification-icon"><span id="dCount"></span></i>
             <div class="n-container" id="notification-container">
+                <div class="inner-container" id="i-container"></div>
+                <a href="/notifications" class="flat-button">View all notifications</a>
             </div>
         </div>
         <div class="icon-dropdown">

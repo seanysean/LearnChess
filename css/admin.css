@@ -32,3 +32,27 @@ form {
 .info:hover .edit {
     opacity: 1;
 }
+.left-area .block {
+    padding: 0 !important;
+    box-shadow: none !important;
+    background-color: #f4f4f4 !important;
+}
+.left-area .block a {
+    color: #777;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+.left-area .block a.current {
+    background: #eee;
+    opacity: 1;
+}
+.left-area .block a:hover {
+    background: #eee;
+}
+.left-area .block a.current::after {
+    font-family: "FontAwesome";
+    content: "\f105";
+    position: absolute;
+    right: 10px;
+}
