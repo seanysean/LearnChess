@@ -1,0 +1,46 @@
+.change {
+    border-top: 1px solid #f2f2f2;
+    padding: 10px 3px;
+}
+.change h2 {
+    font-weight: 300;
+    font-size: 30px;
+    margin: 10px 0;
+}
+.change-link {
+    font-family: "FontAwesome" !important;
+    font-size: 19px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}
+.change-link span {
+    position: relative;
+    z-index: 1;
+    color: #777;
+    transition: 0.1s linear;
+}
+.change-link::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 0;
+    height: 0;
+    background: #3893e8;
+    border-radius: 50%;
+    transition: 0.1s ease;
+}
+.change-link:hover::after {
+    width: 150%;
+    height: 150%;
+}
+.change-link:hover span {
+    color: #fff !important;
+}
+.description {
+    font-size: 15px;
+    color: #888;
+}
