@@ -30,7 +30,7 @@ if ($result) {
                     </h1>
                     <div class="accepted-puzzles">
                     <?php
-                    $sql = "SELECT * FROM `puzzles_approved` ORDER BY id DESC";
+                    $sql = "SELECT * FROM `puzzles_approved` WHERE removed='0' ORDER BY id DESC";
                     $result = mysqli_query($connection,$sql);
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
@@ -64,7 +64,7 @@ if ($result) {
                         } else { ?>
                         <p class="nothing-to-see">No puzzles in review</p>
                         <?php } 
-                        $sql2 = "SELECT id FROM `puzzles_approved` WHERE author_id='$myID' ORDER BY id DESC";
+                        $sql2 = "SELECT id FROM `puzzles_approved` WHERE author_id='$myID' AND removed='0' ORDER BY id DESC";
                         $result2 = mysqli_query($connection,$sql2);
                         if (mysqli_num_rows($result2) > 0) {
                             $rows = mysqli_num_rows($result2);

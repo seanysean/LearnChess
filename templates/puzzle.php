@@ -8,6 +8,7 @@ if ($result) {
     $pgn = $res['pgn'];
     $fen = $res['fen'];
     $trophies = $res['trophies'];
+    $removed = $res['removed'] === '0' ? false : true;
 }
 ?>
 <!DOCTYPE html>
@@ -23,29 +24,41 @@ if ($result) {
             <?php include_once "../../include/topbar.php"; ?>
         </div>
         <div class="page">
-            <div class="main">
+            <div class="main<?php if($removed) { echo " center"; } ?>">
                 <div class="block">
                     <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID ?></h1>
+                    <?php if($removed) { echo "<p class=\"nothing-to-see removed\"><i class=\"fa fa-ban\"></i> This puzzle was removed.</p>"; } ?>
                 </div>
+                <?php if (!$removed) { ?>
                 <div class="block transparent">
                     <div id="chessground"></div>
                 </div>
+                <?php } ?>
             </div>
+            <?php if (!$removed) { ?>
             <div class="right-area">
                 <div class="block copyings">
                     <h3>Copy URL</h1>
                     <p id="puzzleURL"></p>
                     <h3>Copy FEN</h1>
                     <p id="puzzleFEN"></p>
+                    <?php if(isAllowed('puzzle')) { ?>
+                    <form action="/puzzles/remove" method="post">
+                        <input type="hidden" value="<?php echo $pID ?>" name="puzzle">
+                        <button class="flat-button" type="submit"><i class="fa fa-close"></i> Remove puzzle</button>
+                    </form>
+                    <?php } ?>
                 </div>
                 <div class="block feedback" id="res-container">
                     <div id="response" class="neutral"><i class="fa fa-spinner"></i> Loading</div>
                 </div>
             </div>
+            <?php } ?>
         </div>
         <footer>
             <?php include_once "../../include/footer.php"; ?>
         </footer>
+        <?php if (!$removed) { ?>
         <script>
         const fen = '<?php echo $fen ?>',
               pgn = '<?php echo $pgn ?>',
@@ -55,6 +68,7 @@ if ($result) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
         <script src="/js/chessground.min.js"></script>
         <script src="/js/puzzles.js"></script>
+        <?php } ?>
         <script src="/js/global.js"></script>
     </body>
 </html>
