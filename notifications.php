@@ -4,6 +4,7 @@ require "include/functions.php";
 if(!$l) {
     echo '[ {"message":"-","error":"You are logged out"} ]';
 } else {
+    $userID = $_SESSION['userid'];
     if (isset($_POST['n'])) {
         $n = secure($_POST['n']);
         $sql = "SELECT `to_id` FROM `notifications` WHERE `id`='$n'";
@@ -14,10 +15,8 @@ if(!$l) {
             mysqli_query($connection,$sql);
         }
         header('Location: notifications');
-    }
-    else if (isset($_GET['_'])) {
-        $userID = $_SESSION['userid'];
-        $sql = "SELECT * FROM `notifications` WHERE `to_id`='$userID' LIMIT 10";
+    } else if (isset($_GET['_'])) {
+        $sql = "SELECT * FROM `notifications` WHERE `to_id`='$userID' AND `unread`='1' ORDER BY id DESC LIMIT 10";
         $result = mysqli_query($connection,$sql);
         $num = mysqli_num_rows($result);
         $return = '[';
@@ -33,9 +32,19 @@ if(!$l) {
             }
             echo $return.']';
         } else {
-            echo '[ {"message":"-","error":"No notifications"} ]';
+            echo '[ {"message":"-","error":"No new notifications"} ]';
         }
-    } else { ?>
+    } else if (isset($_POST['mark-all'])) {
+        $sql = "UPDATE `notifications` SET unread='0' WHERE to_id='$userID'";
+        $result = mysqli_query($connection,$sql);
+        if ($result) {
+            header('Location: /notifications');
+        } else {
+            echo "Something went wrong!";
+        }
+    } else { 
+        $sql = "SELECT id FROM `notifications` WHERE to_id='$userID' AND unread='1'";
+        $unread_count = mysqli_num_rows(mysqli_query($connection,$sql)); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,11 +59,11 @@ if(!$l) {
         <div class="page">
             <div class="main center">
                 <div class="block">
-                    <h1 class="block-title center"><i class="fa fa-bell-o"></i> Notifications</h1>
+    <h1 class="block-title center"><i class="fa fa-bell-o"></i> Notifications<?php if ($unread_count) { echo " ($unread_count)"; } ?><?php if ($unread_count) { ?><form class="alternate" action="/notifications" method="post"><input type="hidden" value=" " name="mark-all"><button type="submit" class="flat-button"><i class="fa fa-check"></i> Mark all as read</button></form><?php } ?></h1>
                     <div class="container">
                     <?php
                     $myid = $_SESSION['userid'];
-                    $sql = "SELECT * FROM `notifications` WHERE to_id='$myid'";
+                    $sql = "SELECT * FROM `notifications` WHERE to_id='$myid' ORDER BY id DESC";
                     $result = mysqli_query($connection,$sql);
                     if (mysqli_num_rows($result) > 0) {
                     while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) { ?>
