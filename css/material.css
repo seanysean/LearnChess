@@ -8,9 +8,15 @@ form .input-container {
     display: block;
     position: relative;
 }
+form .input-line {
+    display: flex;
+    justify-content: space-between;
+}
 form .input-container.half {
-    display: inline-block;
     width: 47%;
+}
+form .input-container.third {
+    width: 32%;
 }
 form .input-container input,
 form .input-container textarea {
