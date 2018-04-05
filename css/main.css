@@ -54,6 +54,30 @@ button:active {
     font-size: 13px;
 }
 
+/* loader */
+
+.loader {
+    height: 20px;
+    width: 20px;
+    border: 2px solid transparent;
+    border-right-color: #3893e8;
+    border-bottom-color: #3893e8;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    animation: 0.8s rotate linear infinite;
+}
+@keyframes rotate {
+    0% {
+        transform: translate(-50%,-50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%,-50%) rotate(360deg);
+    }
+}
+
 /* .button styling */
 
 .button, .flat-button {
@@ -244,6 +268,9 @@ button:active {
     padding: 10px;
     color: #888;
 }
+.userinfo-box .padding.no-account.not-found {
+    height: 30px;
+}
 .userinfo-box .admin-buttons {
     margin: 0;
     display: flex;
@@ -251,27 +278,6 @@ button:active {
 .userinfo-box .admin-buttons .flat-button {
     flex-grow: 1;
     padding: 5px;
-}
-.userinfo-box .loading-container .loader {
-    height: 20px;
-    width: 20px;
-    border: 2px solid transparent;
-    border-right-color: #3893e8;
-    border-bottom-color: #3893e8;
-    border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    animation: 0.8s rotate linear infinite;
-}
-@keyframes rotate {
-    0% {
-        transform: translate(-50%,-50%) rotate(0deg);
-    }
-    100% {
-        transform: translate(-50%,-50%) rotate(360deg);
-    }
 }
 
 /* #Popup */

@@ -5,25 +5,21 @@ if(!$l) {
     header('Location: /');
 }
 $userID = $_SESSION['userid'];
-$sql = "SELECT name,lichess,about FROM `users` WHERE id='$userID' LIMIT 1";
+$sql = "SELECT `name`,`lichess`,`about`,`chesscom` FROM `users` WHERE id='$userID'";
 $result = mysqli_query($connection,$sql) or die('Something went wrong.');
 if ($result) {
     $res = $result->fetch_assoc();
-    if(isset($res['name'])) {
-        $db_name = $res['name'];
-    }
-    if(isset($res['lichess'])) {
-        $db_lichess = $res['lichess'];
-    }
-    if(isset($res['about'])) {
-        $db_about = $res['about'];
-    }
+    $db_name = $res['name'];
+    $db_lichess = $res['lichess'];
+    $db_chesscom = $res['chesscom'];
+    $db_about = $res['about'];
 }
-if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about'])) {
+if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) or isset($_POST['chesscom'])) {
     $name = secure($_POST['name']);
     $lichess = secure($_POST['lichess']);
+    $chesscom = secure($_POST['chesscom']);
     $about = secure($_POST['about'],true);
-    $sql = "UPDATE `users` SET name='$name',lichess='$lichess',about='$about' WHERE id='$userID' LIMIT 1";
+    $sql = "UPDATE `users` SET name='$name',lichess='$lichess',chesscom='$chesscom',about='$about' WHERE id='$userID'";
     $result = mysqli_query($connection,$sql);
     if ($result) {
         $username = $_SESSION['username'];
@@ -61,23 +57,22 @@ if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about'])) 
                         } else { ?>
                         <p><a href="/member/<?php echo $_SESSION['username'] ?>">View your profile</a></p>
                         <?php } ?>
-                        <div class="input-container half">
-                            <input name="name" type="text" id="name" <?php if (isset($name)) {
-                                                                        echo "value=\"$name\"";
-                                                                    } else if(isset($db_name)) {
-                                                                        echo "value=\"$db_name\""; 
-                                                                    } ?>>
-                            <label for="name">Name</label>
-                            <span class="line"></span>
-                        </div>
-                        <div class="input-container half right">
-                            <input name="lichess" type="text" id="lichess" spellcheck="false" <?php if (isset($lichess)) {
-                                                                                                echo "value=\"$lichess\"";
-                                                                                              } else if(isset($db_lichess)) {
-                                                                                                echo "value=\"$db_lichess\""; 
-                                                                                              } ?>>
-                            <label for="lichess">Lichess Username</label>
-                            <span class="line"></span>
+                        <div class="input-line">
+                            <div class="input-container third">
+                                <input name="name" type="text" id="name" <?php if (isset($name)) { echo "value=\"$name\""; } else if(isset($db_name)) { echo "value=\"$db_name\""; } ?>>
+                                <label for="name">Name</label>
+                                <span class="line"></span>
+                            </div>
+                            <div class="input-container third">
+                                <input name="lichess" type="text" id="lichess" spellcheck="false" <?php if (isset($lichess)) { echo "value=\"$lichess\""; } else if(isset($db_lichess)) { echo "value=\"$db_lichess\""; } ?>>
+                                <label for="lichess">Lichess Username</label>
+                                <span class="line"></span>
+                            </div>
+                            <div class="input-container third">
+                                <input name="chesscom" type="text" id="chesscom" spellcheck="false" <?php if (isset($chesscom)) { echo "value=\"$chesscom\""; } else if(isset($db_chesscom)) { echo "value=\"$db_chesscom\""; } ?>>
+                                <label for="chesscom">Chess.com Username</label>
+                                <span class="line"></span>
+                            </div>
                         </div>
                         <div class="input-container">
                             <textarea name="about" id="about" rows="5"><?php if(isset($about)) {

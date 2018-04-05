@@ -6,15 +6,10 @@ $sql = "SELECT * FROM `users` WHERE id='$accountid'";
 $result = mysqli_query($connection,$sql);
 if ($result) {
     $res = $result->fetch_assoc();
-    if (isset($res['name'])) {
-        $thisUsersName = $res['name'];
-    }
-    if (isset($res['lichess'])) {
-        $thisUsersLichessProfile = $res['lichess'];
-    }
-    if (isset($res['about'])) {
-        $aboutThisUser = $res['about'];
-    }
+    $thisUsersName = $res['name'];
+    $thisUsersLichessProfile = $res['lichess'];
+    $thisUsersChesscomProfile = $res['chesscom'];
+    $aboutThisUser = $res['about'];
     $p = str_split($res['permissions']);
     if ($p[0] === '1') {
         $icon = 'fa-shield';
@@ -28,6 +23,10 @@ if ($result) {
     }
     $online = $res['online'];
     $active = $res['active'] === '1' ? true : false;
+    $created = date('M. d Y',strtotime($res['created']));
+    $last_active = date('M. d Y',strtotime($res['last_active']));
+    $sql = "SELECT id FROM `puzzles_approved` WHERE author_id='$accountid' AND removed='0'";
+    $puzzle_count = mysqli_num_rows(mysqli_query($connection,$sql));
 }
 ?>
 <!DOCTYPE html>
@@ -40,8 +39,8 @@ if ($result) {
     <body>
         <div class="top"><?php include_once "../include/topbar.php" ?></div>
         <div class="page">
-            <div class="main">
-                <div class="block">
+            <div class="main full">
+                <div class="block transparent">
                     <h1 class="block-title">
                         <span<?php echo $hint ?>>
                             <span class="fa <?php echo $icon ?> state<?php echo $online === '1' ? ' online' : ' offline' ?>"></span>
@@ -58,32 +57,58 @@ if ($result) {
                         </span>
                         <?php } ?>
                     </h1>
-                    <?php if(isset($thisUsersName)) { ?>
+                    <?php if($thisUsersName) { ?>
                     <p class="name"><?php echo $thisUsersName ?></p>
                     <?php } if (!$active) {
                         echo "<h2><i class=\"fa fa-ban\"></i> Account closed</h2>";
                     } else {
-                    if(strlen($thisUsersLichessProfile) > 0) {
-                        echo "<a class=\"lichess\" target=\"_blank\" href=\"https://lichess.org/@/$thisUsersLichessProfile\">View lichess profile <i class=\"fa fa-external-link\"></i></a>";
+                    if($thisUsersLichessProfile) {
+                        echo "<a class=\"other-profile-link\" target=\"_blank\" href=\"https://lichess.org/@/$thisUsersLichessProfile\">View lichess profile <i class=\"fa fa-external-link\"></i></a>";
+                    }
+                    if($thisUsersChesscomProfile) {
+                        echo "<a class=\"other-profile-link\" target=\"_blank\" href=\"https://chess.com/member/$thisUsersChesscomProfile\">View chess.com profile <i class=\"fa fa-external-link\"></i></a>";
                     } ?>
+                </div>
+                <div class="block">
                     <div class="info-bar">
-                        
+                        <div class="info">
+                            <span class="info-title">Account created</span>
+                            <?php echo $created ?>
+                        </div>
+                        <div class="info">
+                            <span class="info-title">Last active</span>
+                            <?php echo $last_active ?>
+                        </div>
+                        <div class="info">
+                            <span class="info-title">Puzzles created</span>
+                            <?php echo $puzzle_count ?>
+                        </div>
+                        <?php if($thisUsersChesscomProfile) { ?>
+                        <a href="https://chess.com/member/<?php echo $thisUsersChesscomProfile ?>" target="_blank" data-hint="Chess.com profile" class="info" id="chessComInfo">
+                            <div class="loader"></div>
+                        </a>
+                        <?php }
+                        if($thisUsersLichessProfile) { ?>
+                        <a href="https://lichess.org/@/<?php echo $thisUsersLichessProfile ?>" target="_blank" data-hint="Lichess.org profile" class="info" id="lichessInfo">
+                            <div class="loader"></div>
+                        </a>
+                        <?php } ?>
                     </div>
                     <div class="about" id="about"><?php echo $aboutThisUser ?></div>
                     <?php } ?>
-                </div>
-            </div>
-            <div class="right-area">
-                <div class="block">
-                    <h1 class="block-title">Contributions</h1>
-                    <p class="nothing-to-see">No contributions made yet</p>
                 </div>
             </div>
         </div>
         <footer>
         <?php include "../include/footer.php" ?>
         </footer>
-        <script src="../js/global.js"></script>
+        <script>
+        const web = {
+            chessCom: <?php echo strlen($thisUsersChesscomProfile) ? "'$thisUsersChesscomProfile'" : 'false'; ?>,
+            lichess: <?php echo strlen($thisUsersLichessProfile) ? "'$thisUsersLichessProfile'" : 'false'; ?>
+        }
+        </script>
         <script src="../js/profile.js"></script>
+        <script src="../js/global.js"></script>
     </body>
 </head>

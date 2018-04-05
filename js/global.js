@@ -51,7 +51,6 @@ if (n.icon) {
                             unreadCount++;
                         }
                         el.innerHTML = `<i class="icon-type fa ${n.icon}"></i> ${n.message}`;
-                        console.log(n.iCont);
                         document.getElementById('i-container').appendChild(el);
                     });
                     if (unreadCount > 0) {
@@ -104,8 +103,15 @@ userInfoLinks.forEach(l=>{
         userInfo.innerHTML = '<div class="loading-container"><div class="loader"></div></div>';
         userInfo.style.left = l.offsetLeft + 'px';
         userInfo.style.top = l.offsetTop - userInfo.offsetHeight + 'px';
+        let query;
+        if (l.getAttribute('userinfo').startsWith('?')) {
+            let edited = l.getAttribute('userinfo').split('?').join('');
+            query = `username=${edited}`;
+        } else {
+            query = `u=${l.getAttribute('userinfo')}`;
+        }
         const xhr = new XMLHttpRequest();
-              url = `/userinfo?u=${l.getAttribute('userinfo')}`;
+              url = `/userinfo?${query}`;
         xhr.onreadystatechange = function() {
             if (xhr.readyState === xhr.DONE) {
                 const res = xhr.response;

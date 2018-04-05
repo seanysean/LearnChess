@@ -1,7 +1,6 @@
 .about {
     margin-top: 20px;
     font-weight: 100;
-    border-top: 1px solid #eee;
     padding-top: 10px;
 }
 .name {
@@ -16,5 +15,34 @@
     color: #777 !important;
 }
 .main .block-title .state {
-    font-size: 20px;
+    font-size: 40px;
+}
+.info-bar {
+    display: flex;
+}
+.info-bar .info {
+    flex-grow: 1;
+    background: #fafafa;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+.info-bar a.info {
+    color: #888;
+    transition: none;
+}
+.info-bar a.info:hover {
+    background: #f1f1f1;
+
+}
+.info-bar .info .info-title {
+    display: block;
+    font-weight: 400;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.other-profile-link {
+    color: #888;
+    font-weight: 400;
+    display: block;
 }
