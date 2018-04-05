@@ -39,7 +39,10 @@ if (!$l or !isAllowed('admin')) {
         if ($result) {
             $success = true;
         }
-    } ?>
+    }
+if ($success) {
+    header('Location: search');
+} ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,9 +56,7 @@ if (!$l or !isAllowed('admin')) {
         <div class="page">
             <div class="main center">
                 <div class="block transparent">
-                    <p><?php if ($success) {
-                        echo "Request completed successfully";
-                    } else {
+                    <p><?php if (!$success) {
                         echo "Something went wrong...";
                     } ?>
                     </p>
