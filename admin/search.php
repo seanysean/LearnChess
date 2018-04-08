@@ -23,7 +23,7 @@ if (!$l || !isAllowed('admin')) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Edit profiles • LearnChess</title>
+        <title>Search users • LearnChess</title>
         <?php include_once "../include/head.php" ?>
         <link href="/css/material.css" type="text/css" rel="stylesheet">
         <link href="/css/admin.css" type="text/css" rel="stylesheet">
@@ -59,7 +59,7 @@ if (!$l || !isAllowed('admin')) {
             </div>
             <div class="main right">
                 <div class="block">
-                    <h1 class="block-title"><i class="fa fa-shield"></i> Admin</h1>
+                    <h1 class="block-title"><i class="fa fa-search"></i> Search users</h1>
                 </div>
                 <div class="block transparent">
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" id="search" method="get">

@@ -23,7 +23,7 @@ if (!$l or !isAllowed('admin')) {
             </div>
             <div class="main right">
                 <div class="block">
-                    <h1 class="block-title center"><i class="fa fa-shield"></i> New users</h1>
+                    <h1 class="block-title"><i class="fa fa-user-plus"></i> New users</h1>
                     <?php 
                     $sql = "SELECT `id` FROM `users` ORDER BY `id` DESC LIMIT 10";
                     $result = mysqli_query($connection,$sql);
