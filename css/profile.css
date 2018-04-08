@@ -33,16 +33,19 @@
 }
 .info-bar a.info:hover {
     background: #f1f1f1;
-
 }
 .info-bar .info .info-title {
     display: block;
-    font-weight: 400;
+    font-weight: 300;
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 20px;
+    font-family: Verdana, sans-serif;
 }
 .other-profile-link {
     color: #888;
     font-weight: 400;
     display: block;
+}
+.puzzle-list {
+    text-align: center;
 }

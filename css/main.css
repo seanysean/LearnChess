@@ -599,6 +599,35 @@ footer a {
     font-size: 13px;
     text-align: center;
 }
+
+/* Board container */
+
+.board-container {
+    width: 10vw;
+    display: inline-block;
+    margin: 5px;
+}
+.board-container .board {
+    width: 10vw;
+    height: 10vw;
+    display: block;
+    overflow: hidden;
+}
+.board-container .board::after {
+    display: none;
+}
+.board-container .credits {
+    padding: 5px;
+    color: #999;
+    font-weight: 100;
+    font-family: "Roboto",sans-serif;
+    border: 1px solid #eee;
+    transition: 0.1s linear;
+}
+.board-container .board:hover + .credits {
+    background: #f3f3f3;
+}
+
 /* Other */
 
 .site-message {

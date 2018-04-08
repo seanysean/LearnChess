@@ -35,6 +35,7 @@ if ($result) {
         <title><?php echo $account['username'] ?> • LearnChess</title>
         <?php include_once "../include/head.php" ?>
         <link href="../css/profile.css" type="text/css" rel="stylesheet">
+        <link href="../css/chessground.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div class="top"><?php include_once "../include/topbar.php" ?></div>
@@ -94,9 +95,25 @@ if ($result) {
                         </a>
                         <?php } ?>
                     </div>
-                    <div class="about" id="about"><?php echo $aboutThisUser ?></div>
+                    <?php if($aboutThisUser) { ?><div class="about" id="about"><?php echo $aboutThisUser ?></div><?php } ?>
                     <?php } ?>
                 </div>
+                <?php if($active) { 
+                $sql = "SELECT id,fen FROM `puzzles_approved` WHERE author_id='$accountid' AND removed='0' ORDER BY id DESC LIMIT 8";
+                $result = mysqli_query($connection,$sql);
+                if (mysqli_num_rows($result)) { ?>
+                <div class="block">
+                    <h1 class="block-title">Contributed puzzles<?php if ($puzzle_count) { echo " ($puzzle_count)"; } ?></h1>
+                    <div class="puzzle-list">
+                        <?php while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) { ?>
+                        <div class="board-container">
+                            <a href="/puzzles/view/<?php echo $row['id'] ?>" class="board" data-fen="<?php echo $row['fen'] ?>"></a>
+                            <div class="credits">Puzzle <?php echo $row['id'] ?></div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+                <?php } } ?>
             </div>
         </div>
         <footer>
@@ -110,5 +127,7 @@ if ($result) {
         </script>
         <script src="../js/profile.js"></script>
         <script src="../js/global.js"></script>
+        <script src="../js/chessground.min.js"></script>
+        <script src="../js/loadposition.js"></script>
     </body>
 </head>
