@@ -18,7 +18,7 @@ if (isAllowed('puzzle')) {
 <nav class="top-navigation">
     <div class="main-links">
         <?php if($l) { echo "<a href=\"/home\">Home</a>"; } ?>
-        <a href="/puzzles/all">Puzzles</a>
+        <a href="/puzzles">Puzzles</a>
         <!--<div class="main-dropdown">
             <a href="#">More</a>
             <div class="dropdown">
@@ -41,7 +41,7 @@ if (isAllowed('puzzle')) {
             </div>
         </div>
         <div class="icon-dropdown">
-            <a class="fa fa-cog icon" href="/settings/account"></a>
+            <a class="fa fa-cog icon" href="/settings/profile"></a>
             <div class="dropdown">
                 <a href="/logout"><span class="fa fa-sign-out"></span> Logout</a>
             </div>
