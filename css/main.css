@@ -525,9 +525,10 @@ button:active {
 
 .page {
     color: #777;
+    display: flex;
+    justify-content: space-between;
 }
-.page .main a:not(.uilink),
-footer a {
+.page .main a:not(.uilink) {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
 }
@@ -547,9 +548,6 @@ footer a {
 .page .right-area,
 .page .left-area {
     width: 27%;
-}
-.page .right-area {
-    float: right;
 }
 .page .left-area {
     display: inline-block;
@@ -626,6 +624,23 @@ footer a {
 }
 .board-container .board:hover + .credits {
     background: #f3f3f3;
+}
+
+/* Footer */
+
+footer {
+    margin: 20px auto;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    color: #555;
+}
+footer a {
+    font-family: sans-serif;
+    color: #777;
+    font-weight: 100;
+}
+footer .site-name {
+    font-size: 20px;
 }
 
 /* Other */
