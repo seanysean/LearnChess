@@ -11,3 +11,8 @@ function loadPosition(el,fen) {
     };
     const cg = Chessground(el,config);
 }
+const puzzlePreviews = document.querySelectorAll('[data-fen]');
+puzzlePreviews.forEach(e=>{
+    const fen = e.getAttribute('data-fen');
+    loadPosition(e,fen);
+});
