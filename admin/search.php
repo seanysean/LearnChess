@@ -17,6 +17,7 @@ if (!$l || !isAllowed('admin')) {
     $name = $res['name'];
     $about = $res['about'];
     $lichess = $res['lichess'];
+    $chesscom = $res['chesscom'];
     $permissions = $res['permissions'];
 } ?>
 <!DOCTYPE html>
@@ -33,6 +34,7 @@ if (!$l || !isAllowed('admin')) {
             <div class="popup-content">
                 <form action="updateinfo" method="post">
                     <input type="hidden" name="id" value="<?php echo $id ?>">
+                    <input type="hidden" name="username" value="<?php echo $username ?>">
                     <div class="input-container" id="input" spellcheck="false">
                         <input id="info">
                         <label id="label" for="info">Edit name</label>
@@ -85,6 +87,7 @@ if (!$l || !isAllowed('admin')) {
                     <p class="info"><b>Name:</b> <span id="name"><?php echo $name ?></span><span id="editname" class="edit fa fa-pencil"></span></p>
                     <p class="info"><b>About:</b> <span id="about"><?php echo $about ?></span><span id="editabout" class="edit fa fa-pencil"></span></p>
                     <p class="info"><b>Lichess username:</b> <span id="lichess"><?php echo $lichess ?></span><span id="editlichess" class="edit fa fa-pencil"></span></p>
+                    <p class="info"><b>Chess.com username:</b> <span id="chesscom"><?php echo $chesscom ?></span><span id="editchesscom" class="edit fa fa-pencil"></span></p>
                     <p class="info"><b>Permissions:</b> <?php echo $permissions ?></p>
                     <?php } ?>
                 </div>

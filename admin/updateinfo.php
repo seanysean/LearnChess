@@ -3,8 +3,9 @@ session_start();
 include "../include/functions.php";
 if (!$l or !isAllowed('admin')) {
     header('Location: /');
-} else if (isset($_POST['id'])) {
+} else if (isset($_POST['id']) && isset($_POST['username'])) {
     $id = secure($_POST['id']);
+    $username = secure($_POST['username']);
     $success = false;
     if(isset($_POST['open'])) {
         $open = secure($_POST['open']);
@@ -39,9 +40,16 @@ if (!$l or !isAllowed('admin')) {
         if ($result) {
             $success = true;
         }
+    } else if(isset($_POST['chesscom'])) {
+        $chesscom = secure($_POST['chesscom']);
+        $sql = "UPDATE `users` SET chesscom='$chesscom' WHERE id='$id'";
+        $result = mysqli_query($connection,$sql);
+        if ($result) {
+            $success = true;
+        }
     }
 if ($success) {
-    header('Location: search');
+    header("Location: search?username=$username");
 } ?>
 <!DOCTYPE html>
 <html>
