@@ -44,3 +44,14 @@
     font-size: 15px;
     color: #888;
 }
+.change li {
+    list-style-type: none;
+    padding-left: 2em;
+    text-indent: -1.5em;
+    margin-top: 10px;
+}
+.change li::before {
+    content: "\f00c";
+    font-family: "FontAwesome";
+    margin-right: 8px;
+}
