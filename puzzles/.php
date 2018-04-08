@@ -29,8 +29,9 @@ if ($result) {
                     <?php } ?>
                     </h1>
                     <div class="accepted-puzzles">
+                    <h2>Recent puzzles</h2>
                     <?php
-                    $sql = "SELECT * FROM `puzzles_approved` WHERE removed='0' ORDER BY id DESC";
+                    $sql = "SELECT * FROM `puzzles_approved` WHERE removed='0' ORDER BY id DESC LIMIT 9";
                     $result = mysqli_query($connection,$sql);
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
@@ -38,8 +39,8 @@ if ($result) {
                             $pID = $row['id'];
                             $authorID = $row['author_id'];
                         ?>
-                        <div class="puzzle-container">
-                            <a href="<?php echo "view/$pID" ?>" class="puzzle" data-fen="<?php echo $fen ?>"></a>
+                        <div class="board-container">
+                            <a href="<?php echo "view/$pID" ?>" class="board" data-fen="<?php echo $fen ?>"></a>
                             <div class="credits">Created by <br /><?php createUserLink($authorID) ?></div>
                         </div>
                     <?php }
@@ -88,12 +89,5 @@ if ($result) {
         <script src="../js/global.js"></script>
         <script src="../js/chessground.min.js"></script>
         <script src="../js/loadposition.js"></script>
-        <script>
-        const puzzlePreviews = document.querySelectorAll('[data-fen]');
-        puzzlePreviews.forEach(e=>{
-            const fen = e.getAttribute('data-fen');
-            loadPosition(e,fen);
-        });
-        </script>
     </body>
 </html>
