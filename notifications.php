@@ -16,7 +16,7 @@ if(!$l) {
         }
         header('Location: notifications');
     } else if (isset($_GET['_'])) {
-        $sql = "SELECT * FROM `notifications` WHERE `to_id`='$userID' AND `unread`='1' ORDER BY id DESC LIMIT 10";
+        $sql = "SELECT * FROM `notifications` WHERE `to_id`='$userID' AND `unread`='1' ORDER BY id DESC LIMIT 100";
         $result = mysqli_query($connection,$sql);
         $num = mysqli_num_rows($result);
         $return = '[';

@@ -54,7 +54,7 @@ if (n.icon) {
                         document.getElementById('i-container').appendChild(el);
                     });
                     if (unreadCount > 0) {
-                        n.count.setAttribute('data-count',unreadCount);
+                        n.count.setAttribute('data-count',unreadCount > 9 ? '9+' : unreadCount);
                     } else {
                         n.count.removeAttribute('data-count');
                     }
