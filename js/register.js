@@ -1,0 +1,50 @@
+function valid(text,min,max,inputType,msgContainer) {
+    let inputEdited = inputType.split('');
+    inputEdited[0] = inputEdited[0].toUpperCase();
+    inputEdited = inputEdited.join('');
+    const el = document.getElementById(msgContainer);
+    if ((text.length > min) && (text.length < max)) {
+        const removeInvalidChars = text.replace(/[^a-z1-9_-]/gi,'');
+        if (text === removeInvalidChars) {
+            if (inputType === 'username') {
+                const xhr = new XMLHttpRequest();
+                const url = `/autocomplete?exists=1&username=${text}`;
+                xhr.responseType = 'json';
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.response.exists === true) {
+                            el.innerText = ' Username already exists';
+                            el.classList = 'input-response invalid';
+                        } else {
+                            el.innerText = ` Valid ${inputType}`;
+                            el.classList = 'input-response valid';
+                        }
+                    }
+                }
+                xhr.open('GET',url);
+                xhr.send();
+            } else {
+                el.innerText = ` Valid ${inputType}`;
+                el.classList = 'input-response valid';
+            }
+        } else {
+            el.innerText = ` ${inputEdited} has invalid characters.`;
+            el.classList = 'input-response invalid';
+        }
+    } else {
+        el.innerText = ` ${inputEdited} too long or too short.`;
+        el.classList = 'input-response invalid';
+    }
+}
+const inputs = {
+    username: document.getElementById('username'),
+    password: document.getElementById('password')
+    }
+    if (inputs.username && inputs.password) {
+    inputs.username.addEventListener('keyup',()=>{
+        valid(inputs.username.value,3,18,'username','usernameResponse');
+    });
+    inputs.password.addEventListener('keyup',()=>{
+        valid(inputs.password.value,5,21,'password','passwordResponse');
+    });
+}

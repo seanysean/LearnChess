@@ -76,13 +76,13 @@ require \"../templates/profile.php\";";
                     ?>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <div class="input-container">
-                            <input type="text" name="username" minlength="4" id="username" maxlength="17" pattern="[a-zA-Z1-9_-]{4,17}" title="4 to 17 Characters. Allowed characters: 1-9a-z_-" spellcheck="false" autocomplete="off"<?php if(isset($_GET['username'])) { echo " value=\"".$_GET['username']."\""; } ?> autofocus required>
+                            <input type="text" name="username" minlength="4" id="username" maxlength="17" pattern="[a-zA-Z1-9_-]{4,17}" title="4 to 17 Characters. Allowed characters: 1-9a-z_-" spellcheck="false" autocomplete="off"<?php if(isset($_GET['username'])) { echo " value=\"".$_GET['username']."\""; } else { echo " autofocus"; } ?> required>
                             <label for="username">Username</label>
                             <span class="line"></span>
                         </div>
                         <p id="usernameResponse" class="input-response"></p>
                         <div class="input-container">
-                            <input type="password" name="password" minlength="5" id="password" maxlength="20" pattern="[a-zA-Z1-9_-]{5,20}" title="5 to 20 Characters. Allowed characters: 1-9a-z_-" required>
+                            <input type="password" name="password" minlength="5" id="password" maxlength="20" pattern="[a-zA-Z1-9_-]{5,20}" title="5 to 20 Characters. Allowed characters: 1-9a-z_-"<?php if(isset($_GET['username'])) { echo " autofocus"; } ?> required>
                             <label for="password">Password</label>
                             <span class="line"></span>
                         </div>
@@ -99,57 +99,6 @@ require \"../templates/profile.php\";";
             <?php include_once "./include/footer.php" ?>
         </footer>
         <script src="js/global.js"></script>
-        <script>
-        function valid(text,min,max,inputType,msgContainer) {
-            let inputEdited = inputType.split('');
-            inputEdited[0] = inputEdited[0].toUpperCase();
-            inputEdited = inputEdited.join('');
-            const el = document.getElementById(msgContainer);
-            if ((text.length > min) && (text.length < max)) {
-                const removeInvalidChars = text.replace(/[^a-z1-9_-]/gi,'');
-                if (text === removeInvalidChars) {
-                    if (inputType === 'username') {
-                        const xhr = new XMLHttpRequest();
-                        const url = `/autocomplete?exists=1&username=${text}`;
-                        xhr.responseType = 'json';
-                        xhr.onreadystatechange = function() {
-                            if (xhr.readyState === XMLHttpRequest.DONE) {
-                                if (xhr.response.exists === true) {
-                                    el.innerText = ' Username already exists';
-                                    el.classList = 'input-response invalid';
-                                } else {
-                                    el.innerText = ` Valid ${inputType}`;
-                                    el.classList = 'input-response valid';
-                                }
-                            }
-                        }
-                        xhr.open('GET',url);
-                        xhr.send();
-                    } else {
-                        el.innerText = ` Valid ${inputType}`;
-                        el.classList = 'input-response valid';
-                    }
-                } else {
-                    el.innerText = ` ${inputEdited} has invalid characters.`;
-                    el.classList = 'input-response invalid';
-                }
-            } else {
-                el.innerText = ` ${inputEdited} too long or too short.`;
-                el.classList = 'input-response invalid';
-            }
-        }
-        const inputs = {
-            username: document.getElementById('username'),
-            password: document.getElementById('password')
-        }
-        if (inputs.username && inputs.password) {
-            inputs.username.addEventListener('keyup',()=>{
-                valid(inputs.username.value,3,18,'username','usernameResponse');
-            });
-            inputs.password.addEventListener('keyup',()=>{
-                valid(inputs.password.value,5,21,'password','passwordResponse');
-            });
-        }
-        </script>
+        <script src="js/register.js"></script>
     </body>
 </html>
