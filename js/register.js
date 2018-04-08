@@ -39,12 +39,12 @@ function valid(text,min,max,inputType,msgContainer) {
 const inputs = {
     username: document.getElementById('username'),
     password: document.getElementById('password')
-    }
-    if (inputs.username && inputs.password) {
-    inputs.username.addEventListener('keyup',()=>{
-        valid(inputs.username.value,3,18,'username','usernameResponse');
-    });
-    inputs.password.addEventListener('keyup',()=>{
-        valid(inputs.password.value,5,21,'password','passwordResponse');
-    });
+}
+if (inputs.username && inputs.password) {
+inputs.username.addEventListener('keyup',()=>{
+    valid(inputs.username.value,3,18,'username','usernameResponse');
+});
+inputs.password.addEventListener('keyup',()=>{
+    valid(inputs.password.value,5,21,'password','passwordResponse');
+});
 }
