@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../include/functions.php";
+include "sidebar.php";
 if(!$l) {
     header('Location: /');
 }
@@ -22,7 +23,7 @@ if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) o
     $sql = "UPDATE `users` SET name='$name',lichess='$lichess',chesscom='$chesscom',about='$about' WHERE id='$userID'";
     $result = mysqli_query($connection,$sql);
     if ($result) {
-        $username = $_SESSION['username'];
+        $username = strtolower($_SESSION['username']);
         $msg = '<p><a href="/member/'.$username.'">Your profile</a> has been updated!</p>';
     } else {
         $msg = "<p>Something went wrong...</p>";
@@ -43,10 +44,7 @@ if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) o
         </div>
         <div class="page">
             <div class="left-area">
-                <div class="block links-section">
-                    <a href="profile" class="current"><i class="fa fa-edit"></i> Profile</a>
-                    <a href="account"><i class="fa fa-gear"></i> Account</a>
-                </div>
+            <?php echo sidebar(1) ?>
             </div>
             <div class="main right">
                 <div class="block">
@@ -55,7 +53,7 @@ if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) o
                         <?php if(isset($msg)) {
                             echo $msg;
                         } else { ?>
-                        <p><a href="/member/<?php echo $_SESSION['username'] ?>">View your profile</a></p>
+                        <p><a href="/member/<?php echo strtolower($_SESSION['username']) ?>">View your profile</a></p>
                         <?php } ?>
                         <div class="input-line">
                             <div class="input-container third">
@@ -85,7 +83,7 @@ if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) o
                             <label for="about">Biography</label>
                             <span class="line"></span>
                         </div>
-                        <button class="button green" type="submit"><span><i class="fa fa-check"></i> Update profile</span></button>
+                        <button class="button blue" type="submit"><span><i class="fa fa-check"></i> Update profile</span></button>
                     </form>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../include/functions.php";
+include "sidebar.php";
 if (!$l) {
     header('Location: /');
 }
@@ -32,41 +33,31 @@ if(isset($_POST['password'])) {
         <link href="../css/material.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <div id="popup">
-            <p class="popup-title">Are you sure?</p>
-            <div class="popup-content">
-            <p>You will not be able to undo this!</p>
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                    <div class="input-container">
-                        <input type="password" name="password" id="password" required>
-                        <label for="password">Enter password</label>
-                        <span class="line"></span>
-                    </div>
-                    <button type="submit" class="button red full"><span><i class="fa fa-close"></i> Close my account</span></button>
-                    <a class="cancel" href="/member/<?php echo strtolower($_SESSION['username']) ?>">Cancel</a>
-                </form>
-            </div>
-        </div>
         <div class="top">
             <?php include_once "../include/topbar.php" ?>
         </div>
         <div class="page">
             <div class="left-area">
-                <div class="block links-section">
-                    <a href="profile"><i class="fa fa-edit"></i> Profile</a>
-                    <a href="account" class="current"><i class="fa fa-gear"></i> Account</a>
-                </div>
+                <?php echo sidebar(3) ?>
             </div>
             <div class="main right">
                 <div class="block">
-                    <h1 class="block-title"><i class="fa fa-gear"></i> Account settings</h1>
+                    <h1 class="block-title"><i class="fa fa-gear"></i> Close account</h1>
                     <?php if(isset($msg)) { echo $msg; } ?>
-                    <button class="button red" id="close-account"><span><i class="fa fa-close"></i> Close Account</span></button>
+                    <p>You will not be able to undo this!</p>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                        <div class="input-container">
+                            <input type="password" name="password" id="password" required>
+                            <label for="password">Enter password</label>
+                            <span class="line"></span>
+                        </div>
+                        <button type="submit" class="button red"><span><i class="fa fa-close"></i> Close my account</span></button>
+                        <a class="cancel" href="/member/<?php echo strtolower($_SESSION['username']) ?>">Cancel</a>
+                    </form>
                 </div>
             </div>
         </div>
         <footer><?php include_once "../include/footer.php" ?></footer>
         <script src="../js/global.js"></script>
-        <script src="./closeAccount.js"></script>
     </body>
 </html>
