@@ -2,6 +2,14 @@ const changeContainer = document.getElementById('changes-container');
 
 const changes = [
     {
+        date: 'Apr. 9 2018',
+        message: 'Most of the changes are not visible',
+        changesList: [
+            'Improved puzzles so that now you have to be logged in to give a puzzle a trophy and you also can\'t be the puzzle author',
+            'Puzzle moves are now checked server-side'
+        ]
+    },
+    {
         date: 'Apr. 8 2018',
         message: '',
         changesList: [
