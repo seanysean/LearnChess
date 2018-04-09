@@ -1,3 +1,4 @@
+let res = document.getElementById('response');
 const chess = new Chess(fen), config = {
     fen: fen,
     coordinates: false,
@@ -6,10 +7,7 @@ const chess = new Chess(fen), config = {
     movable: {
         free: false,
         color: getColor(chess.turn()),
-        dests: toDests(chess),
-        events: {
-            after: checkMove(chess)
-        }
+        dests: toDests(chess)
     },
     premovable: {
         enabled: false
@@ -17,13 +15,18 @@ const chess = new Chess(fen), config = {
     animation: {
         duration: 300
     }
-}, cg = Chessground(document.getElementById('chessground'),config), res = document.getElementById('response');
+}, cg = Chessground(document.getElementById('chessground'),config);
+cg.set({
+    movable: {
+        events: {
+            after: checkMove(chess,cg)
+        }
+    }
+});
 
 let turn = chess.turn() === 'w' ? 'White':'Black',
-    gaveTrophy = false;
-res.innerHTML = `<i class="fa fa-info-circle"></i> ${turn} to move`;
-splitPGN = pgn.split(/[1-9][.][.][.] |[1-9][.] /).join('').split(' '),
-halfMove = 0;
+    gaveTrophy = false,
+    fullMove = 0;
 
 function showResponse(s,d) {
     if (s && !d) {
@@ -32,9 +35,13 @@ function showResponse(s,d) {
     } else if (s && d) {
         res.innerHTML = '<i class="fa fa-check"></i> Puzzle solved';
         res.classList = 'correct';
+        let extraStyle = '';
+        if (!loggedin || author === infoUsername) {
+            extraStyle = ' style="pointer-events:none"';
+        }
         const el = document.createElement('div');
         el.classList = 'give-a-trophy';
-        el.innerHTML = `<button type="submit" id="trophy" class="trophy"><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
+        el.innerHTML = `<button type="submit" id="trophy" class="trophy"${extraStyle}><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
         document.getElementById('res-container').appendChild(el);
         document.getElementById('trophy').addEventListener('click',updateTrophies);
     } else {
@@ -52,30 +59,37 @@ function toDests(c) {
 }
 function checkMove(c,cg) {
     return (o,d) => {
+        res.classList.add('loading');
+        res.innerHTML = '<div class="loader"></div>';
+        fullMove++;
         const mObj = { from: o, to: d,promotion: 'q' };
         const m = chess.move(mObj);
-        console.log(splitPGN[halfMove]);
-        if (splitPGN[halfMove] && m.san === splitPGN[halfMove]) {
-            showResponse(true,false);
-            if (splitPGN[halfMove + 1]) {
-                const m2 = chess.move(splitPGN[++halfMove]);
-                cg.move(m2.from,m2.to);
-                cg.set({
-                    turnColor: getColor(chess.turn()),
-                    movable: {
-                        color: getColor(chess.turn()),
-                        dests: toDests(chess)
-                    }
-                });
-                halfMove++;
-            } else {
-                showResponse(true,true);
+        const xhr = new XMLHttpRequest(),
+              url = `../getmoves?move=${m.san.replace('+','%2B').replace('#','%23')}&movenum=${fullMove}&puzzle=${pID}`;
+        xhr.responseType = 'json';
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === xhr.DONE) {
+                const resp = xhr.response;
+                if (resp.correct && !resp.ended) {
+                    showResponse(true,false);
+                    const m2 = chess.move(resp.next);
+                    cg.move(m2.from,m2.to);
+                    cg.set({
+                        turnColor: getColor(chess.turn()),
+                        movable: {
+                            color: getColor(chess.turn()),
+                            dests: toDests(chess)
+                        }
+                    });
+                } else if (resp.correct) {
+                    showResponse(true,true);
+                } else {
+                    showResponse(false,false);
+                }
             }
-        } else if (!splitPGN[halfMove]) {
-            showResponse(true,true);
-        }else {
-            showResponse(false,false);
         }
+        xhr.open('GET',url);
+        xhr.send();
     }
 }
 function getColor(c) {
@@ -92,8 +106,7 @@ function updateTrophies(e) {
         xhr.onreadystatechange = function() {
             if (xhr.readyState === xhr.DONE) {
                 const res = xhr.response;
-                console.log(res);
-                t.innerHTML = Number(trophies) + 1;
+                t.innerHTML = res.count;
                 document.getElementById('trophy').style.pointerEvents = 'none';
             }
         }
@@ -113,3 +126,5 @@ cg.set({
 
 document.getElementById('puzzleURL').innerHTML = window.location.href;
 document.getElementById('puzzleFEN').innerHTML = fen;
+
+res.innerHTML = `<i class="fa fa-info-circle"></i> ${turn} to move`;

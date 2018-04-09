@@ -9,6 +9,8 @@ if ($result) {
     $fen = $res['fen'];
     $trophies = $res['trophies'];
     $removed = $res['removed'] === '0' ? false : true;
+    $authorid = $res['author_id'];
+    $author = mysqli_query($connection,"SELECT username FROM `users` WHERE id='$authorid'")->fetch_assoc()['username'];
 }
 ?>
 <!DOCTYPE html>
@@ -37,6 +39,9 @@ if ($result) {
             </div>
             <?php if (!$removed) { ?>
             <div class="right-area">
+                <div class="block feedback" id="res-container">
+                    <div id="response" class="neutral loading"><div class="loader"></div></div>
+                </div>
                 <div class="block copyings">
                     <h3>Copy URL</h1>
                     <p id="puzzleURL"></p>
@@ -49,9 +54,6 @@ if ($result) {
                     </form>
                     <?php } ?>
                 </div>
-                <div class="block feedback" id="res-container">
-                    <div id="response" class="neutral"><i class="fa fa-spinner"></i> Loading</div>
-                </div>
             </div>
             <?php } ?>
         </div>
@@ -61,14 +63,14 @@ if ($result) {
         <?php if (!$removed) { ?>
         <script>
         const fen = '<?php echo $fen ?>',
-              pgn = '<?php echo $pgn ?>',
               pID = '<?php echo $pID ?>',
+              author = '<?php echo $author ?>',
               trophies = '<?php echo $trophies ?>';
         </script>
+        <script src="/js/global.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
         <script src="/js/chessground.min.js"></script>
         <script src="/js/puzzles.js"></script>
         <?php } ?>
-        <script src="/js/global.js"></script>
     </body>
 </html>

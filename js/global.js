@@ -8,6 +8,10 @@ if (document.domain === 'learnchess.tk') {
     }, 1000);
 }
 
+const info = JSON.parse(document.getElementById('js_info').innerText),
+      loggedin = info.loggedin,
+      infoUsername = info.username
+
 const n = {
     icon: document.getElementById('notification-icon'),
     cont: document.getElementById('notification-container'),

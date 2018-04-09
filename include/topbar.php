@@ -7,6 +7,7 @@ if (isAllowed('puzzle')) {
     }
 }
 ?>
+<p style="display:none" id="js_info">{"loggedin": <?php echo $l === true ? 'true':'false' ?>,"username": <?php if($l) { echo '"'.$_SESSION['username'].'"'; } else { echo 'null'; } ?>}</p>
 <div class="top-above">
     <a class="learnchess-link" href="/">LearnChess<span class="extension">.tk</span></a>
     <?php if($l) { ?>
