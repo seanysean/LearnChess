@@ -7,7 +7,7 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
     $sql = "SELECT fen,pgn FROM `puzzles_approved` WHERE id='$puzzle'";
     $result = mysqli_query($connection,$sql);
     $res = $result->fetch_assoc();
-    $pgn = preg_split('/[1-9][.][.][.] | [1-9][.] |\s/',$res['pgn']);
+    $pgn = preg_split('/[1-9][.][.][.] |[1-9][.] | [1-9][.] |\s/',$res['pgn'],null,PREG_SPLIT_NO_EMPTY);
     $fen = explode(' ',$res['fen']);
     $color = $fen[1];
     $correct = $pgn[($movenum * 2) - 1];
