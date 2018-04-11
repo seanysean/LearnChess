@@ -29,6 +29,7 @@ form .input-container textarea {
     font-size: 15px;
     color: #555;
     background: transparent;
+    font-family: sans-serif;
 }
 form .input-container textarea {
     resize: vertical;
