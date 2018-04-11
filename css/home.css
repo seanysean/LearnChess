@@ -41,12 +41,8 @@
     font-family: "FontAwesome";
     margin-right: 8px;
 }
-.changes-link {
-    font-family: sans-serif;
-    font-weight: 400 !important;
-    color: #444;
-    padding-top: 10px;
-    display: block;
+.more {
+    margin-top: 20px;
 }
 .do-stuff {
     padding: 0 !important;

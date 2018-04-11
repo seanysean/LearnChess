@@ -1,6 +1,8 @@
 <?php session_start();
 include "include/functions.php";
 if ($l) {
+    $myid = $_SESSION['userid'];
+    $puzzle_count = mysqli_num_rows(mysqli_query($connection,"SELECT id FROM `puzzles_approved` WHERE removed='0' AND author_id='$myid'"));
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +31,24 @@ if ($l) {
                 <div class="block">
                     <h1 class="block-title">What's new?</h1>
                     <div id="changes-cont"></div>
-                    <a href="changes" class="changes-link"><i class="fa fa-wrench"></i> View all changes</a>
+                    <a href="changes" class="button blue more"><span><i class="fa fa-wrench"></i> View all changes</span></a>
+                </div>
+                <?php if ($puzzle_count > 0) { ?>
+                <div class="block">
+                    <h1 class="block-title">Your most popular puzzles</h1>
+                    <?php $sql = "SELECT id,fen,trophies FROM `puzzles_approved` WHERE author_id='$myid' AND removed='0' ORDER BY trophies DESC LIMIT 3";
+                        $result = mysqli_query($connection,$sql);
+                        while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+                            $id = $row['id'];
+                            $fen = $row['fen'];
+                            $trophies = $row['trophies']; ?>
+                        <div class="board-container">
+                            <a href="<?php echo "puzzles/view/$id" ?>" class="board" data-fen="<?php echo $fen ?>"></a>
+                            <div class="credits"><?php echo $trophies ?> <i class="fa fa-trophy"></i></div>
+                        </div>
+                        <?php } ?>
+                <?php } ?>
+                    <a href="puzzles/new" class="button blue more"><span><i class="fa fa-puzzle-piece"></i> Create new puzzle</span></a>
                 </div>
             </div>
             <div class="right-area">
