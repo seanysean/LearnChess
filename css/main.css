@@ -677,3 +677,13 @@ footer .site-name {
 .site-message .close:hover {
     color: #2678c5;
 }
+@media (max-width: 1450px) {
+    .top, .page, footer {
+        width: 60%;
+    }
+}
+@media (max-width: 1300px) {
+    .top, .page, footer {
+        width: 65%;
+    }
+}

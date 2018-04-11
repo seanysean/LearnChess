@@ -160,3 +160,20 @@
 .loading {
     position: relative;
 }
+@media(max-width: 1180px) {
+    #chessground {
+        width: 400px;
+        height: 400px;
+        margin: 5px auto;
+    }
+    .feedback {
+        margin-top: 135px !important;
+    }
+}
+@media(max-width:950px) {
+    #chessground {
+        width: 300px;
+        height: 300px;
+        margin: 5px auto;
+    }
+}
