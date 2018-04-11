@@ -1,11 +1,27 @@
 const changes = [
     {
+        date: 'Apr. 11 2018',
+        message: 'More puzzle improvements',
+        changesList: [
+            'Fixed a puzzle bug',
+            'If you made a approved puzzle, you\'ll see a list of your best puzzles (by trophy count) on the home page',
+            'If you fail a puzzle, your move is simply undone. Before, you had to refresh the page'
+        ]
+    },
+    {
+        date: 'Apr. 10 2018',
+        changesList: [
+            'Made website work better on smaller screens',
+            'Fixed a broken link',
+            'Made the home page actually somewhat interesting'
+        ]
+    },
+    {
         date: 'Apr. 9 2018',
         message: 'Most of the changes are not visible',
         changesList: [
             'Improved puzzles so that now you have to be logged in to give a puzzle a trophy and you also can\'t be the puzzle author',
-            'Puzzle moves are now checked server-side',
-            'Made the home page actually somewhat interesting'
+            'Puzzle moves are now checked server-side'
         ]
     },
     {
