@@ -34,7 +34,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
             <div class="main full">
                 <div class="block">
                     <h1 class="block-title center">Create new puzzle</h1>
-                    <a href="all"><i class="fa fa-arrow-left"></i> Back to puzzles</a>
+                    <a href="/puzzles"><i class="fa fa-arrow-left"></i> Back to puzzles</a>
                     <?php if(isset($msg)) { echo $msg; } ?>
                     <div class="editor-container">
                         <div class="spare">
