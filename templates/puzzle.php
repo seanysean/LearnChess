@@ -29,7 +29,14 @@ if ($result) {
             <div class="main<?php if($removed) { echo " center"; } ?>">
                 <div class="block">
                     <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID ?></h1>
-                    <?php if($removed) { echo "<p class=\"nothing-to-see removed\"><i class=\"fa fa-ban\"></i> This puzzle was removed.</p>"; } ?>
+                    <?php if($removed) {
+                        $form = '';
+                        if (isAllowed('puzzle')) {
+                            $form = '<form method="post" action="../remove"><input type="hidden" value="1" name="undo"><input type="hidden" value="'.$pID.'" name="puzzle"><button class="flat-button" type="submit"><i class="fa fa-undo"></i> Bring puzzle back</button>';
+                        }
+                        echo "<p class=\"nothing-to-see removed\"><i class=\"fa fa-ban\"></i> This puzzle was removed.</p>$form"; 
+                    }
+                    ?>
                 </div>
                 <?php if (!$removed) { ?>
                 <div class="block transparent">
@@ -67,7 +74,9 @@ if ($result) {
               author = '<?php echo $author ?>',
               trophies = '<?php echo $trophies ?>';
         </script>
+        <?php } ?>
         <script src="/js/global.js"></script>
+        <?php if (!$removed) { ?>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
         <script src="/js/chessground.min.js"></script>
         <script src="/js/puzzles.js"></script>
