@@ -25,6 +25,7 @@ include "include/functions.php";
         <?php include "include/footer.php" ?>
         </footer>
         <script src="js/global.js"></script>
+        <script src="js/changeslist.js"></script>
         <script src="js/changes.js"></script>
     </body>
 </html>
