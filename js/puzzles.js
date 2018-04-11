@@ -85,6 +85,18 @@ function checkMove(c,cg) {
                     showResponse(true,true);
                 } else {
                     showResponse(false,false);
+                    setTimeout(()=>{
+                        chess.undo();
+                        cg.set({
+                            fen: chess.fen(),
+                            turnColor: getColor(chess.turn()),
+                            movable: {
+                                color: getColor(chess.turn()),
+                                dests: toDests(chess)
+                            }
+                        });
+                    },500);
+                    fullMove--;
                 }
             }
         }
