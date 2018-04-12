@@ -1,5 +1,12 @@
 const changes = [
     {
+        date: 'Apr. 12 2018',
+        message: 'Nothing huge',
+        changesList: [
+            'Added a favicon (the icon in the tab)'
+        ]
+    },
+    {
         date: 'Apr. 11 2018',
         message: 'More puzzle improvements',
         changesList: [
@@ -26,7 +33,6 @@ const changes = [
     },
     {
         date: 'Apr. 8 2018',
-        message: '',
         changesList: [
             'You can now <a href="/settings/password">change your password</a>',
             'Updated the close account page',
