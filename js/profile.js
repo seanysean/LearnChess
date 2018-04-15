@@ -12,6 +12,15 @@ if (document.getElementById('about')) {
             edited1.splice(i,1,replacement);
             about.innerHTML = edited1.join(' ');
         }
+        if (w.startsWith('p#')) {
+            let edited2 = w.split(/p/);
+            edited2.shift();
+            edited2 = edited2.join('');
+            let replacement = `<a href="/puzzles/view/${edited2.split('#').join('')}">p${edited2}</a>`;
+            replacement = replacement.split(/\n/).join('');
+            edited1.splice(i,1,replacement);
+            about.innerHTML = edited1.join(' ');
+        }
     });
 }
 
