@@ -27,7 +27,7 @@ if ($result) {
         </div>
         <div class="page">
             <div class="main<?php if($removed) { echo " center"; } ?>">
-                <div class="block">
+                <div class="block transparent">
                     <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID ?></h1>
                     <?php if($removed) {
                         $form = '';
@@ -49,11 +49,11 @@ if ($result) {
                 <div class="block feedback" id="res-container">
                     <div id="response" class="neutral loading"><div class="loader"></div></div>
                 </div>
-                <div class="block copyings">
+                <div class="block copyings" id="copyings">
                     <h3>Copy URL</h1>
-                    <p id="puzzleURL"></p>
+                    <input id="puzzleURL" />
                     <h3>Copy FEN</h1>
-                    <p id="puzzleFEN"></p>
+                    <input value="<?php echo $fen ?>" />
                     <?php if(isAllowed('puzzle')) { ?>
                     <form action="/puzzles/remove" method="post">
                         <input type="hidden" value="<?php echo $pID ?>" name="puzzle">

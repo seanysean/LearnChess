@@ -33,6 +33,7 @@ function showResponse(s,d) {
         res.innerHTML = '<i class="fa fa-check"></i> Good move';
         res.classList = 'correct';
     } else if (s && d) {
+        document.getElementById('copyings').style.opacity = 1;
         res.innerHTML = '<i class="fa fa-check"></i> Puzzle solved';
         res.classList = 'correct';
         let extraStyle = '';
@@ -42,6 +43,10 @@ function showResponse(s,d) {
         const el = document.createElement('div');
         el.classList = 'give-a-trophy';
         el.innerHTML = `<button type="submit" id="trophy" class="trophy"${extraStyle}><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
+        const el2 = document.createElement('div');
+        el2.innerHTML = `<p>Puzzle created by <a href="/member/${author.toLowerCase()}">${author}</a></p>`;
+        el2.classList = 'credits-div';
+        document.getElementById('res-container').appendChild(el2);
         document.getElementById('res-container').appendChild(el);
         document.getElementById('trophy').addEventListener('click',updateTrophies);
     } else {
@@ -136,7 +141,13 @@ cg.set({
     }
 });
 
-document.getElementById('puzzleURL').innerHTML = window.location.href;
-document.getElementById('puzzleFEN').innerHTML = fen;
+document.getElementById('puzzleURL').value = window.location.href;
 
 res.innerHTML = `<i class="fa fa-info-circle"></i> ${turn} to move`;
+
+const inputs = document.querySelectorAll('input');
+inputs.forEach(i=>{
+    i.addEventListener('click',()=>{
+        i.select();
+    });
+});
