@@ -1,5 +1,20 @@
 const changes = [
     {
+        date: 'Apr. 18 2018',
+        message: 'Been busy adding this new feature',
+        changesList: [
+            'Added <a href="/coordinates">coordinates</a>!'
+        ]
+    },
+    {
+        date: 'Apr. 15 2018',
+        message: 'Small stuff',
+        changesList: [
+            'Fixed favicon',
+            'Made minor changes to puzzles like adding a link to author\'s profile'
+        ]
+    },
+    {
         date: 'Apr. 12 2018',
         message: 'Nothing huge',
         changesList: [

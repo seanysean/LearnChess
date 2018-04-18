@@ -20,6 +20,7 @@ if (isAllowed('puzzle')) {
     <div class="main-links">
         <?php if($l) { echo "<a href=\"/home\">Home</a>"; } ?>
         <a href="/puzzles">Puzzles</a>
+        <a href="/coordinates">Coordinates</a>
         <!--<div class="main-dropdown">
             <a href="#">More</a>
             <div class="dropdown">

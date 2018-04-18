@@ -7,6 +7,7 @@ $result = mysqli_query($connection,$sql);
 if ($result) {
     $res = $result->fetch_assoc();
     $thisUsersName = $res['name'];
+    $coordinates = $res['coordinates'];
     $thisUsersLichessProfile = $res['lichess'];
     $thisUsersChesscomProfile = $res['chesscom'];
     $aboutThisUser = $res['about'];
@@ -84,7 +85,13 @@ if ($result) {
                             <span class="info-title">Puzzles created</span>
                             <?php echo $puzzle_count ?>
                         </div>
-                        <?php if($thisUsersChesscomProfile) { ?>
+                        <?php if($coordinates) { ?>
+                        <div class="info">
+                            <span class="info-title">Coordinates</span>
+                            <?php echo $coordinates ?>
+                        </div>
+                        <?php }
+                        if($thisUsersChesscomProfile) { ?>
                         <a href="https://chess.com/member/<?php echo $thisUsersChesscomProfile ?>" target="_blank" data-hint="Chess.com profile" class="info" id="chessComInfo">
                             <div class="loader"></div>
                         </a>

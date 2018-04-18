@@ -1,0 +1,108 @@
+#board {
+    width: 500px;
+    height: 500px;
+}
+.right-area {
+    margin-top: 120px;
+}
+.selected {
+    display: none;
+}
+.board-cont {
+    position: relative;
+    width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.timebar {
+    height: 30px;
+    width: 500px;
+    background: #ddd;
+    margin: 10px auto;
+    overflow: hidden;
+    border-radius: 3px;
+    position: relative;
+}
+.done {
+    background: #4caf50;
+    position: absolute;
+    height: 100%;
+    width: 0;
+    transition: 1s linear;
+}
+.overlay {
+    width: 500px;
+    position: absolute;
+    background: RGBa(0,0,0,0.2);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    cursor: default;
+    transition: .25s ease;
+    opacity: 1;
+}
+.overlay.transparent {
+    background: transparent;
+    pointer-events: none;
+}
+.overlay .cont {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #fff;
+    font-size: 30px;
+    margin: 0;
+    text-shadow: 1px 1px 3px #333;
+    text-align: center;
+}
+.overlay p {
+    margin: 10px;
+}
+.notice {
+    display: block;
+    font-size: 13px;
+}
+.overlay button {
+    background: #fff;
+    transition: 0.25s ease;
+    border-radius: 3px;
+}
+.overlay button:hover {
+    background: #f1f1f1;
+}
+.start-card {
+    box-shadow: 0 0 3px RGBa(0,0,0,0.3) !important;
+    opacity: 1;
+    transition: 0.25s ease;
+}
+.start-card p {
+    margin: 5px 0;
+}
+.response {
+    box-shadow: 0 0 10px RGBa(0,0,0,0.2) !important;
+    transition: 0.25s ease;
+    opacity: 0;
+    filter: blur(3px);
+    border-radius: 3px;
+}
+.response.wrong {
+    background: #ca7373 !important;
+}
+.response.right {
+    background: #73ca76 !important;
+}
+.response p {
+    margin: 0;
+    padding: 10px;
+    font-size: 20px;
+    color: #f3f3f3;
+}
+.response .score {
+    color: #fff;
+    font-weight: 100;
+    font-family: "Roboto",sans-serif;
+    padding-left: 10px;
+}

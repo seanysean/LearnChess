@@ -60,6 +60,7 @@ if ($l) {
                     <h1 class="block-title center"><?php echo $_SESSION['username'] ?></h1>
                 </div>
                 <div class="block do-stuff no-padding">
+                    <a href="/coordinates"><i class="fa fa-delicious"></i> Coordinates</a>
                     <a href="/puzzles/new"><i class="fa fa-puzzle-piece"></i> Submit a puzzle</a>
                     <a href="/settings/profile"><i class="fa fa-edit"></i> Edit profile</a>
                 </div>
