@@ -6,7 +6,7 @@ if(!$l) {
     header('Location: /');
 }
 $userID = $_SESSION['userid'];
-$sql = "SELECT `name`,`lichess`,`about`,`chesscom` FROM `users` WHERE id='$userID'";
+$sql = "SELECT `name`,`lichess`,`about`,`chesscom`,`showcoords` FROM `users` WHERE id='$userID'";
 $result = mysqli_query($connection,$sql) or die('Something went wrong.');
 if ($result) {
     $res = $result->fetch_assoc();
@@ -14,13 +14,15 @@ if ($result) {
     $db_lichess = $res['lichess'];
     $db_chesscom = $res['chesscom'];
     $db_about = $res['about'];
+    $db_coords = $res['showcoords'];
 }
-if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) or isset($_POST['chesscom'])) {
+if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) or isset($_POST['chesscom']) or isset($_POST['coords'])) {
     $name = secure($_POST['name']);
     $lichess = secure($_POST['lichess']);
     $chesscom = secure($_POST['chesscom']);
     $about = secure($_POST['about'],true);
-    $sql = "UPDATE `users` SET name='$name',lichess='$lichess',chesscom='$chesscom',about='$about' WHERE id='$userID'";
+    $coords = (isset($_POST['coords'])) ? '1' : '0';
+    $sql = "UPDATE `users` SET name='$name',lichess='$lichess',chesscom='$chesscom',about='$about',showcoords='$coords' WHERE id='$userID'";
     $result = mysqli_query($connection,$sql);
     if ($result) {
         $username = strtolower($_SESSION['username']);
@@ -57,17 +59,17 @@ if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) o
                         <?php } ?>
                         <div class="input-line">
                             <div class="input-container third">
-                                <input name="name" type="text" id="name" <?php if (isset($name)) { echo "value=\"$name\""; } else if(isset($db_name)) { echo "value=\"$db_name\""; } ?>>
+                                <input name="name" type="text" id="name" <?php if (isset($name)) { echo "value=\"$name\""; } else { echo "value=\"$db_name\""; } ?>>
                                 <label for="name">Name</label>
                                 <span class="line"></span>
                             </div>
                             <div class="input-container third">
-                                <input name="lichess" type="text" id="lichess" spellcheck="false" <?php if (isset($lichess)) { echo "value=\"$lichess\""; } else if(isset($db_lichess)) { echo "value=\"$db_lichess\""; } ?>>
+                                <input name="lichess" type="text" id="lichess" spellcheck="false" <?php if (isset($lichess)) { echo "value=\"$lichess\""; } else { echo "value=\"$db_lichess\""; } ?>>
                                 <label for="lichess">Lichess Username</label>
                                 <span class="line"></span>
                             </div>
                             <div class="input-container third">
-                                <input name="chesscom" type="text" id="chesscom" spellcheck="false" <?php if (isset($chesscom)) { echo "value=\"$chesscom\""; } else if(isset($db_chesscom)) { echo "value=\"$db_chesscom\""; } ?>>
+                                <input name="chesscom" type="text" id="chesscom" spellcheck="false" <?php if (isset($chesscom)) { echo "value=\"$chesscom\""; } else { echo "value=\"$db_chesscom\""; } ?>>
                                 <label for="chesscom">Chess.com Username</label>
                                 <span class="line"></span>
                             </div>
@@ -82,6 +84,11 @@ if(isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) o
                             } ?></textarea>
                             <label for="about">Biography</label>
                             <span class="line"></span>
+                        </div>
+                        <div class="checkbox-container">
+                            <input name="coords" type="checkbox" id="coords" <?php if (isset($coords)) { if ($coords === '1') { echo "checked "; } } else if ($db_coords === '1') { echo "checked "; }?>/>
+                            <label for="coords" class="custom-checkbox"></label>
+                            <label for="coords" class="checkbox-message">Display your coordinates score on your profile</label>
                         </div>
                         <button class="button blue" type="submit"><span><i class="fa fa-check"></i> Update profile</span></button>
                     </form>

@@ -8,6 +8,7 @@ if ($result) {
     $res = $result->fetch_assoc();
     $thisUsersName = $res['name'];
     $coordinates = $res['coordinates'];
+    $coords = $res['showcoords'];
     $thisUsersLichessProfile = $res['lichess'];
     $thisUsersChesscomProfile = $res['chesscom'];
     $aboutThisUser = $res['about'];
@@ -85,7 +86,7 @@ if ($result) {
                             <span class="info-title">Puzzles created</span>
                             <?php echo $puzzle_count ?>
                         </div>
-                        <?php if($coordinates) { ?>
+                        <?php if($coordinates && $coords) { ?>
                         <div class="info">
                             <span class="info-title">Coordinates</span>
                             <?php echo $coordinates ?>

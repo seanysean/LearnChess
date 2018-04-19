@@ -18,7 +18,7 @@ form .input-container.half {
 form .input-container.third {
     width: 32%;
 }
-form .input-container input,
+form .input-container input:not([type="checkbox"]),
 form .input-container textarea {
     display: block;
     width: 100%;
@@ -57,20 +57,77 @@ form .input-container label {
 form .input-container .line {
     display: block;
     height: 2px;
-    background: #3893e8;
+    background: #58a3bf;
     position: relative;
     top: -2px;
     transition: 0.25s ease;
     margin: auto;
     width: 0;
 }
-form .input-container input:focus + label,
+form .input-container input:not([type="checkbox"]):focus + label,
 form .input-container textarea:focus + label {
-    color: #3893e8;
+    color: #58a3bf;
 }
-form .input-container input:focus ~ .line,
+form .input-container input:not([type="checkbox"]):focus ~ .line,
 form .input-container textarea:focus ~ .line {
     width: 100%;
+}
+form .checkbox-container {
+    min-height: 0px !important;
+    padding: 20px 0;
+}
+form .checkbox-container input[type="checkbox"] {
+    position: absolute;
+    left: -99999px;
+}
+form .checkbox-container input[type="checkbox"] ~ label {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+form .checkbox-container .custom-checkbox {
+    width: 30px;
+    height: 10px;
+    background: #eee;
+    display: inline-block;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px #ccc;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-left: 5px;
+    transition: 0.25s ease;
+}
+form .checkbox-container .custom-checkbox::after {
+    content: "";
+    height: 20px;
+    width: 20px;
+    background: #dedede;
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    top: -5px;
+    left: -5px;
+    box-shadow: 1px 1px 5px #9a9a9a;
+    transition: 0.25s ease;
+}
+
+form .checkbox-container .custom-checkbox:hover::after {
+    background: #ccc;
+}
+form .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox {
+    background: #89bacc;
+}
+form .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox::after {
+    left: 15px;
+    background: #4e8794;
+    box-shadow: 0 0 10px #58e7f9;
+}
+form .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox:hover::after {
+    background: #58a3bf;
+}
+form .checkbox-container .checkbox-message {
+    font-weight: 100;
+    color: #333;
 }
 form .input-response {
     position: relative;
