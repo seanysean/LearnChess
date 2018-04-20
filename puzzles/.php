@@ -15,7 +15,7 @@ if ($result) {
         <link href="../css/puzzles.css" rel="stylesheet" type="text/css">
         <link href="../css/chessground.css" rel="stylesheet" type="text/css">
     </head>
-    <body>
+    <body<?php include_once "../include/attributes.php" ?>>
         <div class="top">
             <?php include_once "../include/topbar.php" ?>
         </div>

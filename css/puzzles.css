@@ -35,6 +35,9 @@
     font-size: 20px;
     margin: 10px 0;
 }
+body.dark .your-puzzles h3 {
+    color: #ccc;
+}
 .your-puzzles .puzzle {
     display: block;
     font-family: "Roboto";
@@ -59,6 +62,9 @@
     background: #f8f8f8;
     display: flex;
 }
+body.dark .editor-container .spare {
+    background: #606060;
+}
 .editor-container .spare piece {
     height: 100%;
     flex-grow: 1;
@@ -74,6 +80,9 @@
 .editor-container .tools {
     background: #eee;
     display: flex;
+}
+body.dark .editor-container .tools {
+    background: #555;
 }
 .editor-container .tools .btn {
     flex-grow: 1;
@@ -110,12 +119,19 @@
 .feedback #response.neutral {
     background: #eee;
 }
+body.dark .feedback #response.neutral {
+    background: #444;
+}
 .feedback #response.correct,
 .feedback #response.incorrect {
     color: #f3f3f3;
 }
 .feedback #response.correct {
     background: #73ca76;
+}
+body.dark .feedback #response.correct,
+body.dark .feedback .credits-div {
+    background: #449a47;
 }
 .feedback #response.incorrect {
     background: #ca7373;
@@ -183,6 +199,7 @@ input {
     display: block;
     width: 100%;
     color: #888;
+    background: transparent;
 }
 @media(max-width: 1180px) {
     #chessground {

@@ -2,6 +2,9 @@
     border-top: 1px solid #f2f2f2;
     padding: 10px 3px;
 }
+body.dark .change {
+    border-top: 1px solid #555;
+}
 .change h2 {
     font-weight: 300;
     font-size: 30px;
@@ -43,6 +46,9 @@
 .description {
     font-size: 15px;
     color: #888;
+}
+body.dark .description {
+    color: #aaa;
 }
 .change li {
     list-style-type: none;

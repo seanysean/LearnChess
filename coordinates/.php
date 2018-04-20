@@ -10,7 +10,7 @@ include "../include/functions.php";
         <link href="../css/coordinates.css" type="text/css" rel="stylesheet">
         <link href="../css/chessground.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body<?php include_once "../include/attributes.php" ?>>
         <div class="top">
         <?php include "../include/topbar.php" ?>
         </div>

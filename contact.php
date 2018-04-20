@@ -8,7 +8,7 @@ include "include/functions.php";
         <title>Contact • LearnChess</title>
         <?php include "include/head.php" ?>
     </head>
-    <body>
+    <body<?php include_once "./include/attributes.php" ?>>
         <div class="top">
         <?php include "include/topbar.php" ?>
         </div>

@@ -50,7 +50,7 @@ require \"../templates/profile.php\";";
         <?php include_once "./include/head.php" ?>
         <link href="css/material.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body<?php include_once "./include/attributes.php" ?>>
         <div class="top">
             <?php include_once "./include/topbar.php" ?>
         </div>

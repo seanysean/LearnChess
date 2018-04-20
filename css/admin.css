@@ -37,18 +37,28 @@ form {
     box-shadow: none !important;
     background-color: #f4f4f4 !important;
 }
+body.dark .left-area .block {
+    background-color: #383838 !important;
+}
 .left-area .block a {
     color: #777;
     display: block;
     padding: 10px;
     position: relative;
 }
+body.dark .left-area .block a {
+    color: #aaa;
+}
+.left-area .block a:hover,
 .left-area .block a.current {
     background: #eee;
-    opacity: 1;
 }
-.left-area .block a:hover {
-    background: #eee;
+body.dark .left-area .block a:hover,
+body.dark .left-area .block a.current {
+    background: #333;
+}
+.left-area .block a.current {
+    opacity: 1;
 }
 .left-area .block a.current::after {
     font-family: "FontAwesome";

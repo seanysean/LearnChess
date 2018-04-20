@@ -13,7 +13,7 @@ if (!$l or !isAllowed('admin')) {
         <?php include "../include/head.php" ?>
         <link href="/css/admin.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body<?php include_once "../include/attributes.php" ?>>
         <div class="top">
         <?php include "../include/topbar.php" ?>
         </div>

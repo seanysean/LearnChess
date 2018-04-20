@@ -7,7 +7,7 @@ if (isAllowed('puzzle')) {
     }
 }
 ?>
-<p style="display:none" id="js_info">{"loggedin": <?php echo $l === true ? 'true':'false' ?>,"username": <?php if($l) { echo '"'.$_SESSION['username'].'"'; } else { echo 'null'; } ?>}</p>
+<input style="display:none" type="hidden" id="js_info" value='{"loggedin":<?php echo $l === true ? 'true':'false' ?>,"username":<?php if($l) { echo '"'.$_SESSION['username'].'"'; } else { echo 'null'; } ?>}' />
 <div class="top-above">
     <a class="learnchess-link" href="/">LearnChess<span class="extension">.tk</span></a>
     <?php if($l) { ?>
@@ -43,7 +43,7 @@ if (isAllowed('puzzle')) {
             </div>
         </div>
         <div class="icon-dropdown">
-            <a class="fa fa-cog icon" href="/settings/profile"></a>
+            <a class="fa fa-cog icon" href="/settings/"></a>
             <div class="dropdown">
                 <a href="/logout"><span class="fa fa-sign-out"></span> Logout</a>
             </div>

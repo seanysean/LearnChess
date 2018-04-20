@@ -1,0 +1,111 @@
+body.dark {
+    background: #333;
+}
+body.dark .flat-button {
+    color: #aaa;
+}
+body.dark .button span {
+    color: #aaa;
+}
+body.dark .button:hover span {
+    color: #fff;
+}
+body.dark .top .top-above .learnchess-link {
+    color: #ccc;
+}
+body.dark .top .top-above .learnchess-link .extension {
+    color: #eee;
+}
+body.dark .top .top-above .learnchess-link:hover {
+    color: #eee;
+}
+body.dark .top .top-above .profile-link {
+    color: #ccc;
+}
+body.dark .top .top-above .profile-link:hover {
+    color: #eee;
+}
+body.dark .top .top-navigation {
+    background: #393939;
+}
+body.dark .top .top-navigation .main-links a {
+    color: #ddd;
+}
+body.dark .top .top-navigation .main-links a:hover {
+    background: #3f3f3f;
+}
+body.dark .top .top-navigation .main-links .main-dropdown .dropdown,
+body.dark .top .top-navigation .icon-links .icon-dropdown .dropdown {
+    background: #393939;
+    border-color: #464646;
+}
+body.dark .top .top-navigation .main-links .main-dropdown .dropdown a:hover,
+body.dark .top .top-navigation .icon-links .icon-dropdown .dropdown a:hover {
+    color: #ddd;
+}
+body.dark .top .top-navigation .icon-links .icon {
+    color: #ddd;
+}
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container::before {
+    border-bottom-color: #494949;
+}
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification,
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .nothing-to-see {
+    background: #494949;
+    border-color: #5d5d5d;
+    color: #999;
+}
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .flat-button {
+    background: #494949;
+    color: #999;
+}
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification:hover,
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .flat-button:hover {
+    background: #4f4f4f;
+}
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification .icon-type {
+    color: #777;
+}
+body.dark .page {
+    color: #aaa;
+}
+body.dark .page .block {
+    background: #444;
+}
+body.dark .page .block .block-title {
+    color: #ddd;
+}
+body.dark .board-container .credits {
+    border-color: #555;
+}
+body.dark .board-container .board:hover + .credits {
+    background: #494949;
+}
+body.dark .state.online {
+    color: #348e37;
+    text-shadow: 1px 1px 0 #333;
+}
+body.dark .uilink {
+    color: #aaa;
+}
+body.dark .uilink:hover {
+    color: #bbb;
+}
+body.dark .userinfo-box {
+    background: #444;
+}
+body.dark .userinfo-box .ui-top {
+    border-color: #555;
+}
+body.dark .site-message {
+    background: #5d5d5d;
+    color: #fff;
+}
+body.dark .site-message a,
+body.dark .site-message .close:hover {
+    color: #d8d8d8;
+}
+body.dark .site-message a:hover,
+body.dark .site-message span {
+    color: #fff;
+}

@@ -52,7 +52,7 @@ if(!$l) {
         <?php include "include/head.php" ?>
         <link href="css/notifications.css" rel="stylesheet" type="text/css">
     </head>
-    <body>
+    <body<?php include_once "./include/attributes.php" ?>>
         <div class="top">
         <?php include "include/topbar.php" ?>
         </div>

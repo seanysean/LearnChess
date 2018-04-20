@@ -50,18 +50,16 @@ if (!$l) {
     <head>
         <title>Change password • LearnChess</title>
         <?php include "../include/head.php" ?>
-        <link href="../css/settings.css" type="text/css" rel="stylesheet">
         <link href="../css/material.css" type="text/css" rel="stylesheet">
+        <link href="../css/settings.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body<?php include_once "../include/attributes.php" ?>>
         <div class="top">
         <?php include "../include/topbar.php" ?>
         </div>
         <div class="page">
-            <div class="left-area">
-            <?php echo sidebar(2) ?>
-            </div>
-            <div class="main right">
+            <div class="left-area"><?php echo sidebar(3) ?></div>
+            <div class="main">
                 <div class="block">
                     <h1 class="block-title"><i class="fa fa-key"></i> Change password</h1>
                     <?php if (isset($msg)) { echo "<p>$msg</p>"; } ?>

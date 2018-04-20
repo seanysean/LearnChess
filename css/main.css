@@ -136,8 +136,14 @@ button:active {
 .button.disabled:after {
     background: #f9f9f9 !important;
 }
+body.dark .button.disabled::after {
+    background: #393939 !important;
+}
 .button.nocolor::after {
     background: #f4f4f4 !important;
+}
+body.dark .button.nocolor::after {
+    background: #343434!important;
 }
 .button.blue::after {
     background: #3893e8 !important;
@@ -418,7 +424,7 @@ button:active {
     float: right;
 }
 .top .top-navigation .icon-links .icon {
-    padding: 20px;
+    padding: 19px;
     color: #555;
     cursor: pointer;
     font-size: 20px;
@@ -562,7 +568,7 @@ button:active {
     border-radius: 3px;
 }
 .page .block.transparent {
-    background: transparent;
+    background: transparent !important;
     box-shadow: none;
 }
 .page .block .block-title {
@@ -633,6 +639,9 @@ footer {
     border-top: 1px solid #ddd;
     padding-top: 10px;
     color: #555;
+}
+body.dark footer {
+    border-color: #555;
 }
 footer a {
     font-family: sans-serif;

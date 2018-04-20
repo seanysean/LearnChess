@@ -18,11 +18,20 @@
 .notif.read {
     background: #f7f7f7;
 }
+body.dark .notif.read {
+    background: #4f4f4f;
+}
 .notif:not(.read):hover {
     background: #fdfdfd;
 }
+body.dark .notif:not(.read):hover {
+    background: #484848;
+}
 .notif:not(.read):hover .mark-read {
     color: #555;
+}
+body.dark .notif:not(.read):hover .mark-read {
+    color: #aaa;
 }
 .notif-icon {
     font-size: 25px;
@@ -32,6 +41,9 @@
 .mark-read {
     cursor: pointer;
     color: #eee;
+}
+body.dark .mark-read {
+    color: #686868;
 }
 .mark-read::after {
     min-width: 100px;

@@ -24,6 +24,9 @@
     border-radius: 3px;
     position: relative;
 }
+body.dark .timebar {
+    background: #222;
+}
 .done {
     background: #4caf50;
     position: absolute;
@@ -67,6 +70,7 @@
 }
 .overlay button {
     background: #fff;
+    color: #555 !important;
     transition: 0.25s ease;
     border-radius: 3px;
 }
@@ -88,11 +92,11 @@
     filter: blur(3px);
     border-radius: 3px;
 }
-.response.wrong {
+.page .block.response.wrong {
     background: #ca7373 !important;
 }
-.response.right {
-    background: #73ca76 !important;
+.page .block.response.right {
+    background: #449a47 !important;
 }
 .response p {
     margin: 0;

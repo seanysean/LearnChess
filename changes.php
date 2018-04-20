@@ -9,7 +9,7 @@ include "include/functions.php";
         <?php include "include/head.php" ?>
         <link href="css/changes.css" rel="stylesheet" type="text/css">
     </head>
-    <body>
+    <body<?php include_once "./include/attributes.php" ?>>
         <div class="top">
         <?php include "include/topbar.php" ?>
         </div>

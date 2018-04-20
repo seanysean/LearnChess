@@ -38,7 +38,7 @@ include "include/functions.php";
         }
         </style>
     </head>
-    <body>
+    <body<?php include_once "./include/attributes.php" ?>>
         <div class="top">
         <?php include "include/topbar.php" ?>
         </div>

@@ -7,7 +7,7 @@ if ($l) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title>LearnChess</title>
+        <title>Home • LearnChess</title>
         <?php include_once "./include/head.php" ?>
         <link href="css/chessground.css" type="text/css" rel="stylesheet">
         <link href="css/home.css" type="text/css" rel="stylesheet">
@@ -22,7 +22,7 @@ if ($l) {
         }
         </style>
     </head>
-    <body>
+    <body<?php include_once "./include/attributes.php" ?>>
         <div class="top">
             <?php include_once "./include/topbar.php" ?>
         </div>

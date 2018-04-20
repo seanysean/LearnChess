@@ -17,6 +17,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         $_SESSION['username'] = $loginInfo['username'];
         $_SESSION['userid'] = $loginInfo['id'];
         $_SESSION['permissions'] = ''.$loginInfo['permissions'];
+        $_SESSION['darktheme'] = $loginInfo['darktheme'] === '1';
         header('Location: home');
     } else if ($loginInfo['active'] === '0') {
         $msg = '<p>This account was closed.</p>';
@@ -32,7 +33,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         <?php include_once "./include/head.php" ?>
         <link href="css/material.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body<?php include_once "./include/attributes.php" ?>>
         <div class="top">
             <?php include_once "./include/topbar.php" ?>
         </div>

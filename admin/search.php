@@ -28,7 +28,7 @@ if (!$l || !isAllowed('admin')) {
         <link href="/css/material.css" type="text/css" rel="stylesheet">
         <link href="/css/admin.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body<?php include_once "../include/attributes.php" ?>>
         <div id="popup">
             <h1 class="popup-title"><i class="fa fa-shield"></i> Edit</h1>
             <div class="popup-content">

@@ -29,18 +29,16 @@ if(isset($_POST['password'])) {
     <head>
         <title>Account settings • LearnChess</title>
         <?php include_once "../include/head.php" ?>
-        <link href="../css/settings.css" type="text/css" rel="stylesheet">
         <link href="../css/material.css" type="text/css" rel="stylesheet">
+        <link href="../css/settings.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body<?php include_once "../include/attributes.php" ?>>
         <div class="top">
             <?php include_once "../include/topbar.php" ?>
         </div>
         <div class="page">
-            <div class="left-area">
-                <?php echo sidebar(3) ?>
-            </div>
-            <div class="main right">
+            <div class="left-area"><?php echo sidebar(4) ?></div>
+            <div class="main">
                 <div class="block">
                     <h1 class="block-title"><i class="fa fa-gear"></i> Close account</h1>
                     <?php if(isset($msg)) { echo $msg; } ?>

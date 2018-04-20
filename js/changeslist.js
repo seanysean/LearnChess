@@ -1,5 +1,19 @@
 const changes = [
     {
+        date: 'Apr. 20 2018',
+        message: 'Dark theme',
+        changesList: [
+            'Do you like dark themes? Me too! You can <a href="/settings">enable it in your settings</a>'
+        ]
+    },
+    {
+        date: 'Apr. 19 2018',
+        message: 'Addition for last feature',
+        changesList: [
+            'If you would prefer for your coordinates score to not show up on your profile, you can change it <a href="/settings/profile">in your profile settings</a>'
+        ]
+    },
+    {
         date: 'Apr. 18 2018',
         message: 'Been busy adding this new feature',
         changesList: [

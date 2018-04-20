@@ -40,15 +40,13 @@ if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) 
         <link href="../css/material.css" type="text/css" rel="stylesheet">
         <link href="../css/settings.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body<?php include_once "../include/attributes.php" ?>>
         <div class="top">
             <?php include_once "../include/topbar.php" ?>
         </div>
         <div class="page">
-            <div class="left-area">
-            <?php echo sidebar(1) ?>
-            </div>
-            <div class="main right">
+            <div class="left-area"><?php echo sidebar(2) ?></div>
+            <div class="main">
                 <div class="block">
                     <h1 class="block-title"><span class="fa fa-edit"></span> Profile settings</h1>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">

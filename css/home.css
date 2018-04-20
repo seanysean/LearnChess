@@ -32,6 +32,9 @@
     font-size: 15px;
     color: #888;
 }
+body.dark .description {
+    color: #aaa;
+}
 .change li {
     list-style-type: none;
     margin-top: 10px;
@@ -53,6 +56,13 @@
     background: #fff;
     padding: 10px;
 }
+body.dark .do-stuff a {
+    background: #444;
+    color: #aaa;
+}
 .do-stuff a:hover {
     background: #eee;
+}
+body.dark .do-stuff a:hover {
+    background: #555;
 }

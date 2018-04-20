@@ -10,9 +10,15 @@
     font-weight: 100;
     font-family: "Roboto";
 }
+body.dark .name {
+    color: #aaa;
+}
 .main .block-title {
     margin: 5px 5px 7px 5px !important;
     color: #777 !important;
+}
+body.dark .main .block-title {
+    color: #999 !important;
 }
 .main .block-title .state {
     font-size: 40px;
@@ -27,12 +33,22 @@
     text-align: center;
     position: relative;
 }
+body.dark .info-bar .info {
+    background: #555;
+}
 .info-bar a.info {
     color: #888;
     transition: none;
 }
+body.dark .info-bar a.info {
+    color: #aaa;
+    background: #4f4f4f;
+}
 .info-bar a.info:hover {
     background: #f1f1f1;
+}
+body.dark .info-bar a.info:hover {
+    background: #484848;
 }
 .info-bar .info .info-title {
     display: block;
