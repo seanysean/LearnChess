@@ -38,6 +38,9 @@ button:active {
     text-transform: uppercase;
     font-weight: 100;
 }
+.nothing-to-see.lower {
+    text-transform: none;
+}
 /* .uilink styling */
 
 .uilink {
@@ -96,7 +99,7 @@ button:active {
 .button {
     transition: .25s ease !important;
 }
-.button.full {
+.button.full, .flat-button.full {
     display: block;
     width: 100%;
 }
@@ -180,8 +183,19 @@ body.dark .button.nocolor::after {
     text-align: center;
     transition: none;
 }
+.flat-button.transition {
+    transition: 0.25s ease;
+}
 .flat-button:hover {
     background: RGBa(0,0,0,0.1);
+}
+.flat-button.blue:hover {
+    background: #3893e8 !important;
+    color: #fff;
+}
+.flat-button.green:hover {
+    background: #4caf50 !important;
+    color: #fff;
 }
 .flat-button:active {
     box-shadow: inset 0 0 3px RGBa(0,0,0,0.5);
@@ -266,6 +280,10 @@ body.dark .button.nocolor::after {
 }
 .userinfo-box .padding {
     padding: 10px;
+    color: #777;
+}
+body.dark .userinfo-box .padding {
+    color: #aaa;
 }
 .userinfo-box .padding.no-account {
     min-height: 40px;

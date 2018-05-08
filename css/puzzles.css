@@ -95,7 +95,6 @@ body.dark .editor-container .tools {
 }
 .copyings {
     transition: 0.25s linear;
-    opacity: 0;
 }
 .copyings h3 {
     font-family: "Roboto";
@@ -118,6 +117,10 @@ body.dark .editor-container .tools {
 }
 .feedback #response.neutral {
     background: #eee;
+}
+.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 body.dark .feedback #response.neutral {
     background: #444;
@@ -168,10 +171,18 @@ body.dark .feedback .credits-div {
 .feedback .credits-div p {
     color: #fff;
     font-weight: 100;
-    margin: 0;
+    margin: 5px 3px;
 }
 .feedback .credits-div p a {
-    color: #eff7ff;
+    color: #fff;
+    background: #2faf3f;
+    padding: 1px 3px;
+    border-radius: 3px;
+    font-weight: 100;
+}
+.feedback .credits-div p a:hover {
+    background: #fff;
+    color: #2faf3f;
 }
 #fen-cont {
     margin-bottom: 37px;
