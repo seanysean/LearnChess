@@ -41,14 +41,13 @@ body.dark .info-bar .info {
     transition: none;
 }
 body.dark .info-bar a.info {
-    color: #aaa;
-    background: #4f4f4f;
+    color: #ccc;
 }
 .info-bar a.info:hover {
     background: #f1f1f1;
 }
 body.dark .info-bar a.info:hover {
-    background: #484848;
+    background: #4f4f4f;
 }
 .info-bar .info .info-title {
     display: block;

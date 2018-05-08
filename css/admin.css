@@ -7,8 +7,10 @@ form {
     width: 100%;
     z-index: 5;
     box-shadow: 0 3px 10px RGBa(0,0,0,0.1);
-    border: 1px solid #eee;
     display: none;
+}
+body.dark .autocomplete {
+    background: #444;
 }
 .autocomplete .user,
 .autocomplete p {
@@ -18,6 +20,9 @@ form {
 .autocomplete .user:hover {
     background: #f7f7f7;
     cursor: pointer;
+}
+body.dark .autocomplete .user:hover {
+    background: #4d4d4d;
 }
 .edit {
     transition: 0.25s ease;
@@ -29,13 +34,15 @@ form {
 .edit:hover {
     color: #333;
 }
+body.dark .edit:hover {
+    color: #ddd;
+}
 .info:hover .edit {
     opacity: 1;
 }
 .left-area .block {
     padding: 0 !important;
     box-shadow: none !important;
-    background-color: #f4f4f4 !important;
 }
 body.dark .left-area .block {
     background-color: #383838 !important;
@@ -45,9 +52,11 @@ body.dark .left-area .block {
     display: block;
     padding: 10px;
     position: relative;
+    background: #f4f4f4;
 }
 body.dark .left-area .block a {
     color: #aaa;
+    background: #3d3d3d;
 }
 .left-area .block a:hover,
 .left-area .block a.current {

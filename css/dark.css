@@ -10,14 +10,17 @@ body.dark .button span {
 body.dark .button:hover span {
     color: #fff;
 }
+body.dark a:hover {
+    color: #549fe4;
+}
 body.dark .top .top-above .learnchess-link {
     color: #ccc;
 }
 body.dark .top .top-above .learnchess-link .extension {
-    color: #eee;
+    color: #aaa;
 }
 body.dark .top .top-above .learnchess-link:hover {
-    color: #eee;
+    color: #bbb;
 }
 body.dark .top .top-above .profile-link {
     color: #ccc;
@@ -29,7 +32,7 @@ body.dark .top .top-navigation {
     background: #393939;
 }
 body.dark .top .top-navigation .main-links a {
-    color: #ddd;
+    color: #aaa;
 }
 body.dark .top .top-navigation .main-links a:hover {
     background: #3f3f3f;
@@ -44,7 +47,7 @@ body.dark .top .top-navigation .icon-links .icon-dropdown .dropdown a:hover {
     color: #ddd;
 }
 body.dark .top .top-navigation .icon-links .icon {
-    color: #ddd;
+    color: #aaa;
 }
 body.dark .top .top-navigation .icon-links .icon-dropdown .n-container::before {
     border-bottom-color: #494949;
@@ -58,6 +61,15 @@ body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .nothing-
 body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .flat-button {
     background: #494949;
     color: #999;
+}
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container::-webkit-scrollbar {
+    background: #494949;
+}
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container::-webkit-scrollbar-thumb {
+    background: #595959;
+}
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container::-webkit-scrollbar-thumb:hover {
+    background: #696969;
 }
 body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification:hover,
 body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .flat-button:hover {
@@ -81,9 +93,11 @@ body.dark .board-container .credits {
 body.dark .board-container .board:hover + .credits {
     background: #494949;
 }
+body.dark .state {
+    text-shadow: 1px 1px 0 #333;
+}
 body.dark .state.online {
     color: #348e37;
-    text-shadow: 1px 1px 0 #333;
 }
 body.dark .uilink {
     color: #aaa;
@@ -96,6 +110,14 @@ body.dark .userinfo-box {
 }
 body.dark .userinfo-box .ui-top {
     border-color: #555;
+}
+body.dark #popup {
+    background: #444;
+    border-color: #585858;
+}
+body.dark #popup .popup-title {
+    background: #4d4d4d;
+    color: #999;
 }
 body.dark .site-message {
     background: #5d5d5d;
