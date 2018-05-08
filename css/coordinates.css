@@ -59,9 +59,10 @@ body.dark .timebar {
     font-size: 30px;
     margin: 0;
     text-shadow: 1px 1px 3px #333;
+    font-size: 35px;
     text-align: center;
 }
-.overlay p {
+.overlay .cont p {
     margin: 10px;
 }
 .notice {
