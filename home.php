@@ -36,6 +36,7 @@ if ($l) {
                 <?php if ($puzzle_count > 0) { ?>
                 <div class="block">
                     <h1 class="block-title">Your most popular puzzles</h1>
+                    <div>
                     <?php $sql = "SELECT id,fen,trophies FROM `puzzles_approved` WHERE author_id='$myid' AND removed='0' ORDER BY trophies DESC LIMIT 3";
                         $result = mysqli_query($connection,$sql);
                         while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
@@ -46,10 +47,11 @@ if ($l) {
                             <a href="<?php echo "puzzles/view/$id" ?>" class="board" data-fen="<?php echo $fen ?>"></a>
                             <div class="credits"><?php echo $trophies ?> <i class="fa fa-trophy"></i></div>
                         </div>
-                        <?php } ?>
-                <?php } ?>
+                    <?php } ?>
+                    </div>
                     <a href="puzzles/new" class="button blue more"><span><i class="fa fa-puzzle-piece"></i> Create new puzzle</span></a>
                 </div>
+                <?php } ?>
             </div>
             <div class="right-area">
                 <!--<div class="block">
