@@ -24,11 +24,17 @@ if ($result) {
         $hint = '';
     }
     $online = $res['online'];
-    $active = $res['active'] === '1' ? true : false;
+    $active = $res['active'] === '1';
     $created = date('M. d Y',strtotime($res['created']));
     $last_active = date('M. d Y',strtotime($res['last_active']));
+    $rating = round($res['rating']);
     $sql = "SELECT id FROM `puzzles_approved` WHERE author_id='$accountid' AND removed='0'";
     $puzzle_count = mysqli_num_rows(mysqli_query($connection,$sql));
+    $sql = "SELECT `rating` FROM `puzzles_history` WHERE user='$accountid'";
+    $puzzle_rating_result = mysqli_query($connection,$sql);
+    $sql = "SELECT `date` FROM `puzzles_history` WHERE user='$accountid'";
+    $puzzle_date_result = mysqli_query($connection,$sql);
+    $r_count = mysqli_num_rows($puzzle_rating_result);
 }
 ?>
 <!DOCTYPE html>
@@ -86,6 +92,10 @@ if ($result) {
                             <span class="info-title">Puzzles created</span>
                             <?php echo $puzzle_count ?>
                         </div>
+                        <div class="info">
+                            <span class="info-title">Puzzles</span>
+                            <?php echo $rating ?>
+                        </div>
                         <?php if($coordinates && $coords) { ?>
                         <div class="info">
                             <span class="info-title">Coordinates</span>
@@ -121,7 +131,18 @@ if ($result) {
                         <?php } ?>
                     </div>
                 </div>
-                <?php } } ?>
+                <?php } ?>
+                <div class="block">
+                    <h1 class="block-title">Puzzle history</h1>
+                    <?php if ($r_count > 0) { ?>
+                    <div id="puzzleRating">
+                        <div id="loading" class="loader"></div>
+                    </div>
+                    <?php } else {
+                        echo "<p class=\"nothing-to-see\">This user has not attempted any puzzles yet</p>";
+                    } ?>
+                </div>
+                <?php } else { echo $active; } ?>
             </div>
         </div>
         <footer>
@@ -133,6 +154,35 @@ if ($result) {
             lichess: <?php echo strlen($thisUsersLichessProfile) ? "'$thisUsersLichessProfile'" : 'false'; ?>
         }
         </script>
+        <?php if ($r_count > 0 && $active) { ?>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script>
+            const record = {
+                <?php $n = 1; $c = 1; ?>
+                x: [<?php while($row = mysqli_fetch_array($puzzle_date_result,MYSQLI_ASSOC)) { echo "'".$row['date']."'"; if ($c < $r_count) { echo ","; } $c++; } ?>],
+                y: [<?php while($row = mysqli_fetch_array($puzzle_rating_result,MYSQLI_ASSOC)) { echo "'".$row['rating']."'"; if ($n < $r_count) { echo ","; } $n++; } ?>],
+                type: 'scatter'
+            }
+            let lower;
+            if (record.x.length <= 10) {
+                lower = record.x[0];
+            } else {
+                lower = record.x[record.x.length - 10];
+            }
+            const layout = {
+                xaxis: {
+                    autorange: true,
+                    range: [lower,record.x[record.x.length - 1]],
+                    rangeslider: {
+                        range: [lower,record.x[record.x.length - 1]]
+                    },
+                    type: 'date'
+                }
+            }
+            Plotly.newPlot('puzzleRating',[record],layout);
+            document.getElementById('loading').style.display = 'none';
+        </script>
+        <?php } ?>
         <script src="../js/profile.js"></script>
         <script src="../js/global.js"></script>
         <script src="../js/chessground.min.js"></script>

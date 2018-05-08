@@ -19,6 +19,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         $_SESSION['userid'] = $loginInfo['id'];
         $_SESSION['permissions'] = ''.$loginInfo['permissions'];
         $_SESSION['darktheme'] = $loginInfo['darktheme'] === '1';
+        $_SESSION['rating'] = $loginInfo['rating'];
         $_SESSION['nextpuzzle'] = $loginInfo['nextpuzzle'];
         header('Location: home');
     } else if ($loginInfo['active'] === '0') {

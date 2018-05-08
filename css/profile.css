@@ -64,3 +64,35 @@ body.dark .info-bar a.info:hover {
 .puzzle-list {
     text-align: center;
 }
+.js-plotly-plot .main-svg {
+    background: transparent !important;
+}
+body.dark text {
+    fill: #fff !important;
+}
+.bg {
+    fill: transparent !important;
+}
+body.dark .crisp {
+    stroke: #555 !important;
+}
+.crisp.zl {
+    stroke: #999 !important;
+}
+body.dark .crisp.zl {
+    stroke: #777 !important;
+}
+.js-plotly-plot .plotly .modebar {
+    display: none;
+}
+.rangeslider-mask-min,
+.rangeslider-mask-max {
+    fill-opacity: 0.2 !important;
+}
+.rangeslider-bg {
+    fill: transparent;
+}
+#puzzleRating {
+    position: relative;
+    min-height: 400px;
+}

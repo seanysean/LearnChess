@@ -28,12 +28,13 @@ let turn = chess.turn() === 'w' ? 'White':'Black',
     gaveTrophy = false,
     fullMove = 0;
 
-function showResponse(s,d) {
+function showResponse(s,d,r) {
     if (s && !d) {
         res.innerHTML = '<i class="fa fa-check"></i> Good move';
         res.classList = 'correct';
     } else if (s && d) {
-        document.getElementById('copyings').style.opacity = 1;
+        document.getElementById('copyings').classList.remove('hidden');
+        document.getElementById('next').classList.remove('hidden');
         res.innerHTML = '<i class="fa fa-check"></i> Puzzle solved';
         res.classList = 'correct';
         let extraStyle = '';
@@ -44,7 +45,7 @@ function showResponse(s,d) {
         el.classList = 'give-a-trophy';
         el.innerHTML = `<button type="submit" id="trophy" class="trophy"${extraStyle}><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
         const el2 = document.createElement('div');
-        el2.innerHTML = `<p>Puzzle created by <a href="/member/${author.toLowerCase()}">${author}</a></p>`;
+        el2.innerHTML = `<p>Puzzle created by <a href="/member/${author.toLowerCase()}">${author}</a></p><p>Rating: ${r}</p>`;
         el2.classList = 'credits-div';
         document.getElementById('res-container').appendChild(el2);
         document.getElementById('res-container').appendChild(el);
@@ -87,7 +88,7 @@ function checkMove(c,cg) {
                         }
                     });
                 } else if (resp.correct) {
-                    showResponse(true,true);
+                    showResponse(true,true,resp.ratings.puzzle);
                 } else {
                     showResponse(false,false);
                     setTimeout(()=>{
