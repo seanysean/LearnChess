@@ -20,7 +20,7 @@ if ($result) {
             <?php include_once "../include/topbar.php" ?>
         </div>
         <div class="page">
-            <div class="main <?php if(!$l) { echo 'center'; } ?>">
+            <div class="main">
                 <div class="block">
                     <h1 class="block-title">Approved puzzles<?php if($l and isAllowed('puzzle')) { ?>
                         <span class="alternate" <?php if($unreviewedCount > 0) { echo "data-hint=\"There are $unreviewedCount unreviewed puzzles\""; } else { echo 'data-hint="There are no more puzzles to review"'; } ?>>
@@ -45,14 +45,17 @@ if ($result) {
                         </div>
                     <?php }
                     } else {
-                        echo "<p class=\"nothing-to-see center\">No approved puzzles. <a href=\"new\">Why not make one?</a></p>";
+                        echo "<p class=\"nothing-to-see lower center\">No approved puzzles. <a href=\"new\">Why not make one?</a></p>";
                     } ?>
                     </div>
                 </div>
             </div>
-            <?php if($l) { ?>
             <div class="right-area">
+                <div class="block start-container">
+                    <a href="next" class="flat-button blue full transition"><span><i class="fa fa-check"></i> Start</span></a>
+                </div>
                 <div class="block">
+                <?php if($l) { ?>
                     <h1 class="block-title">Your puzzles <span class="alternate" data-hint="Create new puzzle"><a href="new" class="button blue"><span><i class="fa fa-plus"></i></span></a></span></h1>
                     <div class="your-puzzles">
                         <?php
@@ -79,9 +82,12 @@ if ($result) {
                         <p class="nothing-to-see">No accepted puzzles</p>
                         <?php } ?>
                     </div>
+                <?php } else { ?>
+                    <h1 class="block-title">Contribute</h1>
+                    <p><a href="/register">Register</a> to start creating puzzles!</p>
+                <?php } ?>
                 </div>
             </div>
-            <?php } ?>
         </div>
         <footer>
             <?php include_once "../include/footer.php" ?>

@@ -30,11 +30,12 @@ if ($result) {
                 <div class="block transparent">
                     <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID ?></h1>
                     <?php if($removed) {
+                        $_SESSION['nextpuzzle'] = $pID + 1;
                         $form = '';
                         if (isAllowed('puzzle')) {
                             $form = '<form method="post" action="../remove"><input type="hidden" value="1" name="undo"><input type="hidden" value="'.$pID.'" name="puzzle"><button class="flat-button" type="submit"><i class="fa fa-undo"></i> Bring puzzle back</button>';
                         }
-                        echo "<p class=\"nothing-to-see removed\"><i class=\"fa fa-ban\"></i> This puzzle was removed.</p>$form"; 
+                        echo "<p class=\"nothing-to-see removed\"><i class=\"fa fa-ban\"></i> This puzzle was removed.</p><a class=\"flat-button continue-training transition\" href=\"../next\">Continue practicing</a>$form"; 
                     }
                     ?>
                 </div>
@@ -49,7 +50,10 @@ if ($result) {
                 <div class="block feedback" id="res-container">
                     <div id="response" class="neutral loading"><div class="loader"></div></div>
                 </div>
-                <div class="block copyings" id="copyings">
+                <div class="block start-container hidden" id="next">
+                    <a href="../next" class="flat-button green full transition"><span><i class="fa fa-check"></i> Next</span></a>
+                </div>
+                <div class="block copyings hidden" id="copyings">
                     <h3>Copy URL</h1>
                     <input id="puzzleURL" />
                     <h3>Copy FEN</h1>

@@ -14,10 +14,12 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
     if ($count === 1 and $loginInfo['active'] === '1' and password_verify($password,$loginInfo['password'])) {
         $sql = "UPDATE `users` SET online='1',last_active=CURRENT_TIMESTAMP WHERE username='$username'";
         mysqli_query($connection,$sql);
+        $_SESSION = []; # Just to reset all session values
         $_SESSION['username'] = $loginInfo['username'];
         $_SESSION['userid'] = $loginInfo['id'];
         $_SESSION['permissions'] = ''.$loginInfo['permissions'];
         $_SESSION['darktheme'] = $loginInfo['darktheme'] === '1';
+        $_SESSION['nextpuzzle'] = $loginInfo['nextpuzzle'];
         header('Location: home');
     } else if ($loginInfo['active'] === '0') {
         $msg = '<p>This account was closed.</p>';

@@ -201,6 +201,23 @@ input {
     color: #888;
     background: transparent;
 }
+.start-container {
+    margin-bottom: 20px !important;
+    padding: 0 !important;
+}
+.start-container .flat-button {
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 0 0 0 transparent;
+}
+.start-container .flat-button:hover {
+    border-color: #333;
+    box-shadow: 0 3px 3px RGBa(0,0,0,0.3);
+}
+.start-container .flat-button:active {
+    box-shadow: 0 1px 3px RGBa(0,0,0,0.3);
+}
 @media(max-width: 1180px) {
     #chessground {
         width: 400px;
