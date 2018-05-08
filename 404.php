@@ -58,6 +58,6 @@ include "include/functions.php";
         <footer>
         <?php include "include/footer.php" ?>
         </footer>
-        <script src="js/global.js"></script>
+        <script src="/js/global.js"></script>
     </body>
 </html>
