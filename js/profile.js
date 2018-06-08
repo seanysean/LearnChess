@@ -2,11 +2,13 @@ if (document.getElementById('about')) {
     const about = document.getElementById('about');
     let aboutText = about.innerHTML,
         edited1 = aboutText.split('<br>').join(' <br> ').split(' ');
+//        edited1 = aboutText.split('<br>').join(' <br> ').split(/\s|\(/);
     edited1.forEach((w,i)=>{
         if (w.startsWith('@')) {
             let edited2 = w.split('');
             edited2.shift();
             edited2 = edited2.join('');
+//            edited2 = edited2.join('').split(/[^\w-]/).join('');
             let replacement = `<a href="/member/${edited2.toLowerCase()}" userinfo="?${edited2.toLowerCase()}">@${edited2}</a>`;
             replacement = replacement.split(/\n/).join('');
             edited1.splice(i,1,replacement);
@@ -22,6 +24,10 @@ if (document.getElementById('about')) {
             about.innerHTML = edited1.join(' ');
         }
     });
+    /*let regex = /[\s|(][@][\w|_]{1,17}/g;
+    console.log(aboutText.match(regex));
+    aboutText = aboutText.replace(regex,'<a href="/member/$1">$1</a>');
+    about.innerHTML = aboutText;*/
 }
 
 if (web.chessCom) {

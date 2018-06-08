@@ -32,6 +32,7 @@ body.dark .main .block-title {
     padding: 10px;
     text-align: center;
     position: relative;
+    font-size: 14px;
 }
 body.dark .info-bar .info {
     background: #555;
@@ -49,10 +50,20 @@ body.dark .info-bar a.info {
 body.dark .info-bar a.info:hover {
     background: #4f4f4f;
 }
-.info-bar .info .info-title {
+.info-bar .info .info-title,
+.info-bar .info .icon-title {
     display: block;
-    font-weight: 300;
     margin-bottom: 10px;
+}
+.info-bar .info .icon-title {
+    font-size: 30px;
+    color: #aaa;
+}
+body.dark .info-bar .info .icon-title {
+    color: #999;
+}
+.info-bar .info .info-title {
+    font-weight: 300;
     font-size: 20px;
     font-family: Verdana, sans-serif;
 }

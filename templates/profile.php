@@ -2,6 +2,7 @@
 session_start();
 include "../include/functions.php";
 $accountid = $account['id'];
+$myaccount = $l && ($accountid === $_SESSION['userid']);
 $sql = "SELECT * FROM `users` WHERE id='$accountid'";
 $result = mysqli_query($connection,$sql);
 if ($result) {
@@ -27,14 +28,19 @@ if ($result) {
     $active = $res['active'] === '1';
     $created = date('M. d Y',strtotime($res['created']));
     $last_active = date('M. d Y',strtotime($res['last_active']));
+    $views = $res['views'];
     $rating = round($res['rating']);
     $sql = "SELECT id FROM `puzzles_approved` WHERE author_id='$accountid' AND removed='0'";
     $puzzle_count = mysqli_num_rows(mysqli_query($connection,$sql));
-    $sql = "SELECT `rating` FROM `puzzles_history` WHERE user='$accountid'";
+    $sql = "SELECT `rating` FROM `puzzles_history` WHERE user='$accountid' AND `profile`='1'";
     $puzzle_rating_result = mysqli_query($connection,$sql);
-    $sql = "SELECT `date` FROM `puzzles_history` WHERE user='$accountid'";
+    $sql = "SELECT `date` FROM `puzzles_history` WHERE user='$accountid' AND `profile`='1'";
     $puzzle_date_result = mysqli_query($connection,$sql);
     $r_count = mysqli_num_rows($puzzle_rating_result);
+    if ($l && !$myaccount) {
+        $views++;
+        mysqli_query($connection,"UPDATE `users` SET views='$views' WHERE id='$accountid'");
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -55,9 +61,9 @@ if ($result) {
                             <span class="fa <?php echo $icon ?> state<?php echo $online === '1' ? ' online' : ' offline' ?>"></span>
                         </span>
                         <?php echo $account['username'] ?>
-                        <?php if($l and ($accountid === $_SESSION['userid'] or isAllowed('admin'))) { ?>
+                        <?php if($myaccount or isAllowed('admin')) { ?>
                         <span class="alternate">
-                            <?php if($accountid === $_SESSION['userid']) { ?>
+                            <?php if($myaccount) { ?>
                             <a href="/settings/profile" class="button blue"><span><i class="fa fa-pencil"></i> Edit profile</span></a>
                             <?php } else if (isAllowed('admin')) { 
                                 $usrnm = $account['username']; ?>
@@ -80,25 +86,31 @@ if ($result) {
                 </div>
                 <div class="block">
                     <div class="info-bar">
-                        <div class="info">
-                            <span class="info-title">Account created</span>
+                        <div class="info" data-hint="Date account was created">
+                            <span class="icon-title fa fa-user"></span>
                             <?php echo $created ?>
                         </div>
-                        <div class="info">
-                            <span class="info-title">Last active</span>
+                        <div class="info" data-hint="Last active">
+                            <span class="icon-title fa fa-key"></span>
                             <?php echo $last_active ?>
                         </div>
-                        <div class="info">
-                            <span class="info-title">Puzzles created</span>
+                        <?php if ($views) { // No one wants a stat of 0 views :) ?>
+                        <div class="info" data-hint="Profile views">
+                            <span class="icon-title fa fa-eye"></span>
+                            <?php echo $views ?>
+                        </div>
+                        <?php } ?>
+                        <div class="info" data-hint="Contributed puzzles">
+                            <span class="icon-title fa fa-puzzle-piece"></span>
                             <?php echo $puzzle_count ?>
                         </div>
-                        <div class="info">
-                            <span class="info-title">Puzzles</span>
+                        <div class="info" data-hint="Puzzle rating">
+                            <span class="icon-title fa fa-line-chart"></span>
                             <?php echo $rating ?>
                         </div>
                         <?php if($coordinates && $coords) { ?>
-                        <div class="info">
-                            <span class="info-title">Coordinates</span>
+                        <div class="info" data-hint="Coordinates score">
+                            <span class="icon-title fa fa-bullseye"></span>
                             <?php echo $coordinates ?>
                         </div>
                         <?php }
@@ -139,7 +151,7 @@ if ($result) {
                         <div id="loading" class="loader"></div>
                     </div>
                     <?php } else {
-                        echo "<p class=\"nothing-to-see\">This user has not attempted any puzzles yet</p>";
+                        echo "<p class=\"nothing-to-see lower\">No puzzles attempted yet</p>";
                     } ?>
                 </div>
                 <?php } else { echo $active; } ?>
