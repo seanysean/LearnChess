@@ -70,7 +70,7 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
                     $_SESSION['rating'] = $ratings['user'];
                     $ur = $ratings['user'];
                     $pr = $ratings['puzzle'];
-                    mysqli_query($connection,"UPDATE `users` SET rating='$ur' WHERE id='$userid'");
+                    mysqli_query($connection,"UPDATE `users` SET rating='$ur',updated_history='1' WHERE id='$userid'");
                     mysqli_query($connection,"UPDATE `puzzles_approved` SET rating='$pr' WHERE id='$puzzle'");
                     mysqli_query($connection,"INSERT INTO `puzzles_history` (`user`,`puzzle`,`rating`,`date`) VALUES ('$userid','$puzzle','$ur',CURRENT_TIMESTAMP)");
                 }
@@ -91,7 +91,7 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
                 $_SESSION['rating'] = $ratings['user'];
                 $ur = $ratings['user'];
                 $pr = $ratings['puzzle'];
-                mysqli_query($connection,"UPDATE `users` SET rating='$ur' WHERE id='$userid'");
+                mysqli_query($connection,"UPDATE `users` SET rating='$ur',updated_history='1' WHERE id='$userid'");
                 mysqli_query($connection,"UPDATE `puzzles_approved` SET rating='$pr' WHERE id='$puzzle'");
                 mysqli_query($connection,"INSERT INTO `puzzles_history` (`user`,`puzzle`,`rating`,`date`) VALUES ('$userid','$puzzle','$ur',CURRENT_TIMESTAMP)");
             }

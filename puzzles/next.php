@@ -12,7 +12,8 @@ if ($l) {
     $result = mysqli_query($connection,$sql);
     if (mysqli_num_rows($result) > 0) {
         //echo "Hello!";
-        $n = mysqli_query($connection,"SELECT id FROM `puzzles_history` WHERE user='$me' ORDER BY id DESC LIMIT 1")->fetch_assoc()['id'];
+        $n = mysqli_query($connection,"SELECT puzzle FROM `puzzles_history` WHERE user='$me' AND `profile`='0' ORDER BY id DESC LIMIT 1")->fetch_assoc()['puzzle'];
+        //echo $n;
         $limit = $n+20;
         $found = false;
         while($n < $limit && !$found) {
