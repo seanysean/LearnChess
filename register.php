@@ -39,7 +39,7 @@ require \"../templates/profile.php\";";
             $fmsg = '<p>The username already exists. Try again.</p>';
         }
     } else {
-        $fmsg = '<p>Sorry, your input was not valid. Perhaps your password or username was too long or too short.';
+        $fmsg = '<p>Sorry, your input was not valid. Perhaps your password or username was too long or too short. Did you use invalid characters?';
     }
 }
 ?>
