@@ -1,5 +1,22 @@
 const changes = [
     {
+        date: 'June 8 2018',
+        message: 'Better rating charts on profile',
+        changesList: [
+            'Profiles now have a view count',
+            'Much better rating chart'
+        ]
+    },
+    {
+        date: 'May 7 2018',
+        message: 'Puzzle ratings & history',
+        changesList: [
+            'Dark theme improvements',
+            'Puzzle ratings',
+            'Puzzle history'
+        ]
+    },
+    {
         date: 'Apr. 20 2018',
         message: 'Dark theme',
         changesList: [
