@@ -174,8 +174,6 @@ a {
     border-right: 1px solid #ccc;
     padding-right: 20px;
 }
-.section .content .right {
-}
 .section .content .icon {
     font-size: 200px;
     color: #aaa;
@@ -242,7 +240,7 @@ a {
     font-size: 15px;
     position: absolute;
     left: 12px;
-    top: 12px;
+    top: 15px;
     pointer-events: none;
     transition: 0.1s linear;
 }
@@ -255,6 +253,8 @@ a {
     width: 30%;
     display: inline-block;
     transition: 0.25s ease;
+    height: 45px;
+    vertical-align: top;
 }
 .section.pricing .username-container #start:hover {
     background: transparent;
@@ -283,6 +283,7 @@ footer .right {
 }
 footer .right a {
     color: #bbb;
+    line-height: 31px;
 }
 footer .right a:hover {
     color: #eee;
