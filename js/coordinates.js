@@ -60,7 +60,7 @@ start.addEventListener('click',()=>{
             square.innerHTML = `Your score is ${score}`;
             clearInterval(countDown);
             if (!loggedin) {
-                square.innerHTML += '<p class="notice">Log in to save your score</p>';
+                square.innerHTML += '<p class="notice">Log in to save your score next time</p>';
             } else {
                 const xhr = new XMLHttpRequest(),
                       url = '/coordinates/savescore',
