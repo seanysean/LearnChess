@@ -25,11 +25,15 @@ form .input-container textarea {
     padding: 5px 0;
     border: none;
     border-bottom: 2px solid #ddd;
-    outline: none;
     font-size: 15px;
     color: #555;
     background: transparent;
     font-family: sans-serif;
+}
+form .input-container input:not([type="checkbox"]):focus,
+form .input-container textarea:focus {
+    outline: none;
+    border-color: #eee;
 }
 body.dark form .input-container input:not([type="checkbox"]),
 body.dark form .input-container textarea {
@@ -85,7 +89,6 @@ form .input-container textarea:focus ~ .line {
     width: 100%;
 }
 form .checkbox-container {
-    min-height: 0px !important;
     padding: 20px 0;
 }
 form .checkbox-container input[type="checkbox"] {

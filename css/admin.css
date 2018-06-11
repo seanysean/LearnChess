@@ -41,11 +41,11 @@ body.dark .edit:hover {
     opacity: 1;
 }
 .left-area .block {
-    padding: 0 !important;
-    box-shadow: none !important;
+    padding: 0;
+    box-shadow: none;
 }
 body.dark .left-area .block {
-    background-color: #383838 !important;
+    background-color: #383838;
 }
 .left-area .block a {
     color: #777;

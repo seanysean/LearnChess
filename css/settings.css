@@ -4,13 +4,13 @@ form {
 form .button {
     margin-top: 20px;
 }
-.links-section {
-    padding: 0 !important;
-    box-shadow: none !important;
-    background-color: #f4f4f4 !important;
+.page .links-section {
+    padding: 0;
+    box-shadow: none;
+    background-color: #f4f4f4;
 }
-body.dark .links-section {
-    background-color: #383838 !important;
+body.dark .page .block.links-section {
+    background-color: #383838;
 }
 .links-section a {
     color: #777;
