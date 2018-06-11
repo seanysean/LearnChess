@@ -13,12 +13,12 @@
 body.dark .name {
     color: #aaa;
 }
-.main .block-title {
-    margin: 5px 5px 7px 5px !important;
-    color: #777 !important;
+.main .block .block-title {
+    margin: 5px 5px 7px 5px;
+    color: #777;
 }
-body.dark .main .block-title {
-    color: #999 !important;
+body.dark .main .block .block-title {
+    color: #999;
 }
 .main .block-title .state {
     font-size: 40px;
@@ -79,7 +79,7 @@ body.dark .info-bar .info .icon-title {
     background: transparent !important;
 }
 body.dark text {
-    fill: #fff !important;
+    fill: #aaa !important;
 }
 .bg {
     fill: transparent !important;

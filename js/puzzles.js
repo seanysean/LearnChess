@@ -113,7 +113,7 @@ function checkMove(c,cg) {
 function getColor(c) {
     return c === 'w' ? 'white':'black';
 }
-function updateTrophies(e) {
+function updateTrophies() {
     if (!gaveTrophy) {
         const t = document.getElementById('tCount');
         t.innerHTML = '...';
