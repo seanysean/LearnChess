@@ -92,7 +92,7 @@ a {
     cursor: pointer;
     border-radius: 3px;
     overflow: hidden;
-    transition: .25s ease !important;
+    transition: .25s ease;
     font-family: sans-serif;
     margin: 0 5px;
 }
@@ -106,15 +106,13 @@ a {
     content: "";
     display: block;
     position: absolute;
-    height: 100% !important;
+    height: 100%;
     width: 0;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 1;
-    transition: .25s ease !important;
-}
-.topbar .right a::after {
+    transition: .25s ease;
     background: #fff !important;
 }
 .topbar .right a:hover span {
@@ -232,9 +230,10 @@ a {
     outline-color: #aaa;
     padding: 10px;
     font-size: 15px;
-    color: #fff !important;
+    color: #fff;
     transition: 0.25s linear;
     width: 70%;
+    height: 45px;
 }
 .section.pricing .username-container label {
     font-size: 15px;
