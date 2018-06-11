@@ -37,66 +37,64 @@ if (n.icon) {
             openNotification = false;
         }
     });
-    function checkNotifications() {
-        const xhr = new XMLHttpRequest();
-              url = `/notifications?_=${Math.random()}`;
-        xhr.responseType = 'json';
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === xhr.DONE) {
-                const res = xhr.response;
-                let unreadCount = 0;
-                n.iCont.innerHTML = '';
-                if (res[0].message !== '-') {
-                    res.forEach(n=>{
-                        let el = document.createElement('a');
-                        el.href = '#';
-                        el.classList.add('notification');
-                        if (n.unread === '0') {
-                            el.classList.add('read');
-                        } else {
-                            unreadCount++;
-                        }
-                        el.innerHTML = `<i class="icon-type fa ${n.icon}"></i> ${n.message}`;
-                        document.getElementById('i-container').appendChild(el);
-                    });
-                    if (unreadCount > 0) {
-                        n.count.setAttribute('data-count',unreadCount > 9 ? '9+' : unreadCount);
-                    } else {
-                        n.count.removeAttribute('data-count');
-                    }
-                } else {
-                    n.iCont.innerHTML = `<p class="nothing-to-see">${res[0].error}</p>`;
-                    n.count.removeAttribute('data-count');
-                }
-            }
-        }
-        xhr.open('GET',url);
-        xhr.send();
-    }
     setInterval(checkNotifications, 5000);
     checkNotifications();
 }
 
-let mClosed = sessionStorage.getItem('closed');
-if (!mClosed) {
-    mClosed = 'false';
-    sessionStorage.setItem('closed','false');
-    makeMessage();
-} else if (mClosed === 'false') {
-    makeMessage();
+function checkNotifications() {
+    const xhr = new XMLHttpRequest();
+          url = `/notifications?_=${Math.random()}`;
+    xhr.responseType = 'json';
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === xhr.DONE) {
+            const res = xhr.response;
+            let unreadCount = 0;
+            n.iCont.innerHTML = '';
+            if (res[0].message !== '-') {
+                res.forEach(n=>{
+                    let el = document.createElement('a');
+                    el.href = '#';
+                    el.classList.add('notification');
+                    if (n.unread === '0') {
+                        el.classList.add('read');
+                    } else {
+                        unreadCount++;
+                    }
+                    el.innerHTML = `<i class="icon-type fa ${n.icon}"></i> ${n.message}`;
+                    document.getElementById('i-container').appendChild(el);
+                });
+                if (unreadCount > 0) {
+                    n.count.setAttribute('data-count',unreadCount > 9 ? '9+' : unreadCount);
+                } else {
+                    n.count.removeAttribute('data-count');
+                }
+            } else {
+                n.iCont.innerHTML = `<p class="nothing-to-see">${res[0].error}</p>`;
+                n.count.removeAttribute('data-count');
+            }
+        }
+    }
+    xhr.open('GET',url);
+    xhr.send();
 }
-function makeMessage() {
-    const message = document.createElement('DIV');
-    message.classList = 'site-message';
-    message.innerHTML = `<span class="fa fa-info-circle message-type"></span> Thanks for checking this site out! This is the future <a href="https://learnchess.neocities.org">LearnChess</a>.`;
-    const close = document.createElement('span');
-    close.classList = 'fa fa-close close';
-    close.addEventListener('click',()=>{
-        sessionStorage.setItem('closed','true');
-        message.style.display = 'none';
-    });
-    message.appendChild(close);
-    document.body.appendChild(message);
+
+function addCountdown() {
+    let currentTime = new Date(),
+        sleepTime = new Date().setUTCHours(3),
+        getCurrentTime = currentTime.getTime(),
+        time,
+        hoursLeft;
+    if (currentTime.getUTCHours() > 3) {
+        sleepTime += 86400000;
+        console.log(currentTime.getUTCHours());
+    }
+    time = sleepTime - getCurrentTime;
+    hoursLeft = (time / 1000 / 60 / 60) + 3; // The +3 is because the time was set locally (GMT -3)
+    // console.log(time + ' ' + getCurrentTime + ' ' + sleepTime);
+    const countdown = document.createElement('DIV');
+    countdown.classList = 'countdown';
+    countdown.innerHTML = `<span class="timer-icon" data-count="${hoursLeft}"><i class="fa fa-moon-o"></i></span><span class="timeleft">Website goes offline in ${hoursLeft} hour${hoursLeft !== 1 ? 's':''}</span>`;
+    document.body.appendChild(countdown);
 }
 
 const userInfo = document.createElement('div');
@@ -104,7 +102,7 @@ userInfo.classList = 'userinfo-box';
 document.body.appendChild(userInfo);
 const userInfoLinks = document.querySelectorAll('[userinfo]');
 userInfoLinks.forEach(l=>{
-    l.addEventListener('mouseover',e=>{
+    l.addEventListener('mouseover',()=>{
         userInfo.style.display = 'block';
         userInfo.innerHTML = '<div class="loading-container"><div class="loader"></div></div>';
         userInfo.style.left = l.offsetLeft + 'px';
@@ -128,7 +126,7 @@ userInfoLinks.forEach(l=>{
         xhr.open('GET',url);
         xhr.send();
     });
-    l.addEventListener('mouseleave',e=>{
+    l.addEventListener('mouseleave',()=>{
         userInfo.style.display = 'none';
     });
 });
@@ -138,3 +136,5 @@ userInfo.addEventListener('mouseover',()=>{
 userInfo.addEventListener('mouseleave',()=>{
     userInfo.style.display = 'none';
 });
+
+addCountdown();

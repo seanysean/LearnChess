@@ -119,15 +119,11 @@ body.dark #popup .popup-title {
     background: #4d4d4d;
     color: #999;
 }
-body.dark .site-message {
-    background: #5d5d5d;
-    color: #fff;
+body.dark .countdown .timer-icon {
+    color: #aaa;
+    background: #444;
 }
-body.dark .site-message a,
-body.dark .site-message .close:hover {
-    color: #d8d8d8;
-}
-body.dark .site-message a:hover,
-body.dark .site-message span {
-    color: #fff;
+body.dark .countdown .timeleft {
+    color: #aaa;
+    background: #444;
 }

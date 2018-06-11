@@ -1,5 +1,12 @@
 const changes = [
     {
+        date: 'June 10 2018',
+        changesList: [
+            'Removed the potentially annoying \'This is the new version of LearnChess\' thing',
+            'Added a count of hours till LearnChess goes offline'
+        ]
+    },
+    {
         date: 'June 8 2018',
         message: 'Better rating charts on profile',
         changesList: [

@@ -672,38 +672,53 @@ footer .site-name {
 
 /* Other */
 
-.site-message {
+.countdown {
     position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 20px;
-    color: #3893e8;
-    background: #d9d9d9;
-    left: 0;
-    z-index: 10;
+    bottom: 10px;
+    right: 10px;
+    display: block;
+    padding: 10px;
 }
-.site-message a {
-    color: #1988ea;
-    font-size: 15px;
-}
-.site-message a:hover {
-    color: #3893e8;
-}
-.site-message span {
-    color: #3893e8;
+.countdown .timer-icon {
+    color: #777;
+    background: #ddd;
+    padding: 5px;
     font-size: 20px;
-}
-.site-message .message-type {
-    margin-right: 10px;
-}
-.site-message .close {
-    position: absolute;
-    right: 20px;
+    border-radius: 50%;
+    transition: 0.25s ease;
     cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 33px;
+    width: 33px
 }
-.site-message .close:hover {
-    color: #2678c5;
+.countdown .timer-icon i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
+.countdown .timer-icon:hover {
+    color: #444;
+}
+.countdown .timeleft {
+    position: relative;
+    right: 10px;
+    color: #555;
+    background: #ddd;
+    padding: 4px;
+    border-radius: 4px;
+    transition: 0.25s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+.countdown .timer-icon:hover + .timeleft {
+    right: 30px;
+    opacity: 1;
+}
+
 @media (max-width: 1450px) {
     .top, .page, footer {
         width: 60%;
