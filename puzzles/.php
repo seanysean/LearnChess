@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../include/functions.php";
+include "../include/config.php";
 $sql = "SELECT id FROM `puzzles_to_review`";
 $result = mysqli_query($connection,$sql);
 if ($result) {
@@ -41,7 +42,7 @@ if ($result) {
                         ?>
                         <div class="board-container">
                             <a href="<?php echo "view/$pID" ?>" class="board" data-fen="<?php echo $fen ?>"></a>
-                            <div class="credits">Created by <br /><?php createUserLink($authorID) ?></div>
+                            <div class="credits">Created by <br /><?php echo createUserLink($authorID) /* I don't know why I need to use echo here. */ ?></div>
                         </div>
                     <?php }
                     } else {
@@ -87,6 +88,21 @@ if ($result) {
                     <p><a href="/register">Register</a> to start creating puzzles!</p>
                 <?php } ?>
                 </div>
+                <?php if ($devMode) { // Waiting for more users before bringing out the Leaderboard?><div class="block">
+                    <h1 class="block-title">Leaderboard</h1>
+                    <ol class="leaderboard">
+                    <?php $sql = "SELECT rating,id FROM `users` WHERE NOT active='0' ORDER BY rating DESC LIMIT 5";
+                        $result = mysqli_query($connection,$sql);
+                        $n = 1;
+                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) { 
+                            $lId = $row['id'];
+                            $lRating = $row['rating'];
+                            $uiLink = createUserLink($lId,true); ?>
+                        <li><?php echo '<span><span class="rank">' . $n++ . '</span>' . $uiLink . '</span><span class="rating">' . round($lRating) . '</span>'; ?></li>
+                        <?php } ?>
+                    </ol>
+                </div>
+                <?php } ?>
             </div>
         </div>
         <footer>

@@ -224,6 +224,47 @@ input {
 .start-container .flat-button:active {
     box-shadow: 0 1px 3px RGBa(0,0,0,0.3);
 }
+.leaderboard {
+    padding-left: 0;
+    font-size: 17px;
+}
+.leaderboard li {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 2px;
+}
+.leaderboard li:first-child .rank {
+    color: #f7e9a1;
+}
+.leaderboard li:nth-child(2) .rank {
+    color: #d6d6d6;
+}
+.leaderboard li:nth-child(3) .rank {
+    color: #dacda8;
+}
+.leaderboard .uilink{
+    margin-left: 7px;
+}
+.leaderboard .uilink-username {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.leaderboard .rank {
+    font-size: 18px;
+    color: #999;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    padding: 0 3px;
+    display: inline-block;
+}
+.leaderboard .rating {
+    font-size: 14px;
+    line-height: 30px;
+}
+
 @media(max-width: 1180px) {
     #chessground {
         width: 400px;
