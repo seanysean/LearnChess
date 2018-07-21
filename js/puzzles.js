@@ -28,11 +28,15 @@ let turn = chess.turn() === 'w' ? 'White':'Black',
     gaveTrophy = false,
     fullMove = 0;
 
-function showResponse(s,d,r) {
-    if (s && !d) {
+function showResponse(s,c,r,d) {
+    // s = solved, c = complete, r[0] = puzzle new rating & r[1] = user's new rating, d = user rating diff between new and old rating
+    d = Math.round(d);
+    console.log(d);
+    const unrated = isNaN(d);
+    if (s && !c) {
         res.innerHTML = '<i class="fa fa-check"></i> Good move';
         res.classList = 'correct';
-    } else if (s && d) {
+    } else if (s && c) {
         document.getElementById('copyings').classList.remove('hidden');
         document.getElementById('next').classList.remove('hidden');
         res.innerHTML = '<i class="fa fa-check"></i> Puzzle solved';
@@ -45,7 +49,13 @@ function showResponse(s,d,r) {
         el.classList = 'give-a-trophy';
         el.innerHTML = `<button type="submit" id="trophy" class="trophy"${extraStyle}><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
         const el2 = document.createElement('div');
-        el2.innerHTML = `<p>Puzzle created by <a href="/member/${author.toLowerCase()}">${author}</a></p><p>Rating: ${r}</p>`;
+        el2.innerHTML = `<p>Puzzle created by <a href="/member/${author.toLowerCase()}">${author}</a></p>
+                        <p>Puzzle rating: ${Math.round(r[0])}</p>`;
+        if (!unrated) {
+            el2.innerHTML += `<p>Your rating: ${Math.round(r[1])} (${d > 0 ? '+' + d : '–' + (d * -1)})</p>`;
+        } else {
+            el2.innerHTML += `<p>Unrated</p>`;
+        }
         el2.classList = 'credits-div';
         document.getElementById('res-container').appendChild(el2);
         document.getElementById('res-container').appendChild(el);
@@ -88,7 +98,7 @@ function checkMove(c,cg) {
                         }
                     });
                 } else if (resp.correct) {
-                    showResponse(true,true,resp.ratings.puzzle);
+                    showResponse(true,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff);
                 } else {
                     showResponse(false,false);
                     setTimeout(()=>{
@@ -129,7 +139,7 @@ function updateTrophies() {
             }
         }
         xhr.open('POST',url);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send(data);
         gaveTrophy = true;
     }
