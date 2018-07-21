@@ -4,6 +4,7 @@ include "connect.php";
 $l = isset($_SESSION['username']);
 
 if ($l) {
+    // Is this too much? Checking the database every page load? Maybe it could be done with session variables.
     $currentSessionID = $_SESSION['userid'];
     $updateActivitySQL = "UPDATE `users` SET last_active=CURRENT_TIMESTAMP WHERE id='$currentSessionID'";
     mysqli_query($connection,$updateActivitySQL);
@@ -44,7 +45,8 @@ function createNotification($icon,$to,$message) {
     $sql = "INSERT INTO `notifications` (`icon`,`to_id`,`message`) VALUES ('$icon','$to','$message')";
     mysqli_query($connection,$sql);
 }
-function createUserLink($id) {
+function createUserLink($id,$r=false) {
+    # $r is true if the HTML should be returned instead of echoed.
     global $connection;
     $sql = "SELECT `username`,`permissions`,`online` FROM `users` WHERE id='$id'";
     $result = mysqli_query($connection,$sql);
@@ -61,8 +63,18 @@ function createUserLink($id) {
         }
         $user = strtolower($username);
         $online = $r['online'] === '1' ? 'online' : 'offline';
-        echo "<a class=\"uilink\" href=\"/member/$user\" userinfo=\"$id\"><i class=\"state fa $icon $online\"></i> $username</a>";
+        $res = "<a class=\"uilink\" href=\"/member/$user\" userinfo=\"$id\"><i class=\"state fa $icon $online\"></i> <span class=\"uilink-username\">$username</span></a>";
+        if (!$r) {
+            echo $res;
+        } else {
+            return $res;
+        }
     } else {
-        echo "<span>User not found</span>";
+        $res = "<span>User not found</span>";
+        if ($r) {
+            return $res;
+        } else {
+            echo $res;
+        }
     }
 }
