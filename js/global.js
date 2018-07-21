@@ -1,13 +1,5 @@
 console.log('LearnChess is open source! View project here: https://github.com/seanysean/LearnChess');
 
-// To remove the one ad.
-if (document.domain === 'learnchess.tk') {
-    setTimeout(()=>{
-        const divs = document.getElementsByTagName('DIV');
-        divs[divs.length - 1].style.display = 'none';
-    }, 1000);
-}
-
 const pageJson = document.getElementById('js_info');
       info = JSON.parse(pageJson.value),
       loggedin = info.loggedin,
@@ -28,7 +20,7 @@ if (n.icon) {
             openNotification = false;
         } else {
             n.cont.style.display = 'block';
-            openNotification = true
+            openNotification = true;
         }
     });
     document.addEventListener('click',e=>{
