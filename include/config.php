@@ -1,0 +1,2 @@
+<?php
+$devMode = true;
