@@ -47,6 +47,8 @@ if (isAllowed('puzzle')) {
         <div class="icon-dropdown">
             <a class="fa fa-cog icon" href="/settings/"></a>
             <div class="dropdown">
+                <a href="/settings"><span class="fa fa-cog"></span> Settings</a>
+                <a href="/settings/profile"><span class="fa fa-edit"></span> Profile</a>
                 <a href="/logout"><span class="fa fa-sign-out"></span> Logout</a>
             </div>
         </div>
