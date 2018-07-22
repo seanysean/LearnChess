@@ -23,6 +23,7 @@ if (isAllowed('puzzle')) {
         <?php if($l) { echo "<a href=\"/home\">Home</a>"; } ?>
         <a href="/puzzles">Puzzles</a>
         <a href="/coordinates">Coordinates</a>
+        <a href="/computer">Play computer</a>
         <!--<div class="main-dropdown">
             <a href="#">More</a>
             <div class="dropdown">
