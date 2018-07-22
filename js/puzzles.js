@@ -65,14 +65,6 @@ function showResponse(s,c,r,d) {
         res.classList = 'incorrect';
     }
 }
-function toDests(c) {
-    const dests = {};
-    c.SQUARES.forEach(s => {
-        const ms = c.moves({square: s, verbose: true});
-        if (ms.length) dests[s] = ms.map(m => m.to);
-    });
-    return dests;
-}
 function checkMove(c,cg) {
     return (o,d) => {
         res.classList.add('loading');
@@ -119,9 +111,6 @@ function checkMove(c,cg) {
         xhr.open('GET',url);
         xhr.send();
     }
-}
-function getColor(c) {
-    return c === 'w' ? 'white':'black';
 }
 function updateTrophies() {
     if (!gaveTrophy) {

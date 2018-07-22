@@ -82,6 +82,7 @@ if ($result) {
         <script src="/js/global.js"></script>
         <?php if (!$removed) { ?>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
+        <script src="/js/chess-functions.js"></script>
         <script src="/js/chessground.min.js"></script>
         <script src="/js/puzzles.js"></script>
         <?php } ?>
