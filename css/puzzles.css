@@ -42,6 +42,8 @@ body.dark .your-puzzles h3 {
     width: 500px;
     height: 500px;
     margin: 10px auto;
+    border-radius: 3px;
+    overflow: hidden;
 }
 .editor-container {
     margin: 30px 0;
@@ -88,7 +90,8 @@ body.dark .editor-container .tools {
     height: 100%;
     width: 100%;
 }
-.copyings {
+#copyings {
+    margin-bottom: 20px;
     transition: 0.25s linear;
 }
 .copyings h3 {
@@ -102,13 +105,16 @@ body.dark .editor-container .tools {
     font-weight: 100;
     word-break: break-all;
 }
-.page .feedback {
+.page .block.feedback {
     padding: 0;
     margin-top: 140px;
+    margin-bottom: 20px;
+    background: transparent;
 }
 .feedback #response {
     padding: 25px 30px;
     font-size: 20px;
+    border-radius: 3px;
 }
 .feedback #response.neutral {
     background: #eee;
@@ -127,57 +133,64 @@ body.dark .feedback #response.neutral {
 .feedback #response.correct {
     background: #73ca76;
 }
-body.dark .feedback #response.correct,
-body.dark .feedback .credits-div {
+body.dark .feedback #response.correct {
     background: #449a47;
 }
 .feedback #response.incorrect {
     background: #ca7373;
 }
-.feedback .give-a-trophy {
-    background: #5bb55e;
-    color: #fff;
+.credits-div .inner {
+    padding: 10px;
+}
+.give-a-trophy {
+    background: RGBa(0,0,0,0.05);
+    color: #888;
     font-family: "Roboto";
     font-weight: 100;
     height: 30px;
     line-height: 30px;
+    border-radius: 0 0 3px 3px;
 }
-.feedback .give-a-trophy button {
+body.dark .give-a-trophy {
+    background: RGBa(225,225,225,0.05);
+}
+.give-a-trophy button {
     background: transparent;
     border: none;
-    color: #fff;
+    color: #888;
     font-size: 20px;
     cursor: pointer;
     height: 30px;
     transition: 0.25s linear;
 }
-.feedback .give-a-trophy button:hover {
-    background: #73ca76;
-    box-shadow: inset 0 0 5px #5bb55e;
+.give-a-trophy button:not([disabled]):hover {
+    background: RGBa(0,0,0,0.1);
 }
-.feedback .give-a-trophy button:active {
-    background: #91e094;
-    box-shadow: inset 0 0 10px #5bb55e;
+.give-a-trophy button:not([disabled]):active {
+    box-shadow: inset 0 0 1px #000;
 }
-.feedback .credits-div {
-    background: #73ca76;
-    padding: 5px;
+.give-a-trophy button::after {
+    min-width: 200px;
 }
-.feedback .credits-div p {
-    color: #fff;
+.credits-div p {
     font-weight: 100;
     margin: 5px 3px;
 }
-.feedback .credits-div p a {
-    color: #fff;
-    background: #2faf3f;
+.credits-div p a {
+    color: #888;
+    background: RGBa(0,0,0,0.05);
     padding: 1px 3px;
     border-radius: 3px;
     font-weight: 100;
 }
-.feedback .credits-div p a:hover {
-    background: #fff;
-    color: #2faf3f;
+body.dark .credits-div p a {
+    background: RGBa(255,255,255,0.1);
+    color: #aaa;
+}
+.credits-div p a:hover,
+body.dark .credits-div p a:hover{
+    background: #888;
+    color: #fff;
 }
 #fen-cont {
     margin-bottom: 37px;
@@ -219,10 +232,9 @@ input {
 }
 .start-container .flat-button:hover {
     border-color: #333;
-    box-shadow: 0 3px 3px RGBa(0,0,0,0.3);
 }
-.start-container .flat-button:active {
-    box-shadow: 0 1px 3px RGBa(0,0,0,0.3);
+.start-container .flat-button.green:active {
+    box-shadow: 0 0 10px 1px #32ca36;
 }
 .leaderboard {
     padding-left: 0;

@@ -58,7 +58,6 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
         } else {
             $return['ended'] = true;
             $pRating = mysqli_query($connection,"SELECT rating FROM `puzzles_approved` WHERE id='$puzzle'")->fetch_assoc()['rating'];
-            $return['ratings'] = Array('puzzle'=>$pRating);
             if ($l) {
                 $return['ratings'] = Array('user' => $_SESSION['rating'],'puzzle'=>$pRating);
                 if ($realNext) {
@@ -74,13 +73,14 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
                     mysqli_query($connection,"INSERT INTO `puzzles_history` (`user`,`puzzle`,`rating`,`rating_diff`,`date`) VALUES ('$userid','$puzzle','$ur','$rating_diff',CURRENT_TIMESTAMP)");
                 }
             } else {
+                $return['ratings'] = Array('puzzle'=>$pRating);
                 $_SESSION['completed'] = $puzzle;
             }
         }
     } else {
         $return['correct'] = false;
+        $return['ended'] = true;
         $pRating = mysqli_query($connection,"SELECT rating FROM `puzzles_approved` WHERE id='$puzzle'")->fetch_assoc()['rating'];
-        $return['ratings'] = Array('puzzle'=>$pRating);
         if ($l) {
             $return['ratings'] = Array('user' => $_SESSION['rating'],'puzzle'=>$pRating);
             if ($realNext) {
@@ -96,6 +96,7 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
                 mysqli_query($connection,"INSERT INTO `puzzles_history` (`user`,`puzzle`,`rating`,`rating_diff`,`date`) VALUES ('$userid','$puzzle','$ur',$rating_diff,CURRENT_TIMESTAMP)");
             }
         } else {
+            $return['ratings'] = Array('puzzle'=>$pRating);
             $_SESSION['completed'] = $puzzle;
         }
     }

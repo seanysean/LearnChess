@@ -584,6 +584,9 @@ body.dark .userinfo-box .padding {
     padding: 10px;
     border-radius: 3px;
 }
+.page .block.no-padding {
+    padding: 0;
+}
 .page .block.transparent {
     background: transparent;
     box-shadow: none;

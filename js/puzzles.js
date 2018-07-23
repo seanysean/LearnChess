@@ -36,18 +36,29 @@ function showResponse(s,c,r,d) {
     if (s && !c) {
         res.innerHTML = '<i class="fa fa-check"></i> Good move';
         res.classList = 'correct';
-    } else if (s && c) {
+    } else if (c) {
         document.getElementById('copyings').classList.remove('hidden');
         document.getElementById('next').classList.remove('hidden');
-        res.innerHTML = '<i class="fa fa-check"></i> Puzzle solved';
-        res.classList = 'correct';
+        if (s) {
+            res.innerHTML = '<i class="fa fa-check"></i> Puzzle solved';
+            res.classList = 'correct';
+        } else {
+            res.innerHTML = '<i class="fa fa-close"></i> Puzzle failed';
+            res.classList = 'incorrect';
+        }
         let extraStyle = '';
         if (!loggedin || author === infoUsername) {
-            extraStyle = ' style="pointer-events:none"';
+            extraStyle = ' disabled';
+            if (!loggedin) {
+                extraStyle += ' data-hint="Log in to like this puzzle"';
+            } else {
+                extraStyle += ' data-hint="You can\'t give your puzzle a trophy"';
+            }
         }
         const el = document.createElement('div');
         el.classList = 'give-a-trophy';
         el.innerHTML = `<button type="submit" id="trophy" class="trophy"${extraStyle}><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
+        const cont = document.createElement('div');
         const el2 = document.createElement('div');
         el2.innerHTML = `<p>Puzzle created by <a href="/member/${author.toLowerCase()}">${author}</a></p>
                         <p>Puzzle rating: ${Math.round(r[0])}</p>`;
@@ -56,13 +67,14 @@ function showResponse(s,c,r,d) {
         } else {
             el2.innerHTML += `<p>Unrated</p>`;
         }
-        el2.classList = 'credits-div';
-        document.getElementById('res-container').appendChild(el2);
-        document.getElementById('res-container').appendChild(el);
-        document.getElementById('trophy').addEventListener('click',updateTrophies);
-    } else {
-        res.innerHTML = '<i class="fa fa-close"></i> Wrong move';
-        res.classList = 'incorrect';
+        cont.classList = 'credits-div block no-padding';
+        el2.classList = 'inner';
+        document.querySelector('.right-area').appendChild(cont);
+        cont.appendChild(el2); //Don't ask why they're in reverse
+        cont.appendChild(el);
+        if (loggedin && author !== infoUsername) {
+            document.getElementById('trophy').addEventListener('click',updateTrophies);
+        }
     }
 }
 function checkMove(c,cg) {
@@ -89,22 +101,12 @@ function checkMove(c,cg) {
                             dests: toDests(chess)
                         }
                     });
-                } else if (resp.correct) {
-                    showResponse(true,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff);
-                } else {
-                    showResponse(false,false);
-                    setTimeout(()=>{
-                        chess.undo();
-                        cg.set({
-                            fen: chess.fen(),
-                            turnColor: getColor(chess.turn()),
-                            movable: {
-                                color: getColor(chess.turn()),
-                                dests: toDests(chess)
-                            }
-                        });
-                    },500);
-                    fullMove--;
+                } else if (resp.ended) {
+                    if (resp.correct) {
+                        showResponse(true,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff);
+                    } else {
+                        showResponse(false,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff);
+                    }
                 }
             }
         }

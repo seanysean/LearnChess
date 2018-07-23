@@ -47,7 +47,7 @@ if ($result) {
             </div>
             <?php if (!$removed) { ?>
             <div class="right-area">
-                <div class="block feedback" id="res-container">
+                <div class="block feedback transparent" id="res-container">
                     <div id="response" class="neutral loading"><div class="loader"></div></div>
                 </div>
                 <div class="block start-container hidden" id="next">
