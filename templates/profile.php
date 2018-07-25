@@ -145,7 +145,7 @@ if ($result) {
                 </div>
                 <?php } ?>
                 <div class="block">
-                    <h1 class="block-title">Puzzle history</h1>
+                    <h1 class="block-title">Puzzle rating history</h1>
                     <?php if ($r_count > 0) { ?>
                     <div id="puzzleRating">
                         <div id="loading" class="loader"></div>

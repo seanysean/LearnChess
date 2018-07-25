@@ -22,6 +22,7 @@ body.dark .main .block .block-title {
 }
 .main .block-title .state {
     font-size: 40px;
+    text-shadow: 1px 1px 0 #777;
 }
 .info-bar {
     display: flex;
@@ -75,11 +76,49 @@ body.dark .info-bar .info .icon-title {
 .puzzle-list {
     text-align: center;
 }
+
+/* Plotly styling */
+
+#puzzleRating {
+    margin-top: -50px;
+    margin-bottom: -30px;
+    min-height: 400px;
+}
 .js-plotly-plot .main-svg {
     background: transparent !important;
 }
+text {
+    fill: #777 !important;
+}
 body.dark text {
     fill: #aaa !important;
+}
+.axistext path {
+    stroke: rgb(197, 197, 197) !important;
+    fill: #eee !important;
+    color: #888;
+}
+body.dark .axistext path {
+    stroke: rgb(101, 94, 94) !important;
+    fill: #444 !important;
+}
+.hovertext path {
+    fill: #3893e8 !important;
+}
+.hovertext path {
+    stroke: #3893e8 !important;
+}
+.axistext text {
+    fill: #888 !important;
+}
+body .hovertext text,
+.axistext text {
+    font-weight: 100 !important;
+    font-family: "Roboto",sans-serif !important;
+}
+body.dark .axistext text,
+body .hovertext text {
+    fill: #fff !important;
 }
 .bg {
     fill: transparent !important;
@@ -103,7 +142,14 @@ body.dark .crisp.zl {
 .rangeslider-bg {
     fill: transparent;
 }
-#puzzleRating {
-    position: relative;
-    min-height: 400px;
+.rangeslider-handle-min,
+.rangeslider-handle-max {
+    fill: #3893e8 !important;
+    stroke: transparent !important;
+}
+.point {
+    fill: #3893e8 !important;
+}
+.js-line {
+    stroke: #3893e8 !important;
 }
