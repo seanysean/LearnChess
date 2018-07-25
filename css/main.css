@@ -25,7 +25,6 @@ button:focus {
 .state {
     display: inline-block;
     vertical-align: middle;
-    text-shadow: 1px 1px 0 #ccc
 }
 .state.online {
     color: #71bd74;
@@ -394,13 +393,13 @@ body.dark .userinfo-box .padding {
 }
 .top .top-navigation .main-links a {
     padding: 20px;
-    color: #333;
+    color: #555;
     font-weight: 500;
     position: relative;
     font-size: 16px;
 }
 .top .top-navigation .main-links a:hover {
-    background: #e7e7e7;
+    background: #e3e3e3;
 }
 .top .top-navigation .main-links .main-dropdown,
 .top .top-navigation .icon-links .icon-dropdown {
