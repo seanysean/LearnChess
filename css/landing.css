@@ -130,7 +130,17 @@ a {
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
+    position: relative;
     padding: 100px;
+}
+.main::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: RGBa(0,0,0,0.2);
 }
 .main .content,
 .section .content {
@@ -138,6 +148,8 @@ a {
     width: 50%;
     overflow: hidden;
     margin: 50px auto;
+    position: relative;
+    z-index: 1;
 }
 .main .content .left,
 .main .content .right,
@@ -150,18 +162,19 @@ a {
 .main .content .left .main-image {
     width: 100%;
     opacity: 0.5;
+    border-radius: 3px;
 }
 .main .content .right,
 .section .content .right {
     float: right;
 }
 .main .content .right {
-    color: #eee;
+    color: #ccc;
     font-family: "Roboto",sans-serif;
 }
 .main .content .right h1 {
     font-size: 50px;
-    margin: 20px 0;
+    margin: 0;
     font-family: "Roboto",sans-serif;
     font-weight: 400;
 }
@@ -195,6 +208,20 @@ a {
 .section.puzzles a {
     color: #686868;
 }
+.section.puzzles .icon,
+.section.coordinates .icon {
+    text-shadow: 0 2px 5px RGBa(0,0,0,0.6);
+}
+.section.coordinates {
+    background: #aaa;
+    color: #eee;
+}
+.section.coordinates a {
+    color: #fff;
+}
+.section.coordinates .icon {
+    color: #888;
+}
 .section.pricing {
     background: #777;
     color: #fff;
@@ -203,11 +230,10 @@ a {
     color: #e8e8e8;
 }
 .section.pricing .left {
-    text-align: right;
-    padding-right: 100px;
     border-right-color: #999;
+    padding-left: 20px;
 }
-.section.pricing .left .icon {
+.section.pricing .right .icon {
     color: #ddd;
 }
 .section.pricing .username-container {
@@ -232,8 +258,11 @@ a {
     font-size: 15px;
     color: #fff;
     transition: 0.25s linear;
-    width: 70%;
+    width: 65%;
     height: 45px;
+}
+.section.pricing .username-container #username:focus {
+    outline: none;
 }
 .section.pricing .username-container label {
     font-size: 15px;
@@ -246,13 +275,14 @@ a {
 .section.pricing .username-container #start {
     color: #fff;
     background: #aaa;
-    padding: 10px;
+    padding: 0 10px;
     border: 3px solid #aaa;
     font-size: 15px;
-    width: 30%;
+    width: 35%;
     display: inline-block;
     transition: 0.25s ease;
     height: 45px;
+    line-height: 42px;
     vertical-align: top;
 }
 .section.pricing .username-container #start:hover {
@@ -283,6 +313,9 @@ footer .right {
 footer .right a {
     color: #bbb;
     line-height: 31px;
+}
+footer .right a:not(:first-child) {
+    margin: 0 5px;
 }
 footer .right a:hover {
     color: #eee;

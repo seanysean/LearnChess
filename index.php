@@ -29,6 +29,8 @@ if (!$l) {
                 <div class="right">
                     <h1>Improve your chess skills for free</h1>
                     <p>Practice with puzzles</p>
+                    <p>Play with the computer</p>
+                    <p>Learn chess coordinates</p>
                 </div>
             </div>
         </div>
@@ -36,19 +38,30 @@ if (!$l) {
             <div class="content">
                 <div class="left">
                     <h1>Puzzles</h1>
-                    <p>Solving chess puzzles and tactics is a known way to get better at chess. Here at LearnChess you can do it for free. <a href="/puzzles/next">Try one</a></p>
+                    <p>Solving chess tactics is a known way to get better at chess. Here at LearnChess you can do it for free. All puzzles are hand-picked. <a href="/puzzles/next">Try one</a></p>
                 </div>
                 <div class="right">
                     <div class="fa fa-puzzle-piece icon"></div>
                 </div>
             </div>
         </div>
+        <div class="section coordinates">
+            <div class="content">
+                <div class="right">
+                    <h1>Coordinates</h1>
+                    <p>Train your coordinates finding skills so that you will be more efficient reading chess books. <a href="/coordinates">Try now</a></p>
+                </div>
+                <div class="left">
+                    <div class="fa fa-delicious icon"></div>
+                </div>
+            </div>
+        </div>
         <div class="section pricing">
             <div class="content">
-                <div class="left">
+                <div class="right">
                     <div class="fa fa-check-square icon"></div>
                 </div>
-                <div class="right">
+                <div class="left">
                     <h1>Pricing</h1>
                     <p>Everything is absolutely free. There are no ads and no premium accounts.</p>
                     <div class="username-container">
@@ -62,7 +75,10 @@ if (!$l) {
         <footer>
             <span class="site-name">LearnChess <span class="year">2018</span></span>
             <div class="right">
-                <a href="https://github.com/seanysean/LearnChess" target="_blank">Open source <i class="fa fa-external-link"></i></a> • <a href="/puzzles">Puzzles</a>
+                <a href="https://github.com/seanysean/LearnChess" target="_blank">Open source <i class="fa fa-external-link"></i></a> •
+                <a href="/puzzles" data-hint="Puzzles"><i class="fa fa-puzzle-piece"></i></a>
+                <a href="/coordinates" data-hint="Coordinates trainer"><i class="fa fa-delicious"></i></a>
+                <a href="/computer" data-hint="Play computer"><i class="fa fa-tv"></i></a>
             </div>
         </footer>
         <script src="js/landing.js"></script>
