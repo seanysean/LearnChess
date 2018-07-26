@@ -24,13 +24,27 @@ if (n.icon) {
         }
     });
     document.addEventListener('click',e=>{
-        if (e.target !== n.icon) {
+        if (e.target !== n.icon && !wasClicked(e.target,'notification')) {
+            // Don't hide n.cont if a .notification was clicked
             n.cont.style.display = 'none';
             openNotification = false;
         }
     });
     setInterval(checkNotifications, 5000);
     checkNotifications();
+}
+
+function wasClicked(el,t) {
+    if (el.classList.contains(t)) {
+        return true;
+    }
+    while (el.parentElement) {
+        if (el.parentElement.classList.contains(t)) {
+            return true;
+        }
+        el = el.parentElement;
+    }
+    return false;
 }
 
 function checkNotifications() {
@@ -45,7 +59,7 @@ function checkNotifications() {
             if (res[0].message !== '-') {
                 res.forEach(n=>{
                     let el = document.createElement('a');
-                    el.href = '#';
+                    el.href = n.url;
                     el.classList.add('notification');
                     if (n.unread === '0') {
                         el.classList.add('read');
@@ -54,6 +68,11 @@ function checkNotifications() {
                     }
                     el.innerHTML = `<i class="icon-type fa ${n.icon}"></i> ${n.message}`;
                     document.getElementById('i-container').appendChild(el);
+                    el.addEventListener('click',e=>{
+                        e.preventDefault();
+                        console.log(el.href);
+                        markAsRead(n.id,n.url);
+                    });
                 });
                 if (unreadCount > 0) {
                     n.count.setAttribute('data-count',unreadCount > 9 ? '9+' : unreadCount);
@@ -68,6 +87,24 @@ function checkNotifications() {
     }
     xhr.open('GET',url);
     xhr.send();
+}
+
+function markAsRead(id,url) {
+    const xhr = new XMLHttpRequest(),
+          url2 = '/notifications',
+          data = `mark=1&n=${id}`
+    xhr.responseType = 'json';
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState = xhr.DONE) {
+            if (xhr.response === true && url.length) {
+                window.location.href = url;
+            }
+        }
+    }
+    xhr.open('POST',url2);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send(data);
+    checkNotifications();
 }
 
 function addCountdown() {

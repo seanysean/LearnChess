@@ -4,7 +4,7 @@ include "connect.php";
 $l = isset($_SESSION['username']);
 
 if ($l) {
-    // Is this too much? Checking the database every page load? Maybe it could be done with session variables.
+    // Is this too much? Checking the database every page load? Maybe it could be done with session variables, checking every 10 or something.
     $currentSessionID = $_SESSION['userid'];
     $updateActivitySQL = "UPDATE `users` SET last_active=CURRENT_TIMESTAMP WHERE id='$currentSessionID'";
     mysqli_query($connection,$updateActivitySQL);
@@ -40,9 +40,9 @@ function isAllowed($type) {
         return ($pEdited[1] === '1') ? true : false;
     }
 }
-function createNotification($icon,$to,$message) {
+function createNotification($icon,$to,$message,$url="") {
     global $connection;
-    $sql = "INSERT INTO `notifications` (`icon`,`to_id`,`message`) VALUES ('$icon','$to','$message')";
+    $sql = "INSERT INTO `notifications` (`icon`,`to_id`,`message`,`url`) VALUES ('$icon','$to','$message','$url')";
     mysqli_query($connection,$sql);
 }
 function createUserLink($id,$r=false) {

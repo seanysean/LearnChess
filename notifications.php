@@ -10,11 +10,18 @@ if(!$l) {
         $sql = "SELECT `to_id` FROM `notifications` WHERE `id`='$n'";
         $result = mysqli_query($connection,$sql);
         $to_id = $result->fetch_assoc()['to_id'];
+        $inJS = isset($_POST['mark']);
         if ($_SESSION['userid'] === $to_id) {
             $sql = "UPDATE `notifications` SET unread='0' WHERE `id`='$n'";
             mysqli_query($connection,$sql);
+            if ($inJS) {
+                // If called from JavaScript
+                echo 'true';
+            }
         }
-        header('Location: notifications');
+        if (!$inJS) {
+            header('Location: notifications');
+        }
     } else if (isset($_GET['_'])) {
         $sql = "SELECT * FROM `notifications` WHERE `to_id`='$userID' AND `unread`='1' ORDER BY id DESC LIMIT 100";
         $result = mysqli_query($connection,$sql);
@@ -24,7 +31,7 @@ if(!$l) {
         if ($num) {
             while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
                 $c_row++;
-                $res = Array('icon' => $row['icon'], 'message' => $row['message'], 'unread' => $row['unread']);
+                $res = Array('icon' => $row['icon'], 'message' => $row['message'], 'unread' => $row['unread'], 'url' => $row['url'], 'id' => $row['id']);
                 $return .= json_encode($res);
                 if ($c_row < $num) {
                     $return .= ',';
@@ -76,9 +83,7 @@ if(!$l) {
                 </div>
             </div>
         </div>
-        <footer>
-        <?php include "include/footer.php" ?>
-        </footer>
+        <footer><?php include "include/footer.php" ?></footer>
         <script src="js/global.js"></script>
         <script src="js/notifications.js"></script>
     </body>

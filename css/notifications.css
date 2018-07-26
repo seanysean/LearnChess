@@ -19,7 +19,7 @@
     background: #f7f7f7;
 }
 body.dark .notif.read {
-    background: #4f4f4f;
+    background: #3c3c3c;
 }
 .notif:not(.read):hover {
     background: #fdfdfd;
