@@ -65,7 +65,11 @@ if ($result) {
                         $result = mysqli_query($connection,$sql);
                         if (mysqli_num_rows($result) > 0) {
                             $rows = mysqli_num_rows($result);
-                            echo "<h3>$rows puzzles in review</h3>";
+                            $s = 's';
+                            if ($rows === 1) {
+                                $s = '';
+                            }
+                            echo "<h3>$rows puzzle$s in review</h3>";
                         } else { ?>
                         <p class="nothing-to-see">No puzzles in review</p>
                         <?php } 
@@ -73,14 +77,18 @@ if ($result) {
                         $result2 = mysqli_query($connection,$sql2);
                         if (mysqli_num_rows($result2) > 0) {
                             $rows = mysqli_num_rows($result2);
-                            echo "<h3>$rows accepted puzzles</h3>";
+                            $s = 's';
+                            if ($rows === 1) {
+                                $s = '';
+                            }
+                            echo "<h3>$rows approved puzzle$s</h3>";
                             while($row = mysqli_fetch_array($result2,MYSQLI_ASSOC)) {
                                 $puzzleID = $row['id'];
                                 ?>
                                 <a href="view/<?php echo $puzzleID ?>" class="puzzle">Puzzle <?php echo $puzzleID ?></a>
                         <?php }
                         } else { ?>
-                        <p class="nothing-to-see">No accepted puzzles</p>
+                        <p class="nothing-to-see">No approved puzzles</p>
                         <?php } ?>
                     </div>
                 <?php } else { ?>
