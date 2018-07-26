@@ -28,6 +28,7 @@ include_once "./include/functions.php";
                 </div>
             </div>
         </div>
+        <footer><?php include_once "./include/footer.php" ?></footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
         <script src="js/chess-functions.js"></script>
         <script src="js/chessground.min.js"></script>
