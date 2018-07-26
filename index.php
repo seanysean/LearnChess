@@ -77,7 +77,7 @@ if (!$l) {
             <div class="right">
                 <a href="https://github.com/seanysean/LearnChess" target="_blank">Open source <i class="fa fa-external-link"></i></a> •
                 <a href="/puzzles" data-hint="Puzzles"><i class="fa fa-puzzle-piece"></i></a>
-                <a href="/coordinates" data-hint="Coordinates trainer"><i class="fa fa-delicious"></i></a>
+                <a href="/coordinates" data-hint="Coordinates trainer"><i class="fa fa-bullseye"></i></a>
                 <a href="/computer" data-hint="Play computer"><i class="fa fa-tv"></i></a>
             </div>
         </footer>
