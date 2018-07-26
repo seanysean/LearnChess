@@ -19,7 +19,11 @@ username.addEventListener('keyup',e=>{
     if (e.keyCode === 13) {
         start.click();
     }
-    start.href = `/register?username=${username.value}`;
+    if (username.value.length > 0) {
+        start.href = `/register?username=${username.value}`;
+    } else {
+        start.href = `/register`;
+    }
 });
 
 if (document.domain === 'learnchess.tk') {
