@@ -80,6 +80,7 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
     } else {
         $return['correct'] = false;
         $return['ended'] = true;
+        $return['right_move'] = $correct;
         $pRating = mysqli_query($connection,"SELECT rating FROM `puzzles_approved` WHERE id='$puzzle'")->fetch_assoc()['rating'];
         if ($l) {
             $return['ratings'] = Array('user' => $_SESSION['rating'],'puzzle'=>$pRating);

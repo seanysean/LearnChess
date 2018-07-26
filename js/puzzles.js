@@ -106,6 +106,26 @@ function checkMove(c,cg) {
                         showResponse(true,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff);
                     } else {
                         showResponse(false,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff);
+                        setTimeout(()=>{
+                            chess.undo();
+                            console.log(chess.ascii());
+                            cg.set({
+                               fen: chess.fen(),
+                               turnColor: getColor(chess.turn()),
+                               movable: {
+                                   color: getColor(chess.turn()),
+                                   dests: toDests(chess)
+                               }
+                            });
+                            let rightMove = chess.move(resp.right_move);
+                            console.log(rightMove);
+                            const shape = [{
+                                orig: rightMove.from,
+                                dest: rightMove.to,
+                                brush: 'green'
+                            }];
+                            cg.setShapes(shape);
+                        }, 500);
                     }
                 }
             }
