@@ -48,6 +48,10 @@ body.dark .your-puzzles h3 {
 .editor-container {
     margin: 30px 0;
 }
+.editor-container .disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
 .editor-container .spare,
 .editor-container .board,
 .editor-container .tools {
@@ -66,6 +70,9 @@ body.dark .editor-container .spare {
     height: 100%;
     flex-grow: 1;
     cursor: pointer;
+}
+.editor-container .spare.disabled piece {
+    pointer-events: none;
 }
 .editor-container .spare .selectedPiece {
     background-color: RGBa(0,0,0,0.1);

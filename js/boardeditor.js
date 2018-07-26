@@ -103,14 +103,21 @@ nextStep.addEventListener('click',()=>{
     }
     isNextStep = true;
     document.getElementById('fen-cont').style.display = 'none';
-    tools.container.style.display = 'none';
+    let t = ['initial','color','empty','clearSelection'];
+    t.forEach(i=>{
+        if (i !== 'color') {
+        tools[i].parentElement.style.display = 'none';
+        } else {
+            tools[i].style.display = 'none';
+        }
+    });
     nextStep.style.display = 'none';
     document.getElementById('pgn-cont').style.display = 'block';
     document.getElementById('submit').style.display = 'inline-block';
     document.getElementById('cancel').style.display = 'inline-block';
     const spares = document.querySelectorAll('.spare');
     spares.forEach(el=>{
-        el.style.display = 'none';
+        el.classList.add('disabled');
     });
     const chess = new Chess(cg.getFen() + (turn === 'white' ? ' w' : ' b') + ' - - 0 1');
     document.getElementById('fen').value = chess.fen();
