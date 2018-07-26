@@ -693,7 +693,8 @@ footer .site-name {
     top: 50%;
     transform: translateY(-50%);
     height: 33px;
-    width: 33px
+    width: 33px;
+    z-index: 1;
 }
 .countdown .timer-icon i {
     position: absolute;
@@ -706,7 +707,7 @@ footer .site-name {
 }
 .countdown .timeleft {
     position: relative;
-    right: 10px;
+    right: 0;
     color: #555;
     background: #ddd;
     padding: 4px;
