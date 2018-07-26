@@ -40,7 +40,8 @@ if ($l) {
                 }
             }
         }
-        if (!$found) { ?>
+        if (!$found) {
+            $_SESSION['nextpuzzle'] = 0; ?>
 <!DOCTYPE html>
 <html>
     <head>
