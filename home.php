@@ -28,11 +28,6 @@ if ($l) {
         </div>
         <div class="page">
             <div class="main">
-                <div class="block">
-                    <h1 class="block-title">What's new?</h1>
-                    <div id="changes-cont"></div>
-                    <a href="changes" class="button blue more"><span><i class="fa fa-wrench"></i> View all changes</span></a>
-                </div>
                 <?php if ($puzzle_count > 0) { ?>
                 <div class="block">
                     <h1 class="block-title">Your most popular puzzles</h1>
@@ -72,7 +67,6 @@ if ($l) {
             <?php include_once "./include/footer.php" ?>
         </footer>
         <script src="js/global.js"></script>
-        <script src="js/changeslist.js"></script>
         <script src="js/home.js"></script>
         <script src="js/chessground.min.js"></script>
         <script src="js/loadposition.js"></script>
