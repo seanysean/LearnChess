@@ -93,7 +93,7 @@ body.dark .board-container .credits {
 body.dark .board-container .board:hover + .credits {
     background: #494949;
 }
-body.dark .state {
+body.dark .block-title .state {
     text-shadow: 1px 1px 0 #333;
 }
 body.dark .state.online {
