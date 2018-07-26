@@ -34,7 +34,8 @@ const tools = {
     initial: document.getElementById('initial'),
     color: document.getElementById('color'),
     empty: document.getElementById('empty'),
-    clearSelection: document.getElementById('clrSelect')
+    clearSelection: document.getElementById('clrSelect'),
+    undo: document.getElementById('undo')
 }
 tools.flip.addEventListener('click',()=>{
     cg.toggleOrientation();
@@ -111,6 +112,7 @@ nextStep.addEventListener('click',()=>{
             tools[i].style.display = 'none';
         }
     });
+    tools.undo.parentElement.style.display = 'block';
     nextStep.style.display = 'none';
     document.getElementById('pgn-cont').style.display = 'block';
     document.getElementById('submit').style.display = 'inline-block';
@@ -168,4 +170,16 @@ nextStep.addEventListener('click',()=>{
             document.getElementById('pgn').value = removeHeaders(c.pgn());
         }
     }
+    tools.undo.addEventListener('click',()=>{
+        chess.undo();
+        cg.set({
+            fen: chess.fen(),
+            turnColor: getColor(chess.turn()),
+            movable: {
+              color: getColor(chess.turn()),
+              dests: toDests(chess)
+            }
+        });
+        document.getElementById('pgn').value = removeHeaders(chess.pgn());
+    });
 });

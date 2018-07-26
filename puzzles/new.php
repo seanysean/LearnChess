@@ -61,6 +61,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
                             <span class="btn hint-text-center" data-hint="White to play" id="color"><button class="flat-button"><i class="fa fa-circle-o"></i></button></span>
                             <span class="btn hint-text-center" data-hint="Clear board"><button id="empty" class="flat-button"><i class="fa fa-trash"></i></button></span>
                             <span class="btn hint-text-center" data-hint="Clear piece selection"><button id="clrSelect" class="flat-button"><i class="fa fa-close"></i></button></span>
+                            <span class="btn hint-text-center" data-hint="Undo move" style="display:none"><button id="undo" class="flat-button"><i class="fa fa-undo"></i></button></span>
                         </div>
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
