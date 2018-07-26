@@ -111,11 +111,6 @@ function checkMove(c,cg) {
                             console.log(chess.ascii());
                             cg.set({
                                fen: chess.fen(),
-                               turnColor: getColor(chess.turn()),
-                               movable: {
-                                   color: getColor(chess.turn()),
-                                   dests: toDests(chess)
-                               }
                             });
                             let rightMove = chess.move(resp.right_move);
                             console.log(rightMove);
@@ -125,6 +120,7 @@ function checkMove(c,cg) {
                                 brush: 'green'
                             }];
                             cg.setShapes(shape);
+                            cg.stop();
                         }, 500);
                     }
                 }
