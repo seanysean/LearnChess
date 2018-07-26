@@ -17,7 +17,7 @@ include "../include/functions.php";
         <div class="page">
             <div class="main">
                 <div class="block transparent">
-                    <h1 class="block-title center"><i class="fa fa-delicious"></i> Coordinates</h1>
+                    <h1 class="block-title center"><i class="fa fa-bullseye"></i> Coordinates</h1>
                 </div>
                 <div class="block transparent">
                     <div class="board-cont">

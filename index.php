@@ -52,7 +52,7 @@ if (!$l) {
                     <p>Train your coordinates finding skills so that you will be more efficient reading chess books. <a href="/coordinates">Try now</a></p>
                 </div>
                 <div class="left">
-                    <div class="fa fa-delicious icon"></div>
+                    <div class="fa fa-bullseye icon"></div>
                 </div>
             </div>
         </div>
