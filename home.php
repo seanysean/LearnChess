@@ -28,8 +28,8 @@ if ($l) {
         </div>
         <div class="page">
             <div class="main">
-                <?php if ($puzzle_count > 0) { ?>
                 <div class="block">
+                <?php if ($puzzle_count > 0) { ?>
                     <h1 class="block-title">Your most popular puzzles</h1>
                     <div>
                     <?php $sql = "SELECT id,fen,trophies FROM `puzzles_approved` WHERE author_id='$myid' AND removed='0' ORDER BY trophies DESC LIMIT 3";
@@ -45,8 +45,17 @@ if ($l) {
                     <?php } ?>
                     </div>
                     <a href="puzzles/new" class="button blue more"><span><i class="fa fa-puzzle-piece"></i> Create new puzzle</span></a>
-                </div>
+                <?php } else { // If they haven't contributed, assume they are new ?>
+                    <h1 class="block-title">Welcome to LearnChess!</h1>
+                    <p>Here are some features you might enjoy:</p>
+                    <ul>
+                        <li><a href="/computer">Play with computer</a></li>
+                        <li><a href="/puzzles">Tactics training</a></li>
+                        <li><a href="/coordinates">Coordinates trainer</a></p></li>
+                    </ul>
+                    <p>Have fun! If you have questions, <a href="/contact">contact us</a>.</p>
                 <?php } ?>
+                </div>
             </div>
             <div class="right-area">
                 <!--<div class="block">
