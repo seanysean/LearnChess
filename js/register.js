@@ -36,6 +36,15 @@ function valid(text,min,max,inputType,msgContainer) {
         el.classList = 'input-response invalid';
     }
 }
+function login(username,password) {
+    let form = document.createElement('form');
+    form.action = '/login';
+    form.method = 'POST';
+    form.style.display = 'none';
+    form.innerHTML = `<input name="username" value='${username}'><input name="password" value='${password}'>`;
+    document.body.appendChild(form);
+    form.submit();
+}
 const inputs = {
     username: document.getElementById('username'),
     password: document.getElementById('password')

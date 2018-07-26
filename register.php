@@ -34,6 +34,7 @@ require \"../templates/profile.php\";";
             fclose($memberProfile);
             if ($result) {
                 $smsg = '<p>Account successfully created! Thank you for joining, you can now <a href="/login">Log in</a>.</p>';
+                $login = true;
             }
         } else {
             $fmsg = '<p>The username already exists. Try again.</p>';
@@ -51,6 +52,9 @@ require \"../templates/profile.php\";";
         <link href="css/material.css" type="text/css" rel="stylesheet">
     </head>
     <body<?php include_once "./include/attributes.php" ?>>
+        <?php if (isset($login) and $login) {
+            echo "<script src=\"js/register.js\"></script><script>login('$username','$password'); console.log('loaded 2');</script>";
+        } ?>
         <div class="top">
             <?php include_once "./include/topbar.php" ?>
         </div>
@@ -95,9 +99,7 @@ require \"../templates/profile.php\";";
                 </div>
             </div>
         </div>
-        <footer>
-            <?php include_once "./include/footer.php" ?>
-        </footer>
+        <footer><?php include_once "./include/footer.php" ?></footer>
         <script src="js/global.js"></script>
         <script src="js/register.js"></script>
     </body>
