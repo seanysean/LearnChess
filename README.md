@@ -14,4 +14,4 @@ You can submit puzzles and get a rating by solving. All puzzles are made by peop
 
 ### [Play with the computer](https://learnchess.tk/computer)
 
-Can you beat Stockfish? Probably not, but it is a weakened version of it, so give it a try. Features like takebacks and different levels are coming soon.
+Play against the JavaScript version of Stockfish 8. Features like takebacks and different levels are coming soon.
