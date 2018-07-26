@@ -81,7 +81,7 @@ function addCountdown() {
         console.log(currentTime.getUTCHours());
     }
     time = sleepTime - getCurrentTime;
-    hoursLeft = (time / 1000 / 60 / 60) + 3; // The +3 is because the time was set locally (GMT -3)
+    hoursLeft = Math.round((time / 1000 / 60 / 60) + 3); // The +3 is because the time was set locally (GMT -3)
     // console.log(time + ' ' + getCurrentTime + ' ' + sleepTime);
     const countdown = document.createElement('DIV');
     countdown.classList = 'countdown';
