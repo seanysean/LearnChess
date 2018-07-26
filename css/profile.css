@@ -83,6 +83,7 @@ body.dark .info-bar .info .icon-title {
     margin-top: -50px;
     margin-bottom: -30px;
     min-height: 400px;
+    position: relative;
 }
 .js-plotly-plot .main-svg {
     background: transparent !important;
