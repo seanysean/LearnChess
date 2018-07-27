@@ -95,7 +95,7 @@ function markAsRead(id,url) {
           data = `mark=1&n=${id}`
     xhr.responseType = 'json';
     xhr.onreadystatechange = function() {
-        if (xhr.readyState = xhr.DONE) {
+        if (xhr.readyState === xhr.DONE) {
             if (xhr.response === true && url.length) {
                 window.location.href = url;
             }
