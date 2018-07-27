@@ -150,6 +150,9 @@ nextStep.addEventListener('click',()=>{
     function removeHeaders(pgn) {
         let splitPgn = pgn.split(']\n\n'),
             moves = splitPgn[splitPgn.length - 1];
+        if (splitPgn.length === 1) { // If there are no moves
+            return '';
+        }
         if (moves.startsWith('1. ...')) {
             let spliced = moves.split('');
             spliced.splice(0,6,'1...');
