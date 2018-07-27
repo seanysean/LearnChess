@@ -251,6 +251,7 @@ input {
 }
 .start-container .flat-button:hover {
     border-color: #333;
+    animation: none;
 }
 .start-container .flat-button.green:active {
     box-shadow: 0 0 10px 1px #32ca36;
