@@ -236,6 +236,18 @@ input {
     padding: 20px;
     border-radius: 3px;
     box-shadow: 0 0 0 transparent;
+    position: relative;
+}
+.start-container .flat-button.blue {
+    animation: 1s attention ease 1;
+}
+@keyframes attention {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 .start-container .flat-button:hover {
     border-color: #333;
