@@ -124,14 +124,14 @@ body.dark .editor-container .tools {
     border-radius: 3px;
 }
 .feedback #response.neutral {
-    background: #eee;
+    background: #fff;
+}
+body.dark .feedback #response.neutral {
+    background: #444;
 }
 .hidden {
     opacity: 0;
     pointer-events: none;
-}
-body.dark .feedback #response.neutral {
-    background: #444;
 }
 .feedback #response.correct,
 .feedback #response.incorrect {
