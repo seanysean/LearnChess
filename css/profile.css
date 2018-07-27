@@ -72,6 +72,7 @@ body.dark .info-bar .info .icon-title {
     color: #888;
     font-weight: 400;
     display: block;
+    width: 200px;
 }
 .puzzle-list {
     text-align: center;
