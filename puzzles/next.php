@@ -18,7 +18,7 @@ if ($l) {
         $found = false;
         while($n < $limit && !$found) {
             $n++;
-            $sql = "SELECT id FROM `puzzles_approved` WHERE removed='0' AND id='$n' AND NOT author_id='$me'";
+            $sql = "SELECT id FROM `puzzles_approved` WHERE removed='0' AND id='$n' AND author_id!='$me'";
             //echo $sql."<br />";
             $result = mysqli_query($connection,$sql);
             if (mysqli_num_rows($result) > 0) {
@@ -37,6 +37,8 @@ if ($l) {
                     } else {
                         echo "This is a database error... Try again and hope for the best.<br />";
                     }
+                } else {
+                    //echo "No $candidate<br>";
                 }
             }
         }
