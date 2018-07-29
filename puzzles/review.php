@@ -2,7 +2,7 @@
 session_start();
 include "../include/functions.php";
 if(!$l or !isAllowed('puzzle')) {
-    header('Location: all');
+    header('Location: /');
 } else if (isset($_POST['review'])) {
     $review = secure($_POST['review']);
     $r = explode(' ',$review);
@@ -11,7 +11,8 @@ if(!$l or !isAllowed('puzzle')) {
     if ($r[0] === 'accept') {
         $pgn = secure($_POST['pgn']);
         $fen = secure($_POST['fen']);
-        $sql1 = "INSERT INTO `puzzles_approved` (fen,pgn,author_id) VALUES ('$fen','$pgn','$authorID');";
+        $explain = secure($_POST['explain']);
+        $sql1 = "INSERT INTO `puzzles_approved` (fen,pgn,author_id,explanation) VALUES ('$fen','$pgn','$authorID','$explain');";
         $sql2 = "DELETE FROM `puzzles_to_review` WHERE id='$pID'";
         $result1 = mysqli_query($connection,$sql1);
         $result2 = mysqli_query($connection,$sql2);
@@ -69,6 +70,7 @@ include '../../templates/puzzle.php';");
                                 <th>Author</th>
                                 <th>FEN</th>
                                 <th>PGN</th>
+                                <th>Explanation</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -79,18 +81,21 @@ include '../../templates/puzzle.php';");
                             $id = $row['id'];
                             $fen = $row['fen'];
                             $pgn = $row['pgn'];
+                            $explain = $row['explanation'];
                             ?>
                             <tr>
                                 <td><?php echo $id ?></td>
                                 <td><?php echo createUserLink($authorID) ?></td>
-                                <td><span data-hint="View position on lichess"><a class="fen" target="_blank" href="https://lichess.org/editor/<?php echo $fen ?>"><?php echo $fen ?> <i class="fa fa-external-link"></i></a></span></td>
+                                <td><span data-hint="<?php echo $fen ?>"><a class="fen" target="_blank" href="https://lichess.org/editor/<?php echo $fen ?>"><?php echo 'View position on lichess' ?> <i class="fa fa-external-link"></i></a></span></td>
                                 <td><span class="pgn"><?php echo $pgn ?></span></td>
+                                <td><?php if ($explain) { echo $explain; } else { echo '<span class="no-explain"><i class="fa fa-close"></i> No explanation given</span>'; } ?></td>
                                 <td><span class="choice">
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                                         <input type="hidden" value="accept <?php echo $id ?>" name="review">
                                         <input type="hidden" value="<?php echo $authorID ?>" name="authorID">
                                         <input type="hidden" value="<?php echo $fen ?>" name="fen">
                                         <input type="hidden" value="<?php echo $pgn ?>" name="pgn">
+                                        <input type="hidden" value="<?php echo $explain ?>" name="explain">
                                         <span data-hint="Approve puzzle"><button type="submit" class="flat-button"><span><i class="fa fa-check"></i></span></button></span>
                                     </form>
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">

@@ -26,10 +26,11 @@ cg.set({
 
 let turn = chess.turn() === 'w' ? 'White':'Black',
     gaveTrophy = false,
-    fullMove = 0;
+    fullMove = 0,
+    explained = false; // Is the puzzle explanation text showing
 
-function showResponse(s,c,r,d) {
-    // s = solved, c = complete, r[0] = puzzle new rating & r[1] = user's new rating, d = user rating diff between new and old rating
+function showResponse(s,c,r,d,e) {
+    // s = solved, c = complete, r[0] = puzzle new rating & r[1] = user's new rating, d = user rating diff between new and old rating, e = puzzle explanation
     d = Math.round(d);
     console.log(d);
     const unrated = isNaN(d);
@@ -37,14 +38,30 @@ function showResponse(s,c,r,d) {
         res.innerHTML = '<i class="fa fa-check"></i> Good move';
         res.classList = 'correct';
     } else if (c) {
+        let viewExplainEl, explainEl;
         document.getElementById('copyings').classList.remove('hidden');
         document.getElementById('next').classList.remove('hidden');
+        if (e) {
+            viewExplainEl = document.createElement('span');
+            explainEl = document.createElement('div');
+            viewExplainEl.innerHTML = '<i class="fa fa-angle-down"></i> View explanation';
+            viewExplainEl.classList = 'view-explanation';
+            explainEl.classList = 'explanation';
+            viewExplainEl.addEventListener('click',()=>{
+                console.log(e);
+                explain(e,explainEl);
+            });
+        }
         if (s) {
             res.innerHTML = '<i class="fa fa-check"></i> Puzzle solved';
             res.classList = 'correct';
         } else {
             res.innerHTML = '<i class="fa fa-close"></i> Puzzle failed';
             res.classList = 'incorrect';
+        }
+        if (e) {
+            res.appendChild(viewExplainEl);
+            res.appendChild(explainEl);
         }
         let extraStyle = '';
         if (!loggedin || author === infoUsername) {
@@ -77,6 +94,16 @@ function showResponse(s,c,r,d) {
         }
     }
 }
+function explain(e,el) {
+    // el is the element to add e to.
+    if (explained) {
+        el.style.display = 'none';
+    } else {
+        el.innerHTML = e;
+        el.style.display = 'block';
+    }
+    explained = !explained;
+}
 function checkMove(c,cg) {
     return (o,d) => {
         res.classList.add('loading');
@@ -103,9 +130,9 @@ function checkMove(c,cg) {
                     });
                 } else if (resp.ended) {
                     if (resp.correct) {
-                        showResponse(true,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff);
+                        showResponse(true,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff,resp.explanation);
                     } else {
-                        showResponse(false,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff);
+                        showResponse(false,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff,resp.explanation);
                         setTimeout(()=>{
                             chess.undo();
                             console.log(chess.ascii());

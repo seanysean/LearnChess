@@ -57,7 +57,14 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
             $return['next'] = $pgn[($movenum * 2) - 1];
         } else {
             $return['ended'] = true;
-            $pRating = mysqli_query($connection,"SELECT rating FROM `puzzles_approved` WHERE id='$puzzle'")->fetch_assoc()['rating'];
+            $res = mysqli_query($connection,"SELECT rating,explanation FROM `puzzles_approved` WHERE id='$puzzle'")->fetch_assoc();
+            $pRating = $res['rating'];
+            $explain = $res['explanation'];
+            if ($explain) {
+                $return['explanation'] = $explain;
+            } else {
+                $return['explanation'] = false;
+            }
             if ($l) {
                 $return['ratings'] = Array('user' => $_SESSION['rating'],'puzzle'=>$pRating);
                 if ($realNext) {
@@ -81,7 +88,14 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
         $return['correct'] = false;
         $return['ended'] = true;
         $return['right_move'] = $correct;
-        $pRating = mysqli_query($connection,"SELECT rating FROM `puzzles_approved` WHERE id='$puzzle'")->fetch_assoc()['rating'];
+        $res = mysqli_query($connection,"SELECT rating,explanation FROM `puzzles_approved` WHERE id='$puzzle'")->fetch_assoc();
+        $pRating = $res['rating'];
+        $explain = $res['explanation'];
+        if ($explain) {
+            $return['explanation'] = $explain;
+        } else {
+            $return['explanation'] = false;
+        }
         if ($l) {
             $return['ratings'] = Array('user' => $_SESSION['rating'],'puzzle'=>$pRating);
             if ($realNext) {

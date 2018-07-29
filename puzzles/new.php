@@ -7,8 +7,9 @@ if(!$l) {
 if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
     $fen = secure($_POST['fen']);
     $pgn = secure($_POST['pgn']);
+    $explain = secure($_POST['explain']);
     $authorID = $_SESSION['userid'];
-    $sql = "INSERT INTO `puzzles_to_review` (fen,pgn,author_id) VALUES ('$fen','$pgn','$authorID')";
+    $sql = "INSERT INTO `puzzles_to_review` (fen,pgn,author_id,explanation) VALUES ('$fen','$pgn','$authorID','$explain')";
     $result = mysqli_query($connection,$sql);
     if ($result) {
         $msg = '<p>Puzzle created successfully! You will be notified when is is approved or disapproved.</p>';
@@ -74,6 +75,11 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
                         <div class="input-container" id="pgn-cont" style="display: none">
                             <input name="pgn" id="pgn" type="text" spellcheck="false" required>
                             <label for="pgn">PGN Moves</label>
+                            <span class="line"></span>
+                        </div>
+                        <div class="input-container" id="explain-cont" style="display: none">
+                            <textarea name="explain" id="explain" rows="3" maxlength="255"></textarea>
+                            <label for="explain">Puzzle explanation (optional)</label>
                             <span class="line"></span>
                         </div>
                         <button class="button blue new" id="submit" type="submit" style="display: none">

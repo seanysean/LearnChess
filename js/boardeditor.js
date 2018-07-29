@@ -115,6 +115,7 @@ nextStep.addEventListener('click',()=>{
     tools.undo.parentElement.style.display = 'block';
     nextStep.style.display = 'none';
     document.getElementById('pgn-cont').style.display = 'block';
+    document.getElementById('explain-cont').style.display = 'block';
     document.getElementById('submit').style.display = 'inline-block';
     document.getElementById('cancel').style.display = 'inline-block';
     const spares = document.querySelectorAll('.spare');

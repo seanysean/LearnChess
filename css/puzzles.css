@@ -135,6 +135,10 @@ body.dark .feedback #response.neutral {
 }
 .feedback #response.correct,
 .feedback #response.incorrect {
+    color: #fff;
+}
+body.dark .feedback #response.correct,
+body.dark .feedback #response.incorrect {
     color: #f3f3f3;
 }
 .feedback #response.correct {
@@ -145,6 +149,19 @@ body.dark .feedback #response.correct {
 }
 .feedback #response.incorrect {
     background: #ca7373;
+}
+.feedback .view-explanation,
+.feedback .explanation {
+    display: block;
+    font-size: 15px;
+    font-weight: 100;
+    margin-top: 10px;
+}
+.feedback .view-explanation {
+    cursor: pointer;
+}
+.feedback .view-explanation:hover {
+    opacity: 0.9;
 }
 .credits-div .inner {
     padding: 10px;
