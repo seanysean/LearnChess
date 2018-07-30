@@ -25,10 +25,3 @@ username.addEventListener('keyup',e=>{
         start.href = `/register`;
     }
 });
-
-if (document.domain === 'learnchess.tk') {
-    setTimeout(()=>{
-        const divs = document.getElementsByTagName('DIV');
-        divs[divs.length - 1].style.display = 'none';
-    }, 1000);
-}
