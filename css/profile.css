@@ -24,6 +24,10 @@ body.dark .main .block .block-title {
     font-size: 40px;
     text-shadow: 1px 1px 0 #777;
 }
+.main .block-title span {
+    vertical-align: middle;
+    display: inline-block;
+}
 .info-bar {
     display: flex;
 }

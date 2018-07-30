@@ -61,14 +61,13 @@ if ($result) {
                         <span<?php echo $hint ?>>
                             <span class="fa <?php echo $icon ?> state<?php echo $online === '1' ? ' online' : ' offline' ?>"></span>
                         </span>
-                        <?php echo $account['username'] ?>
+                        <span class="username"><?php echo $account['username'] ?></span>
                         <?php if($myaccount or isAllowed('admin')) { ?>
                         <span class="alternate">
                             <?php if($myaccount) { ?>
                             <a href="/settings/profile" class="button blue"><span><i class="fa fa-pencil"></i> Edit profile</span></a>
-                            <?php } else if (isAllowed('admin')) { 
-                                $usrnm = $account['username']; ?>
-                                <a href="/admin/search?username=<?php echo $usrnm ?>" class="button blue"><span><i class="fa fa-shield"></i> View and edit info</span></a>
+                            <?php } else if (isAllowed('admin')) { ?>
+                                <a href="/admin/search?username=<?php echo $account['username']; ?>" class="button blue"><span><i class="fa fa-shield"></i> View and edit info</span></a>
                             <?php } ?>
                         </span>
                         <?php } ?>
