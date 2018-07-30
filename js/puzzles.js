@@ -71,6 +71,8 @@ function showResponse(s,c,r,d,e) {
             } else {
                 extraStyle += ' data-hint="You can\'t give your puzzle a trophy"';
             }
+        } else {
+            extraStyle += ' data-hint="Keyboard shortcut: t"';
         }
         const el = document.createElement('div');
         el.classList = 'give-a-trophy';
@@ -91,6 +93,11 @@ function showResponse(s,c,r,d,e) {
         cont.appendChild(el);
         if (loggedin && author !== infoUsername) {
             document.getElementById('trophy').addEventListener('click',updateTrophies);
+            document.body.addEventListener('keyup',e=>{
+                if (e.key.toLowerCase() === 't') {
+                    updateTrophies();
+                }
+            });
         }
     }
 }
