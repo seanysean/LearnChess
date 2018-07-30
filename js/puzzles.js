@@ -109,10 +109,11 @@ function checkMove(c,cg) {
         res.classList.add('loading');
         res.innerHTML = '<div class="loader"></div>';
         fullMove++;
-        const mObj = { from: o, to: d,promotion: 'q' };
+        const mObj = { from: o, to: d, promotion: 'q' };
         const m = chess.move(mObj);
+        if (m.flags.includes('p')) promote(cg,m.to,'queen');
         const xhr = new XMLHttpRequest(),
-              url = `../getmoves?move=${m.san.replace('+','%2B').replace('#','%23')}&movenum=${fullMove}&puzzle=${pID}`;
+              url = `../getmoves?move=${m.san.replace('+','%2B').replace('#','%23').replace('=','%3D')}&movenum=${fullMove}&puzzle=${pID}`;
         xhr.responseType = 'json';
         xhr.onreadystatechange = function() {
             if (xhr.readyState === xhr.DONE) {
