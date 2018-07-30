@@ -9,7 +9,7 @@ if (!$l) {
         <title>Get Better At Chess With LearnChess</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Improve your chess skills by solving chess tactics created by the community. It's 100% free, no ads, and open source.">
+        <meta name="description" content="A website for improving in chess. You can play vs. the computer, solve chess tactics, and more to come! It's 100% free, no ads, and open source. No registration required.">
         <link href="css/landing.css" type="text/css" rel="stylesheet">
         <link href="css/chessground.css" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

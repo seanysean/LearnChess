@@ -13,6 +13,7 @@ if ($result) {
     <head>
         <title>Approved puzzles • LearnChess</title>
         <?php include_once "../include/head.php" ?>
+        <meta name="description" content="Improve your chess skills by solving chess tactics created by the community. It's 100% free, no ads, and open source. No registration required.">
         <link href="../css/puzzles.css" rel="stylesheet" type="text/css">
         <link href="../css/chessground.css" rel="stylesheet" type="text/css">
     </head>

@@ -8,6 +8,7 @@ if ($result) {
     $pgn = $res['pgn'];
     $fen = $res['fen'];
     $trophies = $res['trophies'];
+    $moreThan1 = $trophies > 1 ? "$trophies times":'once';
     $removed = $res['removed'] === '0' ? false : true;
     $authorid = $res['author_id'];
     $author = mysqli_query($connection,"SELECT username FROM `users` WHERE id='$authorid'")->fetch_assoc()['username'];
@@ -18,6 +19,7 @@ if ($result) {
     <head>
         <title>Puzzle <?php echo $pID ?> • LearnChess</title>
         <?php include_once "../../include/head.php"; ?>
+        <meta name="description" content="Solve a chess puzzle created by <?php echo $author ?> on LearnChess.<?php if ($trophies > 0) { echo " This puzzle has been given a trophy $moreThan1."; } ?>">
         <link href="/css/chessground.css" type="text/css" rel="stylesheet">
         <link href="/css/puzzles.css" type="text/css" rel="stylesheet">
     </head>

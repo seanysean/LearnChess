@@ -48,6 +48,7 @@ if ($result) {
     <head>
         <title><?php echo $account['username'] ?> • LearnChess</title>
         <?php include_once "../include/head.php" ?>
+        <?php if ($active) { ?><meta name="description" content="View <?php echo $account['username'] ?>'s profile on LearnChess.'"><?php } ?>
         <link href="../css/profile.css" type="text/css" rel="stylesheet">
         <link href="../css/chessground.css" type="text/css" rel="stylesheet">
     </head>

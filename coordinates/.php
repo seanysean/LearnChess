@@ -7,6 +7,7 @@ include "../include/functions.php";
     <head>
         <title>Coordinates • LearnChess</title>
         <?php include "../include/head.php" ?>
+        <meta name="description" content="Become faster at identifying chess coordinates with this free tool on LearnChess. No registration necessary."
         <link href="../css/coordinates.css" type="text/css" rel="stylesheet">
         <link href="../css/chessground.css" type="text/css" rel="stylesheet">
     </head>

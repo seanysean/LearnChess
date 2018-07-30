@@ -7,6 +7,7 @@ include "include/functions.php";
     <head>
         <title>Contact • LearnChess</title>
         <?php include "include/head.php" ?>
+        <meta name="description" content="Contact information for LearnChess.">
     </head>
     <body<?php include_once "./include/attributes.php" ?>>
         <div class="top">

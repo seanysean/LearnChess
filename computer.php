@@ -7,6 +7,7 @@ include_once "./include/functions.php";
     <head>
         <title>Play Computer • LearnChess</title>
         <?php include_once "./include/head.php" ?>
+        <meta name="description" content="Play Stockfish, the world's strongest free chess engine, on LearnChess for free. No registration required.">
         <link href="css/chessground.css" type="text/css" rel="stylesheet">
         <link href="css/computer.css" type="text/css" rel="stylesheet">
     </head>
