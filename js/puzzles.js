@@ -46,9 +46,8 @@ function showResponse(s,c,r,d,e) {
             viewExplainEl.innerHTML = '<i class="fa fa-angle-down"></i> View explanation';
             viewExplainEl.classList = 'view-explanation';
             explainEl.classList = 'explanation';
-            viewExplainEl.addEventListener('click',()=>{
-                explain(e,explainEl);
-            });
+            explainEl.innerHTML = e;
+            viewExplainEl.addEventListener('click',()=>explain(explainEl));
         }
         if (s) {
             res.innerHTML = '<i class="fa fa-check"></i> Puzzle solved';
@@ -104,13 +103,11 @@ function showResponse(s,c,r,d,e) {
         }
     }
 }
-function explain(e,el) {
-    // el is the element to add e to.
+function explain(el) {
     if (explained) {
-        el.style.display = 'none';
+        el.classList.remove('open');
     } else {
-        el.innerHTML = e;
-        el.style.display = 'block';
+        el.classList.add('open');
     }
     explained = !explained;
 }
