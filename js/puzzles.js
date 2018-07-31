@@ -32,7 +32,6 @@ let turn = chess.turn() === 'w' ? 'White':'Black',
 function showResponse(s,c,r,d,e) {
     // s = solved, c = complete, r[0] = puzzle new rating & r[1] = user's new rating, d = user rating diff between new and old rating, e = puzzle explanation
     d = Math.round(d);
-    console.log(d);
     const unrated = isNaN(d);
     if (s && !c) {
         res.innerHTML = '<i class="fa fa-check"></i> Good move';
@@ -48,7 +47,6 @@ function showResponse(s,c,r,d,e) {
             viewExplainEl.classList = 'view-explanation';
             explainEl.classList = 'explanation';
             viewExplainEl.addEventListener('click',()=>{
-                console.log(e);
                 explain(e,explainEl);
             });
         }
@@ -58,6 +56,11 @@ function showResponse(s,c,r,d,e) {
         } else {
             res.innerHTML = '<i class="fa fa-close"></i> Puzzle failed';
             res.classList = 'incorrect';
+            const retryBtn = document.createElement('span');
+            retryBtn.innerHTML = '<i class="fa fa-undo"></i> Retry';
+            retryBtn.classList = 'retry';
+            retryBtn.addEventListener('click',()=>window.location.reload());
+            res.appendChild(retryBtn);
         }
         if (e) {
             res.appendChild(viewExplainEl);
