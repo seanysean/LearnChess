@@ -150,9 +150,8 @@ body.dark .feedback #response.correct {
 .feedback #response.incorrect {
     background: #ca7373;
 }
-.feedback .view-explanation,
-.feedback .explanation,
-.feedback .retry {
+.feedback .end-stuff,
+.feedback .explanation {
     display: block;
     font-size: 15px;
     font-weight: 100;
@@ -170,16 +169,13 @@ body.dark .feedback #response.correct {
     margin-top: 10px;
     max-height: 225px;
 }
-.feedback .view-explanation,
-.feedback .retry {
+.feedback .end-stuff {
     cursor: pointer;
     margin-top: 10px;
+    color: #fff;
 }
-.feedback .view-explanation:hover,
-.feedback .retry:hover {
+.feedback .end-stuff:hover {
     opacity: 0.85;
-}
-.feedback .retry {
     color: #fff;
 }
 .credits-div .inner {

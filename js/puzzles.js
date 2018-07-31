@@ -44,7 +44,7 @@ function showResponse(s,c,r,d,e) {
             viewExplainEl = document.createElement('span');
             explainEl = document.createElement('div');
             viewExplainEl.innerHTML = '<i class="fa fa-angle-down"></i> View explanation';
-            viewExplainEl.classList = 'view-explanation';
+            viewExplainEl.classList = 'view-explanation end-stuff';
             explainEl.classList = 'explanation';
             explainEl.innerHTML = e;
             viewExplainEl.addEventListener('click',()=>explain(explainEl));
@@ -57,10 +57,16 @@ function showResponse(s,c,r,d,e) {
             res.classList = 'incorrect';
             const retryBtn = document.createElement('span');
             retryBtn.innerHTML = '<i class="fa fa-undo"></i> Retry';
-            retryBtn.classList = 'retry';
+            retryBtn.classList = 'retry end-stuff';
             retryBtn.addEventListener('click',()=>window.location.reload());
             res.appendChild(retryBtn);
         }
+        const lichess = document.createElement('a');
+        lichess.href = `https://lichess.org/analysis/${fen}`;
+        lichess.innerHTML = '<i class="fa fa-external-link"></i> Analyze on lichess</i>';
+        lichess.target = '_blank'; 
+        lichess.classList = 'end-stuff';
+        res.appendChild(lichess);
         if (e) {
             res.appendChild(viewExplainEl);
             res.appendChild(explainEl);
