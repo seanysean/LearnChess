@@ -49,7 +49,7 @@ require \"../templates/profile.php\";";
     <head>
         <title>Register • LearnChess</title>
         <?php include_once "./include/head.php" ?>
-        <meta name="description" content="Join LearnChess, a free, no ads site made for helping you get better at chess."
+        <meta name="description" content="Join LearnChess, a free, no ads site made for helping you get better at chess.">
         <link href="css/material.css" type="text/css" rel="stylesheet">
     </head>
     <body<?php include_once "./include/attributes.php" ?>>
