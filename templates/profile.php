@@ -21,7 +21,7 @@ if ($result) {
         $icon = 'fa-puzzle-piece';
         $hint = ' data-hint="Puzzle reviewer"';
     } else {
-        $icon = 'fa-circle';
+        $icon = 'fa-user';
         $hint = '';
     }
     $online = $res['online'];

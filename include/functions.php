@@ -59,7 +59,7 @@ function createUserLink($id,$r=false) {
         } else if ($p[1] === '1') {
             $icon = 'fa-puzzle-piece';
         } else {
-            $icon = 'fa-circle';
+            $icon = 'fa-user';
         }
         $user = strtolower($username);
         $online = $r['online'] === '1' ? 'online' : 'offline';

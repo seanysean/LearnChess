@@ -16,7 +16,7 @@ username.addEventListener('keyup',()=>{
                     res.forEach(obj=>{
                         const el = document.createElement('div');
                         el.classList = 'user';
-                        el.innerHTML = `<i class="fa fa-circle state ${obj.state}"></i> ${obj.username}`;
+                        el.innerHTML = `<i class="fa fa-user state ${obj.state}"></i> ${obj.username}`;
                         el.addEventListener('click',()=>{
                             const usr = el.innerText.replace(' ','');
                             username.value = usr;

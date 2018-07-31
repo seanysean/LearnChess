@@ -67,7 +67,6 @@ if (!$l || !isAllowed('admin')) {
                             <input id="username" name="username"<?php if (isset($_GET['username'])) { echo 'value="'.secure($_GET['username']).'"'; } ?> autocomplete="off" spellcheck="false" autofocus>
                             <label for="username">Enter username</label>
                             <div class="autocomplete" id="autocomplete-container">
-                                <div class="user"><i class="fa fa-circle state online"></i> Admin</div>
                             </div>
                             <span class="line"></span>
                         </div>
