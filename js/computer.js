@@ -51,6 +51,7 @@ engine.onmessage = function(e) {
                     dests: toDests(chess)
                 }
             });
+            cg.playPremove();
         }
     }
 }

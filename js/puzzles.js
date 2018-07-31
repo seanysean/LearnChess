@@ -10,7 +10,7 @@ const chess = new Chess(fen), config = {
         dests: toDests(chess)
     },
     premovable: {
-        enabled: false
+        enabled: true
     },
     animation: {
         duration: 300
@@ -136,6 +136,7 @@ function checkMove(c,cg) {
                             dests: toDests(chess)
                         }
                     });
+                    cg.playPremove();
                 } else if (resp.ended) {
                     if (resp.correct) {
                         showResponse(true,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff,resp.explanation);
