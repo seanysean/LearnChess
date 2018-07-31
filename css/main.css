@@ -519,13 +519,22 @@ body.dark .userinfo-box .padding {
     font-weight: 100;
     border-bottom: 1px solid #eee;
     background: #fff;
-    transition: none;
     display: block;
+    transition: 0.25s ease;
+    left: 0;
+    overflow: hidden;
+    height: 60px;
+    position: relative;
 }
 .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification:hover,
 .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification.read,
 .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .flat-button:hover {
     background: #f8f8f8;
+}
+.top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification.remove-notification {
+    left: -200px;
+    height: 0;
+    padding: 0;
 }
 .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification .icon-type {
     font-size: 40px;

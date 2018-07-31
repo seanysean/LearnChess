@@ -30,7 +30,7 @@ if (n.icon) {
             openNotification = false;
         }
     });
-    setInterval(checkNotifications, 5000);
+    setInterval(checkNotifications, 10000);
     checkNotifications();
 }
 
@@ -70,8 +70,7 @@ function checkNotifications() {
                     document.getElementById('i-container').appendChild(el);
                     el.addEventListener('click',e=>{
                         e.preventDefault();
-                        console.log(el.href);
-                        markAsRead(n.id,n.url);
+                        markAsRead(n.id,n.url,el);
                     });
                 });
                 if (unreadCount > 0) {
@@ -89,22 +88,29 @@ function checkNotifications() {
     xhr.send();
 }
 
-function markAsRead(id,url) {
+function markAsRead(id,url,el) {
     const xhr = new XMLHttpRequest(),
           url2 = '/notifications',
           data = `mark=1&n=${id}`
     xhr.responseType = 'json';
     xhr.onreadystatechange = function() {
         if (xhr.readyState === xhr.DONE) {
-            if (xhr.response === true && url.length) {
-                window.location.href = url;
+            if (xhr.response === true) {
+                el.classList.add('remove-notification');
+                if (url.length) {
+                    window.location.href = url;
+                } else {
+                    setTimeout(()=>{
+                       el.style.height = '0';
+                       checkNotifications();
+                    }, 300);
+                }
             }
         }
     }
     xhr.open('POST',url2);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(data);
-    checkNotifications();
 }
 
 function addCountdown() {

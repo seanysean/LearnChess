@@ -49,6 +49,9 @@ body.dark .top .top-navigation .icon-links .icon-dropdown .dropdown a:hover {
 body.dark .top .top-navigation .icon-links .icon {
     color: #aaa;
 }
+.top .top-navigation .icon-links .icon-dropdown .n-container {
+    background: #444;
+}
 body.dark .top .top-navigation .icon-links .icon-dropdown .n-container::before {
     border-bottom-color: #494949;
 }
