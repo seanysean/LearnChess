@@ -135,6 +135,7 @@ function checkMove(c,cg) {
                     showResponse(true,false);
                     const m2 = chess.move(resp.next);
                     cg.move(m2.from,m2.to);
+                    if (m2.flags.includes('p')) promote(cg,m2.to,'queen');
                     cg.set({
                         turnColor: getColor(chess.turn()),
                         movable: {
@@ -146,6 +147,7 @@ function checkMove(c,cg) {
                 } else if (resp.ended) {
                     if (resp.correct) {
                         showResponse(true,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff,resp.explanation);
+                        cg.stop();
                     } else {
                         showResponse(false,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff,resp.explanation);
                         setTimeout(()=>{
