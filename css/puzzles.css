@@ -39,8 +39,8 @@ body.dark .your-puzzles h3 {
     font-weight: 100;
 }
 #chessground {
-    width: 500px;
-    height: 500px;
+    width: 512px;
+    height: 512px;
     margin: 10px auto;
     border-radius: 3px;
     overflow: hidden;
