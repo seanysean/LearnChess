@@ -62,28 +62,47 @@ start.addEventListener('click',()=>{
             if (!loggedin) {
                 square.innerHTML += '<p class="notice">Log in to save your score next time</p>';
             } else {
-                const xhr = new XMLHttpRequest(),
-                      url = '/coordinates/savescore',
-                      data = `score=${score}`;
+                let xhr = new XMLHttpRequest(),
+                    url = '/coordinates/savescore?old=1';
                 xhr.responseType = 'json';
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === xhr.DONE) {
-                        if (xhr.response.success) {
-                            square.innerHTML += '<p class="notice"><i class="fa fa-check"></i> Score saved</p>';
-                        } else {
-                            square.innerHTML += '<p class="notice"><i class="fa fa-close"></i> Score wasn\'t saved</p>';
-                        }
+                        let old = xhr.response.old;
+                        square.innerHTML += `<p class="notice"><i class="fa fa-check"></i> Old score: ${old} New score: ${score}</p>`;
                         const btn = document.createElement('button');
-                        btn.classList = 'flat-button';
-                        btn.id = 'reload';
-                        btn.innerHTML = '<span><i class="fa fa-undo"></i> Reload</span>';
-                        btn.addEventListener('click',()=>{window.location.reload();});
+                              btn.classList = 'flat-button';
+                              btn.id = 'reload';
+                              btn.innerHTML = '<span><i class="fa fa-check"></i> Save score</span>';
                         square.appendChild(btn);
+                        btn.addEventListener('click',()=>{
+                            xhr = new XMLHttpRequest();
+                            url = '/coordinates/savescore';
+                            const data = `score=${score}`;
+                            xhr.responseType = 'json';
+                            xhr.onreadystatechange = function() {
+                                if (xhr.readyState === xhr.DONE) {
+                                    square.innerHTML = '';
+                                    if (xhr.response.success) {
+                                        square.innerHTML += '<p class="notice"><i class="fa fa-check"></i> Score saved</p>';
+                                    } else {
+                                        square.innerHTML += '<p class="notice"><i class="fa fa-close"></i> Score wasn\'t saved</p>';
+                                    }
+                                    const btn2 = document.createElement('button');
+                                    btn2.classList = 'flat-button';
+                                    btn2.id = 'reload';
+                                    btn2.innerHTML = '<span><i class="fa fa-undo"></i> Replay</span>';
+                                    btn2.addEventListener('click',()=>{window.location.reload();});
+                                    square.appendChild(btn2);
+                                }
+                            }
+                            xhr.open('POST',url);
+                            xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+                            xhr.send(data);
+                        });
                     }
                 }
-                xhr.open('POST',url);
-                xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-                xhr.send(data);
+                xhr.open('GET',url);
+                xhr.send();
             }
         }
     },1000);

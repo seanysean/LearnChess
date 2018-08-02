@@ -89,7 +89,6 @@ body .overlay .flat-button {
     box-shadow: 0 0 10px RGBa(0,0,0,0.2);
     transition: 0.25s ease;
     opacity: 0;
-    filter: blur(3px);
     border-radius: 3px;
 }
 .page .block.response.wrong {
