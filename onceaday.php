@@ -17,10 +17,10 @@ if (mysqli_num_rows($result) > 0) {
             $sql = "UPDATE `users` SET online='0' WHERE id=$id";
             mysqli_query($connection,$sql);
         }?>
-        <p><?php if ($time > 1500) { 
+        <p><?php if ($time > 10800) { 
             echo "true"; 
         } else { 
-            echo "false"; 
+            echo "false";
         } ?></p>
     <?php } 
 }

@@ -2,8 +2,8 @@
 # HTID:4626344: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
 php_value display_errors 1
 # DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:4626344:
-php_value session.cookie_lifetime 1500
-php_value session.gc_maxlifetime 1500
+php_value session.cookie_lifetime 10800
+php_value session.gc_maxlifetime 10800
 ErrorDocument 404 /404.php
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
