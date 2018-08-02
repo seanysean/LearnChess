@@ -79,7 +79,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
                         </div>
                         <div class="input-container" id="explain-cont" style="display: none">
                             <textarea name="explain" id="explain" rows="3" maxlength="255"></textarea>
-                            <label for="explain">Puzzle explanation (optional)</label>
+                            <label for="explain">Puzzle explanation, credits etc. (optional)</label>
                             <span class="line"></span>
                         </div>
                         <button class="button blue new" id="submit" type="submit" style="display: none">
@@ -98,12 +98,11 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
                 </div>
             </div>
         </div>
-        <footer>
-            <?php include_once "../include/footer.php" ?>
-        </footer>
-        <script src="../js/global.js"></script>
-        <script src="../js/chessground.min.js"></script>
+        <footer><?php include_once "../include/footer.php" ?></footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
+        <script src="../js/chess-functions.js"></script>
+        <script src="../js/chessground.min.js"></script>
+        <script src="../js/global.js"></script>
         <script src="../js/boardeditor.js"></script>
     </body>
 </html>

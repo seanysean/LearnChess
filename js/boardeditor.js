@@ -163,14 +163,15 @@ nextStep.addEventListener('click',()=>{
     }
     function changeTurn(c,cground) {
         return (o, d) => {
-            c.move({from: o, to: d});
+            const m = c.move({from: o, to: d, promotion: 'q'});
             cground.set({
                 turnColor: getColor(c.turn()),
                 movable: {
-                  color: getColor(c.turn()),
-                  dests: toDests(c)
+                    color: getColor(c.turn()),
+                    dests: toDests(c)
                 }
             });
+            if (m.flags.includes('p')) promote(cground,m.to,'queen');
             document.getElementById('pgn').value = removeHeaders(c.pgn());
         }
     }
