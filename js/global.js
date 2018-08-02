@@ -113,25 +113,6 @@ function markAsRead(id,url,el) {
     xhr.send(data);
 }
 
-function addCountdown() {
-    let currentTime = new Date(),
-        sleepTime = new Date().setUTCHours(3),
-        getCurrentTime = currentTime.getTime(),
-        time,
-        hoursLeft;
-    if (currentTime.getUTCHours() > 3) {
-        sleepTime += 86400000;
-        console.log(currentTime.getUTCHours());
-    }
-    time = sleepTime - getCurrentTime;
-    hoursLeft = Math.round((time / 1000 / 60 / 60) + 3); // The +3 is because the time was set locally (GMT -3)
-    // console.log(time + ' ' + getCurrentTime + ' ' + sleepTime);
-    const countdown = document.createElement('DIV');
-    countdown.classList = 'countdown';
-    countdown.innerHTML = `<span class="timer-icon" data-count="${hoursLeft}"><i class="fa fa-moon-o"></i></span><span class="timeleft">Website goes offline in ${hoursLeft} hour${hoursLeft !== 1 ? 's':''}</span>`;
-    document.body.appendChild(countdown);
-}
-
 const userInfo = document.createElement('div');
 userInfo.classList = 'userinfo-box';
 document.body.appendChild(userInfo);

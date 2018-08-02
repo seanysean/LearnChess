@@ -49,7 +49,6 @@ include "include/functions.php";
                     <p class="error">Page not found</p>
                     <p class="report">You can report this <a href="/contact">here</a>.</p>
                     <div class="links">
-                        <a href="https://www.000webhost.com/" target="_blank"><i class="fa fa-server"></i> Web hoster</a>
                         <a href="https://github.com/seanysean/LearnChess" target="_blank"><i class="fa fa-github"></i> Open source</a>
                     </div>
                 </div>

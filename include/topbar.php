@@ -8,7 +8,6 @@ if (isAllowed('puzzle')) {
     }
 }
 ?>
-<?php if (!$devMode) { ?><style>img:last-of-type{display: none}</style> <?php } ?>
 <input style="display:none" type="hidden" id="js_info" value='{"loggedin":<?php echo $l === true ? 'true':'false' ?>,"username":<?php if($l) { echo '"'.$_SESSION['username'].'"'; } else { echo 'null'; } ?>}' />
 <div class="top-above">
     <a class="learnchess-link" href="/">LearnChess<span class="extension"><?php if ($devMode) { echo ' dev'; } else { echo '.tk'; } ?></span></a>

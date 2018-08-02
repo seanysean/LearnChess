@@ -1,6 +1,5 @@
 <?php session_start();
 include "include/functions.php";
-include "include/config.php";
 if (!$l) {
 ?>
 <!DOCTYPE html>
@@ -84,7 +83,6 @@ if (!$l) {
             </div>
         </footer>
         <script src="js/landing.js"></script>
-        <?php if (!$devMode) {echo "<style>img:last-of-type{display:none}</style>";} ?>
     </body>
 </html>
 <?php } else {
