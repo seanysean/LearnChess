@@ -47,7 +47,7 @@ function showResponse(s,c,r,d,e) {
             viewExplainEl.classList = 'view-explanation end-stuff';
             explainEl.classList = 'explanation';
             explainEl.innerHTML = e;
-            viewExplainEl.addEventListener('click',()=>explain(explainEl));
+            viewExplainEl.addEventListener('click',()=>explain(explainEl,viewExplainEl));
         }
         if (s) {
             res.innerHTML = '<i class="fa fa-check"></i> Puzzle solved';
@@ -109,11 +109,15 @@ function showResponse(s,c,r,d,e) {
         }
     }
 }
-function explain(el) {
+function explain(el,vEl) {
     if (explained) {
         el.classList.remove('open');
+        vEl.children[0].classList.remove('fa-angle-up');
+        vEl.children[0].classList.add('fa-angle-down');
     } else {
         el.classList.add('open');
+        vEl.children[0].classList.add('fa-angle-up');
+        vEl.children[0].classList.remove('fa-angle-down');
     }
     explained = !explained;
 }
