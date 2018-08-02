@@ -152,5 +152,3 @@ userInfo.addEventListener('mouseover',()=>{
 userInfo.addEventListener('mouseleave',()=>{
     userInfo.style.display = 'none';
 });
-
-addCountdown();
