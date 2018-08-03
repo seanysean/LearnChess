@@ -17,7 +17,7 @@ include "../include/functions.php";
             <div class="main center">
                 <div class="block transparent">
                     <h1 class="block-title"><i class="fa fa-envelope"></i> Contact LearnChess</h1>
-                    <p><a rel="nofollow" href="https://lichess.org/inbox/new?user=seanysean" target="_blank">Message Sean on lichess <i class="fa fa-external-link"></i></a></p>
+                    <p><a rel="nofollow" href="https://lichess.org/inbox/new?user=seanysean">Message Sean on lichess <i class="fa fa-external-link"></i></a></p>
                 </div>
             </div>
         </div>
