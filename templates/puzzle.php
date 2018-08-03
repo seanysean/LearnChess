@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../../include/functions.php";
+include "../../../include/functions.php";
 $sql = "SELECT * FROM `puzzles_approved` WHERE id='$pID'";
 $result = mysqli_query($connection,$sql);
 if ($result) {
@@ -18,14 +18,14 @@ if ($result) {
 <html>
     <head>
         <title>Puzzle <?php echo $pID ?> • LearnChess</title>
-        <?php include_once "../../include/head.php"; ?>
+        <?php include_once "../../../include/head.php"; ?>
         <meta name="description" content="Solve a chess puzzle created by <?php echo $author ?> on LearnChess.<?php if ($trophies > 0) { echo " This puzzle has been given a trophy $moreThan1."; } ?>">
         <link href="/css/chessground.css" type="text/css" rel="stylesheet">
         <link href="/css/puzzles.css" type="text/css" rel="stylesheet">
     </head>
-    <body<?php include_once "../../include/attributes.php" ?>>
+    <body<?php include_once "../../../include/attributes.php" ?>>
         <div class="top">
-            <?php include_once "../../include/topbar.php"; ?>
+            <?php include_once "../../../include/topbar.php"; ?>
         </div>
         <div class="page">
             <div class="main<?php if($removed) { echo " center"; } ?>">
@@ -71,7 +71,7 @@ if ($result) {
             <?php } ?>
         </div>
         <footer>
-            <?php include_once "../../include/footer.php"; ?>
+            <?php include_once "../../../include/footer.php"; ?>
         </footer>
         <?php if (!$removed) { ?>
         <script>

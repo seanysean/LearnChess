@@ -1,5 +1,5 @@
 .DS_Store
-/member/**
+public_html/member/**
 include/connectiondetails.php
-/puzzles/view/*
+public_html/puzzles/view/*
 newpage.txt

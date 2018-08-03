@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../include/functions.php";
+include "../../include/functions.php";
 $accountid = $account['id'];
 $myaccount = $l && ($accountid === $_SESSION['userid']);
 $sql = "SELECT * FROM `users` WHERE id='$accountid'";
@@ -47,13 +47,13 @@ if ($result) {
 <html>
     <head>
         <title><?php echo $account['username'] ?> • LearnChess</title>
-        <?php include_once "../include/head.php" ?>
+        <?php include_once "../../include/head.php" ?>
         <?php if ($active) { ?><meta name="description" content="View <?php echo $account['username'] ?>'s profile on LearnChess.'"><?php } ?>
         <link href="../css/profile.css" type="text/css" rel="stylesheet">
         <link href="../css/chessground.css" type="text/css" rel="stylesheet">
     </head>
-    <body<?php include_once "../include/attributes.php" ?>>
-        <div class="top"><?php include_once "../include/topbar.php" ?></div>
+    <body<?php include_once "../../include/attributes.php" ?>>
+        <div class="top"><?php include_once "../../include/topbar.php" ?></div>
         <div class="page">
             <div class="main full">
                 <div class="block transparent">
@@ -158,7 +158,7 @@ if ($result) {
             </div>
         </div>
         <footer>
-        <?php include "../include/footer.php" ?>
+        <?php include "../../include/footer.php" ?>
         </footer>
         <script>
         const web = {
