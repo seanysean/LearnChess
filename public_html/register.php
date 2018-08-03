@@ -29,7 +29,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
             $memberProfile = fopen("member/$lowerUsername.php",'x');
             $pageCode = "<?php
 \$account = Array('username'=>'$username','id'=>'$lastID');
-require \"../templates/profile.php\";";
+require \"../../templates/profile.php\";";
             fwrite($memberProfile,$pageCode);
             fclose($memberProfile);
             if ($result) {
