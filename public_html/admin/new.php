@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../../../include/functions.php";
+require "../../include/functions.php";
 include "sidebar.php";
 if (!$l or !isAllowed('admin')) {
     header('Location: /');
@@ -10,12 +10,12 @@ if (!$l or !isAllowed('admin')) {
 <html>
     <head>
         <title>New members • LearnChess</title>
-        <?php include "../../../include/head.php" ?>
+        <?php include "../../include/head.php" ?>
         <link href="/css/admin.css" type="text/css" rel="stylesheet">
     </head>
-    <body<?php include_once "../../../include/attributes.php" ?>>
+    <body<?php include_once "../../include/attributes.php" ?>>
         <div class="top">
-        <?php include "../../../include/topbar.php" ?>
+        <?php include "../../include/topbar.php" ?>
         </div>
         <div class="page">
             <div class="left-area">
@@ -37,7 +37,7 @@ if (!$l or !isAllowed('admin')) {
             </div>
         </div>
         <footer>
-        <?php include "../../../include/footer.php" ?>
+        <?php include "../../include/footer.php" ?>
         </footer>
         <script src="../js/global.js"></script>
     </body>
