@@ -56,7 +56,7 @@ body.dark .your-puzzles h3 {
 .editor-container .board,
 .editor-container .tools {
     margin: auto;
-    width: 300px;
+    width: 304px;
 }
 .editor-container .spare {
     height: 50px;
@@ -79,7 +79,7 @@ body.dark .editor-container .spare {
     box-shadow: inset 0 0 5px RGBa(0,137,255,0.3);
 }
 .editor-container .board {
-    height: 300px;
+    height: 304px;
 }
 .editor-container .tools {
     background: #eee;
