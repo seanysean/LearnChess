@@ -124,12 +124,12 @@ a {
 .main {
     min-height: 100%;
     width: 100%;
-    background-color: #827058;
-    background-image: linear-gradient(to right, #18181a,#262822,#39342b,#232a27);
-    background-image: url(https://images.unsplash.com/photo-1510614558204-9ac056202cc2?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=44cc8b77a328b1d7f0058e33fcffd5d6);
+    background-color: #56776a;
+    background-image: url("../images/mainbg.svg");
     background-attachment: fixed;
-    background-position: center center;
-    background-size: cover;
+    background-position: center bottom;
+    background-size: 50%;
+    background-repeat: no-repeat;
     position: relative;
     padding: 100px;
 }
