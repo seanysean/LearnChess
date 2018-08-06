@@ -200,4 +200,4 @@ if ($result) {
         <script src="../js/chessground.min.js"></script>
         <script src="../js/loadposition.js"></script>
     </body>
-</head>
+</html>
