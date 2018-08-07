@@ -1,0 +1,76 @@
+.overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    display: none;
+    position: fixed;
+    transition: 0.25s ease;
+    background: RGBa(0,0,0,0.3);
+}
+.popup {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background: #fbfbfb;
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px 2px RGBa(0,0,0,0.4),
+                5px 5px 100px 5px RGBa(0,0,0,0.2);
+    max-width: 400px;
+}
+.popup .popup-title {
+    margin: 3px;
+    font-family: "Roboto",sans-serif;
+    color: #555;
+    padding-bottom: 10px;
+    font-size: 30px;
+    border-bottom: 1px solid #ddd;
+}
+.popup .popup-text {
+    padding: 3px;
+    color: #333;
+    margin: 8px 0;
+}
+.popup button {
+    border: none;
+    font-family: "Roboto";
+    font-weight: 100;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    transition: 0.25s ease;
+    box-shadow: 0 0 0 0 RGBa(0,0,0,0);
+    margin-top: 10px;
+}
+.popup .yes-button {
+    background: #4caf50;
+    margin-right: 10px;
+}
+.popup .no-button {
+    background: #e84438;
+}                       
+.popup .yes-button:hover,
+.popup .yes-button:focus {
+    box-shadow: 1px 1px 5px #186b1b;
+}
+.popup .no-button:hover,
+.popup .no-button:focus {
+    box-shadow: 1px 1px 5px #7d1e17;
+}
+.popup .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 25px;
+    color: #888;
+    cursor: pointer;
+}
+.popup .close:hover {
+    color: #777;
+}

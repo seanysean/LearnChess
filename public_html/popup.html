@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/css/main.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
+
+    <link href="css/popup.css" type="text/css" rel="stylesheet">
+    <title>Test popup.js</title>
+    <style>
+    body {
+    min-height: 100%;
+    width: 100%;
+    background-color: #827058;
+    background-image: linear-gradient(to right, #18181a,#262822,#39342b,#232a27);
+    background-image: url(https://images.unsplash.com/photo-1510614558204-9ac056202cc2?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=44cc8b77a328b1d7f0058e33fcffd5d6);
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+}
+    </style>
+</head>
+<body>
+    <button onclick="openP()">Open popup</button>
+    <script src="js/popup.js"></script>
+    <script>
+        const info = {
+            title: 'Are you sure you want to destroy everything?',
+            text: 'You may regret this. Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ab, maxime, atque exercitationem obcaecati molestiae non blanditiis ipsa natus minus nam qui asperiores illo expedita dolor. Delectus excepturi laboriosam eius?',
+            yes: 'I guess',
+            no: 'Not really'
+        },
+        events = {
+            yes() {
+                console.log('You pressed yes');
+                myPopup.close();
+            },
+            no() {
+                console.log('You pressed no');
+                myPopup.close();
+            }
+        };
+        const myPopup = new Popup('confirm',info,events);
+        function openP() {
+            myPopup.open();
+        }
+    </script>
+</body>
+</html>
