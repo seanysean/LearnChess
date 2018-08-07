@@ -12,8 +12,8 @@ function toDests(c) {
     return dests;
 }
 function promote(g, key, role) {
-    var pieces = {};
-    var piece = g.state.pieces[key];
+    let pieces = {};
+    let piece = g.state.pieces[key];
     if (piece && piece.role == 'pawn') {
         pieces[key] = {
             color: piece.color,
@@ -22,4 +22,29 @@ function promote(g, key, role) {
         };
         g.setPieces(pieces);
     }
+}
+function openPromoteOptions(board,square,cg) {
+    // Requires popupjs
+    return new Promise(r=>{
+        const info = {
+            html: `<button data-promote="queen"></button>
+            <button data-promote="rook"></button>
+            <button data-promote="bishop"></button>
+            <button data-promote="knight"></button>`
+        }
+        const options = new Popup('custom',info);
+        document.body.removeChild(overlay);
+        board.appendChild(overlay);
+        overlay.style.position = 'absolute';
+        options.open();
+        options.el.querySelectorAll('button').forEach(btn=>{
+            btn.addEventListener('click',()=>{
+                const p = btn.getAttribute('data-promote');
+                promote(cg,square,p);
+                options.close();
+                let promotionPiece = p.split('')[0];
+                r(promotionPiece);
+            });
+        });
+    });
 }

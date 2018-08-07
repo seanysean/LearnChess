@@ -3,9 +3,9 @@ overlay.classList = 'overlay';
 document.body.appendChild(overlay);
 class Popup {
     constructor(type,info,ev) {
+        this.el = document.createElement('div');
+        this.el.classList = 'popup';
         if (type === 'confirm') {
-            this.el = document.createElement('div');
-            this.el.classList = 'popup';
             this.el.innerHTML = `<p class="popup-title">${info.title}</p>`;
             if (info.text) {
                 this.el.innerHTML += `<p class="popup-text">${info.text}</p>`;
@@ -24,8 +24,10 @@ class Popup {
             this.el.appendChild(yes);
             this.el.appendChild(no);
             this.el.appendChild(close);
-            overlay.appendChild(this.el);
+        } else if (type === 'custom') {
+            this.el.innerHTML = info.html;
         }
+        overlay.appendChild(this.el);
     }
     open() {
         overlay.style.display = 'block';

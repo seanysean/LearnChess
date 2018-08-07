@@ -1,11 +1,12 @@
 const engine = STOCKFISH();
-
+const board = document.getElementById('board');
 const movesHTML = document.getElementById('moves');
 const chess = new Chess();
 const config = {
     coordinates: false,
     turnColor: getColor(chess.turn()),
     orientation: getColor(chess.turn()),
+    fen: chess.fen(),
     movable: {
         free: false,
         color: getColor(chess.turn()),
@@ -18,7 +19,7 @@ const config = {
         duration: 300
     }
 };
-const cg = Chessground(document.getElementById('board'),config);
+const cg = Chessground(board,config);
 cg.set({
     movable: {
         events: {
@@ -57,15 +58,27 @@ engine.onmessage = function(e) {
 }
 
 function makeMove(c,c2) {
-    return (o,d) => {
+    return async (o,d) => {
         const mObj = { from: o, to: d, promotion: 'q' };
         const m = chess.move(mObj);
-        if (m.flags.includes('p')) promote(cg,m.to,'queen');
-        moves.innerHTML = chess.pgn();
-        if (!chess.game_over()) {
+        if (m.flags.includes('p')) {
+            const promote = await openPromoteOptions(board,m.to,cg);
+            if (promote) {
+                console.log(promote);
+                chess.undo();
+                chess.move({ from: o, to: d, promotion: promote });
+                moves.innerHTML = chess.pgn();
+                if (!chess.game_over()) {
+                    engine.postMessage('position fen ' + chess.fen());
+                    engine.postMessage('go movetime 1');
+                    console.log('position fen ' + chess.fen());
+                }
+            }
+        } else if (!chess.game_over()) {
             engine.postMessage('position fen ' + chess.fen());
             engine.postMessage('go movetime 1');
             console.log('position fen ' + chess.fen());
         }
+        moves.innerHTML = chess.pgn();
     }
 }

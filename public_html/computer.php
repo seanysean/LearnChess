@@ -10,6 +10,7 @@ include_once "../include/functions.php";
         <meta name="description" content="Play Stockfish, the world's strongest free chess engine, on LearnChess for free. No registration required.">
         <link href="css/chessground.css" type="text/css" rel="stylesheet">
         <link href="css/computer.css" type="text/css" rel="stylesheet">
+        <link href="css/popup.css" type="text/css" rel="stylesheet">
     </head>
     <body<?php include_once "../include/attributes.php" ?>>
         <div class="top"><?php include_once "../include/topbar.php" ?></div>
@@ -34,6 +35,7 @@ include_once "../include/functions.php";
         <script src="js/chess-functions.js"></script>
         <script src="js/chessground.min.js"></script>
         <script src="js/stockfish.js"></script>
+        <script src="js/popup.js"></script>
         <script src="js/computer.js"></script>
     </body>
 </html>
