@@ -24,6 +24,18 @@ if (isset($_GET['username'])) {
         if ($num_rows > 0) {
             while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
                 $num++;
+                $permissions = $row['permissions'];
+                switch ($permissions) {
+                    case '00':
+                        $return['icon'] = 'user';
+                        break;
+                    case '01':
+                        $return['icon'] = 'puzzle-piece';
+                        break;
+                    default:
+                        $return['icon'] = 'shield';
+                        break;
+                }
                 $return['username'] = $row['username'];
                 $return['state'] = $row['online'] === '1' ? 'online' : 'offline';
                 $return['id'] = $row['id'];
