@@ -21,6 +21,9 @@
                 5px 5px 100px 5px RGBa(0,0,0,0.2);
     max-width: 400px;
 }
+body.dark .popup {
+    background: #444;
+}
 .popup .popup-title {
     margin: 3px;
     font-family: "Roboto",sans-serif;
@@ -29,10 +32,17 @@
     font-size: 30px;
     border-bottom: 1px solid #ddd;
 }
+body.dark .popup .popup-title {
+    border-bottom-color: #555;
+    color: #aaa;
+}
 .popup .popup-text {
     padding: 3px;
     color: #333;
     margin: 8px 0;
+}
+body.dark .popup .popup-text {
+    color: #ddd;
 }
 .popup button {
     border: none;
