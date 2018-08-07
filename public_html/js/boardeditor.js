@@ -98,6 +98,7 @@ fenInput.addEventListener('keyup',()=>{
 
 const nextStep = document.getElementById('next');
 nextStep.addEventListener('click',()=>{
+    const cancel = document.getElementById('cancel');
     if (selection) {
         document.getElementsByClassName('selectedPiece')[0].classList.remove('selectedPiece');
         selection = false;
@@ -117,7 +118,7 @@ nextStep.addEventListener('click',()=>{
     document.getElementById('pgn-cont').style.display = 'block';
     document.getElementById('explain-cont').style.display = 'block';
     document.getElementById('submit').style.display = 'inline-block';
-    document.getElementById('cancel').style.display = 'inline-block';
+    cancel.style.display = 'inline-block';
     const spares = document.querySelectorAll('.spare');
     spares.forEach(el=>{
         el.classList.add('disabled');
@@ -186,5 +187,24 @@ nextStep.addEventListener('click',()=>{
             }
         });
         document.getElementById('pgn').value = removeHeaders(chess.pgn());
+    });
+    const info = {
+        title: 'Are you sure you want to delete your work?',
+        text: 'Click yes to go back to position setup.',
+        yes: 'Yes',
+        no: 'No'
+    },
+    events = {
+        yes() {
+            confirmCancel.close();
+            window.location.href="new";
+        },
+        no() {
+            confirmCancel.close();
+        }
+    };
+    const confirmCancel = new Popup('confirm',info,events);
+    cancel.addEventListener('click',()=>{
+        confirmCancel.open();
     });
 });

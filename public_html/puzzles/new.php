@@ -26,6 +26,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
         <link href="../css/material.css" rel="stylesheet" type="text/css">
         <link href="../css/puzzles.css" rel="stylesheet" type="text/css">
         <link href="../css/chessground.css" rel="stylesheet" type="text/css">
+        <link href="../css/popup.css" rel="stylesheet" type="text/css">
     </head>
     <body<?php include_once "../../include/attributes.php" ?>>
         <div class="top">
@@ -88,7 +89,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
                                 Submit puzzle
                             </span>
                         </button>
-                        <a class="button red new" id="cancel" href="new" style="display: none">
+                        <a class="button red new" id="cancel" style="display: none">
                             <span>
                                 <i class="fa fa-trash"></i>
                                 Cancel
@@ -103,6 +104,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
         <script src="../js/chess-functions.js"></script>
         <script src="../js/chessground.min.js"></script>
         <script src="../js/global.js"></script>
+        <script src="../js/popup.js"></script>
         <script src="../js/boardeditor.js"></script>
     </body>
 </html>
