@@ -57,13 +57,41 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
                             <piece class="white pawn" data-piece="white pawn"></piece>
                         </div>
                         <div class="tools" id="t-cont">
-                            <span class="btn hint-text-center" data-hint="Flip board"><button id="flip" class="flat-button"><i class="fa fa-retweet"></i></button></span>
-                            <span class="btn hint-text-center" data-hint="Analyze on lichess"><a id="analyze" target="_blank" href="https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR" class="flat-button blue"><i class="fa fa-search"></i></a></span>
-                            <span class="btn hint-text-center" data-hint="Reset board"><button id="initial" class="flat-button"><i class="fa fa-undo"></i></button></span>
-                            <span class="btn hint-text-center" data-hint="White to play" id="color"><button class="flat-button"><i class="fa fa-circle-o"></i></button></span>
-                            <span class="btn hint-text-center" data-hint="Clear board"><button id="empty" class="flat-button"><i class="fa fa-trash"></i></button></span>
-                            <span class="btn hint-text-center" data-hint="Clear piece selection"><button id="clrSelect" class="flat-button"><i class="fa fa-close"></i></button></span>
-                            <span class="btn hint-text-center" data-hint="Undo move" style="display:none"><button id="undo" class="flat-button"><i class="fa fa-undo"></i></button></span>
+                            <span class="btn hint-text-center" data-hint="Flip board">
+                                <button id="flip" class="flat-button">
+                                    <i class="fa fa-retweet"></i>
+                                </button>
+                            </span>
+                            <span class="btn hint-text-center" data-hint="Analyze on lichess">
+                                <a id="analyze" target="_blank" href="https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR" class="flat-button blue">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </span>
+                            <span class="btn hint-text-center" data-hint="Reset board">
+                                <button id="initial" class="flat-button">
+                                    <i class="fa fa-undo"></i>
+                                </button>
+                            </span>
+                            <span class="btn hint-text-center" data-hint="White to play" id="color">
+                                <button class="flat-button">
+                                    <i class="fa fa-circle-o"></i>
+                                </button>
+                            </span>
+                            <span class="btn hint-text-center" data-hint="Clear board">
+                                <button id="empty" class="flat-button">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </span>
+                            <span class="btn hint-text-center" data-hint="Clear piece selection">
+                                <button id="clrSelect" class="flat-button">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </span>
+                            <span class="btn hint-text-center" data-hint="Undo move" style="display:none">
+                                <button id="undo" class="flat-button">
+                                    <i class="fa fa-undo"></i>
+                                </button>
+                            </span>
                         </div>
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
