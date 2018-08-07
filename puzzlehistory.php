@@ -13,5 +13,6 @@ if (mysqli_num_rows($result)) {
         $sql = "INSERT INTO `puzzles_history` (`rating`,`user`,`profile`,`date`) VALUES ('$rating','$user','1','$date')";
         mysqli_query($connection,$sql);
         mysqli_query($connection,"UPDATE `users` SET updated_history='0'");
+        echo "$user $rating $date <br />";
     }
 }

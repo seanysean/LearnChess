@@ -16,6 +16,7 @@ if (mysqli_num_rows($result) > 0) {
             $id = $row['id'];
             $sql = "UPDATE `users` SET online='0' WHERE id=$id";
             mysqli_query($connection,$sql);
+            echo "$id </br >";
         }
     } 
 }
