@@ -40,38 +40,3 @@ body.dark .edit:hover {
 .info:hover .edit {
     opacity: 1;
 }
-.left-area .block {
-    padding: 0;
-    box-shadow: none;
-}
-body.dark .left-area .block {
-    background-color: #383838;
-}
-.left-area .block a {
-    color: #777;
-    display: block;
-    padding: 10px;
-    position: relative;
-    background: #f4f4f4;
-}
-body.dark .left-area .block a {
-    color: #aaa;
-    background: #3d3d3d;
-}
-.left-area .block a:hover,
-.left-area .block a.current {
-    background: #eee;
-}
-body.dark .left-area .block a:hover,
-body.dark .left-area .block a.current {
-    background: #333;
-}
-.left-area .block a.current {
-    opacity: 1;
-}
-.left-area .block a.current::after {
-    font-family: "FontAwesome";
-    content: "\f105";
-    position: absolute;
-    right: 10px;
-}

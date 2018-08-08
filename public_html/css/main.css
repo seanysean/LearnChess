@@ -583,6 +583,30 @@ body.dark .userinfo-box .padding {
 .page .left-area {
     display: inline-block;
 }
+.page .block.sidebar {
+    padding: 0;
+    box-shadow: none;
+    background-color: #f4f4f4;
+}
+.sidebar a {
+    color: #777;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+.sidebar a.current {
+    background: #eee;
+    opacity: 1;
+}
+.sidebar a:hover {
+    background: #eee;
+}
+.sidebar a.current::after {
+    font-family: "FontAwesome";
+    content: "\f105";
+    position: absolute;
+    right: 10px;
+}
 .page .block {
     background: #fff;
     box-shadow: 0 0 5px RGBa(0,0,0,0.1);

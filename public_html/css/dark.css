@@ -90,6 +90,19 @@ body.dark .page .block:not(.transparent) {
 body.dark .page .block .block-title {
     color: #ddd;
 }
+body.dark .sidebar a:hover {
+    background: #333;
+    color: #aaa;
+}
+body.dark .sidebar a.current {
+    background: #333;
+}
+body.dark .sidebar a {
+    color: #aaa;
+}
+body.dark .page .block.sidebar {
+    background-color: #383838;
+}
 body.dark .board-container .credits {
     border-color: #555;
 }

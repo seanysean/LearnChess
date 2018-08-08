@@ -4,39 +4,3 @@ form {
 form .button {
     margin-top: 20px;
 }
-.page .links-section {
-    padding: 0;
-    box-shadow: none;
-    background-color: #f4f4f4;
-}
-body.dark .page .block.links-section {
-    background-color: #383838;
-}
-.links-section a {
-    color: #777;
-    display: block;
-    padding: 10px;
-    position: relative;
-}
-body.dark .links-section a {
-    color: #aaa;
-}
-.links-section a.current {
-    background: #eee;
-    opacity: 1;
-}
-body.dark .links-section a.current {
-    background: #333;
-}
-.links-section a:hover {
-    background: #eee;
-}
-body.dark .links-section a:hover {
-    background: #333;
-}
-.links-section a.current::after {
-    font-family: "FontAwesome";
-    content: "\f105";
-    position: absolute;
-    right: 10px;
-}
