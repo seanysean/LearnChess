@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../../include/functions.php";
+include "sidebar.php";
 if(!$l or !isAllowed('puzzle')) {
     header('Location: /');
 } else if (isset($_POST['review'])) {
@@ -54,7 +55,8 @@ include '../../../templates/puzzle.php';");
         <?php include_once "../../include/topbar.php" ?>
         </div>
         <div class="page">
-            <div class="main full">
+            <div class="left-area"><?php sidebar(1) ?></div>
+            <div class="main right">
                 <div class="block">
                     <h1 class="block-title"><span class="fa fa-dashboard"></span> Review puzzles</h1>
                     <?php if(isset($msg)) {
