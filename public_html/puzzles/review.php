@@ -119,5 +119,6 @@ include '../../../templates/puzzle.php';");
         <?php include_once "../../include/footer.php" ?>
         </footer>
         <script src="../js/global.js"></script>
+        <script src="../js/popup.js"></script>
     </body>
 </html>

@@ -1,5 +1,5 @@
 <?php # This script runs twice a hour.
-include "../include/connect.php";
+include "../../include/connect.php";
 
 # Set users offline that haven't been active for more then 25 mins
 
