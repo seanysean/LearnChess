@@ -152,7 +152,14 @@ function getMoves(m) {
                 showResponse(true,false);
                 const m2 = chess.move(resp.next);
                 cg.move(m2.from,m2.to);
-                if (m2.flags.includes('p')) promote(cg,m2.to,'queen');
+                const piece = {
+                    'Q':'queen',
+                    'R':'rook',
+                    'B':'bishop',
+                    'N':'knight'
+                }
+                let getPiece = resp.next.replace(/[^a-z]/gi,'').split('');
+                if (m2.flags.includes('p')) promote(cg,m2.to,piece[getPiece[getPiece.length - 1]]);
                 cg.set({
                     turnColor: getColor(chess.turn()),
                     movable: {
