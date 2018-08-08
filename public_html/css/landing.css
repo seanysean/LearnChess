@@ -177,6 +177,32 @@ a {
     margin: 0;
     font-family: "Roboto",sans-serif;
     font-weight: 400;
+    color: #ddd;
+}
+.learn {
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    transition: 0.25s ease;
+    position: relative;
+    left: -5px;
+}
+.learn i {
+    color: #fff;
+    opacity: 0.4;
+    transition: 0.25s ease;
+    position: relative;
+    left: -7px;
+    margin-left: 10px;
+}
+.learn:hover {
+    background: #fff;
+    color: #56776a;
+}
+.learn:hover i {
+    opacity: 1;
+    left: 0;
+    color: #56776a;
 }
 .section {
     padding: 20px;

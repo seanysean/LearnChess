@@ -1,0 +1,17 @@
+h1, h2 {
+    border-bottom: 1px solid #ddd;
+    font-weight: 100;
+    padding: 0 0 3px 3px;
+    margin-bottom: 20px;
+}
+p {
+    line-height: 30px;
+}
+.page a {
+    padding: 3px;
+    border-radius: 3px;
+}
+.page a:hover {
+    background: #3893e8;
+    color: #fff;
+}
