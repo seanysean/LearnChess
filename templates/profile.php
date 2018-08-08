@@ -37,7 +37,7 @@ if ($result) {
     $sql = "SELECT `date` FROM `puzzles_history` WHERE user='$accountid' AND `profile`='1'";
     $puzzle_date_result = mysqli_query($connection,$sql);
     $r_count = mysqli_num_rows($puzzle_rating_result);
-    if ($l && !$myaccount) {
+    if ($l && !$myaccount && $active) {
         $views++;
         mysqli_query($connection,"UPDATE `users` SET views='$views' WHERE id='$accountid'");
     }
