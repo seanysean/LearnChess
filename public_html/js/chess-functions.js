@@ -33,6 +33,7 @@ function openPromoteOptions(board,square,cg) {
             <button data-promote="knight"></button>`
         }
         const options = new Popup('custom',info);
+        options.addClass('promotion-popup');
         document.body.removeChild(overlay);
         board.appendChild(overlay);
         overlay.style.position = 'absolute';

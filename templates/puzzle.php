@@ -22,6 +22,7 @@ if ($result) {
         <meta name="description" content="Solve a chess puzzle created by <?php echo $author ?> on LearnChess.<?php if ($trophies > 0) { echo " This puzzle has been given a trophy $moreThan1."; } ?>">
         <link href="/css/chessground.css" type="text/css" rel="stylesheet">
         <link href="/css/puzzles.css" type="text/css" rel="stylesheet">
+        <link href="/css/popup.css" type="text/css" rel="stylesheet">
     </head>
     <body<?php include_once "../../../include/attributes.php" ?>>
         <div class="top">
@@ -86,6 +87,7 @@ if ($result) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
         <script src="/js/chess-functions.js"></script>
         <script src="/js/chessground.min.js"></script>
+        <script src="/js/popup.js"></script>
         <script src="/js/puzzles.js"></script>
         <?php } ?>
     </body>

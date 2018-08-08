@@ -41,4 +41,7 @@ class Popup {
         overlay.style.display = 'none';
         },300);
     }
+    addClass(c) {
+        this.el.classList.add(c);
+    }
 }

@@ -1,4 +1,5 @@
-let res = document.getElementById('response');
+let res = document.getElementById('response'),
+    board = document.getElementById('chessground');
 const chess = new Chess(fen), config = {
     fen: fen,
     coordinates: false,
@@ -15,7 +16,7 @@ const chess = new Chess(fen), config = {
     animation: {
         duration: 300
     }
-}, cg = Chessground(document.getElementById('chessground'),config);
+}, cg = Chessground(board,config);
 cg.set({
     movable: {
         events: {
@@ -122,61 +123,72 @@ function explain(el,vEl) {
     explained = !explained;
 }
 function checkMove(c,cg) {
-    return (o,d) => {
-        res.classList.add('loading');
-        res.innerHTML = '<div class="loader"></div>';
+    return async (o,d) => {
         fullMove++;
         const mObj = { from: o, to: d, promotion: 'q' };
-        const m = chess.move(mObj);
-        if (m.flags.includes('p')) promote(cg,m.to,'queen');
-        const xhr = new XMLHttpRequest(),
-              url = `../getmoves?move=${m.san.replace('+','%2B').replace('#','%23').replace('=','%3D')}&movenum=${fullMove}&puzzle=${pID}`;
-        xhr.responseType = 'json';
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === xhr.DONE) {
-                const resp = xhr.response;
-                if (resp.correct && !resp.ended) {
-                    showResponse(true,false);
-                    const m2 = chess.move(resp.next);
-                    cg.move(m2.from,m2.to);
-                    if (m2.flags.includes('p')) promote(cg,m2.to,'queen');
-                    cg.set({
-                        turnColor: getColor(chess.turn()),
-                        movable: {
-                            color: getColor(chess.turn()),
-                            dests: toDests(chess)
-                        }
-                    });
-                    cg.playPremove();
-                } else if (resp.ended) {
-                    if (resp.correct) {
-                        showResponse(true,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff,resp.explanation);
-                        cg.stop();
-                    } else {
-                        showResponse(false,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff,resp.explanation);
-                        setTimeout(()=>{
-                            chess.undo();
-                            console.log(chess.ascii());
-                            cg.set({
-                               fen: chess.fen(),
-                            });
-                            let rightMove = chess.move(resp.right_move);
-                            console.log(rightMove);
-                            const shape = [{
-                                orig: rightMove.from,
-                                dest: rightMove.to,
-                                brush: 'green'
-                            }];
-                            cg.setShapes(shape);
-                            cg.stop();
-                        }, 500);
+        let m = chess.move(mObj);
+        if (m.flags.includes('p')) {
+            const promote = await openPromoteOptions(board,m.to,cg);
+            if (promote) {
+                chess.undo();
+                m = chess.move({ from: o, to: d, promotion: promote });
+                getMoves(m);
+            }
+        } else {
+            getMoves(m);
+        }
+    }
+}
+function getMoves(m) {
+    res.classList.add('loading');
+    res.innerHTML = '<div class="loader"></div>';
+    const xhr = new XMLHttpRequest(),
+          url = `../getmoves?move=${m.san.replace('+','%2B').replace('#','%23').replace('=','%3D')}&movenum=${fullMove}&puzzle=${pID}`;
+    xhr.responseType = 'json';
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === xhr.DONE) {
+            const resp = xhr.response;
+            if (resp.correct && !resp.ended) {
+                showResponse(true,false);
+                const m2 = chess.move(resp.next);
+                cg.move(m2.from,m2.to);
+                if (m2.flags.includes('p')) promote(cg,m2.to,'queen');
+                cg.set({
+                    turnColor: getColor(chess.turn()),
+                    movable: {
+                        color: getColor(chess.turn()),
+                        dests: toDests(chess)
                     }
+                });
+                cg.playPremove();
+            } else if (resp.ended) {
+                if (resp.correct) {
+                    showResponse(true,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff,resp.explanation);
+                    cg.stop();
+                } else {
+                    showResponse(false,true,[resp.ratings.puzzle,resp.ratings.user],resp.rating_diff,resp.explanation);
+                    setTimeout(()=>{
+                        chess.undo();
+                        console.log(chess.ascii());
+                        cg.set({
+                           fen: chess.fen(),
+                        });
+                        let rightMove = chess.move(resp.right_move);
+                        console.log(rightMove);
+                        const shape = [{
+                            orig: rightMove.from,
+                            dest: rightMove.to,
+                            brush: 'green'
+                        }];
+                        cg.setShapes(shape);
+                        cg.stop();
+                    }, 500);
                 }
             }
         }
-        xhr.open('GET',url);
-        xhr.send();
     }
+    xhr.open('GET',url);
+    xhr.send();
 }
 function updateTrophies() {
     if (!gaveTrophy) {
