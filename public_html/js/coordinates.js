@@ -17,7 +17,8 @@ const config = {
     events: {
         select: sel
     }
-}, cg = Chessground(document.getElementById('board'),config);
+};
+Chessground(document.getElementById('board'),config);
 let currentSquare = '',
     score = 0,
     time = 0;

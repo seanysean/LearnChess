@@ -94,7 +94,7 @@ body.dark .sidebar a:hover {
     background: #333;
     color: #aaa;
 }
-body.dark .sidebar a.current {
+body.dark .sidebar .current {
     background: #333;
 }
 body.dark .sidebar a {

@@ -9,7 +9,7 @@ function loadPosition(el,fen) {
             enabled: false
         }
     };
-    const cg = Chessground(el,config);
+    Chessground(el,config);
 }
 const puzzlePreviews = document.querySelectorAll('[data-fen]');
 puzzlePreviews.forEach(e=>{

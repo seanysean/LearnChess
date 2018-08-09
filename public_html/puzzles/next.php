@@ -37,8 +37,6 @@ if ($l) {
                     } else {
                         echo "This is a database error... Try again and hope for the best.<br />";
                     }
-                } else {
-                    //echo "No $candidate<br>";
                 }
             }
         }
