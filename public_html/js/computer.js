@@ -2,6 +2,41 @@ const engine = STOCKFISH();
 const board = document.getElementById('board');
 const movesHTML = document.getElementById('moves');
 const chess = new Chess();
+let color = '';
+const info = {
+    yes: 'white',
+    no: 'black',
+    title: 'Play as'
+}
+const ev = {
+    yes() {
+        color = 'white';
+        pickColor.close();
+        cg.set({
+            turnColor: 'white',
+            orientation: 'white',
+        });
+        if (chess.turn() === 'b') {
+            engine.postMessage('position fen ' + chess.fen());
+            engine.postMessage('go movetime 1');
+        }
+    },
+    no() {
+        color = 'black';
+        pickColor.close();
+        cg.set({
+            turnColor: 'black',
+            orientation: 'black',
+        });
+        if (chess.turn() === 'w') {
+            engine.postMessage('position fen ' + chess.fen());
+            engine.postMessage('go movetime 1');
+        }
+    },
+    cls() {
+        ev.yes();
+    }
+}
 const config = {
     coordinates: false,
     turnColor: getColor(chess.turn()),
@@ -20,6 +55,8 @@ const config = {
     }
 };
 const cg = Chessground(board,config);
+const pickColor = new Popup('confirm',info,ev);
+pickColor.open();
 cg.set({
     movable: {
         events: {

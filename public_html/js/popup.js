@@ -20,7 +20,11 @@ class Popup {
             no.innerHTML = info.no;
             yes.addEventListener('click',ev.yes);
             no.addEventListener('click',ev.no);
-            close.addEventListener('click',ev.no);
+            if (!ev.cls) {
+                close.addEventListener('click',ev.no);
+            } else {
+                close.addEventListener('click',ev.cls); 
+            }
             this.el.appendChild(yes);
             this.el.appendChild(no);
             this.el.appendChild(close);
