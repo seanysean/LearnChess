@@ -9,6 +9,21 @@ body, html {
 body {
     font-family: sans-serif;
 }
+
+@font-face {
+	font-family: "learnchess";
+	src: url("/fonts/iconfont.eot?9712567c465fb980760788318e570c0b?#iefix") format("embedded-opentype"),
+    url("/fonts/iconfont.woff2?9712567c465fb980760788318e570c0b") format("woff2"),
+    url("/fonts/iconfont.woff?9712567c465fb980760788318e570c0b") format("woff");
+}
+.learnchess-logo:before {
+    content: "\f101";
+    font-family: learnchess !important;
+	font-style: normal;
+	font-weight: normal !important;
+	vertical-align: top;
+}
+
 a {
     text-decoration: none;
 }

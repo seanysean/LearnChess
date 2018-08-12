@@ -16,7 +16,7 @@ if (!$l) {
     </head>
     <body>
         <div class="topbar" id="topbar">
-            <a class="site-name" href="/">LearnChess<span class="extension">.tk</span></a>
+            <a class="site-name" href="/"><span class="learnchess-logo"></span> LearnChess<span class="extension">.tk</span></a>
             <div class="right">
                 <a href="login"><span>Login</span></a>
                 <a href="register"><span>Register</span></a>
@@ -75,7 +75,7 @@ if (!$l) {
             </div>
         </div>
         <footer>
-            <span class="site-name">LearnChess <span class="year">2018</span></span>
+            <span class="site-name"><span class="learnchess-logo"></span> LearnChess <span class="year">2018</span></span>
             <div class="right">
                 <a href="about">About</a>
                 <a href="contact">Contact</a>

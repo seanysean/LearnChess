@@ -10,7 +10,7 @@ if (isAllowed('puzzle')) {
 ?>
 <input style="display:none" type="hidden" id="js_info" value='{"loggedin":<?php echo $l === true ? 'true':'false' ?>,"username":<?php if($l) { echo '"'.$_SESSION['username'].'"'; } else { echo 'null'; } ?>}' />
 <div class="top-above">
-    <a class="learnchess-link" href="/">LearnChess<span class="extension"><?php if ($devMode) { echo ' dev'; } else { echo '.tk'; } ?></span></a>
+    <a class="learnchess-link" href="/"><span class="learnchess-logo"></span> LearnChess<span class="extension"><?php if ($devMode) { echo ' dev'; } else { echo '.tk'; } ?></span></a>
     <?php if($l) { ?>
         <span class="right"><a class="profile-link" href="/member/<?php echo strtolower($_SESSION['username']); ?>"><?php echo $_SESSION['username']; ?></a></span>
     <?php } else { ?>

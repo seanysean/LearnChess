@@ -15,3 +15,7 @@ You can submit puzzles and get a rating by solving. All puzzles are made by peop
 ### [Play with the computer](https://learnchess.tk/computer)
 
 Play against the JavaScript version of Stockfish 8. Features like takebacks and different levels are coming soon.
+
+# Credits
+
+See [the thanks page](https://learnchess.tk/thanks).
