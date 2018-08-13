@@ -50,7 +50,7 @@ body.dark .popup .popup-text {
     font-family: "Roboto";
     font-weight: 100;
     color: #fff;
-    background-color: #c7c7c7;
+    background-color: #aaa;
     font-size: 15px;
     cursor: pointer;
     padding: 10px;
@@ -73,6 +73,9 @@ body.dark .popup button {
 body.dark .popup button:hover,
 body.dark .popup button:focus {
     background-color: #555;
+}
+.popup .no-button {
+    opacity: 0.7;
 }
 .popup .close {
     position: absolute;

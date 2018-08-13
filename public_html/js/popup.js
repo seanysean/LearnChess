@@ -28,6 +28,20 @@ class Popup {
             this.el.appendChild(yes);
             this.el.appendChild(no);
             this.el.appendChild(close);
+            document.body.addEventListener('keyup',e=>{
+                if (e.key === 'Escape') {
+                    switch (!ev.cls) {
+                        case true:
+                            ev.no();
+                            break;
+                        default:
+                            ev.cls();
+                            break;
+                    }
+                } else if (e.key === 'Enter') {
+                    ev.yes();
+                }
+            });
         } else if (type === 'custom') {
             this.el.innerHTML = info.html;
         }
