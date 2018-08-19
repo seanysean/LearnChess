@@ -12,6 +12,9 @@ include "../include/functions.php";
         .github {
             color: #545454;
         }
+        body.dark .github {
+            color: #999;
+        }
         .github:hover {
             background: #545454 !important;
         }

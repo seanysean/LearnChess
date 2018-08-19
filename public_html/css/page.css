@@ -4,6 +4,10 @@ h1, h2 {
     padding: 0 0 3px 3px;
     margin-bottom: 20px;
 }
+body.dark h1,
+body.dark h2 {
+    border-color: #666;
+}
 p {
     line-height: 30px;
 }
@@ -11,7 +15,8 @@ p {
     padding: 3px;
     border-radius: 3px;
 }
-.page a:hover {
+.page a:hover,
+body.dark .page a:hover {
     background: #3893e8;
     color: #fff;
 }
