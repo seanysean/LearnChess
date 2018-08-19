@@ -289,7 +289,7 @@ body.dark .button.nocolor::after {
 }
 .userinfo-box .loading-container {
     padding: 10px;
-    display: relative;
+    position: relative;
     height: 40px;
 }
 .userinfo-box .padding {
