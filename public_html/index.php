@@ -25,7 +25,7 @@ if (!$l) {
         <div class="main">
             <div class="content">
                 <div class="left">
-                    <img class="main-image" src="https://lichess1.org/assets/images/board/svg/brown.svg" alt="Get better at chess online for free at LearnChess" />
+                    <img class="main-image" src="images/logo.svg" alt="Get better at chess online for free at LearnChess" />
                 </div>
                 <div class="right">
                     <h1>Improve your chess skills for free</h1>
@@ -39,7 +39,7 @@ if (!$l) {
         <div class="section puzzles">
             <div class="content">
                 <div class="left">
-                    <h1>Puzzles</h1>
+                    <h1><i class="fa fa-puzzle-piece"></i> Puzzles</h1>
                     <p>Solving chess tactics is a known way to get better at chess. Here at LearnChess you can do it for free. All puzzles are hand-picked. <a href="/puzzles/next">Try one</a></p>
                 </div>
                 <div class="right">
@@ -50,7 +50,7 @@ if (!$l) {
         <div class="section coordinates">
             <div class="content">
                 <div class="right">
-                    <h1>Coordinates</h1>
+                    <h1><i class="fa fa-bullseye"></i> Coordinates</h1>
                     <p>Train your coordinates finding skills so that you will be more efficient reading chess books. <a href="/coordinates">Try now</a></p>
                 </div>
                 <div class="left">
@@ -64,7 +64,7 @@ if (!$l) {
                     <div class="fa fa-check-square icon"></div>
                 </div>
                 <div class="left">
-                    <h1>Pricing</h1>
+                    <h1><i class="fa fa-check-square"></i> Pricing</h1>
                     <p>Everything is absolutely free. There are no ads and no premium accounts.</p>
                     <div class="username-container">
                         <input id="username" type="text" required>

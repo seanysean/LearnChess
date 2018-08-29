@@ -161,7 +161,6 @@ a {
 .section .content {
     height: 70%;
     width: 50%;
-    overflow: hidden;
     margin: 50px auto;
     position: relative;
     z-index: 1;
@@ -170,13 +169,19 @@ a {
 .main .content .right,
 .section .content .left,
 .section .content .right {
-    width: 45%;
     display: inline-block;
     height: 100%;
 }
+.main .content .left,
+.main .content .right {
+    width: 45%;
+}
+.section .content .left,
+.section .content .right {
+    width: 50%;
+}
 .main .content .left .main-image {
     width: 100%;
-    opacity: 0.5;
     border-radius: 3px;
 }
 .main .content .right,
@@ -186,6 +191,9 @@ a {
 .main .content .right {
     color: #ccc;
     font-family: "Roboto",sans-serif;
+}
+.main .content .right p {
+    margin: 10px 0;
 }
 .main .content .right h1 {
     font-size: 50px;
@@ -226,14 +234,25 @@ a {
     border-right: 1px solid #ccc;
     padding-right: 20px;
 }
+.section .content .right {
+    padding-left: 40px;
+}
 .section .content .icon {
     font-size: 200px;
     color: #aaa;
     text-shadow: 0 2px 5px RGBa(0,0,0,0.3);
 }
+.section .content .left .icon {
+    text-align: right;
+    display: block;
+    padding-right: 40px;
+}
 .section .content h1 {
     font-weight: 100;
     font-size: 35px;
+}
+.section .content h1 i {
+    display: none;
 }
 .section .content a {
     transition: 0.1s ease;
@@ -252,10 +271,12 @@ a {
 .section.puzzles .icon,
 .section.coordinates .icon {
     text-shadow: 0 2px 5px RGBa(0,0,0,0.6);
+    position: relative;
+    top: -20px;
 }
 .section.coordinates {
-    background: #aaa;
-    color: #eee;
+    background: #999;
+    color: #fff;
 }
 .section.coordinates a {
     color: #fff;
@@ -385,14 +406,17 @@ footer .right a:hover {
         width: 90%;
     }
 }
-@media(max-width: 920px) {
-    .main .content {
-        height: auto;
+@media (max-width: 850px) {
+    .main .content .right h1 {
+        font-size: 40px;
     }
+}
+@media(max-width: 800px) {
     .main .content .left {
         display: none;
     }
-    .main .content .right {
+    .main .content .right,
+    .section .content .right {
         display: block;
         width: 60%;
         float: none;
@@ -401,40 +425,64 @@ footer .right a:hover {
     .section .content .right {
         display: block;
         width: 100%;
-        margin: 10px auto;
+        margin: 40px auto;
+        margin-bottom: 0;
         padding: 20px;
+        text-align: center;
     }
     .section .content .left {
         border: none;
         padding-left: none;
-        border-bottom: 1px solid #aaa;
+        margin-top: 0;
+    }
+    .section.coordinates .content .left {
+        border-top: 1px solid #ccc;
+    }
+    .section.coordinates .content .left .icon {
+        margin-top: 40px;
+        padding-right: 0;
+    }
+    .section.pricing .content .left {
+        border-top: 1px solid #aaa;
     }
     .section.pricing .username-container {
         width: 400px;
+        margin: auto;
     }
-    .section.pricing .content .left,
-    .section.puzzles .content .right {
+    .section .content .left,
+    .section .content .right {
         text-align: center;
     }
     .section.puzzles .content .left {
-        border-bottom: 1px solid #aaa;
+        border-bottom: 1px solid #ccc;
     }
-}
-@media (max-width: 850px) {
-    .main .content .right h1 {
-        font-size: 40px;
+    .icon {
+        float: none;
+        text-align: center !important;
+    }
+    .section .content {
+        margin: 0 auto;
+    }
+    .section a {
+        text-decoration: underline;
+    }
+    #start {
+        text-decoration: none;
+    }
+    .learn i {
+        opacity: 0.8;
+    }
+    .main::after {
+        background: RGBa(0,0,0,0.3);
     }
 }
 @media (max-width: 650px) {
-    .section .content {
-        margin: 30px;
-    }
     .section .content .icon {
         font-size: 100px;
     }
     .section.puzzles .content .left,
-    .section.pricing .content .right {
-        padding: 10px;
+    .section.coordinates .content .right,
+    .section.pricing .content .left {
         margin: 0;
     }
 }
@@ -454,6 +502,22 @@ footer .right a:hover {
         padding: 7px;
         margin: 0;
         top: -2px
+    }
+    .section .content h1 {
+        margin: 0;
+    }
+    .section.puzzles .content .right,
+    .section.coordinates .content .left,
+    .section.pricing .content .right {
+        display: none;
+        border: none;
+    }
+    .section.puzzles .content .left,
+    .section.pricing .content .left {
+        border: none;
+    }
+    .section .content h1 i {
+        display: inline;
     }
 }
 @media (max-width: 435px) {
