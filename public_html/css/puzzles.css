@@ -11,9 +11,18 @@
 }
 .puzzles-to-review tbody tr td {
     padding: 5px;
+    word-break: break-word;
+}
+.puzzles-to-review .edit-explanation {
+    float: right;
+    cursor: pointer;
+}
+.puzzles-to-review .edit-explanation:hover {
+    opacity: 0.8;
 }
 .puzzles-to-review form {
     display: inline-block;
+    margin-top: 0;
 }
 .puzzles-to-review form .button:hover {
     top: 0;

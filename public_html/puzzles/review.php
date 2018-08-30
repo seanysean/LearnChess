@@ -49,6 +49,8 @@ include '../../../templates/puzzle.php';");
         <title>Review puzzles • LearnChess</title>
         <?php include_once "../../include/head.php" ?>
         <link href="../css/puzzles.css" rel="stylesheet" type="text/css">
+        <link href="../css/material.css" type="text/css" rel="stylesheet">
+        <link href="../css/popup.css" type="text/css" rel="stylesheet">
     <head>
     <body<?php include_once "../../include/attributes.php" ?>>
         <div class="top">
@@ -90,14 +92,14 @@ include '../../../templates/puzzle.php';");
                                 <td><?php echo createUserLink($authorID) ?></td>
                                 <td><span data-hint="<?php echo $fen ?>"><a class="fen" target="_blank" href="https://lichess.org/editor/<?php echo $fen ?>"><?php echo 'View position on lichess' ?> <i class="fa fa-external-link"></i></a></span></td>
                                 <td><span class="pgn"><?php echo $pgn ?></span></td>
-                                <td><?php if ($explain) { echo $explain; } else { echo '<span class="no-explain"><i class="fa fa-close"></i> No explanation given</span>'; } ?></td>
+                                <td><span data-id="<?php echo $id ?>"><?php if ($explain) { echo $explain; } else { echo '<span class="no-explain"><i class="fa fa-close"></i> No explanation given</span>'; } ?></span><span class="fa fa-pencil edit-explanation" data-puzzle="<?php echo $id ?>" data-explanation="<?php if ($explain) { echo $explain; } ?>"></span></td>
                                 <td><span class="choice">
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                                         <input type="hidden" value="accept <?php echo $id ?>" name="review">
                                         <input type="hidden" value="<?php echo $authorID ?>" name="authorID">
                                         <input type="hidden" value="<?php echo $fen ?>" name="fen">
                                         <input type="hidden" value="<?php echo $pgn ?>" name="pgn">
-                                        <input type="hidden" value="<?php echo $explain ?>" name="explain">
+                                        <input type="hidden" value="<?php echo $explain ?>" name="explain" data-id="<?php echo $id ?>">
                                         <span data-hint="Approve puzzle"><button type="submit" class="flat-button"><span><i class="fa fa-check"></i></span></button></span>
                                     </form>
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -117,10 +119,9 @@ include '../../../templates/puzzle.php';");
                 </div>
             </div>
         </div>
-        <footer>
-        <?php include_once "../../include/footer.php" ?>
-        </footer>
+        <footer><?php include_once "../../include/footer.php" ?></footer>
         <script src="../js/global.js"></script>
         <script src="../js/popup.js"></script>
+        <script src="../js/review-puzzles.js"></script>
     </body>
 </html>
