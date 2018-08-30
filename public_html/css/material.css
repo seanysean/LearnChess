@@ -2,24 +2,24 @@ form {
     margin-top: 50px;
     display: block;
 }
-form .input-container {
+.input-container {
     min-height: 50px;
     margin-top: 30px;
     display: block;
     position: relative;
 }
-form .input-line {
+.input-line {
     display: flex;
     justify-content: space-between;
 }
-form .input-container.half {
+.input-container.half {
     width: 47%;
 }
-form .input-container.third {
+.input-container.third {
     width: 32%;
 }
-form .input-container input:not([type="checkbox"]),
-form .input-container textarea {
+.input-container input:not([type="checkbox"]),
+.input-container textarea {
     display: block;
     width: 100%;
     padding: 5px 0;
@@ -30,40 +30,40 @@ form .input-container textarea {
     background: transparent;
     font-family: sans-serif;
 }
-form .input-container input:not([type="checkbox"]):focus,
-form .input-container textarea:focus {
+.input-container input:not([type="checkbox"]):focus,
+.input-container textarea:focus {
     outline: none;
     border-color: #eee;
 }
-body.dark form .input-container input:not([type="checkbox"]),
-body.dark form .input-container textarea {
+body.dark .input-container input:not([type="checkbox"]),
+body.dark .input-container textarea {
     border-color: #696969;
     color: #aaa;
 }
-form .input-container textarea {
+.input-container textarea {
     resize: vertical;
 }
-form .input-container textarea::-webkit-scrollbar {
+.input-container textarea::-webkit-scrollbar {
     background: #fff;
     width: 10px;
 }
-form .input-container textarea::-webkit-scrollbar-thumb {
+.input-container textarea::-webkit-scrollbar-thumb {
     background: #f7f7f7;
 }
-form .input-container textarea::-webkit-scrollbar-thumb:hover {
+.input-container textarea::-webkit-scrollbar-thumb:hover {
     background: #eee;
 }
-form .input-container textarea::-webkit-scrollbar-thumb:active {
+.input-container textarea::-webkit-scrollbar-thumb:active {
     background: #d7d7d7;
 }
-form .input-container label {
+.input-container label {
     position: absolute;
     top: -20px;
     color: #aaa;
     transition: 0.25s linear;
     font-weight: 100;
 }
-form .input-container .line {
+.input-container .line {
     display: block;
     height: 2px;
     background: #58a3bf;
@@ -73,34 +73,34 @@ form .input-container .line {
     margin: auto;
     width: 0;
 }
-body.dark form .input-container .line {
+body.dark .input-container .line {
     background: #3893e8;
 }
-form .input-container input:not([type="checkbox"]):focus + label,
-form .input-container textarea:focus + label {
+.input-container input:not([type="checkbox"]):focus + label,
+.input-container textarea:focus + label {
     color: #58a3bf;
 }
-body.dark form .input-container input:not([type="checkbox"]):focus + label,
-body.dark form .input-container textarea:focus + label {
+body.dark .input-container input:not([type="checkbox"]):focus + label,
+body.dark .input-container textarea:focus + label {
     color: #3893e8;
 }
-form .input-container input:not([type="checkbox"]):focus ~ .line,
-form .input-container textarea:focus ~ .line {
+.input-container input:not([type="checkbox"]):focus ~ .line,
+.input-container textarea:focus ~ .line {
     width: 100%;
 }
-form .checkbox-container {
+.checkbox-container {
     padding: 20px 0;
 }
-form .checkbox-container input[type="checkbox"] {
+.checkbox-container input[type="checkbox"] {
     position: absolute;
     left: -99999px;
 }
-form .checkbox-container input[type="checkbox"] ~ label {
+.checkbox-container input[type="checkbox"] ~ label {
     display: inline-block;
     position: relative;
     vertical-align: middle;
 }
-form .checkbox-container .custom-checkbox {
+.checkbox-container .custom-checkbox {
     width: 30px;
     height: 10px;
     background: #eee;
@@ -112,11 +112,11 @@ form .checkbox-container .custom-checkbox {
     margin-left: 5px;
     transition: 0.25s ease;
 }
-body.dark form .checkbox-container .custom-checkbox {
+body.dark .checkbox-container .custom-checkbox {
     background: #686868;
     box-shadow: inset 0 1px 1px #333;
 }
-form .checkbox-container .custom-checkbox::after {
+.checkbox-container .custom-checkbox::after {
     content: "";
     height: 20px;
     width: 20px;
@@ -130,68 +130,68 @@ form .checkbox-container .custom-checkbox::after {
     transition: 0.25s ease;
     border: 1px solid #b3b3b3;
 }
-body.dark form .checkbox-container .custom-checkbox::after {
+body.dark .checkbox-container .custom-checkbox::after {
     background: #555;
     border-color: #777;
     box-shadow: 0 0 5px #333;
 }
-form .checkbox-container .custom-checkbox:hover::after {
+.checkbox-container .custom-checkbox:hover::after {
     background: #ccc;
 }
-body.dark form .checkbox-container .custom-checkbox:hover::after {
+body.dark .checkbox-container .custom-checkbox:hover::after {
     background: #5d5d5d;
 }
-form .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox {
+.checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox {
     background: #89bacc;
 }
-body.dark form .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox {
+body.dark .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox {
     background: #77b1e6;
 }
-form .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox::after {
+.checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox::after {
     left: 15px;
     background: #4e8794;
     box-shadow: 0 0 10px #58e7f9;
     border-color: #005e96;
 }
-body.dark form .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox::after {
+body.dark .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox::after {
     background: #3893e8;
     border-color: #91dbf7;
 }
-form .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox:hover::after {
+.checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox:hover::after {
     background: #58a3bf;
     border-color: #91dbf7;
 }
-body.dark form .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox:hover::after {
+body.dark .checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox:hover::after {
     background: #107de2;
     border-color: #80b9ef;
     box-shadow: 0 0 5px #58e7f9;
 }
-form .checkbox-container .checkbox-message {
+.checkbox-container .checkbox-message {
     font-weight: 100;
     color: #333;
 }
-body.dark form .checkbox-container .checkbox-message {
+body.dark .checkbox-container .checkbox-message {
     color: #ddd;
 }
-form .input-response {
+.input-response {
     position: relative;
     top: -10px;
     font-weight: 400;
 }
-form .input-response:first-letter {
+.input-response:first-letter {
     text-transform: uppercase;
 }
-form .input-response.valid {
+.input-response.valid {
     color: #4caf50;
 }
-form .input-response.valid::before {
+.input-response.valid::before {
     font-family: "FontAwesome";
     content: "\f00c";
 }
-form .input-response.invalid {
+.input-response.invalid {
     color: #e84438;
 }
-form .input-response.invalid::before {
+.input-response.invalid::before {
     font-family: "FontAwesome";
     content: "\f00d";
 }

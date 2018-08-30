@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/css/main.css" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
-
+    <link href="css/material.css" type="text/css" rel="stylesheet">
     <link href="css/popup.css" type="text/css" rel="stylesheet">
     <title>Test popup.js</title>
     <style>
@@ -43,7 +43,7 @@
                 myPopup.close();
             }
         };
-        const myPopup = new Popup('confirm',info,events);
+        const myPopup = new Popup('prompt',info,events);
         function openP() {
             myPopup.open();
         }

@@ -5,14 +5,31 @@ class Popup {
     constructor(type,info,ev) {
         this.el = document.createElement('div');
         this.el.classList = 'popup';
-        if (type === 'confirm') {
-            this.el.innerHTML = `<p class="popup-title">${info.title}</p>`;
+        if (type !== 'custom') {
+            const popupTitle = document.createElement('p');
+            popupTitle.classList = 'popup-title';
+            popupTitle.innerHTML = info.title;
+            this.el.appendChild(popupTitle);
             if (info.text) {
-                this.el.innerHTML += `<p class="popup-text">${info.text}</p>`;
+                const popupText = document.createElement('p');
+                popupText.classList = 'popup-text';
+                popupText.innerHTML = info.text;
+                this.el.appendChild(popupText);
             }
             const yes = document.createElement('button'),
                   no = document.createElement('button'),
                   close = document.createElement('span');
+            if (type === 'prompt') {
+                const inputContainer = document.createElement('div');
+                this.input = document.createElement('input');
+                inputContainer.classList = 'input-container';
+                inputContainer.appendChild(this.input);
+                const line = document.createElement('div');
+                line.classList = 'line';
+                inputContainer.appendChild(line);
+                this.el.appendChild(inputContainer);
+                this.input.value = info.value;
+            }
             yes.classList = 'yes-button';
             no.classList = 'no-button';
             close.classList = 'close fa fa-times';
@@ -42,21 +59,26 @@ class Popup {
                     ev.yes();
                 }
             });
-        } else if (type === 'custom') {
+        } else {
             this.el.innerHTML = info.html;
         }
         overlay.appendChild(this.el);
     }
     open() {
         overlay.style.display = 'block';
+        this.el.style.display = 'block';
         setTimeout(()=>{
-        overlay.style.opacity = 1;
+            overlay.style.opacity = 1;
+            this.el.style.transform = 'translate(-50%,-50%) scale(1)';
         },1);
+        this.input.focus();
     }
     close() {
         overlay.style.opacity = 0;
+        this.el.style.transform = 'translate(-50%,-50%) scale(0.8)';
         setTimeout(()=>{
-        overlay.style.display = 'none';
+            overlay.style.display = 'none';
+            this.el.style.display = 'none';
         },300);
     }
     addClass(c) {

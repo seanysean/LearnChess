@@ -14,16 +14,21 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%) scale(0.8);
     background: #fbfbfb;
     padding: 15px;
     border-radius: 3px;
     box-shadow: 0 0 10px  RGBa(0,0,0,0.4),
                 5px 5px 100px 5px RGBa(0,0,0,0.2);
     max-width: 400px;
+    display: none;
+    transition: 0.1s ease;
 }
 body.dark .popup {
     background: #444;
+}
+.popup .input-container {
+    margin-top: 0;
 }
 .popup .popup-title {
     margin: 3px;
