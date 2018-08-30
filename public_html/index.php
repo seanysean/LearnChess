@@ -66,22 +66,29 @@ if (!$l) {
                 <div class="left">
                     <h1><i class="fa fa-check-square"></i> Pricing</h1>
                     <p>Everything is absolutely free. There are no ads and no premium accounts.</p>
-                    <div class="username-container">
-                        <input id="username" type="text" required>
-                        <label for="username">Enter username</label>
-                        <a id="start" href="/register">Get started</a>
-                    </div>
                 </div>
             </div>
         </div>
         <footer>
             <span class="site-name"><span class="learnchess-logo"></span> LearnChess <span class="year">2018</span></span>
-            <div class="right">
-                <a href="about">About</a>
-                <a href="contact">Contact</a>
-                <a href="/puzzles" data-hint="Puzzles"><i class="fa fa-puzzle-piece"></i></a>
-                <a href="/coordinates" data-hint="Coordinates trainer"><i class="fa fa-bullseye"></i></a>
-                <a href="/computer" data-hint="Play computer"><i class="fa fa-tv"></i></a>
+            <div class="links">
+                <ul>
+                    <p class="footer-section-title">LearnChess</p>
+                    <li><a href="about">About</a></li>
+                    <li><a href="contact">Contact</a></li>
+                    <li><a href="thanks">Thanks</a></li>
+                </ul>
+                <ul>
+                    <p class="footer-section-title">Features</p>
+                    <li><a href="/puzzles">Chess puzzles</a></li>
+                    <li><a href="/coordinates">Coordinates trainer</a></li>
+                    <li><a href="/computer">Play computer</a></li>
+                </ul>
+            </div>
+            <div class="username-container">
+                <input id="username" type="text" required>
+                <label for="username">Enter username</label>
+                <a id="start" href="/register">Get started</a>
             </div>
         </footer>
         <script src="js/landing.js"></script>

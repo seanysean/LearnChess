@@ -19,9 +19,9 @@ body {
 .learnchess-logo:before {
     content: "\f101";
     font-family: learnchess !important;
-	font-style: normal;
-	font-weight: normal !important;
-	vertical-align: top;
+    font-style: normal;
+    font-weight: normal !important;
+    vertical-align: top;
 }
 
 a {
@@ -298,21 +298,65 @@ a {
 .section.pricing .right .icon {
     color: #ddd;
 }
-.section.pricing .username-container {
-    font-size: 0;
+footer {
+    padding: 20px;
+    background: linear-gradient(45deg,#555 50%,#777 50%);
+    color: #c1c1c1;
     position: relative;
+}
+footer .site-name {
+    font-size: 20px;
+    background: RGBa(0,0,0,0.1);
+    padding: 5px;
+    vertical-align: top;
+    margin-top: 34px;
+}
+footer .site-name .year {
+    color: #9f9f9f;
+}
+footer .links {
+    top: 0;
+}
+footer .links a {
+    color: #bbb;
+    line-height: 35px;
+}
+footer .links a:hover {
+    color: #ccc;
+}
+footer ul,
+footer .links,
+footer .site-name {
+    display: inline-block;
+}
+footer ul li {
+    list-style: none;
+}
+footer ul li::before {
+    display: none;
+}
+footer ul .footer-section-title {
+    letter-spacing: 2px;
+    padding: 3px;
+    color: #ddd;
+}
+.username-container {
+    font-size: 0;
+    position: absolute;
     box-shadow: 0 0 10px RGBa(0,0,0,0.5);
     border-radius: 5px;
     overflow: hidden;
-    width: 95%;
-    top: 0;
+    width: 30%;
+    top: 150px;
     transition: 0.25s ease;
+    right: 50px;
+    margin-top: 0;
 }
-.section.pricing .username-container:hover {
-    top: -2px;
-    box-shadow: 0 0 30px RGBa(0,0,0,0.5);
+.username-container:hover {
+    margin-top: -2px;
+    box-shadow: 0 0 15px RGBa(0,0,0,0.5);
 }
-.section.pricing .username-container #username {
+.username-container #username {
     background: transparent;
     border: 3px solid #aaa;
     outline-color: #aaa;
@@ -323,10 +367,10 @@ a {
     width: 65%;
     height: 45px;
 }
-.section.pricing .username-container #username:focus {
+.username-container #username:focus {
     outline: none;
 }
-.section.pricing .username-container label {
+.username-container label {
     font-size: 15px;
     position: absolute;
     left: 12px;
@@ -334,7 +378,7 @@ a {
     pointer-events: none;
     transition: 0.1s linear;
 }
-.section.pricing .username-container #start {
+.username-container #start {
     color: #fff;
     background: #aaa;
     padding: 0 10px;
@@ -346,41 +390,16 @@ a {
     height: 45px;
     line-height: 42px;
     vertical-align: top;
+    text-align: center;
 }
-.section.pricing .username-container #start:hover {
+.username-container #start:hover {
     background: transparent;
     border-color: transparent;
     text-decoration: none;
 }
-.section.pricing .username-container #username:focus + label,
-.section.pricing .username-container #username:valid + label {
+.username-container #username:focus + label,
+.username-container #username:valid + label {
     opacity: 0;
-}
-footer {
-    padding: 20px;
-    background: #555;
-    color: #aaa;
-}
-footer .site-name {
-    font-size: 20px;
-    background: RGBa(0,0,0,0.1);
-    padding: 5px;
-}
-footer .site-name .year {
-    color: #9f9f9f;
-}
-footer .right {
-    float: right;
-}
-footer .right a {
-    color: #bbb;
-    line-height: 31px;
-}
-footer .right a:not(:first-child) {
-    margin: 0 5px;
-}
-footer .right a:hover {
-    color: #eee;
 }
 @media(max-width: 1605px) {
     .main .content,
