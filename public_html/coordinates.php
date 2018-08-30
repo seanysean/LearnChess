@@ -1,19 +1,41 @@
 <?php
 session_start();
-include "../../include/functions.php";
+include "../include/functions.php";
+if(isset($_POST['score']) && $l) {
+    header('Content-Type','application/json');
+    $score = secure($_POST['score']) + 0;
+    $u = $_SESSION['userid'];
+    $sql = "UPDATE `users` SET coordinates='$score' WHERE id='$u'";
+    $result = mysqli_query($connection,$sql);
+    if ($result) {
+        echo '{"success":true}';
+    } else {
+        echo '{"success":false}';
+    }
+}
+else if(isset($_GET['old']) && $l) {
+    header('Content-Type','application/json');
+    $u = $_SESSION['userid'];
+    $sql = "SELECT coordinates FROM `users` WHERE id='$u'";
+    $result = mysqli_query($connection,$sql);
+    if ($result) {
+        $score = $result->fetch_assoc()['coordinates'];
+        echo "{\"old\":$score}";
+    }
+} else {
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Coordinates • LearnChess</title>
-        <?php include "../../include/head.php" ?>
+        <?php include "../include/head.php" ?>
         <meta name="description" content="Become faster at identifying chess coordinates with this free tool on LearnChess. No registration necessary.">
-        <link href="../css/coordinates.css" type="text/css" rel="stylesheet">
-        <link href="../css/chessground.css" type="text/css" rel="stylesheet">
+        <link href="css/coordinates.css" type="text/css" rel="stylesheet">
+        <link href="css/chessground.css" type="text/css" rel="stylesheet">
     </head>
-    <body<?php include_once "../../include/attributes.php" ?>>
+    <body<?php include_once "../include/attributes.php" ?>>
         <div class="top">
-        <?php include "../../include/topbar.php" ?>
+        <?php include "../include/topbar.php" ?>
         </div>
         <div class="page">
             <div class="main">
@@ -39,11 +61,12 @@ include "../../include/functions.php";
             </div>
         </div>
         <footer>
-        <?php include "../../include/footer.php" ?>
+        <?php include "../include/footer.php" ?>
         </footer>
-        <script src="../js/global.js"></script>
-        <script src="../js/chessground.min.js"></script>
-        <script src="../js/loadposition.js"></script>
-        <script src="../js/coordinates.js"></script>
+        <script src="js/global.js"></script>
+        <script src="js/chessground.min.js"></script>
+        <script src="js/loadposition.js"></script>
+        <script src="js/coordinates.js"></script>
     </body>
 </html>
+<?php } ?>
