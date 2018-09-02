@@ -35,9 +35,9 @@ a {
     transition: 0.25s ease;
 }
 .topbar.small {
-    padding: 20px;
-    background: RGBa(50,50,50,0.7);
-    box-shadow: 0 0 10px RGBa(0,0,0,0.5);
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 0 3px RGBa(0,0,0,0.5);
 }
 .topbar .site-name {
     color: #bbb;
@@ -45,6 +45,15 @@ a {
     font-size: 25px;
     display: inline-block;
     position: relative;
+    padding: 10px;
+    top: -10px;
+    left: -10px;
+    transition: 0.25s ease;
+}
+.topbar.small .site-name {
+    color: #888;
+    top: 0;
+    left: 0;
 }
 .topbar .site-name .extension {
     color: #999;
@@ -56,37 +65,24 @@ a {
 }
 .topbar .site-name::after {
     content: "";
-    height: 5px;
-    width: 5px;
-    border-radius: 50%;
+    height: 100%;
+    width: 0%;
     display: block;
     background: #fff;
     position: absolute;
     top: 0;
-    animation: 1s orbit linear infinite;
-    transition: 0.25s linear opacity;
-    opacity: 0;
+    left: 0;
+    transition: 0s linear;
+    opacity: 1;
 }
-@keyframes orbit {
-    0%,100% {
-        top: -10%;
-        left: -10%;
-    }
-    40% {
-        left: 100%;
-        top: -10%;
-    }
-    50% {
-        left: 100%;
-        top: 95%;
-    }
-    90% {
-        left: -10%;
-        top: 95%;
-    }
+.topbar .site-name:hover {
+    background: #fff;
+    color: #777;
 }
 .topbar .site-name:hover::after {
-    opacity: 1;
+    opacity: 0;
+    width: 100%;
+    transition: 0.5s ease;
 }
 .topbar .right {
     display: inline-block;
@@ -99,23 +95,36 @@ a {
 }
 .topbar .right a {
     position: relative;
-    padding: 10px;
-    top: -5px;
+    padding: 7px 10px;
+    top: -3px;
     display: inline-block;
     border: none;
     font-size: 15px;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 5px;
     overflow: hidden;
-    transition: .25s ease;
+    transition: .1s ease;
     font-family: sans-serif;
     margin: 0 5px;
+}
+.topbar .right a {
+    border: 2px solid #486055;
+}
+.topbar .right .register {
+    background: RGBa(255,255,255,0.1);
+    margin-left: 10px;
+}
+.topbar.small .right a {
+    margin-top: 10px;
 }
 .topbar .right a span {
     position: relative;
     z-index: 2;
     color: #ddd;
     transition: 0.25s color ease;
+}
+.topbar.small .right a span {
+    color: #444;
 }
 .topbar .right a::after {
     content: "";
@@ -128,10 +137,31 @@ a {
     left: 0;
     z-index: 1;
     transition: .25s ease;
-    background: #fff !important;
+    background: #fff;
+}
+.topbar.small .right a::after {
+    background: #486055;
+}
+.topbar.small .right .register::after {
+    background: #fff;
+}
+.topbar.small .right .register:hover {
+    border-color: #ccc;
+}
+.topbar.small .right .register:hover span {
+    color: #444;
 }
 .topbar .right a:hover span {
     color: #444;
+}
+.topbar.small .right .register {
+    background: #486055;
+}
+.topbar.small .right .register span {
+    color: #fff;
+}
+.topbar.small .right a:hover span {
+    color: #fff;
 }
 .topbar .right a:hover::after {
     width: 100%;
@@ -270,7 +300,7 @@ a {
 }
 .section.puzzles .icon,
 .section.coordinates .icon {
-    text-shadow: 0 2px 5px RGBa(0,0,0,0.6);
+    text-shadow: 0 1px 1px RGBa(0,0,0,0.7);
     position: relative;
     top: -20px;
 }

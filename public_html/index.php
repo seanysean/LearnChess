@@ -18,8 +18,8 @@ if (!$l) {
         <div class="topbar" id="topbar">
             <a class="site-name" href="/"><span class="learnchess-logo"></span> LearnChess<span class="extension">.tk</span></a>
             <div class="right">
-                <a href="login"><span>Login</span></a>
-                <a href="register"><span>Register</span></a>
+                <a href="login" class="login"><span>Login</span></a>
+                <a href="register" class="register"><span>Register</span></a>
             </div>
         </div>
         <div class="main">
