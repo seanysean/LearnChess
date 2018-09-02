@@ -1,6 +1,7 @@
 const engine = STOCKFISH();
 const board = document.getElementById('board');
 const movesHTML = document.getElementById('moves');
+const resignBtn = document.getElementById('resign');
 const chess = new Chess();
 let color = '';
 const info = {
@@ -119,3 +120,21 @@ function makeMove(c,c2) {
         moves.innerHTML = chess.pgn();
     }
 }
+resignBtn.addEventListener('click',()=>{
+    const info = {
+        title: 'Game over', // Title of popup
+        text: 'White won by resignation', // Description text
+        yes: 'Ok', // Text for the yes button
+    },
+    events = {
+        yes() {
+            resignPopup.close();
+        },
+        cls() {
+            events.yes();
+        }
+    }
+    const resignPopup = new Popup('alert',info,events);
+    resignPopup.open();
+    cg.stop();
+});

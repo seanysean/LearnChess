@@ -3,3 +3,6 @@
     width: 512px;
     margin: 0 auto;
 }
+.buttons .button {
+    width: 50%;
+}
