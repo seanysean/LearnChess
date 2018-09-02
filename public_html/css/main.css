@@ -172,8 +172,8 @@ body.dark .button.nocolor::after {
     background: #4caf50;
 }
 .button:hover {
-    box-shadow: 0 3px 5px RGBa(0,0,0,0.3);
-    top: -3px;
+    box-shadow: 0 1px 2px RGBa(0,0,0,0.2);
+    top: -1px;
 }
 .button:hover span {
     color: #fff;
