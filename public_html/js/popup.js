@@ -5,6 +5,7 @@ class Popup {
     constructor(type,info,ev) {
         this.el = document.createElement('div');
         this.el.classList = 'popup';
+        this.type = type;
         if (type !== 'custom') {
             const popupTitle = document.createElement('p');
             popupTitle.classList = 'popup-title';
@@ -31,19 +32,21 @@ class Popup {
                 this.input.value = info.value;
             }
             yes.classList = 'yes-button';
-            no.classList = 'no-button';
             close.classList = 'close fa fa-times';
             yes.innerHTML = info.yes;
-            no.innerHTML = info.no;
             yes.addEventListener('click',ev.yes);
-            no.addEventListener('click',ev.no);
             if (!ev.cls) {
                 close.addEventListener('click',ev.no);
             } else {
                 close.addEventListener('click',ev.cls); 
             }
             this.el.appendChild(yes);
-            this.el.appendChild(no);
+            if (type !== 'alert') {
+                no.classList = 'no-button';
+                no.innerHTML = info.no;
+                no.addEventListener('click',ev.no);
+                this.el.appendChild(no);
+            }
             this.el.appendChild(close);
             document.body.addEventListener('keyup',e=>{
                 if (e.key === 'Escape') {
@@ -71,7 +74,9 @@ class Popup {
             overlay.style.opacity = 1;
             this.el.style.transform = 'translate(-50%,-50%) scale(1)';
         },1);
-        this.input.focus();
+        if (this.type === 'prompt') {
+            this.input.focus();
+        }
     }
     close() {
         overlay.style.opacity = 0;
