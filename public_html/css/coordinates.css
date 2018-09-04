@@ -24,7 +24,7 @@
     border-radius: 3px;
     position: relative;
 }
-body.dark .timebar {
+.dark .timebar {
     background: #222;
 }
 .done {
@@ -92,10 +92,10 @@ body .overlay .flat-button {
     border-radius: 3px;
 }
 .page .block.response.wrong {
-    background: #ca7373 !important;
+    background: #ca7373;
 }
 .page .block.response.right {
-    background: #449a47 !important;
+    background: #449a47;
 }
 .response p {
     margin: 0;

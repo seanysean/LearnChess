@@ -31,9 +31,6 @@ a {
 a:hover {
     color: #1d7bd3;
 }
-button:focus {
-    outline: none;
-}
 .right {
     float: right;
 }
@@ -171,22 +168,23 @@ body.dark .button.nocolor::after {
 .button.green::after {
     background: #4caf50;
 }
-.button:hover {
+.button:hover,
+.button:focus {
     box-shadow: 0 1px 2px RGBa(0,0,0,0.2);
     top: -1px;
+    outline: none;
 }
-.button:hover span {
+.button:hover span,
+.button:focus span {
     color: #fff;
 }
-.button.nocolor:hover span {
+.button.nocolor:hover span,
+.button.nocolor:focus span {
     color: #555;
 }
-.button:hover::after {
+.button:hover::after,
+.button:focus::after {
     width: 100%;
-}
-.button:focus {
-    outline: none;
-    box-shadow: 0 1px 5px RGBa(0,0,0,0.3);
 }
 
 /* .flat-button */

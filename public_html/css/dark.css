@@ -7,7 +7,8 @@ body.dark .flat-button {
 body.dark .button span {
     color: #aaa;
 }
-body.dark .button:hover span {
+body.dark .button:hover span,
+body.dark .button:focus span {
     color: #fff;
 }
 body.dark a:hover {

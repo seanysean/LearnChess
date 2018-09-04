@@ -389,7 +389,6 @@ footer ul .footer-section-title {
 .username-container #username {
     background: transparent;
     border: 3px solid #aaa;
-    outline-color: #aaa;
     padding: 10px;
     font-size: 15px;
     color: #fff;
@@ -397,7 +396,9 @@ footer ul .footer-section-title {
     width: 65%;
     height: 45px;
 }
-.username-container #username:focus {
+.username-container #username:focus,
+.username-container #username:hover {
+    border-color: #777;
     outline: none;
 }
 .username-container label {
@@ -505,9 +506,9 @@ footer ul .footer-section-title {
     .section.puzzles .content .left {
         border-bottom: 1px solid #ccc;
     }
-    .icon {
+    .section .content .left .icon {
         float: none;
-        text-align: center !important;
+        text-align: center;
     }
     .section .content {
         margin: 0 auto;
