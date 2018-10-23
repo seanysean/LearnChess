@@ -100,12 +100,20 @@ include '../../../templates/puzzle.php';");
                                         <input type="hidden" value="<?php echo $fen ?>" name="fen">
                                         <input type="hidden" value="<?php echo $pgn ?>" name="pgn">
                                         <input type="hidden" value="<?php echo $explain ?>" name="explain" data-id="<?php echo $id ?>">
-                                        <span data-hint="Approve puzzle"><button type="submit" class="flat-button"><span><i class="fa fa-check"></i></span></button></span>
+                                        <span class="hint-text-center" data-hint="Approve puzzle">
+                                            <a data-delete="0" class="flat-button form-submit">
+                                                <span><i class="fa fa-check"></i></span>
+                                            </a>
+                                        </span>
                                     </form>
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                                         <input type="hidden" value="delete <?php echo $id ?>" name="review">
                                         <input type="hidden" value="<?php echo $authorID ?>" name="authorID">
-                                        <span data-hint="Delete puzzle"><button type="submit" class="flat-button"><span><i class="fa fa-close"></i></span></button></span>
+                                        <span class="hint-text-center" data-hint="Delete puzzle">
+                                            <a data-delete="1" class="flat-button form-submit">
+                                                <span><i class="fa fa-close"></i></span>
+                                            </a>
+                                        </span>
                                     </form>
                                 </span></td>
                             </tr>

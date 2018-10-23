@@ -1,11 +1,14 @@
 const overlay = document.createElement('div');
 overlay.classList = 'overlay';
 document.body.appendChild(overlay);
+//let popupList = [];
 class Popup {
     constructor(type,info,ev) {
         this.el = document.createElement('div');
         this.el.classList = 'popup';
         this.type = type;
+        this.active = false;
+        //popupList.push(this);
         if (type !== 'custom') {
             const popupTitle = document.createElement('p');
             popupTitle.classList = 'popup-title';
@@ -48,8 +51,14 @@ class Popup {
                 this.el.appendChild(no);
             }
             this.el.appendChild(close);
-            document.body.addEventListener('keyup',e=>{
-                if (e.key === 'Escape') {
+            document.addEventListener('keypress',e=>{
+                if (e.key === 'Enter' && this.active) {
+                    ev.yes();
+                }
+            });
+            document.addEventListener('keydown',e=>{
+                // Keypress doesn't seem to detect the escape key on my machine
+                if (e.key === 'Escape' && this.active) {
                     switch (!ev.cls) {
                         case true:
                             ev.no();
@@ -58,9 +67,7 @@ class Popup {
                             ev.cls();
                             break;
                     }
-                } else if (e.key === 'Enter') {
-                    ev.yes();
-                }
+                } 
             });
         } else {
             this.el.innerHTML = info.html;
@@ -77,6 +84,7 @@ class Popup {
         if (this.type === 'prompt') {
             this.input.focus();
         }
+        this.active = true;
     }
     close() {
         overlay.style.opacity = 0;
@@ -85,6 +93,7 @@ class Popup {
             overlay.style.display = 'none';
             this.el.style.display = 'none';
         },300);
+        this.active = false;
     }
     addClass(c) {
         this.el.classList.add(c);
