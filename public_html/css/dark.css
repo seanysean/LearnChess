@@ -1,6 +1,9 @@
 body.dark {
     background: #333;
 }
+body.dark [data-hint]::after {
+    background: RGBa(255,255,255,0.2);
+}
 body.dark .flat-button {
     color: #aaa;
 }
