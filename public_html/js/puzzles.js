@@ -236,3 +236,13 @@ inputs.forEach(i=>{
         i.select();
     });
 });
+document.querySelectorAll('.copy-on-click').forEach((el,i)=>{
+    el.addEventListener('click',()=>{
+        el.select();
+        document.execCommand('copy');
+        document.getElementById(`copy-${i+1}`).classList.add('copied');
+        setTimeout(()=>{
+            document.getElementById(`copy-${i+1}`).classList.remove('copied');
+        },2000);
+    });
+});

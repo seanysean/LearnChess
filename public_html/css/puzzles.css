@@ -340,6 +340,23 @@ input {
     font-size: 14px;
     line-height: 30px;
 }
+.copy-badge {
+    font-size: 10px;
+    border: 1px solid #ccc;
+    padding: 3px;
+    border-radius: 3px;
+    margin-left: 5px;
+    transition: 0.25s ease;
+    opacity: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+body.dark .copy-badge {
+    border-color: #777;
+}
+.copy-badge.copied {
+    opacity: 1;
+}
 
 @media(max-width: 1180px) {
     #chessground {

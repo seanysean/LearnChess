@@ -53,11 +53,6 @@ if ($result) {
                 <div class="block feedback transparent" id="res-container">
                     <div id="response" class="neutral loading"><div class="loader"></div></div>
                 </div>
-                <div class="block copyings hidden" id="copyings">
-                    <h3>Copy URL</h1>
-                    <input id="puzzleURL" />
-                    <h3>Copy FEN</h1>
-                    <input value="<?php echo $fen ?>" />
                 <div class="block">
                     <?php if(isAllowed('puzzle')) { ?>
                     <form action="/puzzles/remove" method="post">
@@ -68,6 +63,12 @@ if ($result) {
                 </div>
                 <div class="block start-container hidden" id="next">
                     <a href="../next" class="flat-button green full transition"><span><i class="fa fa-check"></i> Next</span></a>
+                </div>
+                <div class="block copyings hidden" id="copyings">
+                    <h3>Copy URL <span id="copy-1" class="copy-badge"><i class="fa fa-check"></i> Copied</span></h3>
+                    <input class="copy-on-click" id="puzzleURL" />
+                    <h3>Copy FEN <span id="copy-2" class="copy-badge"><i class="fa fa-check"></i> Copied</span></h3>
+                    <input class="copy-on-click" value="<?php echo $fen ?>" />
                 </div>
             </div>
             <?php } ?>
