@@ -53,7 +53,7 @@ body.dark .top .top-navigation .icon-links .icon-dropdown .dropdown a:hover {
 body.dark .top .top-navigation .icon-links .icon {
     color: #aaa;
 }
-.top .top-navigation .icon-links .icon-dropdown .n-container {
+body.dark .top .top-navigation .icon-links .icon-dropdown .n-container {
     background: #444;
 }
 body.dark .top .top-navigation .icon-links .icon-dropdown .n-container::before {
@@ -129,7 +129,26 @@ body.dark .userinfo-box {
     background: #444;
 }
 body.dark .userinfo-box .ui-top {
-    border-color: #555;
+    background: #4a4a4a;
+}
+body.dark .userinfo-box .ui-top .uilink {
+    color: #ccc;
+}
+body.dark .userinfo-box .ui-top .uilink:hover {
+    color: #aaa;
+}
+body.dark .userinfo-box .padding {
+    color: #bbb;
+}
+body.dark .userinfo-box .padding i {
+    color: #888;
+}
+body.dark .userinfo-box .admin-buttons .flat-button {
+    color: #777;
+}
+body.dark .userinfo-box .admin-buttons .flat-button:hover {
+    background: #484848;
+    color: #999;
 }
 body.dark #popup {
     background: #444;

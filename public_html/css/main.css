@@ -276,14 +276,23 @@ body.dark .button.nocolor::after {
     position: absolute;
     background: #fff;
     font-weight: 100;
-    box-shadow: 0 0 5px RGBa(0,0,0,0.2);
+    box-shadow: 1px 1px 5px RGBa(0,0,0,0.4);
+    border-radius: 3px;
     width: 150px;
     z-index: 10;
-    display: none;
+    display: block;
 }
 .userinfo-box .ui-top {
     padding: 5px;
-    border-bottom: 1px solid #eee;
+    background: #f6f6f6;
+    font-family: roboto;
+    font-weight: 100;
+}
+.userinfo-box .ui-top .uilink {
+    color: #555;
+}
+.userinfo-box .ui-top .uilink:hover {
+    color: #777;
 }
 .userinfo-box .loading-container {
     padding: 10px;
@@ -293,9 +302,10 @@ body.dark .button.nocolor::after {
 .userinfo-box .padding {
     padding: 10px;
     color: #777;
+    font-size: 14px;
 }
-body.dark .userinfo-box .padding {
-    color: #aaa;
+.userinfo-box .padding i {
+    color: #999;
 }
 .userinfo-box .padding.no-account {
     min-height: 40px;
@@ -314,6 +324,11 @@ body.dark .userinfo-box .padding {
 .userinfo-box .admin-buttons .flat-button {
     flex-grow: 1;
     padding: 5px;
+    color: #999;
+}
+.userinfo-box .admin-buttons .flat-button:hover {
+    background: #f5f5f5;
+    color: #555;
 }
 
 /* #Popup */
