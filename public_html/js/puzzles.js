@@ -61,6 +61,7 @@ function showResponse(s,c,r,d,e) {
             retryBtn.classList = 'retry end-stuff';
             retryBtn.addEventListener('click',()=>window.location.reload());
             res.appendChild(retryBtn);
+            document.getElementById('next').children[0].classList.remove('green'); // Green doesn't really work with red in this case.
         }
         const lichess = document.createElement('a');
         lichess.href = `https://lichess.org/analysis/${fen}`;
@@ -236,6 +237,7 @@ inputs.forEach(i=>{
         i.select();
     });
 });
+
 document.querySelectorAll('.copy-on-click').forEach((el,i)=>{
     el.addEventListener('click',()=>{
         el.select();
