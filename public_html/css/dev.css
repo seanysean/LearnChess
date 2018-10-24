@@ -1,0 +1,46 @@
+.dev {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+.dev input {
+    display: none;
+}
+.div i {
+    vertical-align: middle;
+}
+.dev-switch {
+    width: 25px;
+    height: 10px;
+    display: inline-block;
+    background: #ccc;
+    vertical-align: middle;
+    border-radius: 3px;
+    box-shadow: inset 1px 1px 2px RGBa(0,0,0,0.2);
+    position: relative;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.dark .dev-switch {
+    background: #555;
+}
+.dev-switch .dev-inner {
+    display: block;
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    background: #888;
+    border-radius: 50%;
+    top: -4px;
+    left: -4px;
+    transition: 0.25s ease;
+}
+.dark .dev-switch .dev-inner {
+    background: #777;
+}
+.dev-switch:hover .dev-inner {
+    background: #3893e8;
+}
+input:checked + .dev-switch .dev-inner {
+    left: 11px;
+}
