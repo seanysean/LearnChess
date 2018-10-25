@@ -64,7 +64,7 @@ start.addEventListener('click',()=>{
                 square.innerHTML += '<p class="notice">Log in to save your score next time</p>';
             } else {
                 let xhr = new XMLHttpRequest(),
-                    url = '/coordinates/savescore?old=1';
+                    url = '/coordinates.php?old=1';
                 xhr.responseType = 'json';
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === xhr.DONE) {
@@ -77,7 +77,7 @@ start.addEventListener('click',()=>{
                         square.appendChild(btn);
                         btn.addEventListener('click',()=>{
                             xhr = new XMLHttpRequest();
-                            url = '/coordinates/savescore';
+                            url = '/coordinates.php?old=1';
                             const data = `score=${score}`;
                             xhr.responseType = 'json';
                             xhr.onreadystatechange = function() {
