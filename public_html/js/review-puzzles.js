@@ -47,7 +47,7 @@ submitButton.forEach(el=>{
         }
     };
     let myPopup = new Popup('confirm',info,events);
-    el.addEventListener('click',e=>{
+    el.addEventListener('click',()=>{
         myPopup.open();
         console.log(el);
     });
