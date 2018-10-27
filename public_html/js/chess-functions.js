@@ -43,8 +43,11 @@ function openPromoteOptions(board,square,cg) {
                 const p = btn.getAttribute('data-promote');
                 promote(cg,square,p);
                 options.close();
+                board.removeChild(overlay);
+                document.body.appendChild(overlay);
+                overlay.style.position = 'fixed';
                 let promotionPiece = p.split('')[0];
-                r(promotionPiece);
+                r(promotionPiece === 'k' ? 'n' : promotionPiece);
             });
         });
     });
