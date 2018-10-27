@@ -163,8 +163,18 @@ nextStep.addEventListener('click',()=>{
         return moves;
     }
     function changeTurn(c,cground) {
-        return (o, d) => {
+        return async (o, d) => {
             const m = c.move({from: o, to: d, promotion: 'q'});
+            if (m.flags.includes('p')) {
+                const waitForPromotion = await openPromoteOptions(document.getElementById('cg'),m.to,cground);
+                if (waitForPromotion) {
+                    c.undo();
+                    let x = c.move({ from: o, to: d, promotion: waitForPromotion });
+                    document.getElementById('pgn').value = removeHeaders(c.pgn());
+                }
+            } else {
+                document.getElementById('pgn').value = removeHeaders(c.pgn());
+            }
             cground.set({
                 turnColor: getColor(c.turn()),
                 movable: {
@@ -172,8 +182,6 @@ nextStep.addEventListener('click',()=>{
                     dests: toDests(c)
                 }
             });
-            if (m.flags.includes('p')) promote(cground,m.to,'queen');
-            document.getElementById('pgn').value = removeHeaders(c.pgn());
         }
     }
     tools.undo.addEventListener('click',()=>{
