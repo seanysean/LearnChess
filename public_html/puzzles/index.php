@@ -7,6 +7,27 @@ $result = mysqli_query($connection,$sql);
 if ($result) {
     $unreviewedCount = mysqli_num_rows($result);
 }
+function generatePuzzlePositions($sql) { // Why am I using camel case... too much JS I guess.
+    global $connection;
+    $result = mysqli_query($connection,$sql);
+    $boards = '';
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+            $fen = $row['fen'];
+            $pID = $row['id'];
+            $trophies = $row['trophies'];
+            $authorID = $row['author_id'];
+            $authorLink = createUserLink($authorID);
+            $boards .= "<div class=\"board-container\">
+                <a href=\"view/$pID\" class=\"board\" data-fen=\"$fen\"></a>
+                <div class=\"credits\">$trophies <i class=\"fa fa-trophy\"></i><br />Created by<br />$authorLink</div>
+            </div>";
+        }
+    } else {
+        return false;
+    }
+    return $boards;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,34 +55,16 @@ if ($result) {
                     <h2>Recent puzzles</h2>
                     <?php
                     $sql = "SELECT * FROM `puzzles_approved` WHERE removed='0' ORDER BY id DESC LIMIT 6";
-                    $result = mysqli_query($connection,$sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-                            $fen = $row['fen'];
-                            $pID = $row['id'];
-                            $trophies = $row['trophies'];
-                            $authorID = $row['author_id'];
-                        ?>
-                        <div class="board-container">
-                            <a href="<?php echo "view/$pID" ?>" class="board" data-fen="<?php echo $fen ?>"></a>
-                            <div class="credits"><?php echo $trophies ?> <i class="fa fa-trophy"></i><br />Created by<br /><?php echo createUserLink($authorID) /* I don't know why I need to use echo here. */ ?></div>
-                        </div>
-                    <?php } ?>
+                    echo generatePuzzlePositions($sql);
+                    ?>
                     <h2>Top puzzles</h2>
-                    <?php $sql = "SELECT * FROM `puzzles_approved` WHERE removed='0' ORDER BY trophies DESC LIMIT 6";
+                    <?php
+                    $sql = "SELECT * FROM `puzzles_approved` WHERE removed='0' ORDER BY trophies DESC LIMIT 6";
+                    $boards = generatePuzzlePositions($sql);
                     $result = mysqli_query($connection,$sql);
-                    if (mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-                            $fen = $row['fen'];
-                            $pID = $row['id'];
-                            $trophies = $row['trophies'];
-                            $authorID = $row['author_id'];
-                        ?>
-                        <div class="board-container">
-                            <a href="<?php echo "view/$pID" ?>" class="board" data-fen="<?php echo $fen ?>"></a>
-                            <div class="credits"><?php echo $trophies ?> <i class="fa fa-trophy"></i><br />Created by <br /><?php echo createUserLink($authorID) /* I don't know why I need to use echo here. */ ?></div>
-                        </div>
-                    <?php } } } else {
+                    if ($boards) {
+                        echo $boards;
+                    } else {
                         echo "<p class=\"nothing-to-see lower center\">No approved puzzles. <a href=\"new\">Why not make one?</a></p>";
                     } ?>
                     </div>
