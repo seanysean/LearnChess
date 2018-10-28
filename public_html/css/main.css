@@ -83,6 +83,10 @@ a:hover {
     transform: translate(-50%,-50%);
     animation: 0.8s rotate linear infinite;
 }
+.loader.white {
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+}
 @keyframes rotate {
     0% {
         transform: translate(-50%,-50%) rotate(0deg);

@@ -142,7 +142,8 @@ function checkMove(c,cg) {
 }
 function getMoves(m) {
     res.classList.add('loading');
-    res.innerHTML = '<div class="loader"></div>';
+    let loaderClasses = 'loader ' + (fullMove > 1 ? 'white' : ''); // Blue on green doesn't contrast well enough.
+    res.innerHTML = `<div class="${loaderClasses}"></div>`;
     const xhr = new XMLHttpRequest(),
           url = `../getmoves?move=${m.san.replace('+','%2B').replace('#','%23').replace('=','%3D')}&movenum=${fullMove}&puzzle=${pID}`;
     xhr.responseType = 'json';
