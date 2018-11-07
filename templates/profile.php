@@ -82,10 +82,10 @@ if ($result) {
                         echo "<h2><i class=\"fa fa-ban\"></i> Account closed</h2>";
                     } else {
                     if($thisUsersLichessProfile) {
-                        echo "<a class=\"other-profile-link\" rel=\"nofollow\" href=\"https://lichess.org/@/$thisUsersLichessProfile\">View lichess profile <i class=\"fa fa-external-link\"></i></a>";
+                        echo "<a class=\"other-profile-link\" rel=\"nofollow\" target=\"_blank\" href=\"https://lichess.org/@/$thisUsersLichessProfile\">View lichess profile <i class=\"fa fa-external-link\"></i></a>";
                     }
                     if($thisUsersChesscomProfile) {
-                        echo "<a class=\"other-profile-link\" rel=\"nofollow\" href=\"https://chess.com/member/$thisUsersChesscomProfile\">View chess.com profile <i class=\"fa fa-external-link\"></i></a>";
+                        echo "<a class=\"other-profile-link\" rel=\"nofollow\" target=\"_blank\" href=\"https://chess.com/member/$thisUsersChesscomProfile\">View chess.com profile <i class=\"fa fa-external-link\"></i></a>";
                     } ?>
                 </div>
                 <div class="block">
@@ -119,12 +119,12 @@ if ($result) {
                         </div>
                         <?php }
                         if($thisUsersChesscomProfile) { ?>
-                        <a href="https://chess.com/member/<?php echo $thisUsersChesscomProfile ?>" rel="nofollow" data-hint="Chess.com profile" class="info" id="chessComInfo">
+                        <a href="https://chess.com/member/<?php echo $thisUsersChesscomProfile ?>" target="_blank" rel="nofollow" data-hint="Chess.com profile" class="info" id="chessComInfo">
                             <div class="loader"></div>
                         </a>
                         <?php }
                         if($thisUsersLichessProfile) { ?>
-                        <a href="https://lichess.org/@/<?php echo $thisUsersLichessProfile ?>" rel="nofollow" data-hint="Lichess.org profile" class="info" id="lichessInfo">
+                        <a href="https://lichess.org/@/<?php echo $thisUsersLichessProfile ?>" target="_blank" rel="nofollow" data-hint="Lichess.org profile" class="info" id="lichessInfo">
                             <div class="loader"></div>
                         </a>
                         <?php } ?>
