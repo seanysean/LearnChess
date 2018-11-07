@@ -53,14 +53,14 @@ if ($result) {
                 <div class="block feedback transparent" id="res-container">
                     <div id="response" class="neutral loading"><div class="loader"></div></div>
                 </div>
+                <?php if(isAllowed('puzzle')) { ?>
                 <div class="block">
-                    <?php if(isAllowed('puzzle')) { ?>
                     <form action="/puzzles/remove" method="post">
                         <input type="hidden" value="<?php echo $pID ?>" name="puzzle">
                         <button class="flat-button" type="submit"><i class="fa fa-close"></i> Remove puzzle</button>
                     </form>
-                    <?php } ?>
                 </div>
+                <?php } ?>
                 <div class="block start-container hidden" id="next">
                     <a href="../next" class="flat-button green full transition"><span><i class="fa fa-check"></i> Next</span></a>
                 </div>
