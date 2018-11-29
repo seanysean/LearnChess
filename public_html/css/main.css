@@ -660,6 +660,10 @@ body.dark .button.nocolor::after {
     color: #444;
     margin: 10px 0;
 }
+.page .left-area .block,
+.page .right-area .block {
+    margin-bottom: 20px;
+}
 .page .left-area .block .block-title,
 .page .right-area .block .block-title {
     font-size: 25px;
