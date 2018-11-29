@@ -5,7 +5,6 @@ form {
 .input-container {
     min-height: 50px;
     margin-top: 30px;
-    display: block;
     position: relative;
 }
 .input-line {
@@ -59,7 +58,7 @@ body.dark .input-container textarea {
 .input-container label {
     position: absolute;
     top: -20px;
-    color: #aaa;
+    color: #ccc;
     transition: 0.25s linear;
     font-weight: 100;
 }
@@ -76,6 +75,10 @@ body.dark .input-container textarea {
 body.dark .input-container .line {
     background: #3893e8;
 }
+.input-container .check-is-valid:invalid ~ .line {
+    background: #E84438;
+    width: 100%;
+}
 .input-container input:not([type="checkbox"]):focus + label,
 .input-container textarea:focus + label {
     color: #58a3bf;
@@ -83,6 +86,10 @@ body.dark .input-container .line {
 body.dark .input-container input:not([type="checkbox"]):focus + label,
 body.dark .input-container textarea:focus + label {
     color: #3893e8;
+}
+body.dark .input-container .check-is-valid:invalid + label,
+body.dark .input-container .check-is-valid:invalid:focus + label {
+    color: #E84438;
 }
 .input-container input:not([type="checkbox"]):focus ~ .line,
 .input-container textarea:focus ~ .line {

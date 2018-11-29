@@ -70,13 +70,13 @@ if (!$l) {
                             <span class="line"></span>
                         </div>
                         <div class="input-container">
-                            <input name="new_password1" type="password" id="p2" required>
+                            <input name="new_password1" class="check-is-valid" type="password" id="p2" pattern="[a-zA-Z1-9_-]{0,21}" required>
                             <label for="p2">New password</label>
                             <span class="line"></span>
                         </div>
                         <p id="passwordResponse" class="input-response"></p>
                         <div class="input-container">
-                            <input name="new_password2" type="password" id="p3" required>
+                            <input name="new_password2" class="check-is-valid" type="password" id="p3" pattern="[a-zA-Z1-9_-]{0,21}" required>
                             <label for="p3">New password (again)</label>
                             <span class="line"></span>
                         </div>
@@ -91,6 +91,7 @@ if (!$l) {
         </footer>
         <script src="../js/global.js"></script>
         <script src="../js/changepassword.js"></script>
+        <script src="../js/material.js"></script>
     </body>
 </html>
 <?php } ?>
