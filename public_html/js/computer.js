@@ -2,6 +2,7 @@ const engine = STOCKFISH();
 const board = document.getElementById('board');
 const movesHTML = document.getElementById('moves');
 const resignBtn = document.getElementById('resign');
+const flipBoardBtn = document.getElementById('flip');
 const chess = new Chess();
 let color = '';
 const info = {
@@ -137,4 +138,7 @@ resignBtn.addEventListener('click',()=>{
     const resignPopup = new Popup('alert',info,events);
     resignPopup.open();
     cg.stop();
+});
+flipBoardBtn.addEventListener('click',()=>{
+    cg.toggleOrientation();
 });

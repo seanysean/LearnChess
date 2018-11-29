@@ -27,7 +27,10 @@ include_once "../include/functions.php";
                 <div class="block">
                     <h1 class="block-title center">Moves</h1>
                     <div id="moves"></div>
-                    <div class="buttons"><button class="button blue" id="resign"><span class="inner"><i class="fa fa-flag"></i></span></button></div>
+                    <div class="buttons">
+                        <button class="flat-button" id="resign"><span class="inner"><i class="fa fa-flag"></i></span></button>
+                        <button class="flat-button" id="flip"><span class="inner"><i class="fa fa-retweet"></i></span></button>
+                    </div>
                 </div>
             </div>
         </div>
