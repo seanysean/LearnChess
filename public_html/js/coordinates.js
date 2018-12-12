@@ -91,7 +91,7 @@ start.addEventListener('click',()=>{
                                     const btn2 = document.createElement('button');
                                     btn2.classList = 'flat-button';
                                     btn2.id = 'reload';
-                                    btn2.innerHTML = '<span><i class="fa fa-undo"></i> Replay</span>';
+                                    btn2.innerHTML = '<span><i class="fa fa-undo"></i> Train again</span>';
                                     btn2.addEventListener('click',()=>{window.location.reload();});
                                     square.appendChild(btn2);
                                 }
