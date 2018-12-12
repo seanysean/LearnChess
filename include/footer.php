@@ -1,5 +1,5 @@
 <?php include "config.php"; ?>
-<a class="site-name" href="<?php if ($l) { echo '/home'; } else { echo '/'; } ?>">LearnChess.tk</a>
+<a class="site-name" href="<?php if ($l) { echo '/home'; } else { echo '/'; } ?>">LearnChess<?php if($devMode) {echo " dev"; } else {echo ".tk";} ?></a>
 <div class="right">
     <a href="/contact">Contact</a> •
     <a href="/about">About</a> •
