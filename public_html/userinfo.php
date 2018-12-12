@@ -37,7 +37,7 @@ if(isset($_GET['u']) or isset($_GET['username'])) {
             }
             $rating = "<span class=\"hint-text-center\" data-hint=\"Puzzle rating\"><i class=\"fa fa-puzzle-piece\"></i> $rating</span>";
             if ($closed) {
-                echo "<div class=\"ui-top\"><a class=\"uilink\" href=\"/member/$user\"><i class=\"fa fa-user state $online\"></i> <span>$username</span></a></div><div class=\"padding no-account\">Account closed</div>$adminLink";
+                echo "<div class=\"ui-top\"><a class=\"uilink\" href=\"/member/$user\"><i class=\"fa fa-user state $online\"></i> <span>$username</span></a></div><div class=\"padding no-account\"><i class=\"fa fa-ban\"></i> Account closed</div>$adminLink";
             } else {
                 echo "<div class=\"ui-top\"><a class=\"uilink\" href=\"/member/$user\"><span $hint><i class=\"fa $icon state $online\"></i></span> <span>$username</span></a></div><div class=\"padding\">$rating</div>$adminLink";
             }
