@@ -48,3 +48,6 @@ body.dark .mark-read {
 .mark-read::after {
     min-width: 100px;
 }
+.page .nothing-to-see {
+    text-align: center;
+}

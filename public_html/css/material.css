@@ -58,9 +58,12 @@ body.dark .input-container textarea {
 .input-container label {
     position: absolute;
     top: -20px;
-    color: #ccc;
+    color: #888;
     transition: 0.25s linear;
     font-weight: 100;
+}
+body.dark .input-container label {
+    color: #aaa;
 }
 .input-container .line {
     display: block;

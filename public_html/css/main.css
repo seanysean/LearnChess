@@ -55,7 +55,7 @@ a:hover {
 /* .uilink styling */
 
 .uilink {
-    color: #444;
+    color: #777;
     font-weight: 400;
 }
 .uilink:hover {
@@ -237,7 +237,7 @@ body.dark .button.nocolor::after {
     display: block;
     position: absolute;
     font-size: 13px;
-    background: RGBa(0,0,0,0.5);
+    background: #888;
     color: #fff;
     padding: 5px;
     border-radius: 5px;
@@ -246,6 +246,7 @@ body.dark .button.nocolor::after {
     z-index: 15;
     min-width: 100%;
     pointer-events: none;
+    font-weight: 100;
     font-family: sans-serif;
 }
 [data-hint]:hover::after {
@@ -294,9 +295,6 @@ body.dark .button.nocolor::after {
 }
 .userinfo-box .ui-top .uilink {
     color: #555;
-}
-.userinfo-box .ui-top .uilink:hover {
-    color: #777;
 }
 .userinfo-box .loading-container {
     padding: 10px;
@@ -412,10 +410,10 @@ body.dark .button.nocolor::after {
     color: #555;
 }
 .top .top-above .profile-link {
-    color: #555;
+    color: #777;
 }
 .top .top-above .profile-link:hover {
-    color: #222;
+    color: #555;
 }
 .top .top-navigation {
     background: #eaeaea;
@@ -625,6 +623,7 @@ body.dark .button.nocolor::after {
     display: block;
     padding: 10px;
     position: relative;
+    transition: none;
 }
 .sidebar a.current {
     background: #eee;

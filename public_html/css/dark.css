@@ -27,10 +27,10 @@ body.dark .top .top-above .learnchess-link:hover {
     color: #bbb;
 }
 body.dark .top .top-above .profile-link {
-    color: #ccc;
+    color: #999;
 }
 body.dark .top .top-above .profile-link:hover {
-    color: #eee;
+    color: #bbb;
 }
 body.dark .top .top-navigation {
     background: #393939;
@@ -114,7 +114,7 @@ body.dark .board-container .board:hover + .credits {
     background: #494949;
 }
 body.dark .block-title .state {
-    text-shadow: 1px 1px 0 #333;
+    text-shadow: none;
 }
 body.dark .state.online {
     color: #348e37;
@@ -133,9 +133,6 @@ body.dark .userinfo-box .ui-top {
 }
 body.dark .userinfo-box .ui-top .uilink {
     color: #ccc;
-}
-body.dark .userinfo-box .ui-top .uilink:hover {
-    color: #aaa;
 }
 body.dark .userinfo-box .padding {
     color: #bbb;

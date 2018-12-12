@@ -9,14 +9,28 @@
     display: block;
     background: #fff;
     padding: 10px;
+    transition: none;
+}
+.do-stuff a i {
+    color: #999;
 }
 body.dark .do-stuff a {
     background: #444;
     color: #aaa;
 }
+body.dark .do-stuff a i {
+    color: #999;
+}
 .do-stuff a:hover {
-    background: #eee;
+    color: #666;
+}
+.do-stuff a:hover i {
+    color: #555;
+}
+body.dark .do-stuff a:hover i {
+    color: #eee;
 }
 body.dark .do-stuff a:hover {
-    background: #555;
+    color: #bbb;
 }
+
