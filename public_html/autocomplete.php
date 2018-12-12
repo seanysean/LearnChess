@@ -16,6 +16,7 @@ if (isset($_GET['username'])) {
     } else if (isset($_GET['limit'])) {
         $input = secure($_GET['username']);
         $limit = secure($_GET['limit']);
+        $limit = ($limit > 10) ? 10 : $limit; // Prevent people from being able to view all users and crash the db.
         $sql = "SELECT * FROM `users` WHERE username LIKE '$input%' LIMIT $limit";
         $json = '[';
         $result = mysqli_query($connection,$sql);
