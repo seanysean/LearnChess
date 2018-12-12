@@ -46,6 +46,7 @@ if ($result) {
         $aboutThisUser = preg_replace('/(.|\s)p#(\w+)/','\1<a href="/puzzles/view/\2">p#\2</a>',$aboutThisUser);
     }
 }
+// Yes, the code is messy
 ?>
 <!DOCTYPE html>
 <html>
@@ -88,46 +89,52 @@ if ($result) {
                         echo "<a class=\"other-profile-link\" rel=\"nofollow\" target=\"_blank\" href=\"https://chess.com/member/$thisUsersChesscomProfile\">View chess.com profile <i class=\"fa fa-external-link\"></i></a>";
                     } ?>
                 </div>
-                <div class="block">
-                    <div class="info-bar">
-                        <div class="info" data-hint="Date account was created">
+                <div class="block no-padding info-block">
+                    <div class="info-bar<?php if ($aboutThisUser) { echo " info-color-change"; } ?>">
+                        <div class="info">
                             <span class="icon-title fa fa-user"></span>
-                            <?php echo $created ?>
+                            <span class="info-details">Joined</span>
+                            <span class="info-value"><?php echo $created ?></span>
                         </div>
-                        <div class="info" data-hint="Last active">
+                        <div class="info">
                             <span class="icon-title fa fa-key"></span>
-                            <?php echo $last_active ?>
+                            <span class="info-details">Last active</span>
+                            <span class="info-value"><?php echo $last_active ?></span>
                         </div>
                         <?php if ($views) { // No one wants a stat of 0 views :) ?>
-                        <div class="info" data-hint="Profile views">
+                        <div class="info">
                             <span class="icon-title fa fa-eye"></span>
-                            <?php echo $views ?>
+                            <span class="info-details">Views</span>
+                            <span class="info-value"><?php echo $views ?></span>
                         </div>
                         <?php } ?>
-                        <div class="info" data-hint="Contributed puzzles">
+                        <div class="info">
                             <span class="icon-title fa fa-puzzle-piece"></span>
-                            <?php echo $puzzle_count ?>
+                            <span class="info-details">Puzzle Contributions</span>
+                            <span class="info-value"><?php echo $puzzle_count ?></span>
                         </div>
-                        <div class="info" data-hint="Puzzle rating">
+                        <div class="info">
                             <span class="icon-title fa fa-line-chart"></span>
-                            <?php echo $rating ?>
+                            <span class="info-details">Rating</span>
+                            <span class="info-value"><?php echo $rating ?></span>
                         </div>
                         <?php if($coordinates && $coords) { ?>
-                        <div class="info" data-hint="Coordinates score">
+                        <div class="info">
                             <span class="icon-title fa fa-bullseye"></span>
-                            <?php echo $coordinates ?>
+                            <span class="info-details">Coordinates</span>
+                            <span class="info-value"><?php echo $coordinates ?></span>
                         </div>
-                        <?php }
+                        <?php } /*
                         if($thisUsersChesscomProfile) { ?>
-                        <a href="https://chess.com/member/<?php echo $thisUsersChesscomProfile ?>" target="_blank" rel="nofollow" data-hint="Chess.com profile" class="info" id="chessComInfo">
+                        <a href="https://chess.com/member/<?php echo $thisUsersChesscomProfile ?>" target="_blank" rel="nofollow" class="info" id="chessComInfo">
                             <div class="loader"></div>
                         </a>
                         <?php }
                         if($thisUsersLichessProfile) { ?>
-                        <a href="https://lichess.org/@/<?php echo $thisUsersLichessProfile ?>" target="_blank" rel="nofollow" data-hint="Lichess.org profile" class="info" id="lichessInfo">
+                        <a href="https://lichess.org/@/<?php echo $thisUsersLichessProfile ?>" target="_blank" rel="nofollow" class="info" id="lichessInfo">
                             <div class="loader"></div>
                         </a>
-                        <?php } ?>
+                        <?php } */ ?>
                     </div>
                     <?php if($aboutThisUser) { ?><div class="about" id="about"><?php echo $aboutThisUser ?></div><?php } ?>
                     <?php } ?>

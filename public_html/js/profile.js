@@ -1,4 +1,4 @@
-if (web.chessCom) {
+/*if (web.chessCom) {
     const cont = document.getElementById('chessComInfo'),
           xhr = new XMLHttpRequest(),
           url = `https://api.chess.com/pub/player/${web.chessCom}/stats`;
@@ -49,4 +49,6 @@ if (web.lichess) {
     }
     xhr.open('GET',url);
     xhr.send();
-}
+}*/
+
+// TODO: Save this on the server instead of hitting the APIs everytime the profiles load or remove this altogether
