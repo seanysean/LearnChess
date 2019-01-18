@@ -275,9 +275,9 @@ body.dark .button.nocolor::after {
     pointer-events: none;
 }
 
-/* .userinfo-box */
+/* #powerTip */
 
-.userinfo-box {
+#powerTip {
     position: absolute;
     background: #fff;
     font-weight: 100;
@@ -287,48 +287,48 @@ body.dark .button.nocolor::after {
     z-index: 10;
     display: block;
 }
-.userinfo-box .ui-top {
+#powerTip .ui-top {
     padding: 5px;
     background: #f6f6f6;
     font-family: roboto;
     font-weight: 100;
 }
-.userinfo-box .ui-top .uilink {
+#powerTip .ui-top .uilink {
     color: #555;
 }
-.userinfo-box .loading-container {
+#powerTip .loading-container {
     padding: 10px;
     position: relative;
     height: 40px;
 }
-.userinfo-box .padding {
+#powerTip .padding {
     padding: 10px;
     color: #777;
     font-size: 14px;
 }
-.userinfo-box .padding i {
+#powerTip .padding i {
     color: #999;
 }
-.userinfo-box .padding.no-account {
+#powerTip .padding.no-account {
     min-height: 40px;
     font-size: 15px;
     text-align: center;
     padding: 10px;
     color: #888;
 }
-.userinfo-box .padding.no-account.not-found {
+#powerTip .padding.no-account.not-found {
     height: 30px;
 }
-.userinfo-box .admin-buttons {
+#powerTip .admin-buttons {
     margin: 0;
     display: flex;
 }
-.userinfo-box .admin-buttons .flat-button {
+#powerTip .admin-buttons .flat-button {
     flex-grow: 1;
     padding: 5px;
     color: #999;
 }
-.userinfo-box .admin-buttons .flat-button:hover {
+#powerTip .admin-buttons .flat-button:hover {
     background: #f5f5f5;
     color: #555;
 }

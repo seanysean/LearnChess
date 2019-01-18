@@ -113,42 +113,52 @@ function markAsRead(id,url,el) {
     xhr.send(data);
 }
 
-const userInfo = document.createElement('div');
-userInfo.classList = 'userinfo-box';
-document.body.appendChild(userInfo);
-const userInfoLinks = document.querySelectorAll('[userinfo]');
-userInfoLinks.forEach(l=>{
+const powerTip = document.createElement('div');
+powerTip.id = 'powerTip';
+document.body.appendChild(powerTip);
+const powerTipLinks = document.querySelectorAll('[powertip]');
+powerTipLinks.forEach(l=>{
     l.addEventListener('mouseover',()=>{
-        userInfo.style.display = 'block';
-        userInfo.innerHTML = '<div class="loading-container"><div class="loader"></div></div>';
-        userInfo.style.left = l.offsetLeft + 'px';
-        userInfo.style.top = l.offsetTop - userInfo.offsetHeight + 'px';
-        let query;
-        if (l.getAttribute('userinfo').startsWith('?')) {
-            let edited = l.getAttribute('userinfo').split('?').join('');
-            query = `username=${edited}`;
-        } else {
-            query = `u=${l.getAttribute('userinfo')}`;
-        }
-        const xhr = new XMLHttpRequest();
-              url = `/userinfo?${query}`;
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === xhr.DONE) {
-                const res = xhr.response;
-                userInfo.innerHTML = res;
-                userInfo.style.top = l.offsetTop -  userInfo.offsetHeight + 'px';
+        powerTip.innerHTML = '';
+        let obj = JSON.parse(l.getAttribute('powertip'));
+        powerTip.style.display = 'block';
+        if (obj.type === 'user') {
+            powerTip.innerHTML = '<div class="loading-container"><div class="loader"></div></div>';
+            let query;
+            if (obj.value.startsWith('?')) {
+                let edited = obj.value.split('?').join('');
+                query = `username=${edited}`;
+            } else {
+                query = `u=${obj.value}`;
             }
+            const xhr = new XMLHttpRequest();
+                  url = `/userinfo?${query}`;
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) {
+                    const res = xhr.response;
+                    powerTip.innerHTML = res;
+                    powerTip.style.top = l.offsetTop -  powerTip.offsetHeight + 'px';
+                }
+            }
+            xhr.open('GET',url);
+            xhr.send();
+        } else {
+            const inner = document.createElement('div');
+            powerTip.appendChild(inner);
+            loadPosition(inner,obj.value,200);
         }
-        xhr.open('GET',url);
-        xhr.send();
+        powerTip.style.left = l.offsetLeft + 'px';
+        powerTip.style.top = l.offsetTop - powerTip.offsetHeight + 'px';
     });
     l.addEventListener('mouseleave',()=>{
-        userInfo.style.display = 'none';
+        powerTip.style.display = 'none';
+        powerTip.style.height = 'auto';
+        powerTip.style.width = '150px';
     });
 });
-userInfo.addEventListener('mouseover',()=>{
-    userInfo.style.display = 'block';
+powerTip.addEventListener('mouseover',()=>{
+    powerTip.style.display = 'block';
 });
-userInfo.addEventListener('mouseleave',()=>{
-    userInfo.style.display = 'none';
+powerTip.addEventListener('mouseleave',()=>{
+    powerTip.style.display = 'none';
 });

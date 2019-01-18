@@ -1,4 +1,8 @@
-function loadPosition(el,fen) {
+function loadPosition(el,fen,size) {
+    if (size) {
+        el.style.height = size + 'px';
+        el.style.width = size + 'px';
+    }
     const getTurn = fen.split(' ')[1] === 'w' ? 'white': 'black';
     const config = {
         viewOnly: true,

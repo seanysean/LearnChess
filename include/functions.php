@@ -63,7 +63,7 @@ function createUserLink($id,$r=false) {
         }
         $user = strtolower($username);
         $online = $r['online'] === '1' ? 'online' : 'offline';
-        $res = "<a class=\"uilink\" href=\"/member/$user\" userinfo=\"$id\"><i class=\"state fa $icon $online\"></i> <span class=\"uilink-username\">$username</span></a>";
+        $res = "<a class=\"uilink\" href=\"/member/$user\" powertip='{\"type\":\"user\",\"value\":\"$id\"}'><i class=\"state fa $icon $online\"></i> <span class=\"uilink-username\">$username</span></a>";
         if (!$r) {
             echo $res;
         } else {

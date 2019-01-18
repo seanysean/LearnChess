@@ -125,25 +125,25 @@ body.dark .uilink {
 body.dark .uilink:hover {
     color: #bbb;
 }
-body.dark .userinfo-box {
+body.dark #powerTip {
     background: #444;
 }
-body.dark .userinfo-box .ui-top {
+body.dark #powerTip .ui-top {
     background: #4a4a4a;
 }
-body.dark .userinfo-box .ui-top .uilink {
+body.dark #powerTip .ui-top .uilink {
     color: #ccc;
 }
-body.dark .userinfo-box .padding {
+body.dark #powerTip .padding {
     color: #bbb;
 }
-body.dark .userinfo-box .padding i {
+body.dark #powerTip .padding i {
     color: #888;
 }
-body.dark .userinfo-box .admin-buttons .flat-button {
+body.dark #powerTip .admin-buttons .flat-button {
     color: #777;
 }
-body.dark .userinfo-box .admin-buttons .flat-button:hover {
+body.dark #powerTip .admin-buttons .flat-button:hover {
     background: #484848;
     color: #999;
 }

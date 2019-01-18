@@ -42,7 +42,7 @@ if ($result) {
         mysqli_query($connection,"UPDATE `users` SET views='$views' WHERE id='$accountid'");
     }
     if ($aboutThisUser) {
-        $aboutThisUser = preg_replace('/(.|\s)@(\w+)/','\1<a href="/member/\2" userinfo="?\2">@\2</a>',$aboutThisUser);
+        $aboutThisUser = preg_replace('/(.|\s)@(\w+)/','\1<a href="/member/\2" powertip=\'{"type":"user","value":"?\2"}\'>@\2</a>',$aboutThisUser);
         $aboutThisUser = preg_replace('/(.|\s)p#(\w+)/','\1<a href="/puzzles/view/\2">p#\2</a>',$aboutThisUser);
     }
 }

@@ -49,6 +49,7 @@ include '../../../templates/puzzle.php';");
         <title>Review puzzles • LearnChess</title>
         <?php include_once "../../include/head.php" ?>
         <link href="../css/puzzles.css" rel="stylesheet" type="text/css">
+        <link href="../css/chessground.css" rel="stylesheet" type="text/css">
         <link href="../css/material.css" type="text/css" rel="stylesheet">
         <link href="../css/popup.css" type="text/css" rel="stylesheet">
     <head>
@@ -72,7 +73,7 @@ include '../../../templates/puzzle.php';");
                             <tr>
                                 <th>ID</th>
                                 <th>Author</th>
-                                <th>FEN</th>
+                                <th>Position</th>
                                 <th>PGN</th>
                                 <th>Explanation</th>
                                 <th>Action</th>
@@ -90,7 +91,7 @@ include '../../../templates/puzzle.php';");
                             <tr>
                                 <td><?php echo $id ?></td>
                                 <td><?php echo createUserLink($authorID) ?></td>
-                                <td><span data-hint="<?php echo $fen ?>"><a class="fen" target="_blank" href="https://lichess.org/editor/<?php echo $fen ?>"><?php echo 'View position on lichess' ?> <i class="fa fa-external-link"></i></a></span></td>
+                                <td><span><a class="fen" target="_blank" powertip='{"type":"position","value":"<?php echo $fen?>"}' href="https://lichess.org/analysis/standard/<?php echo $fen ?>"><?php echo 'Analyze on lichess' ?> <i class="fa fa-external-link"></i></a></span></td>
                                 <td><span class="pgn"><?php echo $pgn ?></span></td>
                                 <td><span data-id="<?php echo $id ?>"><?php if ($explain) { echo $explain; } else { echo '<span class="no-explain"><i class="fa fa-close"></i> No explanation given</span>'; } ?></span><span class="fa fa-pencil edit-explanation" data-puzzle="<?php echo $id ?>" data-explanation="<?php if ($explain) { echo $explain; } ?>"></span></td>
                                 <td><span class="choice">
@@ -128,6 +129,8 @@ include '../../../templates/puzzle.php';");
             </div>
         </div>
         <footer><?php include_once "../../include/footer.php" ?></footer>
+        <script src="../js/loadposition.js"></script>
+        <script src="../js/chessground.min.js"></script>
         <script src="../js/global.js"></script>
         <script src="../js/popup.js"></script>
         <script src="../js/review-puzzles.js"></script>
