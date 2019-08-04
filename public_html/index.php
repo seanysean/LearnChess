@@ -16,7 +16,7 @@ if (!$l) {
     </head>
     <body>
         <div class="topbar" id="topbar">
-            <a class="site-name" href="/"><span class="learnchess-logo"></span> LearnChess<span class="extension">.tk</span></a>
+            <a class="site-name" href="/"><span class="learnchess-logo"></span> LearnChess<span class="extension">.xyz</span></a>
             <div class="right">
                 <a href="login" class="login"><span>Login</span></a>
                 <a href="register" class="register"><span>Register</span></a>
