@@ -26,9 +26,9 @@ if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) 
     $result = mysqli_query($connection,$sql);
     if ($result) {
         $username = strtolower($_SESSION['username']);
-        $msg = '<p><a href="/member/'.$username.'">Your profile</a> has been updated!</p>';
+        header("Location: ../member/$username");
     } else {
-        $msg = "<p>Something went wrong...</p>";
+        $msg = "<p>Something went wrong while updating profile...</p>";
     }
 }
 ?>
