@@ -45,7 +45,7 @@ piece.king.white {
 }
 
 .cg-board {
-    background-image: url(https://lichess1.org/assets/images/board/svg/brown.svg);
+    background-image: url("/images/board/brown.svg");
 }
  .cg-board-wrap {
     width: 320px;
