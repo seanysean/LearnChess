@@ -52,7 +52,7 @@ body.dark .popup .popup-text {
 }
 .popup button {
     border: none;
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-weight: 100;
     color: #fff;
     background-color: #aaa;

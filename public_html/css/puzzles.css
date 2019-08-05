@@ -51,7 +51,7 @@ body.dark .your-puzzles h3 {
 }
 .your-puzzles .puzzle {
     display: inline-block;
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-weight: 100;
     width: 95px;
     height: 95px;
@@ -120,13 +120,13 @@ body.dark .editor-container .tools {
     transition: 0.25s linear;
 }
 .copyings h3 {
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-weight: 100;
     margin: 5px;
 }
 .copyings p {
     margin: 10px 5px;
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-weight: 100;
     word-break: break-all;
 }
@@ -202,7 +202,7 @@ body.dark .feedback #response.correct {
 .give-a-trophy {
     background: RGBa(0,0,0,0.05);
     color: #888;
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-weight: 100;
     height: 30px;
     line-height: 30px;

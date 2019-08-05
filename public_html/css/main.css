@@ -290,7 +290,7 @@ body.dark .button.nocolor::after {
 #powerTip .ui-top {
     padding: 5px;
     background: #f6f6f6;
-    font-family: roboto;
+    font-family: "Roboto",sans-serif;
     font-weight: 100;
 }
 #powerTip .ui-top .uilink {

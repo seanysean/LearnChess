@@ -7,7 +7,7 @@
     margin: 5px 0;
     color: #555;
     font-weight: 100;
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
 }
 body.dark .name {
     color: #aaa;
