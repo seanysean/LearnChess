@@ -41,6 +41,7 @@ function showResponse(s,c,r,d,e) {
         let viewExplainEl, explainEl;
         document.getElementById('copyings').classList.remove('hidden');
         document.getElementById('next').classList.remove('hidden');
+        document.getElementById('credits').classList.remove('hidden');
         if (e) {
             viewExplainEl = document.createElement('span');
             explainEl = document.createElement('div');
@@ -87,7 +88,7 @@ function showResponse(s,c,r,d,e) {
         const el = document.createElement('div');
         el.classList = 'give-a-trophy';
         el.innerHTML = `<button type="submit" id="trophy" class="trophy"${extraStyle}><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
-        const cont = document.createElement('div');
+        const cont = document.querySelector('#credits');
         const el2 = document.createElement('div');
         el2.innerHTML = `<p>Puzzle created by <a href="/member/${author.toLowerCase()}">${author}</a></p>
                         <p>Puzzle rating: ${Math.round(r[0])}</p>`;
@@ -96,9 +97,7 @@ function showResponse(s,c,r,d,e) {
         } else {
             el2.innerHTML += `<p>Unrated</p>`;
         }
-        cont.classList = 'credits-div block no-padding';
         el2.classList = 'inner';
-        document.querySelector('.right-area').appendChild(cont);
         cont.appendChild(el2); //Don't ask why they're in reverse
         cont.appendChild(el);
         if (loggedin && author !== infoUsername) {

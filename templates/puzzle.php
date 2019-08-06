@@ -64,6 +64,7 @@ if ($result) {
                 <div class="block start-container hidden" id="next">
                     <a href="../next" class="flat-button green full transition"><span><i class="fa fa-check"></i> Next</span></a>
                 </div>
+                <div class="credits block hidden" id="credits"></div>
                 <div class="block copyings hidden" id="copyings">
                     <h3>Copy URL <span id="copy-1" class="copy-badge"><i class="fa fa-check"></i> Copied</span></h3>
                     <input class="copy-on-click" id="puzzleURL" />
