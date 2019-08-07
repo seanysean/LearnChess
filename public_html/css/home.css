@@ -7,7 +7,6 @@
 .do-stuff a {
     color: #777;
     display: block;
-    background: #fff;
     padding: 10px;
     transition: none;
 }

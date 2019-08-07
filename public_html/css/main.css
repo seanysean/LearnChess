@@ -1,9 +1,15 @@
+:root {
+    --background: #eee;
+    --page: #f9f9f9;
+    --link: #3893e8;
+}
+
 * {
     box-sizing: border-box;
 }
 body {
     font-family: sans-serif;
-    background: #eee;
+    background: var(--background);
 }
 
 @font-face {
@@ -24,7 +30,7 @@ body {
 /* Global styles */
 
 a {
-    color: #3893e8;
+    color: var(--link);
     text-decoration: none;
     transition: 0.25s ease;
 }
@@ -591,7 +597,6 @@ body.dark .button.nocolor::after {
 }
 .page .main a:not(.uilink):not(.flat-button):not(.button) {
     font-family: "Roboto", sans-serif;
-    font-weight: 100;
 }
 .page .main a {
     position: relative;
@@ -639,8 +644,8 @@ body.dark .button.nocolor::after {
     right: 10px;
 }
 .page .block {
-    background: #fff;
-    box-shadow: 0 0 5px RGBa(0,0,0,0.1);
+    background: var(--page);
+    box-shadow: 1px 2px 2px RGBa(0,0,0,0.1);
     width: 100%;
     margin-top: 10px;
     margin-bottom: 30px;

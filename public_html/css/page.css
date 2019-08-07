@@ -16,8 +16,9 @@ body.dark h2 {
 }
 p {
     line-height: 1.5em;
-    font-weight: 200;
+    font-weight: 400;
     margin: 0;
+    font-size: 16px;
 }
 .page a {
     transition: none;

@@ -1,5 +1,6 @@
 body.dark {
-    background: #333;
+    --background: #333;
+    --page: #444;
 }
 body.dark [data-hint]::after {
     background: #555;
@@ -87,9 +88,6 @@ body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-co
 }
 body.dark .page {
     color: #aaa;
-}
-body.dark .page .block:not(.transparent) {
-    background: #444;
 }
 body.dark .page .block .block-title {
     color: #ddd;
