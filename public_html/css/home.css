@@ -35,4 +35,6 @@ body.dark .do-stuff a:hover {
 .page ul {
     padding-left: 20px;
 }
-
+.right-area .block-title {
+    padding-top: 10px;
+}

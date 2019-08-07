@@ -118,7 +118,7 @@ a:hover {
     background: transparent;
 }
 .button {
-    transition: .25s ease;
+    transition: .1s;
 }
 .button.full, .flat-button.full {
     display: block;
@@ -131,7 +131,7 @@ a:hover {
 .button span {
     z-index: 2;
     position: relative;
-    transition: .25s color linear;
+    transition: .1s color linear;
     color: #555;
 }
 .button::after {
@@ -144,7 +144,7 @@ a:hover {
     bottom: 0;
     left: 0;
     z-index: 1;
-    transition: .25s ease;
+    transition: .1s ease;
 }
 .button.disabled {
     opacity: 0.3;
@@ -180,7 +180,7 @@ body.dark .button.nocolor::after {
 }
 .button:hover,
 .button:focus {
-    box-shadow: 0 1px 2px RGBa(0,0,0,0.2);
+    box-shadow: 1px 2px 5px RGBa(0,0,0,0.2);
     top: -1px;
     outline: none;
 }
