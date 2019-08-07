@@ -53,7 +53,7 @@ if ($l) {
                         <li><a href="/puzzles">Tactics training</a></li>
                         <li><a href="/coordinates">Coordinates trainer</a></p></li>
                     </ul>
-                    <p>Have fun! If you have questions, <a href="/contact">contact us</a>.</p>
+                    <p>Have fun! If you have questions, <a href="/contact">contact me</a>.</p>
                 <?php } ?>
                 </div>
             </div>
@@ -62,10 +62,8 @@ if ($l) {
                     <h1 class="block-title center">Puzzle of the day</h1>
                     <a href="puzzles/view/3"><div id="puzzleOfTheDay"></div></a>
                 </div>-->
-                <div class="block">
+                <div class="block no-padding do-stuff">
                     <h1 class="block-title center"><?php echo $_SESSION['username'] ?></h1>
-                </div>
-                <div class="block do-stuff no-padding">
                     <a href="/coordinates"><i class="fa fa-delicious"></i> Coordinates</a>
                     <a href="/puzzles/new"><i class="fa fa-puzzle-piece"></i> Submit a puzzle</a>
                     <a href="/settings/profile"><i class="fa fa-edit"></i> Edit profile</a>

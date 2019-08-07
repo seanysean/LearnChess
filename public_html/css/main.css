@@ -652,46 +652,50 @@ body.dark .button.nocolor::after {
     padding: 10px;
     border-radius: 3px;
 }
+.main .block {
+    padding: 20px;
+}
 .page .block.no-padding {
     padding: 0;
 }
-.page .block.transparent {
+.block.transparent {
     background: transparent;
     box-shadow: none;
 }
-.page .block .block-title {
+.block-title {
     font-weight: 100;
     color: #444;
-    margin: 10px 0;
+    margin-bottom: 10px;
+    margin-top: 0;
 }
-.page .left-area .block,
-.page .right-area .block {
+.left-area .block,
+.right-area .block {
     margin-bottom: 20px;
 }
-.page .left-area .block .block-title,
-.page .right-area .block .block-title {
+.left-area .block-title,
+.right-area .block-title {
     font-size: 25px;
 }
-.page .block .block-title.center {
+.block-title.center {
     text-align: center;
 }
-.page .block .block-title .alternate {
+.block-title .alternate {
     font-size: 13px;
     float: right;
 }
-.page .block .block-title .alternate .alt-text,
-.page .block .block-title .alternate .button {
+.block-title .alternate .alt-text,
+.block-title .alternate .button {
     vertical-align: middle;
 } 
-.page .block .block-title .alternate .alt-text {
+.block-title .alternate .alt-text {
     display: inline-block;
     padding: 10px;
 }
-.page .main .nothing-to-see {
+.main .nothing-to-see {
     font-size: 15px;
 }
-.page .right-area .nothing-to-see,
-.page .left-area .nothing-to-see {
+.right-area .nothing-to-see,
+.left-area .nothing-to-see {
     font-size: 13px;
     text-align: center;
 }

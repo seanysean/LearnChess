@@ -121,7 +121,7 @@ body.dark .editor-container .tools {
 }
 .copyings h3 {
     font-family: "Roboto",sans-serif;
-    font-weight: 100;
+    font-weight: 400;
     margin: 5px;
 }
 .copyings p {
@@ -199,7 +199,7 @@ body.dark .feedback #response.correct {
 .give-a-trophy {
     color: #888;
     font-family: "Roboto",sans-serif;
-    font-weight: 100;
+    font-weight: 400;
     height: 30px;
     line-height: 30px;
     border-radius: 0 0 3px 3px;

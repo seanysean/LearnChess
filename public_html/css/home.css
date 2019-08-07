@@ -32,4 +32,7 @@ body.dark .do-stuff a:hover i {
 body.dark .do-stuff a:hover {
     color: #bbb;
 }
+.page ul {
+    padding-left: 20px;
+}
 

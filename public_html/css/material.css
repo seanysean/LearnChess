@@ -6,10 +6,12 @@ form {
     min-height: 50px;
     margin-top: 30px;
     position: relative;
+    width: 100%;
 }
 .input-line {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 .input-container.half {
     width: 47%;
@@ -207,6 +209,5 @@ body.dark .checkbox-container .checkbox-message {
 }
 form p {
     color: #999;
-    font-weight: 100;
     margin: 5px 0;
 }

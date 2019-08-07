@@ -49,12 +49,12 @@ if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) 
             <div class="main">
                 <div class="block">
                     <h1 class="block-title"><span class="fa fa-edit"></span> Profile settings</h1>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                        <?php if(isset($msg)) {
-                            echo $msg;
-                        } else { ?>
+                    <?php if(isset($msg)) {
+                        echo $msg;
+                    } else { ?>
                         <p><a href="/member/<?php echo strtolower($_SESSION['username']) ?>">View your profile</a></p>
-                        <?php } ?>
+                    <?php } ?>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <div class="input-line">
                             <div class="input-container third">
                                 <input name="name" type="text" id="name" <?php if (isset($name)) { echo "value=\"$name\""; } else { echo "value=\"$db_name\""; } ?>>

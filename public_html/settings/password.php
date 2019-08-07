@@ -64,10 +64,12 @@ if (!$l) {
                     <h1 class="block-title"><i class="fa fa-key"></i> Change password</h1>
                     <?php if (isset($msg)) { echo "<p>$msg</p>"; } ?>
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
-                        <div class="input-container">
-                            <input name="current_password" type="password" id="p1" autofocus required>
-                            <label for="p1">Current password</label>
-                            <span class="line"></span>
+                        <div class="input-line">
+                            <div class="input-container">
+                                <input name="current_password" type="password" id="p1" autofocus required>
+                                <label for="p1">Current password</label>
+                                <span class="line"></span>
+                            </div>
                         </div>
                         <div class="input-container">
                             <input name="new_password1" class="check-is-valid" type="password" id="p2" pattern="[a-zA-Z1-9_-]{0,21}" required>
