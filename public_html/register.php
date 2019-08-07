@@ -20,7 +20,8 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         $duplicate = mysqli_num_rows($result);
         if ($duplicate === 0) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO `users` (username,password) VALUES ('$username','$hashed_password')";
+            $permisssions = '{"edit_account":false,"puzzle_review":false}';
+            $sql = "INSERT INTO `users` (username,password,permissions) VALUES ('$username','$hashed_password','$permisssions')";
             $result = mysqli_query($connection,$sql);
             $getLastIdSQL = "SELECT id FROM `users` ORDER BY id DESC LIMIT 1";
             $getLastIdQ = mysqli_query($connection,$getLastIdSQL);

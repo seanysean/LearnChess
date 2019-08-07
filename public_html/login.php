@@ -17,7 +17,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         $_SESSION = []; # Just to reset all session values
         $_SESSION['username'] = $loginInfo['username'];
         $_SESSION['userid'] = $loginInfo['id'];
-        $_SESSION['permissions'] = ''.$loginInfo['permissions'];
+        $_SESSION['permissions'] = json_decode($loginInfo['permissions'],true);
         $_SESSION['darktheme'] = $loginInfo['darktheme'] === '1';
         $_SESSION['rating'] = $loginInfo['rating'];
         $_SESSION['nextpuzzle'] = $loginInfo['nextpuzzle'];

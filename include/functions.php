@@ -33,11 +33,11 @@ function isAllowed($type) {
     if (!$l) {
         return false;
     }
-    $pEdited = str_split($_SESSION['permissions']);
+    $permissions = $_SESSION['permissions'];
     if ($type === 'admin') {
-        return ($pEdited[0] === '1') ? true : false;
+        return $permissions['edit_account'] === true;
     } else if ($type === 'puzzle') {
-        return ($pEdited[1] === '1') ? true : false;
+        return $permissions['puzzle_review'] === true;
     }
 }
 function createNotification($icon,$to,$message,$url="") {
