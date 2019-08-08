@@ -26,7 +26,7 @@ if(!$l or !isAllowed('puzzle')) {
 \$pID = $newID;
 include '../../../templates/puzzle.php';");
             fclose($newPuzzleFile);
-            $msg = "<p>Puzzle <a href=\"view/$newID\">$pID</a> accepted.</p>";
+            $msg = "<p>Puzzle <a href=\"view/$newID\">$newID</a> accepted.</p>";
             createNotification('fa-puzzle-piece',$authorID,'Your puzzle was accepted!',"/puzzles/view/$newID");
         } else {
             $msg = "<p>Something went really wrong.</p>";
