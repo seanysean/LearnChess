@@ -1,7 +1,6 @@
 const switchButton = document.getElementById('dev-theme-switch');
 let currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
 switchButton.addEventListener('change',()=>{
-    console.log('change');
     if (currentTheme === 'dark') {
         document.body.classList.remove('dark');
         currentTheme = 'light';
@@ -11,8 +10,8 @@ switchButton.addEventListener('change',()=>{
     }
 });
 document.addEventListener('keypress',e=>{
-    if (e.key === 'Ò' && e.shiftKey && e.altKey && e.ctrlKey) {
-        // Press Ctrl+Shift+Alt+l
+    if (e.which === 12 && e.shiftKey && e.ctrlKey) {
+        // Press Ctrl+Shift+l
         switchButton.click();   
     }
 });
