@@ -1,6 +1,6 @@
 body.dark {
     --background: #333;
-    --page: #444;
+    --page: #3b3b3b;
 }
 body.dark [data-hint]::after {
     background: #555;
@@ -26,6 +26,9 @@ body.dark .top .top-above .learnchess-link .extension {
 }
 body.dark .top .top-above .learnchess-link:hover {
     color: #bbb;
+}
+.top .right {
+    color: #777;
 }
 body.dark .top .top-above .profile-link {
     color: #999;
@@ -90,7 +93,7 @@ body.dark .page {
     color: #aaa;
 }
 body.dark .page .block .block-title {
-    color: #ddd;
+    color: #bbb;
 }
 body.dark .sidebar a:hover {
     background: #333;

@@ -415,6 +415,9 @@ body.dark .button.nocolor::after {
 .top .top-above .learnchess-link:hover {
     color: #555;
 }
+.top .right {
+    color: #444;
+}
 .top .top-above .profile-link {
     color: #777;
 }
@@ -719,7 +722,7 @@ body.dark .button.nocolor::after {
 .board-container .credits {
     padding: 5px;
     color: #999;
-    font-weight: 100;
+    font-weight: 400;
     font-family: "Roboto",sans-serif;
     border: 1px solid #eee;
     transition: 0.1s linear;
