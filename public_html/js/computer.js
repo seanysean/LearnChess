@@ -124,7 +124,7 @@ function makeMove(c,c2) {
 resignBtn.addEventListener('click',()=>{
     const info = {
         title: 'Game over', // Title of popup
-        text: 'White won by resignation', // Description text
+        text: 'The computer won by resignation', // Description text
         yes: 'Ok', // Text for the yes button
     },
     events = {
