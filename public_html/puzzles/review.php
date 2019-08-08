@@ -129,9 +129,9 @@ include '../../../templates/puzzle.php';");
             </div>
         </div>
         <footer><?php include_once "../../include/footer.php" ?></footer>
+        <script src="../js/global.js"></script>
         <script src="../js/loadposition.js"></script>
         <script src="../js/chessground.min.js"></script>
-        <script src="../js/global.js"></script>
         <script src="../js/popup.js"></script>
         <script src="../js/review-puzzles.js"></script>
     </body>

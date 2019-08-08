@@ -35,6 +35,7 @@ include_once "../include/functions.php";
             </div>
         </div>
         <footer><?php include_once "../include/footer.php" ?></footer>
+        <script src="js/global.js"></script>
         <script src="js/chess.min.js"></script>
         <script src="js/chess-functions.js"></script>
         <script src="js/chessground.min.js"></script>

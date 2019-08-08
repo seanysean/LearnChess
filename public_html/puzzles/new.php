@@ -128,10 +128,10 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
             </div>
         </div>
         <footer><?php include_once "../../include/footer.php" ?></footer>
+        <script src="../js/global.js"></script>
         <script src="../js/chess.min.js"></script>
         <script src="../js/chess-functions.js"></script>
         <script src="../js/chessground.min.js"></script>
-        <script src="../js/global.js"></script>
         <script src="../js/popup.js"></script>
         <script src="../js/boardeditor.js"></script>
     </body>

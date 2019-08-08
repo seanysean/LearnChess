@@ -206,8 +206,8 @@ if ($result) {
             document.getElementById('loading').style.display = 'none';
         </script>
         <?php } ?>
-        <script src="../js/profile.js"></script>
         <script src="../js/global.js"></script>
+        <script src="../js/profile.js"></script>
         <script src="../js/chessground.min.js"></script>
         <script src="../js/loadposition.js"></script>
     </body>
