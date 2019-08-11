@@ -1,7 +1,7 @@
 .more {
     margin-top: 20px;
 }
-.page .do-stuff {
+.do-stuff {
     overflow: hidden;
 }
 .do-stuff a {
@@ -10,12 +10,11 @@
     padding: 10px;
     transition: none;
 }
-.do-stuff a i {
+body.dark .do-stuff a {
     color: #999;
 }
-body.dark .do-stuff a {
-    background: #444;
-    color: #aaa;
+.do-stuff a i {
+    color: #999;
 }
 body.dark .do-stuff a i {
     color: #999;
@@ -27,10 +26,10 @@ body.dark .do-stuff a i {
     color: #555;
 }
 body.dark .do-stuff a:hover i {
-    color: #eee;
+    color: #777;
 }
 body.dark .do-stuff a:hover {
-    color: #bbb;
+    color: #888;
 }
 .page ul {
     padding-left: 20px;

@@ -160,10 +160,7 @@ body.dark .feedback #response.incorrect {
     color: #f3f3f3;
 }
 .feedback #response.correct {
-    background: #73ca76;
-}
-body.dark .feedback #response.correct {
-    background: #449a47;
+    background: var(--green);
 }
 .feedback #response.incorrect {
     background: #ca7373;

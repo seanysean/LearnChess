@@ -2,6 +2,7 @@
     --background: #eee;
     --page: #f9f9f9;
     --link: #3893e8;
+    --green: #73ca76;
 }
 
 * {
@@ -216,7 +217,7 @@ body.dark .button.nocolor::after {
     color: #fff;
 }
 .flat-button.green:hover {
-    background: #4caf50;
+    background: var(--green);
     color: #fff;
 }
 .flat-button:active {

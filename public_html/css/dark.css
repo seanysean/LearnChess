@@ -1,6 +1,7 @@
 body.dark {
     --background: #333;
     --page: #3b3b3b;
+    --green: #449a47;
 }
 body.dark [data-hint]::after {
     background: #555;
