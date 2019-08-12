@@ -1,4 +1,4 @@
-const editExplanationHTML = document.querySelectorAll('.edit-explanation');
+const editExplanationHTML = $('.edit-explanation',true);
 editExplanationHTML.forEach(el=>{
     const info = {
         title: 'Edit puzzle ' + el.getAttribute('data-puzzle') + ' explanation',
@@ -11,7 +11,7 @@ editExplanationHTML.forEach(el=>{
         yes() {
             myPopup.close();
             let v = myPopup.input.value;
-            const dataIds = Array.from(document.querySelectorAll('[data-id]'));
+            const dataIds = Array.from($('[data-id]',true));
             const filtered = dataIds.filter(id=>{
                 return el.getAttribute('data-puzzle') === id.getAttribute('data-id');
             });
@@ -28,7 +28,7 @@ editExplanationHTML.forEach(el=>{
     });
 });
 
-const submitButton = document.querySelectorAll('a.form-submit');
+const submitButton = $('a.form-submit',true);
 submitButton.forEach(el=>{
     let acceptOrDelete = el.getAttribute('data-delete') === '0' ? 'accepting' : 'deleting';
     const info = {

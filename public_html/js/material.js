@@ -1,4 +1,4 @@
-document.querySelectorAll('.check-is-valid').forEach(e=>{
+$('.check-is-valid',true).forEach(e=>{
     e.classList.remove('check-is-valid'); // Inputs shouldn't start out all red
     e.addEventListener('keydown',()=>{
         if (e.value === '') {

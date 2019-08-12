@@ -1,5 +1,5 @@
-let res = document.getElementById('response'),
-    board = document.getElementById('chessground');
+let res = $('#response'),
+    board = $('#chessground');
 const chess = new Chess(fen), config = {
     fen: fen,
     coordinates: false,
@@ -39,9 +39,9 @@ function showResponse(s,c,r,d,e) {
         res.classList = 'correct';
     } else if (c) {
         let viewExplainEl, explainEl;
-        document.getElementById('copyings').classList.remove('hidden');
-        document.getElementById('next').classList.remove('hidden');
-        document.getElementById('credits').classList.remove('hidden');
+        $('#copyings').classList.remove('hidden');
+        $('#next').classList.remove('hidden');
+        $('#credits').classList.remove('hidden');
         if (e) {
             viewExplainEl = document.createElement('span');
             explainEl = document.createElement('div');
@@ -62,7 +62,7 @@ function showResponse(s,c,r,d,e) {
             retryBtn.classList = 'retry end-stuff';
             retryBtn.addEventListener('click',()=>window.location.reload());
             res.appendChild(retryBtn);
-            document.getElementById('next').children[0].classList.remove('green'); // Green doesn't really work with red in this case.
+            $('#next').children[0].classList.remove('green'); // Green doesn't really work with red in this case.
         }
         const lichess = document.createElement('a');
         lichess.href = `https://lichess.org/analysis/${fen}`;
@@ -88,7 +88,7 @@ function showResponse(s,c,r,d,e) {
         const el = document.createElement('div');
         el.classList = 'give-a-trophy';
         el.innerHTML = `<button type="submit" id="trophy" class="trophy"${extraStyle}><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
-        const cont = document.querySelector('#credits');
+        const cont = $('#credits');
         const el2 = document.createElement('div');
         el2.innerHTML = `<p>Puzzle created by <a href="/member/${author.toLowerCase()}">${author}</a></p>
                         <p>Puzzle rating: ${Math.round(r[0])}</p>`;
@@ -101,7 +101,7 @@ function showResponse(s,c,r,d,e) {
         cont.appendChild(el2); //Don't ask why they're in reverse
         cont.appendChild(el);
         if (loggedin && author !== infoUsername) {
-            document.getElementById('trophy').addEventListener('click',updateTrophies);
+            $('#trophy').addEventListener('click',updateTrophies);
             document.body.addEventListener('keyup',e=>{
                 if (e.key.toLowerCase() === 't') {
                     updateTrophies();
@@ -200,7 +200,7 @@ function getMoves(m) {
 }
 function updateTrophies() {
     if (!gaveTrophy) {
-        const t = document.getElementById('tCount');
+        const t = $('#tCount');
         t.innerHTML = '...';
         const xhr = new XMLHttpRequest(),
               url = '/puzzles/star',
@@ -210,7 +210,7 @@ function updateTrophies() {
             if (xhr.readyState === xhr.DONE) {
                 const res = xhr.response;
                 t.innerHTML = res.count;
-                document.getElementById('trophy').style.pointerEvents = 'none';
+                $('#trophy').style.pointerEvents = 'none';
             }
         }
         xhr.open('POST',url);
@@ -227,24 +227,24 @@ cg.set({
     }
 });
 
-document.getElementById('puzzleURL').value = window.location.href;
+$('#puzzleURL').value = window.location.href;
 
 res.innerHTML = `<i class="fa fa-info-circle"></i> ${turn} to move`;
 
-const inputs = document.querySelectorAll('input');
+const inputs = $('input',true);
 inputs.forEach(i=>{
     i.addEventListener('click',()=>{
         i.select();
     });
 });
 
-document.querySelectorAll('.copy-on-click').forEach((el,i)=>{
+$('.copy-on-click',true).forEach((el,i)=>{
     el.addEventListener('click',()=>{
         el.select();
         document.execCommand('copy');
-        document.getElementById(`copy-${i+1}`).classList.add('copied');
+        $(`#copy-${i+1}`).classList.add('copied');
         setTimeout(()=>{
-            document.getElementById(`copy-${i+1}`).classList.remove('copied');
+            $(`#copy-${i+1}`).classList.remove('copied');
         },2000);
     });
 });

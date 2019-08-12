@@ -1,13 +1,13 @@
 const el = {
-    p2: document.getElementById('p2'),
-    p3: document.getElementById('p3')
+    p2: $('#p2'),
+    p3: $('#p3')
 }
 const r = {
     valid: 'input-response valid',
     invalid: 'input-response invalid'
 }
 el.p2.addEventListener('keyup',()=>{
-    const res = document.getElementById('passwordResponse');
+    const res = $('#passwordResponse');
     const pass = el.p2.value;
     if (pass.length > 4 && pass.length < 21) {
         const removeInvalidChars = pass.replace(/[^a-z1-9_-]/gi,'');
@@ -24,7 +24,7 @@ el.p2.addEventListener('keyup',()=>{
     }
 });
 el.p3.addEventListener('keyup',()=>{
-    const res = document.getElementById('passwordResponse2');
+    const res = $('#passwordResponse2');
     if (el.p3.value === el.p2.value) {
         res.innerHTML = ' Passwords match';
         res.classList = r.valid;

@@ -15,7 +15,7 @@ function loadPosition(el,fen,size) {
     };
     Chessground(el,config);
 }
-const puzzlePreviews = document.querySelectorAll('[data-fen]');
+const puzzlePreviews = $('[data-fen]',true);
 puzzlePreviews.forEach(e=>{
     const fen = e.getAttribute('data-fen');
     loadPosition(e,fen);

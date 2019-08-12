@@ -2,7 +2,7 @@ function valid(text,min,max,inputType,msgContainer) {
     let inputEdited = inputType.split('');
     inputEdited[0] = inputEdited[0].toUpperCase();
     inputEdited = inputEdited.join('');
-    const el = document.getElementById(msgContainer);
+    const el = $('#' + msgContainer);
     if ((text.length > min) && (text.length < max)) {
         const removeInvalidChars = text.replace(/[^a-z1-9_-]/gi,'');
         if (text === removeInvalidChars) {
@@ -46,8 +46,8 @@ function login(username,password) {
     form.submit();
 }
 const inputs = {
-    username: document.getElementById('username'),
-    password: document.getElementById('password')
+    username: $('#username'),
+    password: $('#password')
 }
 if (inputs.username && inputs.password) {
 inputs.username.addEventListener('keyup',()=>{

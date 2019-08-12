@@ -1,8 +1,8 @@
 const engine = STOCKFISH();
-const board = document.getElementById('board');
-const movesHTML = document.getElementById('moves');
-const resignBtn = document.getElementById('resign');
-const flipBoardBtn = document.getElementById('flip');
+const board = $('#board');
+const movesHTML = $('#moves');
+const resignBtn = $('#resign');
+const flipBoardBtn = $('#flip');
 const chess = new Chess();
 let color = '';
 const info = {

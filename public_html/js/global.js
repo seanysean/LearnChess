@@ -1,16 +1,20 @@
 console.log('LearnChess is open source! View project here: https://github.com/seanysean/LearnChess');
 
-const pageJson = document.getElementById('js_info');
+function $(element,getAllElements) {
+    return getAllElements ? document.querySelectorAll(element) : document.querySelector(element);
+}
+
+const pageJson = $('#js_info');
       info = JSON.parse(pageJson.value),
       loggedin = info.loggedin,
       infoUsername = info.username;
 pageJson.remove();
 
 const n = {
-    icon: document.getElementById('notification-icon'),
-    cont: document.getElementById('notification-container'),
-    iCont: document.getElementById('i-container'),
-    count: document.getElementById('dCount')
+    icon: $('#notification-icon'),
+    cont: $('#notification-container'),
+    iCont: $('#i-container'),
+    count: $('#dCount')
 }
 if (n.icon) {
     let openNotification = false;
@@ -67,7 +71,7 @@ function checkNotifications() {
                         unreadCount++;
                     }
                     el.innerHTML = `<i class="icon-type fa ${n.icon}"></i> ${n.message}`;
-                    document.getElementById('i-container').appendChild(el);
+                    $('#i-container').appendChild(el);
                     el.addEventListener('click',e=>{
                         e.preventDefault();
                         markAsRead(n.id,n.url,el);

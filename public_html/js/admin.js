@@ -1,5 +1,5 @@
-const username = document.getElementById('username'),
-      autocomplete = document.getElementById('autocomplete-container');
+const username = $('#username'),
+      autocomplete = $('#autocomplete-container');
 let users = [],
     current = 0,
     last,
@@ -55,7 +55,7 @@ username.addEventListener('keyup',e=>{
                             el.addEventListener('click',()=>{
                                 const usr = el.innerText.replace(' ','');
                                 username.value = usr;
-                                document.getElementById('search').submit();
+                                $('#search').submit();
                             });
                             autocomplete.appendChild(el);
                             users.push(el);
@@ -85,14 +85,13 @@ document.addEventListener('keypress',e=>{
 document.querySelectorAll('.edit').forEach(el=>{
     el.addEventListener('click',()=>{
         let id = el.id.split('edit')[1];
-        console.log(id);
-        document.getElementById('label').innerHTML = `Edit ${id}`;
-        document.getElementById('info').value = document.getElementById(id).innerHTML;
-        document.getElementById('info').focus();
-        document.getElementById('info').name = id;
-        document.getElementById('popup').style.display = 'block';
+        $('#label').innerHTML = `Edit ${id}`;
+        $('#info').value = $('#' + id).innerHTML;
+        $('#info').focus();
+        $('#info').name = id;
+        $('#popup').style.display = 'block';
     });
 });
-document.getElementById('cancel').addEventListener('click',()=>{
-    document.getElementById('popup').style.display = 'none';
+$('#cancel').addEventListener('click',()=>{
+    $('#popup').style.display = 'none';
 });

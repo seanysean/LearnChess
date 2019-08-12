@@ -11,13 +11,13 @@ const config = {
         select: setPiece
     }
 }
-const cg = Chessground(document.getElementById('cg'),config);
+const cg = Chessground($('#cg'),config);
 let selection = false;
 
 function setPiece(s) {
     if (selection) {
         const pieces = cg.state.pieces;
-        const selectedPiece = document.querySelector('.selectedPiece').getAttribute('data-piece').split(' ');
+        const selectedPiece = $('.selectedPiece').getAttribute('data-piece').split(' ');
         pieces[s] = {
             color: selectedPiece[0],
             role: selectedPiece[1]
@@ -28,14 +28,14 @@ function setPiece(s) {
 }
 
 const tools = {
-    container: document.getElementById('t-cont'),
-    flip: document.getElementById('flip'),
-    analyze: document.getElementById('analyze'),
-    initial: document.getElementById('initial'),
-    color: document.getElementById('color'),
-    empty: document.getElementById('empty'),
-    clearSelection: document.getElementById('clrSelect'),
-    undo: document.getElementById('undo')
+    container: $('#t-cont'),
+    flip: $('#flip'),
+    analyze: $('#analyze'),
+    initial: $('#initial'),
+    color: $('#color'),
+    empty: $('#empty'),
+    clearSelection: $('#clrSelect'),
+    undo: $('#undo')
 }
 tools.flip.addEventListener('click',()=>{
     cg.toggleOrientation();
@@ -64,7 +64,7 @@ tools.empty.addEventListener('click',()=>{
     updateFEN();
 });
 tools.clearSelection.addEventListener('click',()=>{
-    document.getElementsByClassName('selectedPiece')[0].classList.remove('selectedPiece');
+    $('.selectedPiece').classList.remove('selectedPiece');
     selection = false;
 });
 
@@ -72,15 +72,15 @@ function updateFEN() {
     if (isNextStep) {
         return;
     }
-    document.getElementById('fen').value = cg.getFen() + (turn === 'white' ? ' w' : ' b') + ' - - 0 1';
+    $('#fen').value = cg.getFen() + (turn === 'white' ? ' w' : ' b') + ' - - 0 1';
     tools.analyze.href = 'https://lichess.org/analysis/' + cg.getFen();
 }
 
-const dataPieces = document.querySelectorAll('[data-piece]'),
-      fenInput = document.getElementById('fen');
+const dataPieces = $('[data-piece]',true),
+      fenInput = $('#fen');
 dataPieces.forEach(p=>{
     p.addEventListener('click',()=>{
-        let selectedPiece = document.getElementsByClassName('selectedPiece')[0];
+        let selectedPiece = $('.selectedPiece');
         if (selectedPiece) {
             selectedPiece.classList.remove('selectedPiece');
         }
@@ -96,15 +96,15 @@ fenInput.addEventListener('keyup',()=>{
 
 // Next step...
 
-const nextStep = document.getElementById('next');
+const nextStep = $('#next');
 nextStep.addEventListener('click',()=>{
-    const cancel = document.getElementById('cancel');
+    const cancel = $('#cancel');
     if (selection) {
-        document.getElementsByClassName('selectedPiece')[0].classList.remove('selectedPiece');
+        $('.selectedPiece').classList.remove('selectedPiece');
         selection = false;
     }
     isNextStep = true;
-    document.getElementById('fen-cont').style.display = 'none';
+    $('#fen-cont').style.display = 'none';
     let t = ['initial','color','empty','clearSelection'];
     t.forEach(i=>{
         if (i !== 'color') {
@@ -115,16 +115,16 @@ nextStep.addEventListener('click',()=>{
     });
     tools.undo.parentElement.style.display = 'block';
     nextStep.style.display = 'none';
-    document.getElementById('pgn-cont').style.display = 'block';
-    document.getElementById('explain-cont').style.display = 'block';
-    document.getElementById('submit').style.display = 'inline-block';
+    $('#pgn-cont').style.display = 'block';
+    $('#explain-cont').style.display = 'block';
+    $('#submit').style.display = 'inline-block';
     cancel.style.display = 'inline-block';
-    const spares = document.querySelectorAll('.spare');
+    const spares = $('.spare',true);
     spares.forEach(el=>{
         el.classList.add('disabled');
     });
     const chess = new Chess(cg.getFen() + (turn === 'white' ? ' w' : ' b') + ' - - 0 1');
-    document.getElementById('fen').value = chess.fen();
+    $('#fen').value = chess.fen();
     cg.set({
         turnColor: getColor(chess.turn()),
         movable: {
@@ -166,14 +166,14 @@ nextStep.addEventListener('click',()=>{
         return async (o, d) => {
             const m = c.move({from: o, to: d, promotion: 'q'});
             if (m.flags.includes('p')) {
-                const waitForPromotion = await openPromoteOptions(document.getElementById('cg'),m.to,cground);
+                const waitForPromotion = await openPromoteOptions($('#cg'),m.to,cground);
                 if (waitForPromotion) {
                     c.undo();
                     let x = c.move({ from: o, to: d, promotion: waitForPromotion });
-                    document.getElementById('pgn').value = removeHeaders(c.pgn());
+                    $('#pgn').value = removeHeaders(c.pgn());
                 }
             } else {
-                document.getElementById('pgn').value = removeHeaders(c.pgn());
+                $('#pgn').value = removeHeaders(c.pgn());
             }
             cground.set({
                 turnColor: getColor(c.turn()),
@@ -194,7 +194,7 @@ nextStep.addEventListener('click',()=>{
               dests: toDests(chess)
             }
         });
-        document.getElementById('pgn').value = removeHeaders(chess.pgn());
+        $('#pgn').value = removeHeaders(chess.pgn());
     });
     const info = {
         title: 'Are you sure you want to delete your work?',

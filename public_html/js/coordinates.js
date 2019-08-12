@@ -1,8 +1,8 @@
-const start = document.getElementById('start'),
-      overlay = document.getElementById('overlay'),
-      square = document.getElementById('square'),
-      c1 = document.getElementById('c1'),
-      c2 = document.getElementById('c2');
+const start = $('#start'),
+      overlay = $('#overlay'),
+      square = $('#square'),
+      c1 = $('#c1'),
+      c2 = $('#c2');
 const config = {
     coordinates: false,
     draggable: {
@@ -18,7 +18,7 @@ const config = {
         select: sel
     }
 };
-Chessground(document.getElementById('board'),config);
+Chessground($('#board'),config);
 let currentSquare = '',
     score = 0,
     time = 0;
@@ -55,7 +55,7 @@ start.addEventListener('click',()=>{
     },250);
     const countDown = setInterval(()=>{
         time++;
-        document.getElementById('time').style.width = Math.round(time * 3.33) + '%';
+        $('#time').style.width = Math.round(time * 3.33) + '%';
         if (time === 31) {
             overlay.classList.remove('transparent');
             square.innerHTML = `Your score is ${score}`;
