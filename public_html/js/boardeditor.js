@@ -99,6 +99,7 @@ fenInput.addEventListener('keyup',()=>{
 const nextStep = $('#next');
 nextStep.addEventListener('click',()=>{
     const cancel = $('#cancel');
+    let hideLastMoveHighlight = false;
     if (selection) {
         $('.selectedPiece').classList.remove('selectedPiece');
         selection = false;
@@ -182,6 +183,11 @@ nextStep.addEventListener('click',()=>{
                     dests: toDests(c)
                 }
             });
+            if (hideLastMoveHighlight) {
+                $('.last-move',true).forEach(e=>{
+                    show(e);
+                });
+            }
         }
     }
     tools.undo.addEventListener('click',()=>{
@@ -195,6 +201,12 @@ nextStep.addEventListener('click',()=>{
             }
         });
         $('#pgn').value = removeHeaders(chess.pgn());
+        if (!hideLastMoveHighlight) {
+            $('.last-move',true).forEach(e=>{
+                hide(e);
+            });
+        }
+        hideLastMoveHighlight = true;
     });
     const info = {
         title: 'Are you sure you want to delete your work?',

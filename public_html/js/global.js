@@ -4,6 +4,13 @@ function $(element,getAllElements) {
     return getAllElements ? document.querySelectorAll(element) : document.querySelector(element);
 }
 
+function hide(element) {
+    element.style.display = 'none';
+}
+function show(element,displayValue='block') {
+    element.style.display = displayValue;
+}
+
 const pageJson = $('#js_info');
       info = JSON.parse(pageJson.value),
       loggedin = info.loggedin,
