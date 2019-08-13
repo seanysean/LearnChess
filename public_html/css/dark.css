@@ -19,75 +19,73 @@ body.dark .button:focus span {
 body.dark a:hover {
     color: #549fe4;
 }
-body.dark .top .top-above .learnchess-link {
+body.dark .learnchess-link {
     color: #ccc;
 }
-body.dark .top .top-above .learnchess-link .extension {
+body.dark .learnchess-link .extension {
     color: #aaa;
 }
-body.dark .top .top-above .learnchess-link:hover {
+body.dark .learnchess-link:hover {
     color: #bbb;
 }
-.top .right {
+body.dark .top .right {
     color: #777;
 }
-body.dark .top .top-above .profile-link {
+body.dark .top-above .profile-link {
     color: #999;
 }
-body.dark .top .top-above .profile-link:hover {
+body.dark .top-above .profile-link:hover {
     color: #bbb;
 }
-body.dark .top .top-navigation {
+body.dark .top-navigation {
     background: #393939;
 }
-body.dark .top .top-navigation .main-links a {
+body.dark .top-navigation .main-links a {
     color: #aaa;
 }
-body.dark .top .top-navigation .main-links a:hover {
+body.dark .top-navigation .main-links a:hover {
     background: #3f3f3f;
 }
-body.dark .top .top-navigation .main-links .main-dropdown .dropdown,
-body.dark .top .top-navigation .icon-links .icon-dropdown .dropdown {
+body.dark .top-navigation .dropdown {
     background: #393939;
     border-color: #464646;
 }
-body.dark .top .top-navigation .main-links .main-dropdown .dropdown a:hover,
-body.dark .top .top-navigation .icon-links .icon-dropdown .dropdown a:hover {
+body.dark .top-navigation .dropdown a:hover {
     color: #ddd;
 }
-body.dark .top .top-navigation .icon-links .icon {
+body.dark .top-navigation .icon-links .icon {
     color: #aaa;
 }
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container {
+body.dark .n-container {
     background: #444;
 }
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container::before {
+body.dark .n-container::before {
     border-bottom-color: #494949;
 }
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification,
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .nothing-to-see {
+body.dark a.notification,
+body.dark .n-container .nothing-to-see {
     background: #494949;
     border-color: #5d5d5d;
-    color: #999;
+    color: #bbb;
 }
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .flat-button {
+body.dark .n-container .flat-button {
     background: #494949;
     color: #999;
 }
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container::-webkit-scrollbar {
+body.dark .n-container .inner-container::-webkit-scrollbar {
     background: #494949;
 }
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container::-webkit-scrollbar-thumb {
+body.dark .n-container .inner-container::-webkit-scrollbar-thumb {
     background: #595959;
 }
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container::-webkit-scrollbar-thumb:hover {
+body.dark .n-container .inner-container::-webkit-scrollbar-thumb:hover {
     background: #696969;
 }
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification:hover,
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .flat-button:hover {
+body.dark .notification:hover,
+body.dark .n-container .flat-button:hover {
     background: #4f4f4f;
 }
-body.dark .top .top-navigation .icon-links .icon-dropdown .n-container .inner-container .notification .icon-type {
+body.dark .notification .icon-type {
     color: #777;
 }
 body.dark .page {
