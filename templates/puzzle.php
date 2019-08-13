@@ -65,9 +65,9 @@ if ($result) {
                     </form>
                     <?php } ?>
                     <h3>Copy URL <span id="copy-1" class="copy-badge"><i class="fa fa-check"></i> Copied</span></h3>
-                    <input class="copy-on-click" id="puzzleURL" />
+                    <input class="copy-on-click" id="puzzleURL" readonly />
                     <h3>Copy FEN <span id="copy-2" class="copy-badge"><i class="fa fa-check"></i> Copied</span></h3>
-                    <input class="copy-on-click" value="<?php echo $fen ?>" />
+                    <input class="copy-on-click" value="<?php echo $fen ?>" readonly />
                 </div>
             </div>
             <?php } ?>
