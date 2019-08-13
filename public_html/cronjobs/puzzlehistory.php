@@ -1,5 +1,5 @@
 <?php # This script runs once a day.
-include "include/connect.php";
+include "../../include/connect.php";
 
 # Puzzle history on profile
 
