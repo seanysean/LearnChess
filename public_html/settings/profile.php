@@ -6,23 +6,25 @@ if(!$l) {
     header('Location: /');
 }
 $userID = $_SESSION['userid'];
-$sql = "SELECT `name`,`lichess`,`about`,`chesscom`,`showcoords` FROM `users` WHERE id='$userID'";
+$sql = "SELECT `name`,`lichess`,`about`,`chesscom`,`settings` FROM `users` WHERE id='$userID'";
 $result = mysqli_query($connection,$sql) or die('Something went wrong.');
 if ($result) {
     $res = $result->fetch_assoc();
+    $settings = json_decode($res['settings'],true); //FIIXXX
     $db_name = $res['name'];
     $db_lichess = $res['lichess'];
     $db_chesscom = $res['chesscom'];
     $db_about = $res['about'];
-    $db_coords = $res['showcoords'];
+    $db_coords = isset($settings['show_coords']) ? $settings['show_coords'] : false;
 }
 if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) or isset($_POST['chesscom']) or isset($_POST['coords'])) {
     $name = secure($_POST['name']);
     $lichess = secure($_POST['lichess']);
     $chesscom = secure($_POST['chesscom']);
     $about = secure($_POST['about'],true);
-    $coords = (isset($_POST['coords'])) ? '1' : '0';
-    $sql = "UPDATE `users` SET name='$name',lichess='$lichess',chesscom='$chesscom',about='$about',showcoords='$coords' WHERE id='$userID'";
+    $settings['show_coords'] = (isset($_POST['coords'])) ? true : false;
+    $settings_json = json_encode($settings);
+    $sql = "UPDATE `users` SET name='$name',lichess='$lichess',chesscom='$chesscom',about='$about',settings='$settings_json' WHERE id='$userID'";
     $result = mysqli_query($connection,$sql);
     if ($result) {
         $username = strtolower($_SESSION['username']);
@@ -84,7 +86,7 @@ if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) 
                             <span class="line"></span>
                         </div>
                         <div class="checkbox-container">
-                            <input name="coords" type="checkbox" id="coords" <?php if (isset($coords)) { if ($coords === '1') { echo "checked "; } } else if ($db_coords === '1') { echo "checked "; }?>/>
+                            <input name="coords" type="checkbox" id="coords" <?php if (isset($coords) && $coords === true) { echo "checked "; } else if ($db_coords === true) { echo "checked "; }?>/>
                             <label for="coords" class="custom-checkbox"></label>
                             <label for="coords" class="checkbox-message">Display your coordinates score on your profile</label>
                         </div>

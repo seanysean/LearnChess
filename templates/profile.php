@@ -7,9 +7,10 @@ $sql = "SELECT * FROM `users` WHERE id='$accountid'";
 $result = mysqli_query($connection,$sql);
 if ($result) {
     $res = $result->fetch_assoc();
+    $settings = json_decode($res['settings'],true);
     $thisUsersName = $res['name'];
     $coordinates = $res['coordinates'];
-    $coords = $res['showcoords'];
+    $coords = isset($settings['show_coords']) ? $settings['show_coords'] : false;
     $thisUsersLichessProfile = $res['lichess'];
     $thisUsersChesscomProfile = $res['chesscom'];
     $aboutThisUser = $res['about'];

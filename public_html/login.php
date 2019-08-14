@@ -14,11 +14,11 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
     if ($count === 1 and $loginInfo['active'] === '1' and password_verify($password,$loginInfo['password'])) {
         $sql = "UPDATE `users` SET online='1',last_active=CURRENT_TIMESTAMP WHERE username='$username'";
         mysqli_query($connection,$sql);
-        $_SESSION = []; # Just to reset all session values
+        $_SESSION = [];
         $_SESSION['username'] = $loginInfo['username'];
         $_SESSION['userid'] = $loginInfo['id'];
         $_SESSION['permissions'] = json_decode($loginInfo['permissions'],true);
-        $_SESSION['darktheme'] = $loginInfo['darktheme'] === '1';
+        $_SESSION['settings'] = (isset($loginInfo['settings']) ? json_decode($loginInfo['settings'],true) : []);
         $_SESSION['rating'] = $loginInfo['rating'];
         $_SESSION['nextpuzzle'] = $loginInfo['nextpuzzle'];
         header('Location: home');

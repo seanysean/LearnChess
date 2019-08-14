@@ -3,26 +3,30 @@ session_start();
 include "../../include/functions.php";
 include "sidebar.php";
 if ($l) {
-$u = $_SESSION['userid'];
-$sql = "SELECT darktheme FROM users WHERE id='$u'";
-$dOn = mysqli_query($connection,$sql)->fetch_assoc()['darktheme'] === '1';
-if (isset($_POST['post1'])) {
-    if (isset($_POST['theme'])) {
-        $sql = "UPDATE `users` SET darktheme='1' WHERE id='$u'";
-        $_SESSION['darktheme'] = true;
-        $dOn = true;
-    } else {
-        $sql = "UPDATE `users` SET darktheme='0' WHERE id='$u'";
-        $_SESSION['darktheme'] = false;
-        $dOn = false;
+    $u = $_SESSION['userid'];
+    $settings = $_SESSION['settings'];
+    $darkThemeOn = isset($settings['dark_theme']) ? $settings['dark_theme'] : false;
+    if (isset($_POST['post1'])) {
+        if (isset($_POST['theme'])) {
+            $settings['dark_theme'] = true;
+            $settings_json = json_encode($settings);
+            $sql = "UPDATE `users` SET settings='$settings_json' WHERE id='$u'";
+            $_SESSION['settings'] = $settings;
+            $darkThemeOn = true;
+        } else {
+            $settings['dark_theme'] = false;
+            $settings_json = json_encode($settings);
+            $sql = "UPDATE `users` SET settings='$settings_json' WHERE id='$u'";
+            $_SESSION['settings'] = $settings;
+            $darkThemeOn = false;
+        }
+        $result = mysqli_query($connection,$sql);
+        if ($result) {
+            $msg = '<p>Settings saved successfully</p>';
+        } else {
+            $msg = '<p>Settings not saved. Please report.</p>';
+        }
     }
-    $result = mysqli_query($connection,$sql);
-    if ($result) {
-        $msg = '<p>Settings saved successfully</p>';
-    } else {
-        $msg = '<p>Settings not saved. Please report.</p>';
-    }
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,7 +51,7 @@ if (isset($_POST['post1'])) {
                     <?php if(isset($msg)) { echo $msg; } ?>
                         <div class="checkbox-container">
                             <input name="post1" type="hidden" />
-                            <input type="checkbox" name="theme" id="theme" <?php if ($dOn) { echo "checked "; } ?>/>
+                            <input type="checkbox" name="theme" id="theme" <?php if ($darkThemeOn) { echo "checked "; } ?>/>
                             <label for="theme" class="custom-checkbox"></label>
                             <label for="theme" class="checkbox-message">Dark theme</label>
                         </div>
