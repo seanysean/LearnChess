@@ -75,13 +75,12 @@ if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) 
                             </div>
                         </div>
                         <div class="input-container">
-                            <textarea name="about" id="about" rows="5"><?php if(isset($about)) {
-                                $about = str_replace('<br />','',$about); 
-                                echo $about; 
-                            } else if (isset($db_about)) {
+                            <textarea name="about" id="about" rows="5"><?php
+                            if (isset($db_about)) {
                                 $db_about = str_replace('<br />','',$db_about); 
                                 echo $db_about;
-                            } ?></textarea>
+                            } ?>
+                            </textarea>
                             <label for="about">Biography</label>
                             <span class="line"></span>
                         </div>
