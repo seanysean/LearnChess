@@ -59,17 +59,17 @@ if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) 
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <div class="input-line">
                             <div class="input-container third">
-                                <input name="name" type="text" id="name" <?php if (isset($name)) { echo "value=\"$name\""; } else { echo "value=\"$db_name\""; } ?>>
+                                <input name="name" type="text" id="name" <?php echo "value=\"$db_name\""; ?>>
                                 <label for="name">Name</label>
                                 <span class="line"></span>
                             </div>
                             <div class="input-container third">
-                                <input name="lichess" type="text" id="lichess" spellcheck="false" <?php if (isset($lichess)) { echo "value=\"$lichess\""; } else { echo "value=\"$db_lichess\""; } ?>>
+                                <input name="lichess" type="text" id="lichess" spellcheck="false" <?php echo "value=\"$db_lichess\""; ?>>
                                 <label for="lichess">Lichess Username</label>
                                 <span class="line"></span>
                             </div>
                             <div class="input-container third">
-                                <input name="chesscom" type="text" id="chesscom" spellcheck="false" <?php if (isset($chesscom)) { echo "value=\"$chesscom\""; } else { echo "value=\"$db_chesscom\""; } ?>>
+                                <input name="chesscom" type="text" id="chesscom" spellcheck="false" <?php echo "value=\"$db_chesscom\""; ?>>
                                 <label for="chesscom">Chess.com Username</label>
                                 <span class="line"></span>
                             </div>
@@ -86,7 +86,7 @@ if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) 
                             <span class="line"></span>
                         </div>
                         <div class="checkbox-container">
-                            <input name="coords" type="checkbox" id="coords" <?php if (isset($coords) && $coords === true) { echo "checked "; } else if ($db_coords === true) { echo "checked "; }?>/>
+                            <input name="coords" type="checkbox" id="coords" <?php if ($db_coords === true) { echo "checked "; }?>/>
                             <label for="coords" class="custom-checkbox"></label>
                             <label for="coords" class="checkbox-message">Display your coordinates score on your profile</label>
                         </div>
