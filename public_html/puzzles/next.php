@@ -54,7 +54,8 @@ if ($l) {
             <div class="main full">
                 <div class="block">
                     <h1 class="block-title">No more puzzles!</h1>
-                    <p>Well done! While you wait for more puzzles, how about <a href="new">contributing some</a>?</p>
+                    <p>Good job on finishing all of the puzzles!</p>
+                    <p>But please check back again sometime, because other users can contribute puzzles.</p>
                 </div>
             </div>
         </div>
