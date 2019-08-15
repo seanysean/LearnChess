@@ -1,19 +1,21 @@
-const editExplanationHTML = $('.edit-explanation',true);
-editExplanationHTML.forEach(el=>{
-    const info = {
-        title: 'Edit puzzle ' + el.getAttribute('data-puzzle') + ' explanation',
-        text: 'Edit grammar, spelling, etc...',
+const edit = $('.edit',true);
+edit.forEach(el=>{
+    const dataType = el.getAttribute('data-type'),
+    dataPuzzle = el.getAttribute('data-puzzle'),
+    info = {
+        title: `Edit puzzle ${dataPuzzle} ${dataType === 'pgn' ? 'PGN' : 'explanation'}`,
+        text: dataType === 'pgn' ? '' : 'Edit grammar, spelling, etc...',
         yes: '<i class="fa fa-pencil"></i> Edit',
         no: 'Cancel',
-        value: el.getAttribute('data-explanation')
+        value: el.getAttribute('data-value')
     },
     events = {
         yes() {
             myPopup.close();
             let v = myPopup.input.value;
-            const dataIds = Array.from($('[data-id]',true));
+            const dataIds = [...$('[data-id]',true)];
             const filtered = dataIds.filter(id=>{
-                return el.getAttribute('data-puzzle') === id.getAttribute('data-id');
+                return dataPuzzle === id.getAttribute('data-id') && dataType === id.getAttribute('data-type');
             });
             filtered[0].innerHTML = v;
             filtered[1].value = v;

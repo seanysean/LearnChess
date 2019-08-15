@@ -92,15 +92,30 @@ include '../../../templates/puzzle.php';");
                                 <td><?php echo $id ?></td>
                                 <td><?php echo createUserLink($authorID) ?></td>
                                 <td><span><a class="fen" target="_blank" powertip='{"type":"position","value":"<?php echo $fen?>"}' href="https://lichess.org/analysis/standard/<?php echo $fen ?>"><?php echo 'Analyze on lichess' ?> <i class="fa fa-external-link"></i></a></span></td>
-                                <td><span class="pgn"><?php echo $pgn ?></span></td>
-                                <td><span data-id="<?php echo $id ?>"><?php if ($explain) { echo $explain; } else { echo '<span class="no-explain"><i class="fa fa-close"></i> No explanation given</span>'; } ?></span><span class="fa fa-pencil edit-explanation" data-puzzle="<?php echo $id ?>" data-explanation="<?php if ($explain) { echo $explain; } ?>"></span></td>
+                                <td>
+                                    <span class="pgn" data-id="<?php echo $id ?>" data-type="pgn"><?php echo $pgn ?></span>
+                                    <span class="fa fa-pencil edit" data-type="pgn" data-puzzle="<?php echo $id ?>" data-value="<?php echo $pgn ?>"></span>
+                                </td>
+                                <td>
+                                    <span data-id="<?php echo $id ?>" data-type="explain">
+                                    <?php if ($explain) { 
+                                        echo $explain;
+                                    } else {
+                                        echo '<span class="no-explain"><i class="fa fa-close"></i> No explanation given</span>'; 
+                                    } ?>
+                                    </span>
+                                    <span class="fa fa-pencil edit" data-type="explain" data-puzzle="<?php echo $id ?>" data-value="<?php if ($explain) {
+                                        echo $explain; 
+                                    } ?>">
+                                    </span>
+                                </td>
                                 <td><span class="choice">
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                                         <input type="hidden" value="accept <?php echo $id ?>" name="review">
                                         <input type="hidden" value="<?php echo $authorID ?>" name="authorID">
                                         <input type="hidden" value="<?php echo $fen ?>" name="fen">
-                                        <input type="hidden" value="<?php echo $pgn ?>" name="pgn">
-                                        <input type="hidden" value="<?php echo $explain ?>" name="explain" data-id="<?php echo $id ?>">
+                                        <input type="hidden" value="<?php echo $pgn ?>" name="pgn" data-id="<?php echo $id ?>" data-type="pgn">
+                                        <input type="hidden" value="<?php echo $explain ?>" name="explain" data-id="<?php echo $id ?>" data-type="explain">
                                         <span class="hint-text-center" data-hint="Approve puzzle">
                                             <a data-delete="0" class="flat-button form-submit">
                                                 <span><i class="fa fa-check"></i></span>

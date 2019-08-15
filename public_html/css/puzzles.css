@@ -13,11 +13,11 @@
     padding: 5px;
     word-break: break-word;
 }
-.puzzles-to-review .edit-explanation {
+.puzzles-to-review .edit {
     float: right;
     cursor: pointer;
 }
-.puzzles-to-review .edit-explanation:hover {
+.puzzles-to-review .edit:hover {
     opacity: 0.8;
 }
 .puzzles-to-review form {
