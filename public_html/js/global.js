@@ -153,18 +153,18 @@ powerTipLinks.forEach(l=>{
             }
             xhr.open('GET',url);
             xhr.send();
+            powerTip.classList.remove('position');
         } else {
             const inner = document.createElement('div');
             powerTip.appendChild(inner);
-            loadPosition(inner,obj.value,200);
+            loadPosition(inner,obj.value,160);
+            powerTip.classList.add('position');
         }
         powerTip.style.left = l.offsetLeft + 'px';
         powerTip.style.top = l.offsetTop - powerTip.offsetHeight + 'px';
     });
     l.addEventListener('mouseleave',()=>{
         powerTip.style.display = 'none';
-        powerTip.style.height = 'auto';
-        powerTip.style.width = '150px';
     });
 });
 powerTip.addEventListener('mouseover',()=>{

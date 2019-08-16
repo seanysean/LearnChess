@@ -288,11 +288,19 @@ body.dark .button.nocolor::after {
     position: absolute;
     background: #fff;
     font-weight: 100;
-    box-shadow: 1px 1px 5px RGBa(0,0,0,0.4);
+    box-shadow: 1px 2px 2px RGBa(0,0,0,0.3);
     border-radius: 3px;
-    width: 150px;
+    min-width: 150px;
     z-index: 10;
     display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+#powerTip.position {
+    border: 5px solid var(--page);
+}
+#powerTip .cg-board {
+    cursor: default;
 }
 #powerTip .ui-top {
     padding: 5px;

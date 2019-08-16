@@ -42,3 +42,6 @@ body.dark .edit:hover {
 .info:hover .edit {
     opacity: 1;
 }
+.block-title {
+    margin-bottom: 0;
+}
