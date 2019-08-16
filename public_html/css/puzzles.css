@@ -131,7 +131,7 @@ body.dark .editor-container .tools {
     word-break: break-all;
 }
 .main.full {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .main.full .block {
     width: var(--page-width);
@@ -272,9 +272,12 @@ input {
     color: #888;
     background: transparent;
 }
-.page .start-container {
+.start-container {
     margin-bottom: 20px;
     padding: 0;
+}
+.start-container.start {
+    background: #edf2f7;
 }
 .start-container .flat-button {
     font-size: 20px;
@@ -282,21 +285,6 @@ input {
     border-radius: 3px;
     box-shadow: 0 0 0 transparent;
     position: relative;
-}
-.start-container .flat-button.blue {
-    animation: 1s attention ease 1;
-}
-@keyframes attention {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-}
-.start-container .flat-button:hover {
-    border-color: #333;
-    animation: none;
 }
 .start-container .flat-button.green:active {
     box-shadow: 0 0 10px 1px #32ca36;

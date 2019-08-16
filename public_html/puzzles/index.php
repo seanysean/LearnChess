@@ -77,7 +77,7 @@ if ($l) {
                 </div>
             </div>
             <div class="right-area">
-                <div class="block start-container">
+                <div class="block start-container start">
                     <a href="next" class="flat-button blue full transition"><span><i class="fa fa-check"></i> Start</span></a>
                 </div>
                 <div class="block">

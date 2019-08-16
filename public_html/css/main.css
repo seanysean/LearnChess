@@ -272,7 +272,7 @@ body.dark .button.nocolor::after {
     content: attr(data-count);
     position: absolute;
     font-family: "Roboto",sans-serif;
-    background: #3893e8;
+    background: var(--link);
     color: #fff;
     padding: 3px;
     font-size: 13px;
