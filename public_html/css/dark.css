@@ -91,7 +91,7 @@ body.dark .notification .icon-type {
 body.dark .page {
     color: #aaa;
 }
-body.dark .page .block .block-title {
+body.dark .block .block-title {
     color: #bbb;
 }
 body.dark .sidebar a:hover {

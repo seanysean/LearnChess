@@ -28,29 +28,31 @@ if ($result) {
         <div class="top">
             <?php include_once "../../../include/topbar.php"; ?>
         </div>
+        
+        <div class="main full">
+            <div class="block">
+                <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID ?></h1>
+            </div>
+        </div>
         <div class="page">
             <div class="main<?php if($removed) { echo " center"; } ?>">
-                <div class="block transparent">
-                    <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID ?></h1>
-                    <?php if($removed) {
-                        $_SESSION['nextpuzzle'] = $pID + 1;
-                        $form = '';
-                        if (isAllowed('puzzle')) {
-                            $form = '<form method="post" action="../remove"><input type="hidden" value="1" name="undo"><input type="hidden" value="'.$pID.'" name="puzzle"><button class="flat-button" type="submit"><i class="fa fa-undo"></i> Bring puzzle back</button>';
-                        }
-                        echo "<p class=\"nothing-to-see removed\"><i class=\"fa fa-ban\"></i> This puzzle was removed.</p><a class=\"flat-button continue-training transition\" href=\"../next\">Continue practicing</a>$form"; 
-                    }
-                    ?>
-                </div>
+                <div class="block">
                 <?php if (!$removed) { ?>
-                <div class="block transparent">
                     <div id="chessground"></div>
+                <?php } else {
+                    $_SESSION['nextpuzzle'] = $pID + 1;
+                    $form = '';
+                    if (isAllowed('puzzle')) {
+                        $form = '<form method="post" action="../remove"><input type="hidden" value="1" name="undo"><input type="hidden" value="'.$pID.'" name="puzzle"><button class="flat-button" type="submit"><i class="fa fa-undo"></i> Bring puzzle back</button>';
+                    }
+                    echo "<p class=\"nothing-to-see removed\"><i class=\"fa fa-ban\"></i> This puzzle was removed.</p><a class=\"flat-button continue-training transition\" href=\"../next\">Continue practicing</a>$form"; 
+                }
+                ?>
                 </div>
-                <?php } ?>
             </div>
             <?php if (!$removed) { ?>
             <div class="right-area">
-                <div class="block feedback transparent" id="res-container">
+                <div class="block feedback" id="res-container">
                     <div id="response" class="neutral loading"><div class="loader"></div></div>
                 </div>
                 <div class="block start-container hidden" id="next">

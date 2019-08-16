@@ -3,6 +3,7 @@
     --page: #f9f9f9;
     --link: #3893e8;
     --green: #73ca76;
+    --page-width: 60%;
 }
 
 * {
@@ -618,6 +619,7 @@ a.notification {
 }
 .page .main.full {
     width: 100%;
+    display: block;
 }
 .page .right-area,
 .page .left-area {
@@ -651,7 +653,7 @@ a.notification {
     position: absolute;
     right: 10px;
 }
-.page .block {
+.block {
     background: var(--page);
     box-shadow: 1px 2px 2px RGBa(0,0,0,0.1);
     width: 100%;
@@ -663,7 +665,7 @@ a.notification {
 .main .block {
     padding: 20px;
 }
-.page .block.no-padding {
+.block.no-padding {
     padding: 0;
 }
 .block.transparent {
@@ -758,7 +760,7 @@ footer .site-name {
 
 @media (max-width: 1450px) {
     .top, .page, footer {
-        width: 60%;
+        width: var(--page-width);
     }
 }
 @media (max-width: 1300px) {
