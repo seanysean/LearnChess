@@ -34,7 +34,6 @@ include "../include/functions.php";
         }
         .block .report {
             margin: 3px 0;
-            font-weight: 100;
         }
         </style>
     </head>
