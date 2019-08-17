@@ -3,7 +3,7 @@
     --page: #f9f9f9;
     --link: #3893e8;
     --green: #73ca76;
-    --page-width: 60%;
+    --page-width: 50%;
 }
 
 * {
@@ -12,6 +12,11 @@
 body {
     font-family: sans-serif;
     background: var(--background);
+    display: grid;
+    grid-template: 86px 1fr 34px /  1fr var(--page-width) 1fr;
+    grid-template-areas: ". header ."
+                         ". page ."
+                         ". footer .";
 }
 
 @font-face {
@@ -403,10 +408,8 @@ body.dark .button.nocolor::after {
 .page .main {
     display: inline-block;
 }
-.top, .page, footer {
-    width: 50%;
-    height: auto;
-    margin: 10px auto;
+.top {
+    grid-area: header;
 }
 .top-above {
     margin-bottom: 5px;
@@ -601,17 +604,17 @@ a.notification {
 
 .page {
     color: #777;
-    display: flex;
+    display: grid;
+    grid-template-columns: 70% 1fr;
     justify-content: space-between;
+    grid-area: page;
+    grid-gap: 20px;
 }
 .page .main a:not(.uilink):not(.flat-button):not(.button) {
     font-family: "Roboto", sans-serif;
 }
 .page .main a {
     position: relative;
-}
-.page .main {
-    width: 70%;
 }
 .page .main.center {
     margin: 30px auto;
@@ -621,7 +624,6 @@ a.notification {
     width: 100%;
     display: block;
 }
-.page .right-area,
 .page .left-area {
     width: 27%;
 }
@@ -741,10 +743,10 @@ a.notification {
 /* Footer */
 
 footer {
-    margin: 20px auto;
     border-top: 1px solid #ddd;
     padding-top: 10px;
     color: #555;
+    grid-area: footer;
 }
 body.dark footer {
     border-color: #555;
@@ -759,12 +761,12 @@ footer .site-name {
 }
 
 @media (max-width: 1450px) {
-    .top, .page, footer {
-        width: var(--page-width);
+    :root {
+        --page-width: 60%;
     }
 }
 @media (max-width: 1300px) {
-    .top, .page, footer {
-        width: 65%;
+    :root {
+        --page-width: 65%;
     }
 }
