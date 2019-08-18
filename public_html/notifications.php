@@ -63,8 +63,8 @@ if(!$l) {
         <div class="top">
         <?php include "../include/topbar.php" ?>
         </div>
-        <div class="page">
-            <div class="main center">
+        <div class="page center">
+            <div class="main">
                 <div class="block">
     <h1 class="block-title center"><i class="fa fa-bell-o"></i> Notifications<?php if ($unread_count) { echo " ($unread_count)"; } ?><?php if ($unread_count) { ?><form class="alternate" action="/notifications" method="post"><input type="hidden" value=" " name="mark-all"><button type="submit" class="flat-button"><i class="fa fa-check"></i> Mark all as read</button></form><?php } ?></h1>
                     <div class="container">
