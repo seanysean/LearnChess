@@ -279,6 +279,9 @@ input {
 .start-container.start {
     background: #edf2f7;
 }
+body.dark .start-container.start {
+    background: #3d4354;
+}
 .start-container .flat-button {
     font-size: 20px;
     padding: 20px;
