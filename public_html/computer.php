@@ -14,11 +14,11 @@ include_once "../include/functions.php";
     </head>
     <body<?php include_once "../include/attributes.php" ?>>
         <div class="top"><?php include_once "../include/topbar.php" ?></div>
-        <div class="page">
+        <div class="page has-header">
+            <div class="block">
+                <h1 class="block-title center"><i class="fa fa-laptop"></i> Play Computer</h1>
+            </div>
             <div class="main">
-                <div class="block">
-                    <h1 class="block-title center"><i class="fa fa-laptop"></i> Play Computer</h1>
-                </div>
                 <div class="block">
                     <div id="board"></div>
                 </div>
