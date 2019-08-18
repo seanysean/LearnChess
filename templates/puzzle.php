@@ -28,13 +28,10 @@ if ($result) {
         <div class="top">
             <?php include_once "../../../include/topbar.php"; ?>
         </div>
-        
-        <div class="main full">
-            <div class="block">
+        <div class="page">
+            <div class="block puzzle-header">
                 <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID ?></h1>
             </div>
-        </div>
-        <div class="page">
             <div class="main<?php if($removed) { echo " center"; } ?>">
                 <div class="block">
                 <?php if (!$removed) { ?>
