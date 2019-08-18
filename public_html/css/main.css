@@ -17,6 +17,7 @@ body {
     grid-template-areas: ". header ."
                          ". page ."
                          ". footer .";
+    grid-gap: 20px;
 }
 
 @font-face {
@@ -610,6 +611,10 @@ a.notification {
     grid-area: page;
     grid-gap: 20px;
 }
+.page.single-column {
+    grid-template-columns: 70%;
+    justify-content: space-around;
+}
 .page .main a:not(.uilink):not(.flat-button):not(.button) {
     font-family: "Roboto", sans-serif;
 }
@@ -617,8 +622,8 @@ a.notification {
     position: relative;
 }
 .page .main.center {
-    margin: 30px auto;
     display: block;
+    margin-top: 30px;
 }
 .page .main.full {
     width: 100%;
@@ -659,7 +664,6 @@ a.notification {
     background: var(--page);
     box-shadow: 1px 2px 2px RGBa(0,0,0,0.1);
     width: 100%;
-    margin-top: 10px;
     margin-bottom: 30px;
     padding: 10px;
     border-radius: 3px;
