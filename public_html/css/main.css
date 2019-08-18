@@ -611,9 +611,12 @@ a.notification {
     grid-area: page;
     grid-gap: 20px;
 }
-.page.single-column {
+.page.center {
     grid-template-columns: 70%;
     justify-content: space-around;
+}
+.page.full {
+    grid-template-columns: 100%;
 }
 .page .main a:not(.uilink):not(.flat-button):not(.button) {
     font-family: "Roboto", sans-serif;
@@ -621,11 +624,11 @@ a.notification {
 .page .main a {
     position: relative;
 }
-.page .main.center {
+.page.center .main {
     display: block;
     margin-top: 30px;
 }
-.page .main.full {
+.page.full .main {
     width: 100%;
     display: block;
 }

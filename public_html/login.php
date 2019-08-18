@@ -40,8 +40,8 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         <div class="top">
             <?php include_once "../include/topbar.php" ?>
         </div>
-        <div class="page single-column">
-            <div class="main center">
+        <div class="page center">
+            <div class="main">
                 <div class="block">
                     <h1 class="block-title">Login
                         <span class="alternate">
