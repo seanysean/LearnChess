@@ -2,9 +2,6 @@
     width: 500px;
     height: 500px;
 }
-.right-area {
-    margin-top: 120px;
-}
 .selected {
     display: none;
 }

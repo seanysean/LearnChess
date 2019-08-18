@@ -618,6 +618,19 @@ a.notification {
 .page.full {
     grid-template-columns: 100%;
 }
+.page.has-header {
+    grid-template-areas: "page-header page-header";
+}
+.page.has-header > .block {
+    grid-area: page-header;
+    margin: 0;
+}
+.page.has-header > .block .block-title {
+    margin: 0;
+}
+.puzzle-header .block-title {
+    margin: 0;
+}
 .page .main a:not(.uilink):not(.flat-button):not(.button) {
     font-family: "Roboto", sans-serif;
 }

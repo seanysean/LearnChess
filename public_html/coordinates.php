@@ -37,12 +37,12 @@ else if(isset($_GET['old']) && $l) {
         <div class="top">
         <?php include "../include/topbar.php" ?>
         </div>
-        <div class="page">
+        <div class="page has-header">
+            <div class="block">
+                <h1 class="block-title center"><i class="fa fa-bullseye"></i> Coordinates</h1>
+            </div>
             <div class="main">
-                <div class="block transparent">
-                    <h1 class="block-title center"><i class="fa fa-bullseye"></i> Coordinates</h1>
-                </div>
-                <div class="block transparent">
+                <div class="block">
                     <div class="board-cont">
                         <div class="overlay" id="overlay"><p class="cont" id="square">Press start</p></div>
                         <div id="board" data-fen="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w"></div>
@@ -51,11 +51,11 @@ else if(isset($_GET['old']) && $l) {
                 </div>
             </div>
             <div class="right-area">
-                <div class="block transparent start-card" id="c1">
+                <div class="block start-card" id="c1">
                     <p>How many coordinates can you find in 30s?</p>
                     <button id="start" class="button blue full"><span><i class="fa fa-check"></i> Start</span></button>
                 </div>
-                <div class="block transparent response right" id="c2">
+                <div class="block response right" id="c2">
                     <p><i class="fa fa-check"></i> Click on the board</p>
                 </div>
             </div>
