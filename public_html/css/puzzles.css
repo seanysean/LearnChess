@@ -137,9 +137,6 @@ body.dark .editor-container .tools {
     width: var(--page-width);
     margin: 0 auto;
 }
-.main.full .block-title {
-    margin: 0;
-}
 .page .block.feedback {
     padding: 0;
     margin-bottom: 20px;

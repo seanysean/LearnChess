@@ -3,7 +3,7 @@
     --page: #f9f9f9;
     --link: #3893e8;
     --green: #73ca76;
-    --page-width: 60%;
+    --page-width: 50%;
 }
 
 * {
@@ -12,6 +12,12 @@
 body {
     font-family: sans-serif;
     background: var(--background);
+    display: grid;
+    grid-template: 86px 1fr 34px /  1fr var(--page-width) 1fr;
+    grid-template-areas: ". header ."
+                         ". page ."
+                         ". footer .";
+    grid-gap: 20px;
 }
 
 @font-face {
@@ -403,10 +409,8 @@ body.dark .button.nocolor::after {
 .page .main {
     display: inline-block;
 }
-.top, .page, footer {
-    width: 50%;
-    height: auto;
-    margin: 10px auto;
+.top {
+    grid-area: header;
 }
 .top-above {
     margin-bottom: 5px;
@@ -601,8 +605,36 @@ a.notification {
 
 .page {
     color: #777;
-    display: flex;
+    display: grid;
+    grid-template-columns: 70% 1fr;
     justify-content: space-between;
+    grid-area: page;
+    grid-gap: 20px;
+}
+.page.center {
+    grid-template-columns: 70%;
+    justify-content: space-around;
+}
+.page.full {
+    grid-template-columns: 100%;
+}
+.page.has-header {
+    grid-template-areas: "page-header page-header";
+}
+.page.has-header > .block {
+    grid-area: page-header;
+    margin: 0;
+    padding: 20px;
+}
+.page.has-header > .block .block-title {
+    margin: 0;
+}
+.page.has-left {
+    grid-template-areas: "page-header page-header";
+    grid-template-columns: 30% 1fr;
+}
+.puzzle-header .block-title {
+    margin: 0;
 }
 .page .main a:not(.uilink):not(.flat-button):not(.button) {
     font-family: "Roboto", sans-serif;
@@ -610,20 +642,13 @@ a.notification {
 .page .main a {
     position: relative;
 }
-.page .main {
-    width: 70%;
-}
-.page .main.center {
-    margin: 30px auto;
+.page.center .main {
     display: block;
+    margin-top: 30px;
 }
-.page .main.full {
+.page.full .main {
     width: 100%;
     display: block;
-}
-.page .right-area,
-.page .left-area {
-    width: 27%;
 }
 .page .left-area {
     display: inline-block;
@@ -657,7 +682,6 @@ a.notification {
     background: var(--page);
     box-shadow: 1px 2px 2px RGBa(0,0,0,0.1);
     width: 100%;
-    margin-top: 10px;
     margin-bottom: 30px;
     padding: 10px;
     border-radius: 3px;
@@ -741,10 +765,10 @@ a.notification {
 /* Footer */
 
 footer {
-    margin: 20px auto;
     border-top: 1px solid #ddd;
     padding-top: 10px;
     color: #555;
+    grid-area: footer;
 }
 body.dark footer {
     border-color: #555;
@@ -759,12 +783,12 @@ footer .site-name {
 }
 
 @media (max-width: 1450px) {
-    .top, .page, footer {
-        width: var(--page-width);
+    :root {
+        --page-width: 60%;
     }
 }
 @media (max-width: 1300px) {
-    .top, .page, footer {
-        width: 65%;
+    :root {
+        --page-width: 65%;
     }
 }

@@ -32,8 +32,8 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
         <div class="top">
             <?php include_once "../../include/topbar.php" ?>
         </div>
-        <div class="page">
-            <div class="main full">
+        <div class="page full">
+            <div class="main">
                 <div class="block">
                     <h1 class="block-title center">Create new puzzle</h1>
                     <a href="/puzzles"><i class="fa fa-arrow-left"></i> Back to puzzles</a>

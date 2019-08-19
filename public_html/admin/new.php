@@ -17,7 +17,7 @@ if (!$l or !isAllowed('admin')) {
         <div class="top">
         <?php include "../../include/topbar.php" ?>
         </div>
-        <div class="page">
+        <div class="page has-left">
             <div class="left-area">
                 <?php sidebar('new'); ?>
             </div>

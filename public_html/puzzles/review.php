@@ -57,7 +57,7 @@ include '../../../templates/puzzle.php';");
         <div class="top">
         <?php include_once "../../include/topbar.php" ?>
         </div>
-        <div class="page">
+        <div class="page has-left">
             <div class="left-area"><?php sidebar(1) ?></div>
             <div class="main right">
                 <div class="block">

@@ -15,7 +15,7 @@ if(!$l or !isAllowed('puzzle')) {
     </head>
     <body<?php include_once "../../include/attributes.php" ?>>
         <div class="top"><?php include_once "../../include/topbar.php" ?></div>
-        <div class="page">
+        <div class="page has-left">
             <div class="left-area"><?php sidebar(2) ?></div>
             <div class="main right">
                 <div class="block">

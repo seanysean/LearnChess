@@ -57,7 +57,7 @@ if (!$l) {
         <div class="top">
         <?php include "../../include/topbar.php" ?>
         </div>
-        <div class="page">
+        <div class="page has-left">
             <div class="left-area"><?php echo sidebar(3) ?></div>
             <div class="main">
                 <div class="block">

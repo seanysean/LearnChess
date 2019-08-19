@@ -60,8 +60,8 @@ require \"../../templates/profile.php\";";
         <div class="top">
             <?php include_once "../include/topbar.php" ?>
         </div>
-        <div class="page">
-            <div class="main center">
+        <div class="page center">
+            <div class="main">
                 <div class="block">
                     <h1 class="block-title">Register<span class="alternate">
                         <span class="alt-text">Already have a account?</span>
