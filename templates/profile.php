@@ -60,8 +60,8 @@ if ($result) {
     </head>
     <body<?php include_once "../../include/attributes.php" ?>>
         <div class="top"><?php include_once "../../include/topbar.php" ?></div>
-        <div class="page">
-            <div class="main full">
+        <div class="page full">
+            <div class="main">
                 <div class="block transparent">
                     <h1 class="block-title">
                         <span<?php echo $hint ?>>
