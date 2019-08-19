@@ -46,7 +46,7 @@ if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) 
         <div class="top">
             <?php include_once "../../include/topbar.php" ?>
         </div>
-        <div class="page">
+        <div class="page has-left">
             <div class="left-area"><?php echo sidebar(2) ?></div>
             <div class="main">
                 <div class="block">

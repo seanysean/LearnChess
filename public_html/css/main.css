@@ -624,9 +624,14 @@ a.notification {
 .page.has-header > .block {
     grid-area: page-header;
     margin: 0;
+    padding: 20px;
 }
 .page.has-header > .block .block-title {
     margin: 0;
+}
+.page.has-left {
+    grid-template-areas: "page-header page-header";
+    grid-template-columns: 30% 1fr;
 }
 .puzzle-header .block-title {
     margin: 0;
@@ -644,9 +649,6 @@ a.notification {
 .page.full .main {
     width: 100%;
     display: block;
-}
-.page .left-area {
-    width: 27%;
 }
 .page .left-area {
     display: inline-block;
@@ -683,6 +685,8 @@ a.notification {
     margin-bottom: 30px;
     padding: 10px;
     border-radius: 3px;
+}
+.main .block {
     padding: 20px;
 }
 .block.no-padding {

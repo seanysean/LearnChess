@@ -40,7 +40,7 @@ if ($l) {
         <div class="top">
         <?php include_once "../../include/topbar.php" ?>
         </div>
-        <div class="page">
+        <div class="page has-left">
             <div class="left-area">
             <?php echo sidebar(1) ?>
             </div>

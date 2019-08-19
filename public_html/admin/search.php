@@ -53,7 +53,7 @@ if (!$l || !isAllowed('admin')) {
         <div class="top">
         <?php include_once "../../include/topbar.php" ?>
         </div>
-        <div class="page">
+        <div class="page has-left">
             <div class="left-area">
             <?php sidebar('search'); ?>
             </div>
