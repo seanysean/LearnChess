@@ -1,3 +1,4 @@
 .DS_Store
 public_html/member/**
 public_html/puzzles/view/*
+include/config.php
