@@ -2,7 +2,14 @@
     --background: #eee;
     --page: #f9f9f9;
     --link: #3893e8;
+    --blue: #58a3bf;
+    --blue-accent: #e8f9ff;
     --green: #73ca76;
+    --green-accent: #e2ffe3;
+    --red: #e84438;
+    --red-accent: #ffecec;
+    --yellow: #ffff05;
+    --yellow-accent: #fdfde8;
     --page-width: 50%;
 }
 
@@ -732,6 +739,42 @@ a.notification {
 .left-area .nothing-to-see {
     font-size: 13px;
     text-align: center;
+}
+
+/* Error and warning messages */
+
+.message {
+    padding: 15px;
+    line-height: 22px;
+    border-left: 4px solid;
+}
+.message.error {
+    border-left-color: var(--red);
+    background: var(--red-accent);
+    color: #581a1a;
+}
+.message.warning {
+    border-left-color: var(--yellow);
+    background: var(--yellow-accent);
+    color: #5d5d03;
+}
+.message.info {
+    border-left-color: var(--blue);
+    background: var(--blue-accent);
+    color: #035d3a;
+}
+.message.success {
+    border-left-color: var(--green);
+    background: var(--green-accent);
+    color: #035d3a;
+}
+.message a {
+    color: inherit;
+    font-weight: 600;
+    transition: none;
+}
+.message a:hover {
+    opacity: 0.6;
 }
 
 /* Board container */

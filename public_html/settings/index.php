@@ -22,9 +22,9 @@ if ($l) {
         }
         $result = mysqli_query($connection,$sql);
         if ($result) {
-            $msg = '<p>Settings saved successfully</p>';
+            $msg = info_message('success','Settings saved successfully.');
         } else {
-            $msg = '<p>Settings not saved. Please report.</p>';
+            $msg = info_message('error','Settings not saved. Please report <a href="https://github.com/seanysean/LearnChess/issues" target="_blank">on github</a>.');
         }
     }
 ?>

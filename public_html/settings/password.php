@@ -27,21 +27,21 @@ if (!$l) {
                         $hashed = password_hash($new1, PASSWORD_DEFAULT);
                         $result = mysqli_query($connection,"UPDATE `users` SET `password`='$hashed'");
                         if ($result) {
-                            $msg = 'Password changed successfully';
+                            $msg = info_message('success','Password changed successfully');
                         } else {
-                            $msg = 'Something went wrong.';
+                            $msg = info_message('error','Something went wrong while trying to close your account. Please report <a href="https://github.com/seanysean/LearnChess/issues" target="_blank">on github</a>.');
                         }
                     } else {
-                        $msg = 'New passwords don\'t match'; 
+                        $msg = info_message('error','New passwords don\'t match.');
                     }
                 } else {
-                    $msg = 'Invalid characters used. You can only use letters, numbers, dashes and underscores';
+                    $msg = info_message('error','Invalid characters used. You can only use letters, numbers, dashes and underscores.');
                 }
             } else {
-                $msg = 'Your password is too long or too short';
+                $msg = info_message('error','Your password is too long or too short.');
             }
         } else {
-            $msg = "Incorrect password";
+            $msg = info_message('error','Incorrect password.');
         }
     }
 ?>
@@ -62,7 +62,7 @@ if (!$l) {
             <div class="main">
                 <div class="block">
                     <h1 class="block-title"><i class="fa fa-key"></i> Change password</h1>
-                    <?php if (isset($msg)) { echo "<p>$msg</p>"; } ?>
+                    <?php if (isset($msg)) { echo $msg; } ?>
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
                         <div class="input-line">
                             <div class="input-container">

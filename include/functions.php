@@ -78,3 +78,6 @@ function createUserLink($id,$r=false) {
         }
     }
 }
+function info_message($type,$text) {
+    return "<div class=\"message $type\">$text</div>";
+}

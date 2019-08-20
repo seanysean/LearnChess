@@ -15,12 +15,12 @@ if(isset($_POST['password'])) {
         $sql = "UPDATE `users` SET active='0' WHERE id='$id'";
         $result = mysqli_query($connection,$sql);
         if (!$result) {
-            $msg = '<p>Something went wrong...</p>';
+            $msg = info_message('error','Something went wrong while trying to close your account. Please report <a href="https://github.com/seanysean/LearnChess/issues" target="_blank">on github</a>.');
         } else {
             header('Location: /logout');
         }
     } else {
-        $msg = '<p>Your password was incorrect';
+        $msg = info_message('error','Your password was incorrect');
     }
 }
 ?>
@@ -41,8 +41,9 @@ if(isset($_POST['password'])) {
             <div class="main">
                 <div class="block">
                     <h1 class="block-title"><i class="fa fa-gear"></i> Close account</h1>
-                    <?php if(isset($msg)) { echo $msg; } ?>
-                    <p>You will not be able to undo this!</p>
+                    <?php if(isset($msg)) { echo $msg; } else {
+                        echo info_message('warning','You will not be able to undo this!');
+                    } ?>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <div class="input-container">
                             <input type="password" name="password" id="password" required>

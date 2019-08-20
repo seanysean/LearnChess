@@ -23,9 +23,9 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         $_SESSION['nextpuzzle'] = $loginInfo['nextpuzzle'];
         header('Location: home');
     } else if ($loginInfo['active'] === '0') {
-        $msg = '<p>This account was closed.</p>';
+        $msg = info_message('error','This account was closed.');
     } else {
-        $msg = "<p>Incorrect username or password.</p>";
+        $msg = info_message('error','Incorrect username or password.');
     }
 }
 ?>

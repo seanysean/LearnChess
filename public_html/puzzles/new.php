@@ -12,9 +12,9 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
     $sql = "INSERT INTO `puzzles_to_review` (fen,pgn,author_id,explanation) VALUES ('$fen','$pgn','$authorID','$explain')";
     $result = mysqli_query($connection,$sql);
     if ($result) {
-        $msg = '<p>Puzzle created successfully! You will be notified when is is approved or disapproved.</p>';
+        $msg = info_message('success','Puzzle created successfully! You will be notified when is is approved or disapproved.');
     } else {
-        $msg = '<p>Something went wrong...</p>';
+        $msg = info_message('Something went wrong while uploading your puzzle. Please report <a href="https://github.com/seanysean/LearnChess/issues" target="_blank">on github</a>.');
     }
 }
 ?>
@@ -36,8 +36,8 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
             <div class="main">
                 <div class="block">
                     <h1 class="block-title center">Create new puzzle</h1>
-                    <a href="/puzzles"><i class="fa fa-arrow-left"></i> Back to puzzles</a>
                     <?php if(isset($msg)) { echo $msg; } ?>
+                    <a href="/puzzles" <?php if(isset($msg)) { echo 'style="margin-top: 10px;display:block"';}?>><i class="fa fa-arrow-left"></i> Back to puzzles</a>
                     <div class="editor-container">
                         <div class="spare">
                             <piece class="black king" data-piece="black king"></piece>

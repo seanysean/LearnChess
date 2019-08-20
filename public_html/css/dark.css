@@ -1,7 +1,14 @@
 body.dark {
     --background: #333;
     --page: #3b3b3b;
+    --blue: #41948d;
+    --blue-accent: #525b5d;
     --green: #449a47;
+    --green-accent: #545a54;
+    --red: #d2582a;
+    --red-accent: #5a524f;
+    --yellow: #c6d41c;
+    --yellow-accent: #5d5f4c;
 }
 body.dark [data-hint]::after {
     background: #555;
@@ -155,14 +162,22 @@ body.dark #popup .popup-title {
     background: #4d4d4d;
     color: #999;
 }
-body.dark .countdown .timer-icon {
-    color: #aaa;
-    background: #444;
+body.dark .message.error {
+    color: #e6bebe;
 }
-body.dark .countdown .timer-icon:hover {
-    color: #ddd;
+body.dark .message.warning {
+    color: #fbfbc8;
 }
-body.dark .countdown .timeleft {
-    color: #aaa;
-    background: #444;
+body.dark .message.info {
+    color: #c1f6ff;
+}
+body.dark .message.success {
+    color: #c7f3c9;
+}
+body.dark .message a {
+    color: inherit;
+    opacity: 1;
+}
+body.dark .message a:hover {
+    opacity: 0.7;
 }

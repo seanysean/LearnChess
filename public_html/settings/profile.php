@@ -30,7 +30,7 @@ if (isset($_POST['name']) or isset($_POST['lichess']) or isset($_POST['about']) 
         $username = strtolower($_SESSION['username']);
         header("Location: ../member/$username");
     } else {
-        $msg = "<p>Something went wrong while updating profile...</p>";
+        $msg = info_message('error','Something went wrong while updating profile. Please report <a href="https://github.com/seanysean/LearnChess/issues" target="_blank">on github</a>.');
     }
 }
 ?>

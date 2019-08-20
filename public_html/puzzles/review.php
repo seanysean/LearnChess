@@ -26,19 +26,19 @@ if(!$l or !isAllowed('puzzle')) {
 \$pID = $newID;
 include '../../../templates/puzzle.php';");
             fclose($newPuzzleFile);
-            $msg = "<p>Puzzle <a href=\"view/$newID\">$newID</a> accepted.</p>";
+            $msg = info_message('success',"Puzzle <a href=\"view/$newID\">$newID</a> accepted.");
             createNotification('fa-puzzle-piece',$authorID,'Your puzzle was accepted!',"/puzzles/view/$newID");
         } else {
-            $msg = "<p>Something went really wrong.</p>";
+            $msg = info_message('error','Something went wrong while approving the puzzle. Please report <a href="https://github.com/seanysean/LearnChess/issues" target="_blank">on github</a>');
         }
     } else if ($r[0] === 'delete') {
         $sql = "DELETE FROM `puzzles_to_review` WHERE id='$pID'";
         $result = mysqli_query($connection,$sql);
         if ($result) {
-            $msg = "<p>Puzzle $pID deleted.</p>";
+            $msg = info_message('success',"Puzzle $pID deleted.");
             createNotification('fa-puzzle-piece',$authorID,'Your puzzle was declined.');
         } else {
-            $msg = "<p>Something went really wrong.</p>";
+            $msg = info_message('error','Something went wrong while deleting the puzzle. Please report <a href="https://github.com/seanysean/LearnChess/issues" target="_blank">on github</a>');
         }
     }
 }
