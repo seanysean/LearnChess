@@ -1,5 +1,5 @@
 <?php
 $devMode = true;
-$databaseuser = '';
+$databaseuser = 'root';
 $databasepassword = '';
-$database = '';
+$database = 'learnchess';
