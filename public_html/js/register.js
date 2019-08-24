@@ -1,8 +1,13 @@
 function valid(text,min,max,inputType,msgContainer) {
+    const el = $('#' + msgContainer);
     let inputEdited = inputType.split('');
+    if (text.toLowerCase() === 'index' && inputType === 'username') {
+        el.innerText = ` ${text} is invalid.`;
+        el.classList = 'input-response invalid';
+        return;
+    }
     inputEdited[0] = inputEdited[0].toUpperCase();
     inputEdited = inputEdited.join('');
-    const el = $('#' + msgContainer);
     if ((text.length > min) && (text.length < max)) {
         const removeInvalidChars = text.replace(/[^a-z1-9_-]/gi,'');
         if (text === removeInvalidChars) {

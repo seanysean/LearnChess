@@ -4,7 +4,10 @@ include "../include/functions.php";
 if($l) {
     header('Location: home');
 }
-function verify($input,$min,$max) {
+function verify($input,$min,$max,$type) {
+    if (strtolower($input) === 'index' && $type === 'username') {
+        return false;
+    }
     if ((strlen($input) > $min) and (strlen($input) < $max)) {
         return true;
     } else {
@@ -14,7 +17,7 @@ function verify($input,$min,$max) {
 if (isset($_POST['username']) and isset($_POST['password'])) {
     $username = preg_replace("/[^a-z1-9\-\_]/i", "",secure($_POST['username']));
     $password = preg_replace("/[^a-z1-9\-\_]/i", "",secure($_POST['password']));
-    if(verify($username,3,18) and verify($password,4,21)) {
+    if(verify($username,3,18,'username') and verify($password,4,21,'password')) {
         $sql = "SELECT username FROM `users` WHERE username='$username'";
         $result = mysqli_query($connection,$sql);
         $duplicate = mysqli_num_rows($result);
@@ -41,7 +44,7 @@ require \"../../templates/profile.php\";";
             $fmsg = '<p>The username already exists. Try again.</p>';
         }
     } else {
-        $fmsg = '<p>Sorry, your input was not valid. Perhaps your password or username was too long or too short. Did you use invalid characters?';
+        $fmsg = '<p>Sorry, your username or password was not valid. Perhaps your password or username was too long or too short. Did you use invalid characters?';
     }
 }
 ?>
