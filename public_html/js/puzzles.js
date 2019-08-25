@@ -16,7 +16,8 @@ const chess = new Chess(fen), config = {
     animation: {
         duration: 300
     }
-}, cg = Chessground(board,config);
+},
+cg = Chessground(board,config);
 cg.set({
     movable: {
         events: {
@@ -28,7 +29,12 @@ cg.set({
 let turn = chess.turn() === 'w' ? 'White':'Black',
     gaveTrophy = false,
     fullMove = 0,
-    explained = false; // Is the puzzle explanation text showing
+    explained = false,
+    isPuzzlePreview = false; // Is the puzzle explanation text showing
+
+if (info.puzzlePreview) {
+    isPuzzlePreview = true;
+}
 
 function showResponse(s,c,r,d,e) {
     // s = solved, c = complete, r[0] = puzzle new rating & r[1] = user's new rating, d = user rating diff between new and old rating, e = puzzle explanation
@@ -85,9 +91,12 @@ function showResponse(s,c,r,d,e) {
         } else {
             extraStyle += ' data-hint="Keyboard shortcut: t"';
         }
-        const el = document.createElement('div');
-        el.classList = 'give-a-trophy';
-        el.innerHTML = `<button type="submit" id="trophy" class="trophy"${extraStyle}><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
+        let el;
+        if (!isPuzzlePreview) {
+            el = document.createElement('div');
+            el.classList = 'give-a-trophy';
+            el.innerHTML = `<button type="submit" id="trophy" class="trophy"${extraStyle}><i class="fa fa-trophy"></i></button> <span id="tCount">${trophies}</span>`;
+        }
         const cont = $('#credits');
         const el2 = document.createElement('div');
         el2.innerHTML = `<p>Puzzle created by <a href="/member/${author.toLowerCase()}">${author}</a></p>
@@ -99,8 +108,10 @@ function showResponse(s,c,r,d,e) {
         }
         el2.classList = 'inner';
         cont.appendChild(el2); //Don't ask why they're in reverse
-        cont.appendChild(el);
-        if (loggedin && author !== infoUsername) {
+        if (!isPuzzlePreview) {
+            cont.appendChild(el);
+        }
+        if (loggedin && author !== infoUsername && !isPuzzlePreview) {
             $('#trophy').addEventListener('click',updateTrophies);
             document.body.addEventListener('keyup',e=>{
                 if (e.key.toLowerCase() === 't') {
@@ -143,8 +154,10 @@ function getMoves(m) {
     res.classList.add('loading');
     let loaderClasses = 'loader ' + (fullMove > 1 ? 'white' : ''); // Blue on green doesn't contrast well enough.
     res.innerHTML = `<div class="${loaderClasses}"></div>`;
-    const xhr = new XMLHttpRequest(),
-          url = `../getmoves?move=${m.san.replace('+','%2B').replace('#','%23').replace('=','%3D')}&movenum=${fullMove}&puzzle=${pID}`;
+    const urlAddPreview = isPuzzlePreview ? '&preview=true' : '',
+          urlExtension = isPuzzlePreview ? '' : '../';
+          xhr = new XMLHttpRequest(),
+          url = `${urlExtension}getmoves?move=${m.san.replace('+','%2B').replace('#','%23').replace('=','%3D')}&movenum=${fullMove}&puzzle=${pID}${urlAddPreview}`;
     xhr.responseType = 'json';
     xhr.onreadystatechange = function() {
         if (xhr.readyState === xhr.DONE) {
@@ -199,7 +212,7 @@ function getMoves(m) {
     xhr.send();
 }
 function updateTrophies() {
-    if (!gaveTrophy) {
+    if (!gaveTrophy && !isPuzzlePreview) {
         const t = $('#tCount');
         t.innerHTML = '...';
         const xhr = new XMLHttpRequest(),

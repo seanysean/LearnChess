@@ -7,8 +7,9 @@ if (isAllowed('puzzle')) {
         $puzzleUnreviewedCount = mysqli_num_rows($result1234);
     }
 }
+$additional_js_info = isset($more_js_info);
 ?>
-<input style="display:none" type="hidden" id="js_info" value='{"loggedin":<?php echo $l === true ? 'true':'false' ?>,"username":<?php if($l) { echo '"'.$_SESSION['username'].'"'; } else { echo 'null'; } ?>}' />
+<input style="display:none" type="hidden" id="js_info" value='{"loggedin":<?php echo $l === true ? 'true':'false' ?>,"username":<?php if($l) { echo '"'.$_SESSION['username'].'"'; } else { echo 'null'; } if ($additional_js_info) { echo ",$more_js_info"; }?>}' />
 <div class="top-above">
     <a class="learnchess-link" href="/"><span class="learnchess-logo"></span> LearnChess<span class="extension"><?php if ($devMode) { echo ' dev'; } else { echo '.xyz'; } ?></span></a>
     <?php if($l) { ?>

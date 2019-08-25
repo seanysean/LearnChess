@@ -33,13 +33,15 @@ function calcRatings($u,$p,$w) {
     return $ratings;
 }
 if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
+    $puzzle_preview = isset($_GET['preview']) && $_GET['preview'] === 'true';
     if ($l) {
         $userid = $_SESSION['userid'];
     }
     $move = secure($_GET['move']);
     $movenum = secure($_GET['movenum']);
     $puzzle = secure($_GET['puzzle']);
-    $sql = "SELECT fen,pgn FROM `puzzles_approved` WHERE id='$puzzle'";
+    $table = $puzzle_preview ? 'puzzles_to_review' : 'puzzles_approved';
+    $sql = "SELECT fen,pgn FROM `$table` WHERE id='$puzzle'";
     $result = mysqli_query($connection,$sql);
     $res = $result->fetch_assoc();
     $pgn = preg_split('/[1-9][.][.][.] |[1-9][.]|\s/',$res['pgn'],null,PREG_SPLIT_NO_EMPTY);
@@ -96,7 +98,7 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
         } else {
             $return['explanation'] = false;
         }
-        if ($l) {
+        if ($l && !$puzzle_preview) {
             $return['ratings'] = Array('user' => $_SESSION['rating'],'puzzle'=>$pRating);
             if ($realNext) {
                 $ratings = calcRatings($_SESSION['rating'],$pRating,false);

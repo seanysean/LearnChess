@@ -1,15 +1,26 @@
 <?php
 session_start();
-include "../../../include/functions.php";
-$sql = "SELECT * FROM `puzzles_approved` WHERE id='$pID'";
+$is_preview = isset($type) && $type === 'preview';
+if ($is_preview) {
+    $more_js_info = '"puzzlePreview":true';
+}
+$url_extension = $is_preview ? '' : '../';
+include "$url_extension../../include/functions.php";
+$table = $is_preview ? 'puzzles_to_review' : 'puzzles_approved';
+$sql = "SELECT * FROM `$table` WHERE id='$pID'";
 $result = mysqli_query($connection,$sql);
 if ($result) {
     $res = $result->fetch_assoc();
     $pgn = $res['pgn'];
     $fen = $res['fen'];
-    $trophies = $res['trophies'];
-    $moreThan1 = $trophies > 1 ? "$trophies times":'once';
-    $removed = $res['removed'] === '0' ? false : true;
+    $trophies = 0;
+    $moreThan1 = "0 times";
+    $removed = false;
+    if (!$is_preview) {
+        $trophies = $res['trophies'];
+        $moreThan1 = $trophies > 1 ? "$trophies times":'once';
+        $removed = $res['removed'] === '0' ? false : true;
+    }
     $authorid = $res['author_id'];
     $author = mysqli_query($connection,"SELECT username FROM `users` WHERE id='$authorid'")->fetch_assoc()['username'];
 }
@@ -18,19 +29,19 @@ if ($result) {
 <html>
     <head>
         <title>Puzzle <?php echo $pID ?> • LearnChess</title>
-        <?php include_once "../../../include/head.php"; ?>
+        <?php include_once "$url_extension../../include/head.php"; ?>
         <meta name="description" content="Solve a chess puzzle created by <?php echo $author ?> on LearnChess.<?php if ($trophies > 0) { echo " This puzzle has been given a trophy $moreThan1."; } ?>">
         <link href="/css/chessground.css" type="text/css" rel="stylesheet">
         <link href="/css/puzzles.css" type="text/css" rel="stylesheet">
         <link href="/css/popup.css" type="text/css" rel="stylesheet">
     </head>
-    <body<?php include_once "../../../include/attributes.php" ?>>
+    <body<?php include_once "$url_extension../../include/attributes.php" ?>>
         <div class="top">
-            <?php include_once "../../../include/topbar.php"; ?>
+            <?php include_once "$url_extension../../include/topbar.php"; ?>
         </div>
         <div class="page has-header">
             <div class="block">
-                <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID ?></h1>
+                <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID; if ($is_preview) { echo '<span style="opacity:0.7"> Preview</span>'; } ?></h1>
             </div>
             <div class="main<?php if($removed) { echo " center"; } ?>">
                 <div class="block">
@@ -57,7 +68,7 @@ if ($result) {
                 </div>
                 <div class="credits block hidden" id="credits"></div>
                 <div class="block copyings hidden" id="copyings">
-                    <?php if(isAllowed('puzzle')) { ?>
+                    <?php if(isAllowed('puzzle') && !$is_preview) { ?>
                     <form action="/puzzles/remove" method="post">
                         <input type="hidden" value="<?php echo $pID ?>" name="puzzle">
                         <button class="flat-button" type="submit"><i class="fa fa-close"></i> Remove puzzle</button>
@@ -72,7 +83,7 @@ if ($result) {
             <?php } ?>
         </div>
         <footer>
-            <?php include_once "../../../include/footer.php"; ?>
+            <?php include_once "$url_extension../../include/footer.php"; ?>
         </footer>
         <?php if (!$removed) { ?>
         <script>

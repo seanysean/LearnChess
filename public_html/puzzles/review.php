@@ -77,6 +77,7 @@ include '../../../templates/puzzle.php';");
                                 <th>PGN</th>
                                 <th>Explanation</th>
                                 <th>Action</th>
+                                <th>Preview</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -132,6 +133,7 @@ include '../../../templates/puzzle.php';");
                                         </span>
                                     </form>
                                 </span></td>
+                                <td><a href="preview?p=<?php echo $id ?>"><i class="fa fa-eye"></i></a></td>
                             </tr>
                             <?php 
                                 }
