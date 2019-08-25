@@ -28,9 +28,11 @@ if ($result) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Puzzle <?php echo $pID ?> • LearnChess</title>
+        <title><?php if ($is_preview) { echo 'Preview '; } ?> Puzzle <?php echo $pID ?> • LearnChess</title>
         <?php include_once "$url_extension../../include/head.php"; ?>
+        <?php if (!$is_preview) { ?>
         <meta name="description" content="Solve a chess puzzle created by <?php echo $author ?> on LearnChess.<?php if ($trophies > 0) { echo " This puzzle has been given a trophy $moreThan1."; } ?>">
+        <?php } ?>
         <link href="/css/chessground.css" type="text/css" rel="stylesheet">
         <link href="/css/puzzles.css" type="text/css" rel="stylesheet">
         <link href="/css/popup.css" type="text/css" rel="stylesheet">
@@ -39,11 +41,18 @@ if ($result) {
         <div class="top">
             <?php include_once "$url_extension../../include/topbar.php"; ?>
         </div>
-        <div class="page has-header">
+        <div class="page <?php if($removed) { echo "center"; } else { echo "has-header"; } ?>">
+            <?php if(!$removed) { ?>
             <div class="block">
                 <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID; if ($is_preview) { echo '<span style="opacity:0.7"> Preview</span>'; } ?></h1>
             </div>
-            <div class="main<?php if($removed) { echo " center"; } ?>">
+            <?php } ?>
+            <div class="main">
+                <?php if ($removed) { ?>
+                <div class="block">
+                    <h1 class="block-title center"><i class="fa fa-puzzle-piece"></i> Puzzle <?php echo $pID ?></h1>
+                </div>
+                <?php } ?>
                 <div class="block">
                 <?php if (!$removed) { ?>
                     <div id="chessground"></div>
