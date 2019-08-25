@@ -20,6 +20,7 @@ const config = {
 };
 Chessground($('#board'),config);
 let currentSquare = '',
+    lastSquare = '',
     score = 0,
     time = 0;
 
@@ -41,7 +42,12 @@ function nextSquare() {
           nums = [1,2,3,4,5,6,7,8],
           letter = letters[Math.floor(8 * Math.random())],
           num = nums[Math.floor(8 * Math.random())];
-    currentSquare = letter + num;
+    lastSquare = currentSquare;
+    if (lastSquare === letter + num) {
+        nextSquare();
+    } else {
+        currentSquare = letter + num;
+    }
     square.innerHTML = currentSquare;
 }
 start.addEventListener('click',()=>{
