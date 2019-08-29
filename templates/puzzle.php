@@ -24,6 +24,9 @@ if ($result) {
     $authorid = $res['author_id'];
     $author = mysqli_query($connection,"SELECT username FROM `users` WHERE id='$authorid'")->fetch_assoc()['username'];
 }
+if ($pgn === NULL) {
+    $removed = true;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,10 +62,14 @@ if ($result) {
                 <?php } else {
                     $_SESSION['nextpuzzle'] = $pID + 1;
                     $form = '';
-                    if (isAllowed('puzzle')) {
-                        $form = '<form method="post" action="../remove"><input type="hidden" value="1" name="undo"><input type="hidden" value="'.$pID.'" name="puzzle"><button class="flat-button" type="submit"><i class="fa fa-undo"></i> Bring puzzle back</button>';
+                    $button = '';
+                    if (!$is_preview) {
+                        $button = '<a class="flat-button continue-training transition" href="../next">Continue practicing</a>';
+                        if (isAllowed('puzzle')) {
+                            $form = '<form method="post" action="../remove"><input type="hidden" value="1" name="undo"><input type="hidden" value="'.$pID.'" name="puzzle"><button class="flat-button" type="submit"><i class="fa fa-undo"></i> Bring puzzle back</button>';
+                        }
                     }
-                    echo "<p class=\"nothing-to-see removed\"><i class=\"fa fa-ban\"></i> This puzzle was removed.</p><a class=\"flat-button continue-training transition\" href=\"../next\">Continue practicing</a>$form"; 
+                    echo "<p class=\"nothing-to-see removed\"><i class=\"fa fa-ban\"></i> This puzzle was removed, or never existed.</p>$button$form"; 
                 }
                 ?>
                 </div>
