@@ -18,10 +18,10 @@ function valid(text,min,max,inputType,msgContainer) {
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.response.exists === true) {
-                            el.innerText = ' Username already exists';
+                            el.innerText = 'Username already exists';
                             el.classList = 'input-response invalid';
                         } else {
-                            el.innerText = ` Valid ${inputType}`;
+                            el.innerText = `Valid ${inputType}`;
                             el.classList = 'input-response valid';
                         }
                     }
@@ -29,15 +29,15 @@ function valid(text,min,max,inputType,msgContainer) {
                 xhr.open('GET',url);
                 xhr.send();
             } else {
-                el.innerText = ` Valid ${inputType}`;
+                el.innerText = `Valid ${inputType}`;
                 el.classList = 'input-response valid';
             }
         } else {
-            el.innerText = ` ${inputEdited} has invalid characters.`;
+            el.innerText = `${inputEdited} has invalid characters.`;
             el.classList = 'input-response invalid';
         }
     } else {
-        el.innerText = ` ${inputEdited} too long or too short.`;
+        el.innerText = `${inputEdited} too long or too short.`;
         el.classList = 'input-response invalid';
     }
 }

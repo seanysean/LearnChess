@@ -197,15 +197,17 @@ body.dark .checkbox-container .checkbox-message {
     color: #4caf50;
 }
 .input-response.valid::before {
-    font-family: "FontAwesome";
     content: "\f00c";
 }
 .input-response.invalid {
     color: #e84438;
 }
 .input-response.invalid::before {
-    font-family: "FontAwesome";
     content: "\f00d";
+}
+.input-response::before {
+    font-family: "FontAwesome";
+    margin-right: 5px;
 }
 form p {
     color: #999;
