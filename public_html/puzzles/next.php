@@ -35,7 +35,7 @@ if ($l) {
                     if ($result) {
                         header("Location: /puzzles/view/$candidate");
                     } else {
-                        echo "This is a database error... Try again and hope for the best.<br />";
+                        echo "This is a database error... Try again and hope for the best.<br />"; // TODO: fix this error message
                     }
                 }
             }
