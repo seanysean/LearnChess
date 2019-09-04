@@ -56,6 +56,7 @@ tools.color.addEventListener('click',()=>{
         tools.color.children[0].children[0].classList = 'fa fa-circle-o';
         tools.color.setAttribute('data-hint','White to play');
     }
+    updateFEN();
 });
 tools.empty.addEventListener('click',()=>{
     cg.set({
