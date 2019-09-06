@@ -59,16 +59,17 @@ function puzzle_finished($success,$res_array,$puzzle_id,$rated,$correct_move='')
             $rating_diff = $ratings['user'] - $_SESSION['rating'];
             $res_array['rating_diff'] = $rating_diff;
             $_SESSION['rating'] = $ratings['user'];
+            $_SESSION['nextpuzzle'] = '0'; // Means that no puzzles should be rated until user presses the next button. String to match the database type
             $ur = $ratings['user'];
             $pr = $ratings['puzzle'];
-            $query = "UPDATE `users` SET rating='$ur',updated_history='1' WHERE id='$userid';";
+            $query = "UPDATE `users` SET rating='$ur',updated_history='1',nextpuzzle='0' WHERE id='$userid';";
             $query .= "UPDATE `puzzles_approved` SET rating='$pr' WHERE id='$puzzle_id';";
             $query .= "INSERT INTO `puzzles_history` (`user`,`puzzle`,`rating`,`rating_diff`,`date`) VALUES ('$userid','$puzzle_id','$ur','$rating_diff',CURRENT_TIMESTAMP)";
             mysqli_multi_query($connection,$query);
         }
     } else {
         $res_array['ratings'] = Array('puzzle'=>$pRating);
-        $_SESSION['completed'] = $puzzle;
+        $_SESSION['completed'] = $puzzle_id;
     }
     return $res_array;
 }
