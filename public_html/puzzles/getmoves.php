@@ -59,7 +59,7 @@ function puzzle_finished($success,$res_array,$puzzle_id,$rated,$correct_move='')
             $rating_diff = $ratings['user'] - $_SESSION['rating'];
             $res_array['rating_diff'] = $rating_diff;
             $_SESSION['rating'] = $ratings['user'];
-            $_SESSION['nextpuzzle'] = '0'; // Means that no puzzles should be rated until user presses the next button. String to match the database type
+            $_SESSION['nextpuzzle'] = 0; // Means that no puzzles should be rated until user presses the next button.
             $ur = $ratings['user'];
             $pr = $ratings['puzzle'];
             $query = "UPDATE `users` SET rating='$ur',updated_history='1',nextpuzzle='0' WHERE id='$userid';";

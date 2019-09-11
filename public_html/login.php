@@ -20,7 +20,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         $_SESSION['permissions'] = json_decode($loginInfo['permissions'],true);
         $_SESSION['settings'] = (isset($loginInfo['settings']) ? json_decode($loginInfo['settings'],true) : []);
         $_SESSION['rating'] = $loginInfo['rating'];
-        $_SESSION['nextpuzzle'] = $loginInfo['nextpuzzle'];
+        $_SESSION['nextpuzzle'] = $loginInfo['nextpuzzle'] + 0; // Convert to integer
         header('Location: home');
     } else if ($loginInfo['active'] === '0') {
         $msg = info_message('error','This account was closed.');
