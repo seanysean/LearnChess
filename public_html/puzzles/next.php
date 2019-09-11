@@ -10,7 +10,7 @@ if ($l) {
     $me = $_SESSION['userid'];
     $sql = "SELECT rating FROM `puzzles_history` WHERE user='$me' AND puzzle='$next'";
     $result = mysqli_query($connection,$sql);
-    if (mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($result) > 0 || $next === '0') {
         //echo "Hello!";
         $n = mysqli_query($connection,"SELECT puzzle FROM `puzzles_history` WHERE user='$me' AND `profile`='0' ORDER BY id DESC LIMIT 1")->fetch_assoc()['puzzle'];
         //echo $n;
@@ -35,7 +35,7 @@ if ($l) {
                     if ($result) {
                         header("Location: /puzzles/view/$candidate");
                     } else {
-                        echo "This is a database error... Try again and hope for the best.<br />";
+                        echo "Something went wrong while trying to set your next puzzle. Please <a href=\"https://github.com/seanysean/LearnChess/issues\" target=\"_blank\">open an issue</a> so that this can get fixed.</a> <br />";
                     }
                 }
             }
@@ -55,7 +55,7 @@ if ($l) {
                 <div class="block">
                     <h1 class="block-title">No more puzzles!</h1>
                     <p>Good job on finishing all of the puzzles!</p>
-                    <p>But please check back again sometime, because other users can contribute puzzles.</p>
+                    <p>But please check back again soon, because other users can contribute puzzles.</p>
                 </div>
             </div>
         </div>
