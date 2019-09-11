@@ -10,7 +10,7 @@ if ($l) {
     $me = $_SESSION['userid'];
     $sql = "SELECT rating FROM `puzzles_history` WHERE user='$me' AND puzzle='$next'";
     $result = mysqli_query($connection,$sql);
-    if (mysqli_num_rows($result) > 0 || $next === '0') {
+    if (mysqli_num_rows($result) > 0 || $next === 0) {
         //echo "Hello!";
         $n = mysqli_query($connection,"SELECT puzzle FROM `puzzles_history` WHERE user='$me' AND `profile`='0' ORDER BY id DESC LIMIT 1")->fetch_assoc()['puzzle'];
         //echo $n;
