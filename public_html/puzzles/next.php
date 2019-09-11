@@ -35,7 +35,7 @@ if ($l) {
                     if ($result) {
                         header("Location: /puzzles/view/$candidate");
                     } else {
-                        echo "This is a database error... Try again and hope for the best.<br />"; // TODO: fix this error message
+                        echo "Something went wrong while trying to set your next puzzle. Please <a href=\"https://github.com/seanysean/LearnChess/issues\" target=\"_blank\">open an issue</a> so that this can get fixed.</a> <br />";
                     }
                 }
             }
