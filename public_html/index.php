@@ -25,7 +25,7 @@ if (!$l) {
         <div class="main">
             <div class="content">
                 <div class="left">
-                    <img class="main-image" src="images/logo.svg" alt="Get better at chess online for free at LearnChess" />
+                    <!--<img class="main-image" src="images/logo.svg" alt="Get better at chess online for free at LearnChess" />-->
                 </div>
                 <div class="right">
                     <h1>Improve your chess skills for free</h1>
