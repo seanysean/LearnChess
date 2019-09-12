@@ -299,7 +299,7 @@ body.dark .button.nocolor::after {
 #powerTip.position {
     border: 5px solid var(--page);
 }
-#powerTip .cg-board {
+#powerTip cg-board {
     cursor: default;
 }
 #powerTip .ui-top {

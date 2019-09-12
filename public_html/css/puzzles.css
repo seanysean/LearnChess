@@ -53,8 +53,8 @@ body.dark .your-puzzles h3 {
     display: inline-block;
     font-family: "Roboto",sans-serif;
     font-weight: 100;
-    width: 95px;
-    height: 95px;
+    width: 96px;
+    height: 96px;
 }
 #chessground {
     width: 512px;
@@ -88,6 +88,7 @@ body.dark .editor-container .spare {
     height: 100%;
     flex-grow: 1;
     cursor: pointer;
+    background-size: cover;
 }
 .editor-container .spare.disabled piece {
     pointer-events: none;
