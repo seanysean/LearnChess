@@ -139,9 +139,9 @@ function checkMove(c,cg) {
         const mObj = { from: o, to: d, promotion: 'q' };
         let m = chess.move(mObj);
         if (m.flags.includes('p')) {
-            const promote = await openPromoteOptions(board,m.to,cg);
+            chess.undo();
+            const promote = await openPromoteOptions(board,m.to,cg,getColor(chess.turn()));
             if (promote) {
-                chess.undo();
                 m = chess.move({ from: o, to: d, promotion: promote });
                 getMoves(m);
             }

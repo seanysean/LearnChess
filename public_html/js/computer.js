@@ -101,7 +101,7 @@ function makeMove(c,c2) {
         const mObj = { from: o, to: d, promotion: 'q' };
         const m = chess.move(mObj);
         if (m.flags.includes('p')) {
-            const promote = await openPromoteOptions(board,m.to,cg);
+            const promote = await openPromoteOptions(board,m.to,cg,color);
             if (promote) {
                 console.log(promote);
                 chess.undo();

@@ -23,14 +23,14 @@ function promote(g, key, role) {
         g.setPieces(pieces);
     }
 }
-function openPromoteOptions(board,square,cg) {
+function openPromoteOptions(board,square,cg,turn) {
     // Requires popupjs
     return new Promise(r=>{
         const info = {
-            html: `<button data-promote="queen"></button>
-            <button data-promote="rook"></button>
-            <button data-promote="bishop"></button>
-            <button data-promote="knight"></button>`
+            html: `<button data-promote="queen" class="${turn}"></button>
+            <button data-promote="rook" class="${turn}"></button>
+            <button data-promote="bishop" class="${turn}"></button>
+            <button data-promote="knight" class="${turn}"></button>`
         }
         const options = new Popup('custom',info);
         options.addClass('promotion-popup');

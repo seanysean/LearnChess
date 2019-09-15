@@ -13,19 +13,19 @@ piece.pawn.white {
   background-image: url('/images/pieces/merida/wP.svg');
 }
 piece.bishop.white,
-button[data-promote="bishop"] {
+button[data-promote="bishop"].white {
   background-image: url('/images/pieces/merida/wB.svg');
 }
 piece.knight.white,
-button[data-promote="knight"] {
+button[data-promote="knight"].white {
   background-image: url('/images/pieces/merida/wN.svg');
 }
 piece.rook.white,
-button[data-promote="rook"] {
+button[data-promote="rook"].white {
   background-image: url('/images/pieces/merida/wR.svg');
 }
 piece.queen.white,
-button[data-promote="queen"] {
+button[data-promote="queen"].white {
   background-image: url('/images/pieces/merida/wQ.svg');
 }
 piece.king.white {
@@ -34,16 +34,20 @@ piece.king.white {
 piece.pawn.black {
   background-image: url('/images/pieces/merida/bP.svg');
 }
-piece.bishop.black {
+piece.bishop.black,
+button[data-promote="bishop"].black {
   background-image: url('/images/pieces/merida/bB.svg');
 }
-piece.knight.black {
+piece.knight.black,
+button[data-promote="knight"].black {
   background-image: url('/images/pieces/merida/bN.svg');
 }
-piece.rook.black {
+piece.rook.black,
+button[data-promote="rook"].black {
   background-image: url('/images/pieces/merida/bR.svg');
 }
-piece.queen.black {
+piece.queen.black,
+button[data-promote="queen"].black {
   background-image: url('/images/pieces/merida/bQ.svg');
 }
 piece.king.black {

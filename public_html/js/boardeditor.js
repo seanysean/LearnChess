@@ -168,9 +168,9 @@ nextStep.addEventListener('click',()=>{
         return async (o, d) => {
             const m = c.move({from: o, to: d, promotion: 'q'});
             if (m.flags.includes('p')) {
-                const waitForPromotion = await openPromoteOptions($('#cg'),m.to,cground);
+                c.undo();
+                const waitForPromotion = await openPromoteOptions($('#cg'),m.to,cground,getColor(c.turn()));
                 if (waitForPromotion) {
-                    c.undo();
                     let x = c.move({ from: o, to: d, promotion: waitForPromotion });
                     $('#pgn').value = removeHeaders(c.pgn());
                 }
