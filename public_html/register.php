@@ -17,14 +17,23 @@ function verify($input,$min,$max,$type) {
 if (isset($_POST['username']) and isset($_POST['password'])) {
     $username = preg_replace("/[^a-z1-9\-\_]/i", "",secure($_POST['username']));
     $password = preg_replace("/[^a-z1-9\-\_]/i", "",secure($_POST['password']));
+    $includes_email = isset($_POST['email']) && strlen($_POST['email']) > 0;
+    $email = '';
+    if ($includes_email) {
+        $email = secure($_POST['email']);
+    }
     if(verify($username,3,18,'username') and verify($password,4,21,'password')) {
-        $sql = "SELECT username FROM `users` WHERE username='$username'";
+        $sqlAddition = ''; // So, if a user doesn't input a email, then no need to check if that unspecified email == '' in the db.
+        if ($includes_email) {
+            $sqlAddition = " OR email='$email'";
+        }
+        $sql = "SELECT username FROM `users` WHERE username='$username'$sqlAddition";
         $result = mysqli_query($connection,$sql);
         $duplicate = mysqli_num_rows($result);
         if ($duplicate === 0) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $permisssions = '{"edit_account":false,"puzzle_review":false}';
-            $sql = "INSERT INTO `users` (username,password,permissions) VALUES ('$username','$hashed_password','$permisssions')";
+            $sql = "INSERT INTO `users` (username,password,permissions,email) VALUES ('$username','$hashed_password','$permisssions','$email')";
             $result = mysqli_query($connection,$sql);
             $getLastIdSQL = "SELECT id FROM `users` ORDER BY id DESC LIMIT 1";
             $getLastIdQ = mysqli_query($connection,$getLastIdSQL);
@@ -41,7 +50,7 @@ require \"../../templates/profile.php\";";
                 $login = true;
             }
         } else {
-            $fmsg = '<p>The username already exists. Try again.</p>';
+            $fmsg = '<p>The username or email already exists. Please try using a different username or email</p>';
         }
     } else {
         $fmsg = '<p>Sorry, your username or password was not valid. Perhaps your password or username was too long or too short. Did you use invalid characters?';
@@ -96,6 +105,11 @@ require \"../../templates/profile.php\";";
                             <span class="line"></span>
                         </div>
                         <p id="passwordResponse" class="input-response"></p>
+                        <div class="input-container">
+                            <input type="email" name="email" id="email">
+                            <label for="email">Email (optional)</label>
+                            <span class="line"></span>
+                        </div>
                         <p>Allowed username and password characters are letters, numbers, dashes, and underscores. Anything else will be removed. We recommend you use a password you don't use anywhere else.</p>
                         <p>Example valid username: Agood_user-name1</p>
                         <button class="button blue" type="submit"><span><i class="fa fa-check"></i> Register</span></button>
