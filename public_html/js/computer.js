@@ -3,6 +3,8 @@ const board = $('#board');
 const movesHTML = $('#moves');
 const resignBtn = $('#resign');
 const flipBoardBtn = $('#flip');
+const evalBar = $('#eval-bar');
+const evalTextEl = $('#eval-text');
 const chess = new Chess();
 let color = '';
 const info = {
@@ -67,20 +69,54 @@ cg.set({
     }
 });
 
+
+// TODO fix en passant
+
 engine.onmessage = function(e) {
-    console.log(e);
-    let gBM = e; // getBestMove
-    if (typeof gBM === 'string') {
-        gBM = gBM.split('');
-        if (gBM[0] === 'b') {
-            gBM = gBM.join('').split(' ')[1];
-            console.log(gBM); // e2e4
-            gBM = gBM.split('');
-            let a = gBM[0] + gBM[1],
-                b = gBM[2] + gBM[3];
+    //console.log(e);
+    let result = e;
+    if (typeof result === 'string') {
+        result = result.split('');
+        if (result[0] === 'b') {
+            result = result.join('').split(' ');
+            console.log(result[12]);
+            console.log(result)
+            let indexOfScoreType = result.indexOf('score') + 1;
+            let eval = Number(result[12]);
+            let isCentipawn = result[indexOfScoreType] === 'cp';
+            if (isCentipawn) {
+                if (color === 'black') {
+                    eval = -eval;
+                }
+                let evalText = -(eval / 100).toFixed(2) + '';
+                console.log(typeof evalText);
+                if (!evalText.match(/\./)) {
+                    evalText += '.00';
+                } else if (evalText.split('.')[1].length < 2) {
+                    evalText += '0';
+                }
+                evalTextEl.innerHTML = evalText;
+                evalPercentage = eval < -1000 ? -1000 : eval > 1000 ? 1000 : eval;
+                evalPercentage += 1000;
+                evalPercentage = (evalPercentage * 100) / 2000;
+            } else {
+                let movesTillMate = result[indexOfScoreType + 1];
+                evalPercentage = 100;
+                if ((color === 'black' && movesTillMate > 0) || (color === 'white' && movesTillMate < 0)) {
+                    evalPercentage = 0;
+                }
+                movesTillMate = movesTillMate < 0 ? -movesTillMate : movesTillMate;
+                evalTextEl.innerHTML = `Checkmate in ${movesTillMate}`;
+            }
+            evalBar.style.width = evalPercentage + '%'; 
+            let getBestMove = result[1];
+            console.log(getBestMove); // e2e4
+            getBestMove = getBestMove.split('');
+            let a = getBestMove[0] + getBestMove[1],
+                b = getBestMove[2] + getBestMove[3];
             const mObj2 = { from: a, to: b, promotion: 'q' };
             const m2 = chess.move(mObj2);
-            console.log(chess.ascii());
+            //console.log(chess.ascii());
             moves.innerHTML = chess.pgn();
             cg.move(m2.from,m2.to);
             if (m2.flags.includes('p')) promote(cg,m2.to,'queen');
