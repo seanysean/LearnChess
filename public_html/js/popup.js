@@ -39,7 +39,11 @@ class Popup {
             yes.innerHTML = info.yes;
             yes.addEventListener('click',ev.yes);
             if (!ev.cls) {
-                close.addEventListener('click',ev.no);
+                if (!ev.no) {
+                    close.addEventListener('click',this.close);
+                } else {
+                    close.addEventListener('click',ev.no);
+                }
             } else {
                 close.addEventListener('click',ev.cls); 
             }
@@ -61,7 +65,13 @@ class Popup {
                 if (e.key === 'Escape' && this.active) {
                     switch (!ev.cls) {
                         case true:
-                            ev.no();
+                            switch(ev.no) {
+                                case true:
+                                    ev.no();
+                                    break;
+                                default:
+                                    this.close();
+                            }
                             break;
                         default:
                             ev.cls();
