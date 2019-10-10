@@ -5,8 +5,9 @@ const resignBtn = $('#resign');
 const flipBoardBtn = $('#flip');
 const evalBar = $('#eval-bar');
 const evalTextEl = $('#eval-text');
-const chess = new Chess();
-let color = '';
+const chess = new Chess('8/8/4k3/2q5/8/1K6/8/8 w - - 0 1'); // Todo: Change this before prod.
+let userColor = '',
+    computerColor = '';
 const info = {
     yes: 'white',
     no: 'black',
@@ -14,7 +15,8 @@ const info = {
 }
 const ev = {
     yes() {
-        color = 'white';
+        userColor = 'white';
+        computerColor = 'black';
         pickColor.close();
         cg.set({
             turnColor: 'white',
@@ -26,7 +28,8 @@ const ev = {
         }
     },
     no() {
-        color = 'black';
+        userColor = 'black';
+        computerColor = 'white';
         pickColor.close();
         cg.set({
             turnColor: 'black',
@@ -85,7 +88,7 @@ engine.onmessage = function(e) {
             let eval = Number(result[12]);
             let isCentipawn = result[indexOfScoreType] === 'cp';
             if (isCentipawn) {
-                if (color === 'black') {
+                if (userColor === 'black') {
                     eval = -eval;
                 }
                 let evalText = -(eval / 100).toFixed(2) + '';
@@ -102,7 +105,7 @@ engine.onmessage = function(e) {
             } else {
                 let movesTillMate = result[indexOfScoreType + 1];
                 evalPercentage = 100;
-                if ((color === 'black' && movesTillMate > 0) || (color === 'white' && movesTillMate < 0)) {
+                if ((userColor === 'black' && movesTillMate > 0) || (userColor === 'white' && movesTillMate < 0)) {
                     evalPercentage = 0;
                 }
                 movesTillMate = movesTillMate < 0 ? -movesTillMate : movesTillMate;
@@ -127,17 +130,51 @@ engine.onmessage = function(e) {
                     dests: toDests(chess)
                 }
             });
-            cg.playPremove();
+            
+            const over = chess.game_over();
+            if (over) {
+                console.log('hi');
+                onGameEnd(userColor);
+            } else {
+                console.log(over);
+                cg.playPremove();
+            }
         }
     }
+}
+
+function onGameEnd(sideToMove) {
+    const info = {
+        yes: 'Ok'
+    },
+    events = {
+        yes() {
+            gameOverPopup.close();
+        }
+    },
+    type = 'alert';
+    if (chess.in_checkmate()) {
+        if (sideToMove === userColor) {
+            info.title = 'You lose :(';
+        } else {
+            info.title = 'You won!';
+        }
+        info.text = 'Game over by checkmate';
+    } else if (chess.in_stalemate()) {
+        info.title += 'stalemate';
+        info.text = 'Game over by stalemate';
+    }
+    const gameOverPopup = new Popup(type,info,events);
+    gameOverPopup.open();
 }
 
 function makeMove(c,c2) {
     return async (o,d) => {
         const mObj = { from: o, to: d, promotion: 'q' };
         const m = chess.move(mObj);
+        const over = chess.game_over();
         if (m.flags.includes('p')) {
-            const promote = await openPromoteOptions(board,m.to,cg,color);
+            const promote = await openPromoteOptions(board,m.to,cg,userColor);
             if (promote) {
                 console.log(promote);
                 chess.undo();
@@ -149,10 +186,12 @@ function makeMove(c,c2) {
                     console.log('position fen ' + chess.fen());
                 }
             }
-        } else if (!chess.game_over()) {
+        } else if (!over) {
             engine.postMessage('position fen ' + chess.fen());
             engine.postMessage('go movetime 1');
             console.log('position fen ' + chess.fen());
+        } else {
+            onGameEnd(computerColor);
         }
         moves.innerHTML = chess.pgn();
     }
