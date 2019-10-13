@@ -180,12 +180,19 @@ async function handleMove(origin,destination) {
     const mObj = { from: origin, to: destination, promotion: 'q' };
     const m = chess.move(mObj);
     const over = chess.game_over();
+    if (playerTurn === 'computer') {
+        cg.move(m.from,m.to);
+    }
     if (m.flags.includes('p')) {
-        const promote = await openPromoteOptions(board,m.to,cg,userColor);
-        if (promote) {
-            chess.undo();
-            chess.move({ from: origin, to: destination, promotion: promote });
-            moves.innerHTML = chess.pgn();
+        if (playerTurn === 'user') {
+            const promote = await openPromoteOptions(board,m.to,cg,userColor);
+            if (promote) {
+                chess.undo();
+                chess.move({ from: origin, to: destination, promotion: promote });
+                moves.innerHTML = chess.pgn();
+            }
+        } else {
+            promote(cg,m.to,'queen');
         }
     }
     if (m.flags.includes('e')) {
@@ -200,9 +207,6 @@ async function handleMove(origin,destination) {
         const pieces = {}
         pieces[removePiece.join('')] = undefined;
         cg.setPieces(pieces);
-    }
-    if (playerTurn === 'computer') {
-        cg.move(m.from,m.to);
     }
     if (!over) {
         if (playerTurn === 'user') {
