@@ -10,8 +10,8 @@ let userColor = '',
     computerColor = '',
     playerTurn = 'user';
 const info = {
-    yes: 'white',
-    no: 'black',
+    yes: '<img src="../images/pieces/merida/wK.svg" alt="white" style="width:100px; height: 100px" />',
+    no: '<img src="../images/pieces/merida/bK.svg" alt="black" style="width:100px; height: 100px" />',
     title: 'Play as'
 }
 const ev = {
@@ -66,6 +66,7 @@ const config = {
 const cg = Chessground(board,config);
 const pickColor = new Popup('confirm',info,ev);
 pickColor.open();
+pickColor.addClass('pick-color');
 cg.set({
     movable: {
         events: {
@@ -73,9 +74,6 @@ cg.set({
         }
     }
 });
-
-
-// TODO fix en passant
 
 engine.onmessage = function(e) {
     //console.log(e);
