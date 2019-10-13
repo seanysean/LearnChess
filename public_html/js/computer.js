@@ -5,9 +5,10 @@ const resignBtn = $('#resign');
 const flipBoardBtn = $('#flip');
 const evalBar = $('#eval-bar');
 const evalTextEl = $('#eval-text');
-const chess = new Chess('8/8/4k3/2q5/8/1K6/8/8 w - - 0 1'); // Todo: Change this before prod.
+const chess = new Chess('8/PPPP4/8/7k/8/8/2K5/8 w - - 0 1'); // Todo: Change this before prod.
 let userColor = '',
-    computerColor = '';
+    computerColor = '',
+    playerTurn = 'user';
 const info = {
     yes: 'white',
     no: 'black',
@@ -24,12 +25,13 @@ const ev = {
         });
         if (chess.turn() === 'b') {
             engine.postMessage('position fen ' + chess.fen());
-            engine.postMessage('go movetime 1');
+            engine.postMessage('go movetime 100');
         }
     },
     no() {
         userColor = 'black';
         computerColor = 'white';
+        playerTurn = 'computer';
         pickColor.close();
         cg.set({
             turnColor: 'black',
@@ -37,7 +39,7 @@ const ev = {
         });
         if (chess.turn() === 'w') {
             engine.postMessage('position fen ' + chess.fen());
-            engine.postMessage('go movetime 1');
+            engine.postMessage('go movetime 100');
         }
     },
     cls() {
@@ -117,7 +119,8 @@ engine.onmessage = function(e) {
             getBestMove = getBestMove.split('');
             let a = getBestMove[0] + getBestMove[1],
                 b = getBestMove[2] + getBestMove[3];
-            const mObj2 = { from: a, to: b, promotion: 'q' };
+            handleMove(a,b);
+            /*const mObj2 = { from: a, to: b, promotion: 'q' };
             const m2 = chess.move(mObj2);
             //console.log(chess.ascii());
             moves.innerHTML = chess.pgn();
@@ -138,7 +141,7 @@ engine.onmessage = function(e) {
             } else {
                 console.log(over);
                 cg.playPremove();
-            }
+            }*/
         }
     }
 }
@@ -169,38 +172,72 @@ function onGameEnd(sideToMove) {
 }
 
 function makeMove(c,c2) {
-    return async (o,d) => {
-        const mObj = { from: o, to: d, promotion: 'q' };
-        const m = chess.move(mObj);
-        const over = chess.game_over();
-        if (m.flags.includes('p')) {
-            const promote = await openPromoteOptions(board,m.to,cg,userColor);
-            if (promote) {
-                console.log(promote);
-                chess.undo();
-                chess.move({ from: o, to: d, promotion: promote });
-                moves.innerHTML = chess.pgn();
-                if (!chess.game_over()) {
-                    engine.postMessage('position fen ' + chess.fen());
-                    engine.postMessage('go movetime 1');
-                    console.log('position fen ' + chess.fen());
-                }
-            }
-        } else if (!over) {
+    return (o,d) => {
+        handleMove(o,d);
+    }
+}
+
+async function handleMove(origin,destination) {
+    const mObj = { from: origin, to: destination, promotion: 'q' };
+    const m = chess.move(mObj);
+    const over = chess.game_over();
+    if (m.flags.includes('p')) {
+        const promote = await openPromoteOptions(board,m.to,cg,userColor);
+        if (promote) {
+            chess.undo();
+            chess.move({ from: origin, to: destination, promotion: promote });
+            moves.innerHTML = chess.pgn();
+        }
+    }
+    if (m.flags.includes('e')) {
+        console.log('en passant');
+        console.log(chess.turn());
+        removePiece = [destination[0]];
+        if (chess.turn() === 'w') {
+            removePiece[1] = 1 + destination[1];
+        } else {
+            removePiece[1] = destination[1] - 1;
+        }
+        const pieces = {}
+        pieces[removePiece.join('')] = undefined;
+        cg.setPieces(pieces);
+    }
+    if (playerTurn === 'computer') {
+        cg.move(m.from,m.to);
+    }
+    if (!over) {
+        if (playerTurn === 'user') {
             engine.postMessage('position fen ' + chess.fen());
-            engine.postMessage('go movetime 1');
+            engine.postMessage('go movetime 100');
             console.log('position fen ' + chess.fen());
+            playerTurn = 'computer';
+        } else {
+            cg.set({
+                turnColor: getColor(chess.turn()),
+                movable: {
+                    color: getColor(chess.turn()),
+                    dests: toDests(chess)
+                }
+            });
+            playerTurn = 'user';
+            cg.playPremove();
+        }
+    } else {
+        if (playerTurn !== 'user') {
+            // Since playerTurn is only updated if !over, here I treat playerTurn === computer as meaning that it is the computer moved last.
+            onGameEnd(userColor);
         } else {
             onGameEnd(computerColor);
         }
-        moves.innerHTML = chess.pgn();
     }
+    moves.innerHTML = chess.pgn();
 }
+
 resignBtn.addEventListener('click',()=>{
     const info = {
-        title: 'Game over', // Title of popup
-        text: 'The computer won by resignation', // Description text
-        yes: 'Ok', // Text for the yes button
+        title: 'Game over',
+        text: 'The computer won by resignation',
+        yes: 'Ok',
     },
     events = {
         yes() {
