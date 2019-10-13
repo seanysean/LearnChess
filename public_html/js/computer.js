@@ -147,6 +147,7 @@ engine.onmessage = function(e) {
 }
 
 function onGameEnd(sideToMove) {
+    cg.stop();
     const info = {
         yes: 'Ok'
     },
