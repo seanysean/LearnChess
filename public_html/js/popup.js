@@ -37,10 +37,16 @@ class Popup {
             yes.classList = 'yes-button';
             close.classList = 'close fa fa-times';
             yes.innerHTML = info.yes;
-            yes.addEventListener('click',ev.yes);
+            if (!ev.yes) {
+                yes.addEventListener('click',this.close);
+            } else {
+                yes.addEventListener('click',ev.yes);
+            }
             if (!ev.cls) {
                 if (!ev.no) {
-                    close.addEventListener('click',this.close);
+                    close.addEventListener('click',()=>{
+                        this.close.apply(this);
+                    });
                 } else {
                     close.addEventListener('click',ev.no);
                 }
