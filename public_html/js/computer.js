@@ -5,13 +5,14 @@ const resignBtn = $('#resign');
 const flipBoardBtn = $('#flip');
 const evalBar = $('#eval-bar');
 const evalTextEl = $('#eval-text');
-const chess = new Chess('8/PPPP4/8/7k/8/8/2K5/8 w - - 0 1'); // Todo: Change this before prod.
+const takeBackBtn = $('#takeback');
+const chess = new Chess(/*'8/PPPP4/8/7k/8/8/2K5/8 w - - 0 1'*/); // Todo: Change this before prod.
 let userColor = '',
     computerColor = '',
     playerTurn = 'user';
 const info = {
-    yes: '<img src="../images/pieces/merida/wK.svg" alt="white" style="width:100px; height: 100px" />',
-    no: '<img src="../images/pieces/merida/bK.svg" alt="black" style="width:100px; height: 100px" />',
+    yes: '<img src="../images/pieces/merida/wK.svg" alt="white" style="width:70px; height: 70px" />',
+    no: '<img src="../images/pieces/merida/bK.svg" alt="black" style="width:70px; height: 70px" />',
     title: 'Play as'
 }
 const ev = {
@@ -118,33 +119,13 @@ engine.onmessage = function(e) {
             let a = getBestMove[0] + getBestMove[1],
                 b = getBestMove[2] + getBestMove[3];
             handleMove(a,b);
-            /*const mObj2 = { from: a, to: b, promotion: 'q' };
-            const m2 = chess.move(mObj2);
-            //console.log(chess.ascii());
-            moves.innerHTML = chess.pgn();
-            cg.move(m2.from,m2.to);
-            if (m2.flags.includes('p')) promote(cg,m2.to,'queen');
-            cg.set({
-                turnColor: getColor(chess.turn()),
-                movable: {
-                    color: getColor(chess.turn()),
-                    dests: toDests(chess)
-                }
-            });
-            
-            const over = chess.game_over();
-            if (over) {
-                console.log('hi');
-                onGameEnd(userColor);
-            } else {
-                console.log(over);
-                cg.playPremove();
-            }*/
         }
     }
 }
 
-function onGameEnd(sideToMove) {
+function onGameEnd(sideToMove,overByResignation) {
+    resignBtn.disabled = 'true';
+    takeBackBtn.disabled = 'true';
     cg.stop();
     const info = {
         yes: 'Ok'
@@ -155,7 +136,10 @@ function onGameEnd(sideToMove) {
         }
     },
     type = 'alert';
-    if (chess.in_checkmate()) {
+    if (overByResignation) {
+        info.title = 'You lose :(';
+        info.text = 'Game over by resignation';
+    } else if (chess.in_checkmate()) {
         if (sideToMove === userColor) {
             info.title = 'You lose :(';
         } else {
@@ -189,7 +173,7 @@ async function handleMove(origin,destination) {
             if (promote) {
                 chess.undo();
                 chess.move({ from: origin, to: destination, promotion: promote });
-                moves.innerHTML = chess.pgn();
+                updateMovesList();
             }
         } else {
             promote(cg,m.to,'queen');
@@ -210,11 +194,17 @@ async function handleMove(origin,destination) {
     }
     if (!over) {
         if (playerTurn === 'user') {
+            takeBackBtn.disabled = true;
             engine.postMessage('position fen ' + chess.fen());
             engine.postMessage('go movetime 100');
             console.log('position fen ' + chess.fen());
             playerTurn = 'computer';
         } else {
+            if (userColor === 'black' && chess.history().length === 1) {
+                takeBackBtn.disabled = true;
+            } else{
+                takeBackBtn.disabled = false;
+            }
             cg.set({
                 turnColor: getColor(chess.turn()),
                 movable: {
@@ -227,7 +217,7 @@ async function handleMove(origin,destination) {
         }
     } else {
         if (playerTurn !== 'user') {
-            // Since playerTurn is only updated if !over, here I treat playerTurn === computer as meaning that it is the computer moved last.
+            // Since playerTurn is only updated if !over, here playerTurn === computer means that the computer moved last.
             onGameEnd(userColor);
         } else {
             onGameEnd(computerColor);
@@ -236,23 +226,29 @@ async function handleMove(origin,destination) {
     moves.innerHTML = chess.pgn();
 }
 
-resignBtn.addEventListener('click',()=>{
-    const info = {
-        title: 'Game over',
-        text: 'The computer won by resignation',
-        yes: 'Ok',
-    },
-    events = {
-        yes() {
-            resignPopup.close();
-        },
-        cls() {
-            events.yes();
+function updateMovesList() {
+    movesHTML.innerHTML = chess.pgn();
+}
+
+takeBackBtn.addEventListener('click',()=>{
+    chess.undo();
+    chess.undo();
+    cg.set({
+        fen: chess.fen(),
+        turnColor: getColor(chess.turn()),
+        movable: {
+          color: getColor(chess.turn()),
+          dests: toDests(chess)
         }
+    });
+    updateMovesList();
+    if (userColor === 'black' && chess.history().length === 1) {
+        takeBackBtn.disabled = true;
     }
-    const resignPopup = new Popup('alert',info,events);
-    resignPopup.open();
-    cg.stop();
+});
+
+resignBtn.addEventListener('click',()=>{
+    onGameEnd(undefined,true);
 });
 flipBoardBtn.addEventListener('click',()=>{
     cg.toggleOrientation();
