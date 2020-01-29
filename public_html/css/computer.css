@@ -19,6 +19,14 @@ body.dark .eval-container {
     transition: 0.15s ease;
     width: 50%;
 }
+#eval-help {
+    font-size: 20px;
+    opacity: 0.7;
+}
+#eval-help:hover {
+    opacity: 1;
+    cursor: pointer;
+}
 body.dark #eval-bar {
     background: #555;
 }

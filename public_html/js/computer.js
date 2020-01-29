@@ -5,6 +5,7 @@ const resignBtn = $('#resign');
 const flipBoardBtn = $('#flip');
 const evalBar = $('#eval-bar');
 const evalTextEl = $('#eval-text');
+const evalHelpBtn = $('#eval-help');
 const takeBackBtn = $('#takeback');
 const chess = new Chess(/*'8/PPPP4/8/7k/8/8/2K5/8 w - - 0 1'*/); // Todo: Change this before prod.
 let userColor = '',
@@ -75,6 +76,14 @@ cg.set({
         }
     }
 });
+
+const evalHelpPopupConfig = {
+    title: 'What is the evaluation?',
+    text: `The evaluation is the how large one side's advantage is in pawns. Negative numbers are good for black, while positive numbers are good for white. So, an evaluation of -5.32 would mean that black has an advantage of 5 and a bit pawns.`,
+    yes: 'Done'
+}
+
+const evalHelpPopup = new Popup('alert',evalHelpPopupConfig);
 
 engine.onmessage = function(e) {
     //console.log(e);
@@ -252,4 +261,7 @@ resignBtn.addEventListener('click',()=>{
 });
 flipBoardBtn.addEventListener('click',()=>{
     cg.toggleOrientation();
+});
+evalHelpBtn.addEventListener('click',()=>{
+    evalHelpPopup.open();
 });

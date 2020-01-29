@@ -3,7 +3,7 @@ overlay.classList = 'overlay';
 document.body.appendChild(overlay);
 //let popupList = [];
 class Popup {
-    constructor(type,info,ev) {
+    constructor(type,info,ev={}) {
         this.el = document.createElement('div');
         this.el.classList = 'popup';
         this.type = type;
@@ -38,7 +38,7 @@ class Popup {
             close.classList = 'close fa fa-times';
             yes.innerHTML = info.yes;
             if (!ev.yes) {
-                yes.addEventListener('click',this.close);
+                yes.addEventListener('click',this.close.bind(this));
             } else {
                 yes.addEventListener('click',ev.yes);
             }
