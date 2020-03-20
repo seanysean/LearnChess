@@ -11,6 +11,7 @@ include_once "../include/functions.php";
         <link href="css/chessground.css" type="text/css" rel="stylesheet">
         <link href="css/computer.css" type="text/css" rel="stylesheet">
         <link href="css/popup.css" type="text/css" rel="stylesheet">
+        <link href="css/material.css" type="text/css" rel="stylesheet">
     </head>
     <body<?php include_once "../include/attributes.php" ?>>
         <div class="top"><?php include_once "../include/topbar.php" ?></div>

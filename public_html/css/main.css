@@ -54,7 +54,7 @@ a:hover {
 .nothing-to-see {
     color: #8c8c8c;
     text-transform: uppercase;
-    font-weight: 100;
+    font-weight: 400;
 }
 .nothing-to-see.lower {
     text-transform: none;
@@ -182,7 +182,6 @@ body.dark .button.nocolor::after {
 .button:hover,
 .button:focus {
     box-shadow: 1px 2px 5px RGBa(0,0,0,0.2);
-    top: -1px;
     outline: none;
 }
 .button:hover span,
@@ -369,10 +368,9 @@ body.dark .button.nocolor::after {
     display: none;
     background: #fff;
     z-index: 20;
-    border-radius: 5px;
+    border-radius: 3px;
     overflow: hidden;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 50px RGBa(0,0,0,0.3);
+    box-shadow: 1px 2px 3px RGBa(0,0,0,0.3);
     color: #555;
     font-weight: 100;
     min-width: 300px;
@@ -387,7 +385,7 @@ body.dark .button.nocolor::after {
     background: #f9f9f9;
 }
 #popup .popup-content {
-    padding: 5px;
+    padding: 5px 10px;
 }
 #popup .button.full {
     margin-top: 5px;

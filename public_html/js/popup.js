@@ -1,14 +1,12 @@
 const overlay = document.createElement('div');
 overlay.classList = 'overlay';
 document.body.appendChild(overlay);
-//let popupList = [];
 class Popup {
     constructor(type,info,ev={}) {
         this.el = document.createElement('div');
         this.el.classList = 'popup';
         this.type = type;
         this.active = false;
-        //popupList.push(this);
         if (type !== 'custom') {
             const popupTitle = document.createElement('p');
             popupTitle.classList = 'popup-title';
@@ -28,6 +26,20 @@ class Popup {
                 this.input = document.createElement('input');
                 inputContainer.classList = 'input-container';
                 inputContainer.appendChild(this.input);
+                if (info.labelText) {
+                    const label = document.createElement('label');
+                    label.innerHTML = info.labelText;
+                    label.style.marginTop = '20px';
+                    label.setAttribute('for',info.inputId);
+                    this.input.id = info.inputId;
+                    inputContainer.appendChild(label);
+                    if (info.inputType) {
+                        label.style.top = "-30px";
+                    }
+                }
+                if (info.inputType) {
+                    this.input.setAttribute('type',info.inputType);
+                }
                 const line = document.createElement('div');
                 line.classList = 'line';
                 inputContainer.appendChild(line);
@@ -54,7 +66,7 @@ class Popup {
                 close.addEventListener('click',ev.cls); 
             }
             this.el.appendChild(yes);
-            if (type !== 'alert') {
+            if (type !== 'alert' && info.no) {
                 no.classList = 'no-button';
                 no.innerHTML = info.no;
                 no.addEventListener('click',ev.no);
@@ -67,7 +79,6 @@ class Popup {
                 }
             });
             document.addEventListener('keydown',e=>{
-                // Keypress doesn't seem to detect the escape key on my machine
                 if (e.key === 'Escape' && this.active) {
                     switch (!ev.cls) {
                         case true:
@@ -102,11 +113,15 @@ class Popup {
         }
         this.active = true;
     }
-    close() {
-        overlay.style.opacity = 0;
+    close(settings={closeOverlay:true}) {
+        if (settings.closeOverlay === true) {
+            overlay.style.opacity = 0;
+        }
         this.el.style.transform = 'translate(-50%,-50%) scale(0.8)';
         setTimeout(()=>{
-            overlay.style.display = 'none';
+            if (settings.closeOverlay === true) {
+                overlay.style.display = 'none';
+            }
             this.el.style.display = 'none';
         },300);
         this.active = false;

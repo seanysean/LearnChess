@@ -10,44 +10,8 @@ const takeBackBtn = $('#takeback');
 const chess = new Chess(/*'8/PPPP4/8/7k/8/8/2K5/8 w - - 0 1'*/); // Todo: Change this before prod.
 let userColor = '',
     computerColor = '',
-    playerTurn = 'user';
-const info = {
-    yes: '<img src="../images/pieces/merida/wK.svg" alt="white" style="width:70px; height: 70px" />',
-    no: '<img src="../images/pieces/merida/bK.svg" alt="black" style="width:70px; height: 70px" />',
-    title: 'Play as'
-}
-const ev = {
-    yes() {
-        userColor = 'white';
-        computerColor = 'black';
-        pickColor.close();
-        cg.set({
-            turnColor: 'white',
-            orientation: 'white',
-        });
-        if (chess.turn() === 'b') {
-            engine.postMessage('position fen ' + chess.fen());
-            engine.postMessage('go movetime 100');
-        }
-    },
-    no() {
-        userColor = 'black';
-        computerColor = 'white';
-        playerTurn = 'computer';
-        pickColor.close();
-        cg.set({
-            turnColor: 'black',
-            orientation: 'black',
-        });
-        if (chess.turn() === 'w') {
-            engine.postMessage('position fen ' + chess.fen());
-            engine.postMessage('go movetime 100');
-        }
-    },
-    cls() {
-        ev.yes();
-    }
-}
+    playerTurn = 'user',
+    computerTimePerMove = 100; // In ms
 const config = {
     coordinates: false,
     turnColor: getColor(chess.turn()),
@@ -65,10 +29,69 @@ const config = {
         duration: 300
     }
 };
+const pickSideSettings = [
+    {
+    yes: '<img src="../images/pieces/merida/wK.svg" alt="white" style="width:70px; height: 70px" />',
+    no: '<img src="../images/pieces/merida/bK.svg" alt="black" style="width:70px; height: 70px" />',
+    title: 'Play as'
+    },
+    {   
+    yes() {
+        userColor = 'white';
+        computerColor = 'black';
+        pickSidePopup.close({closeOverlay:false});
+        cg.set({
+            turnColor: 'white',
+            orientation: 'white',
+        });
+        chooseLevelPopup.open();
+    },
+    no() {
+        userColor = 'black';
+        computerColor = 'white';
+        playerTurn = 'computer';
+        pickSidePopup.close({closeOverlay:false});
+        cg.set({
+            turnColor: 'black',
+            orientation: 'black',
+        });
+        chooseLevelPopup.open();    
+    },
+    cls() {
+        pickSideSettings[1].yes();
+    }
+    },
+];
+const chooseLevelSettings = [
+    {
+        title: 'Difficulty',
+        text: 'How much time (in milliseconds) should the computer think per move? Note that high values may cause your browser to run slower.',
+        inputId: 'itCanBeRandom',
+        inputType: 'number',
+        labelText: 'Time/move in ms',
+        value: 100,
+        yes: 'Play'
+    },
+    {
+        yes() {
+            computerTimePerMove = parseInt(chooseLevelPopup.input.value);
+            chooseLevelPopup.close();
+            if ((chess.turn() === 'b' && userColor === 'white') || (chess.turn() === 'w' && userColor === 'black')) {
+                engine.postMessage('position fen ' + chess.fen());
+                engine.postMessage(`go movetime ${computerTimePerMove}`);
+            }
+        },
+        cls() {
+            chooseLevelSettings[1].yes();
+        }
+    }
+];
+
 const cg = Chessground(board,config);
-const pickColor = new Popup('confirm',info,ev);
-pickColor.open();
-pickColor.addClass('pick-color');
+const pickSidePopup = new Popup('confirm',pickSideSettings[0],pickSideSettings[1]);
+const chooseLevelPopup = new Popup('prompt',chooseLevelSettings[0],chooseLevelSettings[1]);
+pickSidePopup.open();
+pickSidePopup.addClass('pick-color');
 cg.set({
     movable: {
         events: {
@@ -205,7 +228,7 @@ async function handleMove(origin,destination) {
         if (playerTurn === 'user') {
             takeBackBtn.disabled = true;
             engine.postMessage('position fen ' + chess.fen());
-            engine.postMessage('go movetime 100');
+            engine.postMessage(`go movetime ${computerTimePerMove}`);
             console.log('position fen ' + chess.fen());
             playerTurn = 'computer';
         } else {
