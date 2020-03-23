@@ -30,6 +30,7 @@ include_once "../include/functions.php";
                         <button class="flat-button" id="resign"><span class="inner"><i class="fa fa-flag"></i></span></button>
                         <button class="flat-button" id="takeback"><span class="inner"><i class="fa fa-undo"></i></span></button>
                         <button class="flat-button" id="flip"><span class="inner"><i class="fa fa-retweet"></i></span></button>
+                        <button class="flat-button" id="hint" disabled><span class="inner"><i class="fa-lightbulb-o fa"></i></span></button>
                     </div>
                 </div>
                 <div class="block">

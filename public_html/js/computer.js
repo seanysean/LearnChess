@@ -7,10 +7,12 @@ const evalBar = $('#eval-bar');
 const evalTextEl = $('#eval-text');
 const evalHelpBtn = $('#eval-help');
 const takeBackBtn = $('#takeback');
+const hintBtn = $("#hint");
 const chess = new Chess(/*'8/PPPP4/8/7k/8/8/2K5/8 w - - 0 1'*/); // Todo: Change this before prod.
 let userColor = '',
     computerColor = '',
     playerTurn = 'user',
+    hint = undefined;
     computerTimePerMove = 100; // In ms
 const config = {
     coordinates: false,
@@ -31,35 +33,35 @@ const config = {
 };
 const pickSideSettings = [
     {
-    yes: '<img src="../images/pieces/merida/wK.svg" alt="white" style="width:70px; height: 70px" />',
-    no: '<img src="../images/pieces/merida/bK.svg" alt="black" style="width:70px; height: 70px" />',
-    title: 'Play as'
+        yes: '<img src="../images/pieces/merida/wK.svg" alt="white" style="width:70px; height: 70px" />',
+        no: '<img src="../images/pieces/merida/bK.svg" alt="black" style="width:70px; height: 70px" />',
+        title: 'Play as'
     },
     {   
-    yes() {
-        userColor = 'white';
-        computerColor = 'black';
-        pickSidePopup.close({closeOverlay:false});
-        cg.set({
-            turnColor: 'white',
-            orientation: 'white',
-        });
-        chooseLevelPopup.open();
-    },
-    no() {
-        userColor = 'black';
-        computerColor = 'white';
-        playerTurn = 'computer';
-        pickSidePopup.close({closeOverlay:false});
-        cg.set({
-            turnColor: 'black',
-            orientation: 'black',
-        });
-        chooseLevelPopup.open();    
-    },
-    cls() {
-        pickSideSettings[1].yes();
-    }
+        yes() {
+            userColor = 'white';
+            computerColor = 'black';
+            pickSidePopup.close({closeOverlay:false});
+            cg.set({
+                turnColor: 'white',
+                orientation: 'white',
+            });
+            chooseLevelPopup.open();
+        },
+        no() {
+            userColor = 'black';
+            computerColor = 'white';
+            playerTurn = 'computer';
+            pickSidePopup.close({closeOverlay:false});
+            cg.set({
+                turnColor: 'black',
+                orientation: 'black',
+            });
+            chooseLevelPopup.open();    
+        },
+        cls() {
+            pickSideSettings[1].yes();
+        }
     },
 ];
 const chooseLevelSettings = [
@@ -116,7 +118,11 @@ engine.onmessage = function(e) {
         if (result[0] === 'b') {
             result = result.join('').split(' ');
             console.log(result[12]);
-            console.log(result)
+            console.log(result);
+            if (!hint) {
+                hintBtn.disabled = false;
+            }
+            hint = result[5].slice(0,2);
             let indexOfScoreType = result.indexOf('score') + 1;
             let eval = Number(result[12]);
             let isCentipawn = result[indexOfScoreType] === 'cp';
@@ -156,8 +162,9 @@ engine.onmessage = function(e) {
 }
 
 function onGameEnd(sideToMove,overByResignation) {
-    resignBtn.disabled = 'true';
-    takeBackBtn.disabled = 'true';
+    resignBtn.disabled = true;
+    takeBackBtn.disabled = true;
+    hintBtn.disabled = true;
     cg.stop();
     const info = {
         yes: 'Ok'
@@ -287,4 +294,12 @@ flipBoardBtn.addEventListener('click',()=>{
 });
 evalHelpBtn.addEventListener('click',()=>{
     evalHelpPopup.open();
+});
+hintBtn.addEventListener('click',()=>{
+    console.log(hint);
+    const shape = [{
+        orig: hint,
+        brush: 'green'
+    }];
+    cg.setShapes(shape);
 });

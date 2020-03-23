@@ -37,7 +37,7 @@ if (info.puzzlePreview) {
 }
 
 function showResponse(s,c,r,d,e) {
-    // s = solved, c = complete, r[0] = puzzle new rating & r[1] = user's new rating, d = user rating diff between new and old rating, e = puzzle explanation
+    // s = solved, c = complete, r[0] = puzzle new rating & r[1] = user's new rating, d = user rating diff between new and old rating, e = puzzle explanation, aka poorly written variable names
     d = Math.round(d);
     const unrated = isNaN(d);
     if (s && !c) {
