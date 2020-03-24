@@ -3,8 +3,12 @@
     width: 512px;
     margin: 0 auto;
 }
-.buttons .button {
-    width: 50%;
+.buttons {
+    display: flex;
+}
+.buttons .flat-button {
+    flex-grow: 1;
+    overflow: visible;
 }
 .eval-container {
     height: 20px;

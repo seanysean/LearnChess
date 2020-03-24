@@ -27,10 +27,10 @@ include_once "../include/functions.php";
             <div class="right-area">
                 <div class="block">
                     <div class="buttons">
-                        <button class="flat-button" id="resign"><span class="inner"><i class="fa fa-flag"></i></span></button>
-                        <button class="flat-button" id="takeback"><span class="inner"><i class="fa fa-undo"></i></span></button>
-                        <button class="flat-button" id="flip"><span class="inner"><i class="fa fa-retweet"></i></span></button>
-                        <button class="flat-button" id="hint" disabled><span class="inner"><i class="fa-lightbulb-o fa"></i></span></button>
+                        <button class="flat-button" id="resign" data-hint="Resign"><span class="inner"><i class="fa fa-flag"></i></span></button>
+                        <button class="flat-button" id="takeback" data-hint="Takeback"><span class="inner"><i class="fa fa-undo"></i></span></button>
+                        <button class="flat-button" id="flip" data-hint="Flip board"><span class="inner"><i class="fa fa-retweet"></i></span></button>
+                        <button class="flat-button" id="hint" data-hint="Hint" disabled><span class="inner"><i class="fa-lightbulb-o fa"></i></span></button>
                     </div>
                 </div>
                 <div class="block">
