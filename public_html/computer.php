@@ -40,7 +40,7 @@ include_once "../include/functions.php";
                         <div id="eval-bar"></div>
                     </div>
                 </div>
-                <div class="block">
+                <div id="moves-block" class="block">
                     <h2 class="block-title">Moves</h2>
                     <div id="moves"></div>
                 </div>

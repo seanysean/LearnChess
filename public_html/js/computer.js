@@ -12,8 +12,9 @@ const chess = new Chess(/*'8/PPPP4/8/7k/8/8/2K5/8 w - - 0 1'*/); // Todo: Change
 let userColor = '',
     computerColor = '',
     playerTurn = 'user',
-    hint = undefined;
-    computerTimePerMove = 100; // In ms
+    hint = undefined,
+    computerTimePerMove = 100, // In ms
+    areMovesMade = false;
 const config = {
     coordinates: false,
     turnColor: getColor(chess.turn()),
@@ -262,10 +263,14 @@ async function handleMove(origin,destination) {
             onGameEnd(computerColor);
         }
     }
-    moves.innerHTML = chess.pgn();
+    updateMovesList();
 }
 
 function updateMovesList() {
+    if (areMovesMade === false) {
+        areMovesMade = true;
+        $("#moves-block").style.display = 'block';
+    }
     movesHTML.innerHTML = chess.pgn();
 }
 
