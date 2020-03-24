@@ -591,7 +591,7 @@ a.notification {
     font-size: 40px;
     float: left;
     margin-right: 10px;
-    color: #aaa; 
+    color: #aaa;
 }
 .top-navigation .icon-links .dropdown {
     right: 0;
@@ -722,7 +722,7 @@ a.notification {
 .block-title .alternate .alt-text,
 .block-title .alternate .button {
     vertical-align: middle;
-} 
+}
 .block-title .alternate .alt-text {
     display: inline-block;
     padding: 10px;

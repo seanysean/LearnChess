@@ -1,3 +1,5 @@
+/* exported hide */
+/* exported show */
 console.log('LearnChess is open source! View project here: https://github.com/seanysean/LearnChess');
 
 function $(element,getAllElements) {

@@ -71,7 +71,7 @@ body.dark .popup button {
 }
 .popup .yes-button {
     margin-right: 10px;
-}                       
+}
 .popup button:hover,
 .popup button:focus {
     background-color: #505050;

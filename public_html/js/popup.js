@@ -1,3 +1,5 @@
+/* exported Popup */
+
 const overlay = document.createElement('div');
 overlay.classList = 'overlay';
 document.body.appendChild(overlay);
