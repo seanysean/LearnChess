@@ -1,13 +1,13 @@
 #board {
-    width: 500px;
-    height: 500px;
+    width: 496px;
+    height: 496px;
 }
 .selected {
     display: none;
 }
 .board-cont {
     position: relative;
-    width: 500px;
+    width: 496px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 3px;
@@ -32,11 +32,12 @@
     transition: 1s linear;
 }
 .overlay {
-    width: 500px;
+    width: 496px;
     position: absolute;
     background: RGBa(0,0,0,0.2);
     top: 0;
     right: 0;
+    left: 0;
     bottom: 0;
     z-index: 10;
     cursor: default;
@@ -75,7 +76,6 @@ body .overlay .flat-button {
     background: #f1f1f1;
 }
 .page .block.start-card {
-    box-shadow: 0 0 3px RGBa(0,0,0,0.3);
     opacity: 1;
     transition: 0.25s ease;
 }
