@@ -8,7 +8,7 @@ const evalTextEl = $('#eval-text');
 const evalHelpBtn = $('#eval-help');
 const takeBackBtn = $('#takeback');
 const hintBtn = $("#hint");
-const chess = new Chess(/*'8/PPPP4/8/7k/8/8/2K5/8 w - - 0 1'*/); // Todo: Change this before prod.
+const chess = new Chess();
 let userColor = '',
     computerColor = '',
     playerTurn = 'user',
@@ -47,9 +47,7 @@ const pickSideSettings = [
                 turnColor: 'white',
                 orientation: 'white',
             });
-            setTimeout(()=>{
-                chooseLevelPopup.open();
-            },300); // Delay is needed because without it the choose level popup will instantly close if you press esc
+            setTimeout(chooseLevelPopup.open,300); // Delay is needed because without it the choose level popup will instantly close if you press esc
         },
         no() {
             userColor = 'black';
@@ -60,9 +58,7 @@ const pickSideSettings = [
                 turnColor: 'black',
                 orientation: 'black',
             });
-            setTimeout(()=>{
-                chooseLevelPopup.open();
-            },300);
+            setTimeout(chooseLevelPopup.open,300);
         },
         cls() {
             pickSideSettings[1].yes();
@@ -77,26 +73,56 @@ const chooseLevelSettings = [
         inputType: 'number',
         labelText: 'Time/move in ms',
         value: 100,
-        yes: 'Play'
+        yes: 'Next'
     },
     {
         yes() {
             computerTimePerMove = parseInt(chooseLevelPopup.input.value);
             chooseLevelPopup.close();
-            if ((chess.turn() === 'b' && userColor === 'white') || (chess.turn() === 'w' && userColor === 'black')) {
-                engine.postMessage('position fen ' + chess.fen());
-                engine.postMessage(`go movetime ${computerTimePerMove}`);
-            }
+            setTimeout(chooseFENPopup.open,300);
         },
         cls() {
             chooseLevelSettings[1].yes();
         }
     }
 ];
+const chooseFENSettings = [
+    {
+        title: 'Input custom FEN',
+        inputId: 'fenInput',
+        disableInputSpellCheck: true,
+        labelText: 'FEN',
+        value: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
+        yes: 'Start Game'
+    },
+    {
+        yes() {
+            let inputtedFen = chooseFENPopup.input.value;
+            if (!/\s/.test(inputtedFen)) {
+                inputtedFen += ' w - - 0 1';
+            }
+            let validation = chess.validate_fen(inputtedFen);
+            if (validation.valid) {
+                chess.load(inputtedFen);
+                chooseFENPopup.close();
+                cg.set({
+                    fen: inputtedFen
+                });
+                startGame();
+            } else {
+                chooseFENPopup.showMessage('error',validation.error);
+            }
+        },
+        cls() {
+            chooseFENSettings[1].yes();
+        }
+    }
+]
 
 const cg = Chessground(board,config);
 const pickSidePopup = new Popup('confirm',pickSideSettings[0],pickSideSettings[1]);
 const chooseLevelPopup = new Popup('prompt',chooseLevelSettings[0],chooseLevelSettings[1]);
+const chooseFENPopup = new Popup('prompt',chooseFENSettings[0],chooseFENSettings[1]);
 pickSidePopup.open();
 pickSidePopup.addClass('pick-color');
 cg.set({
@@ -163,6 +189,13 @@ engine.onmessage = function(e) {
                 b = getBestMove[2] + getBestMove[3];
             handleMove(a,b);
         }
+    }
+}
+
+function startGame() {
+    if ((chess.turn() === 'b' && userColor === 'white') || (chess.turn() === 'w' && userColor === 'black')) {
+        engine.postMessage('position fen ' + chess.fen());
+        engine.postMessage(`go movetime ${computerTimePerMove}`);
     }
 }
 

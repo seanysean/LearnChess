@@ -743,6 +743,10 @@ a.notification {
     line-height: 22px;
     border-left: 4px solid;
 }
+.message.small {
+    padding: 5px 10px;
+    font-size: 15px;
+}
 .message.error {
     border-left-color: var(--red);
     background: var(--red-accent);

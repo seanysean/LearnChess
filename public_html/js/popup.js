@@ -14,6 +14,8 @@ class Popup {
             popupTitle.classList = 'popup-title';
             popupTitle.innerHTML = info.title;
             this.el.appendChild(popupTitle);
+            this.messageHTML = document.createElement('div');
+            this.el.appendChild(this.messageHTML);
             if (info.text) {
                 const popupText = document.createElement('p');
                 popupText.classList = 'popup-text';
@@ -31,7 +33,6 @@ class Popup {
                 if (info.labelText) {
                     const label = document.createElement('label');
                     label.innerHTML = info.labelText;
-                    label.style.marginTop = '20px';
                     label.setAttribute('for',info.inputId);
                     this.input.id = info.inputId;
                     inputContainer.appendChild(label);
@@ -41,6 +42,9 @@ class Popup {
                 }
                 if (info.inputType) {
                     this.input.setAttribute('type',info.inputType);
+                }
+                if (info.disableInputSpellCheck) {
+                    this.input.setAttribute('spellcheck',false);
                 }
                 const line = document.createElement('div');
                 line.classList = 'line';
@@ -95,6 +99,14 @@ class Popup {
             this.el.innerHTML = info.html;
         }
         overlay.appendChild(this.el);
+        this.close = this.close.bind(this);
+        this.open = this.open.bind(this);
+        this.addClass = this.addClass.bind(this);
+        this.showMessage = this.showMessage.bind(this);
+    }
+    showMessage(type,message) {
+        this.messageHTML.innerHTML = message;
+        this.messageHTML.classList = `message ${type} small`;
     }
     open() {
         overlay.style.display = 'block';
