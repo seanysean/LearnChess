@@ -1,5 +1,3 @@
-/* exported openPromoteOptions */
-
 // Functions that go with the Chess.js and Chessground libraries.
 
 function getColor(c) {

@@ -47,7 +47,9 @@ const pickSideSettings = [
                 turnColor: 'white',
                 orientation: 'white',
             });
-            chooseLevelPopup.open();
+            setTimeout(()=>{
+                chooseLevelPopup.open();
+            },300); // Delay is needed because without it the choose level popup will instantly close if you press esc
         },
         no() {
             userColor = 'black';
@@ -58,7 +60,9 @@ const pickSideSettings = [
                 turnColor: 'black',
                 orientation: 'black',
             });
-            chooseLevelPopup.open();    
+            setTimeout(()=>{
+                chooseLevelPopup.open();
+            },300);
         },
         cls() {
             pickSideSettings[1].yes();

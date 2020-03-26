@@ -75,28 +75,21 @@ class Popup {
                 this.el.appendChild(no);
             }
             this.el.appendChild(close);
-            document.addEventListener('keypress',e=>{
-                if (e.key === 'Enter' && this.active) {
-                    ev.yes();
-                }
-            });
             document.addEventListener('keydown',e=>{
                 if (e.key === 'Escape' && this.active) {
-                    switch (!ev.cls) {
-                        case true:
-                            switch(ev.no) {
-                                case true:
-                                    ev.no();
-                                    break;
-                                default:
-                                    this.close();
-                            }
-                            break;
-                        default:
-                            ev.cls();
-                            break;
+                    if (!ev.cls) {
+                        if (ev.no) {
+                            ev.no();
+                        }
+                        else {
+                            this.close();
+                        }
+                    } else {
+                        ev.cls();
                     }
-                } 
+                } else if (e.key === 'Enter' && this.active) {
+                    ev.yes();
+                }
             });
         } else {
             this.el.innerHTML = info.html;
@@ -116,6 +109,7 @@ class Popup {
         this.active = true;
     }
     close(settings={closeOverlay:true}) {
+        this.active = false;
         if (settings.closeOverlay === true) {
             overlay.style.opacity = 0;
         }
@@ -126,7 +120,6 @@ class Popup {
             }
             this.el.style.display = 'none';
         },300);
-        this.active = false;
     }
     addClass(c) {
         this.el.classList.add(c);
