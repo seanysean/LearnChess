@@ -308,7 +308,7 @@ function updateMovesList() {
         areMovesMade = true;
         $("#moves-block").style.display = 'block';
     }
-    movesHTML.innerHTML = chess.pgn();
+    movesHTML.innerHTML = removeHeaders(chess.pgn());
 }
 
 takeBackBtn.addEventListener('click',()=>{
