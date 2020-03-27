@@ -99,7 +99,7 @@ const chooseFENSettings = [
         yes() {
             let inputtedFen = chooseFENPopup.input.value;
             if (!/\s/.test(inputtedFen)) {
-                inputtedFen += ' w - - 0 1';
+                inputtedFen += ' w KQkq - 0 1';
             }
             let validation = chess.validate_fen(inputtedFen);
             if (validation.valid) {
