@@ -78,7 +78,7 @@ const chooseLevelSettings = [
     {
         yes() {
             computerTimePerMove = parseInt(chooseLevelPopup.input.value);
-            chooseLevelPopup.close();
+            chooseLevelPopup.close({closeOverlay:false});
             setTimeout(chooseFENPopup.open,300);
         },
         cls() {
