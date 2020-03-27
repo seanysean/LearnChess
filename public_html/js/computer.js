@@ -226,8 +226,14 @@ function onGameEnd(sideToMove,overByResignation) {
         }
         info.text = 'Game over by checkmate';
     } else if (chess.in_stalemate()) {
-        info.title += 'stalemate';
+        info.title = 'Draw';
         info.text = 'Game over by stalemate';
+    } else if (chess.in_threefold_repetition()) {
+        info.title = 'Draw';
+        info.text = 'Game over by threefold repitition';
+    } else if (chess.in_draw()) {
+        info.title = 'Draw';
+        info.text = 'Game is drawn';
     }
     const gameOverPopup = new Popup(type,info,events);
     gameOverPopup.open();
