@@ -2,6 +2,14 @@
 
 // Functions that go with the Chess.js and Chessground libraries.
 
+const pieceMap = {
+    p: 'pawn',
+    r: 'rook',
+    n: 'knight',
+    b: 'bishop',
+    q: 'queen',
+    k: 'king'
+}
 function getColor(c) {
     return c === 'w' ? 'white':'black';
 }

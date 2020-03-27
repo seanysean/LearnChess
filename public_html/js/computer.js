@@ -176,8 +176,12 @@ engine.onmessage = function(e) {
             console.log(getBestMove); // e2e4
             getBestMove = getBestMove.split('');
             let a = getBestMove[0] + getBestMove[1],
-                b = getBestMove[2] + getBestMove[3];
-            handleMove(a,b);
+                b = getBestMove[2] + getBestMove[3],
+                p;
+            if (getBestMove[4]) {
+                p = getBestMove[4]; // If there is a promotion
+            }
+            handleMove(a,b,p);
         }
     }
 }
@@ -245,8 +249,8 @@ function makeMove(c,c2) {
     }
 }
 
-async function handleMove(origin,destination) {
-    const mObj = { from: origin, to: destination, promotion: 'q' };
+async function handleMove(origin,destination,promotionPiece = 'q') {
+    const mObj = { from: origin, to: destination, promotion: promotionPiece };
     const m = chess.move(mObj);
     const over = chess.game_over();
     if (playerTurn === 'computer') {
@@ -261,7 +265,7 @@ async function handleMove(origin,destination) {
                 updateMovesList();
             }
         } else {
-            promote(cg,m.to,'queen');
+            promote(cg,m.to,pieceMap[promotionPiece]);
         }
     }
     if (m.flags.includes('e')) {
