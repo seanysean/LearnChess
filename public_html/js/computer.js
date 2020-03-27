@@ -311,6 +311,15 @@ function updateMovesList() {
     movesHTML.innerHTML = removeHeaders(chess.pgn());
 }
 
+function showHint() {
+    if (areMovesMade) {
+        const shape = [{
+            orig: hint,
+            brush: 'green'
+        }];
+        cg.setShapes(shape);
+    }
+}
 takeBackBtn.addEventListener('click',()=>{
     chess.undo();
     chess.undo();
@@ -337,11 +346,11 @@ flipBoardBtn.addEventListener('click',()=>{
 evalHelpBtn.addEventListener('click',()=>{
     evalHelpPopup.open();
 });
-hintBtn.addEventListener('click',()=>{
-    console.log(hint);
-    const shape = [{
-        orig: hint,
-        brush: 'green'
-    }];
-    cg.setShapes(shape);
+hintBtn.addEventListener('click',showHint);
+document.body.addEventListener('keydown',e=>{
+    if (e.key.toLowerCase() === 'h') {
+        showHint();
+    } else if (e.key.toLowerCase() === 'f') {
+        cg.toggleOrientation();
+    }
 });
