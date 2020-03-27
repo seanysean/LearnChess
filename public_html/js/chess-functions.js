@@ -57,8 +57,8 @@ function openPromoteOptions(board,square,cg,turn) {
 function removeHeaders(pgn) {
     let splitPgn = pgn.split(']\n\n'),
         moves = splitPgn[splitPgn.length - 1];
-    if (splitPgn.length === 1) { // If there are no moves
-        return '';
+    if (splitPgn.length === 1) {
+        return pgn; // There are no headers
     }
     if (moves.startsWith('1. ...')) {
         let spliced = moves.split('');
