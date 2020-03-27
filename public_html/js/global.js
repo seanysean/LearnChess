@@ -4,12 +4,16 @@ function $(element,getAllElements) {
     return getAllElements ? document.querySelectorAll(element) : document.querySelector(element);
 }
 
+/* eslint-disable no-unused-vars */
+
 function hide(element) {
     element.style.display = 'none';
 }
 function show(element,displayValue='block') {
     element.style.display = displayValue;
 }
+
+/* eslint-enable no-unused-vars */
 
 const pageJson = $('#js_info');
       info = JSON.parse(pageJson.value),
