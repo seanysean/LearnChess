@@ -5,7 +5,7 @@ include_once "../include/functions.php";
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Play Computer • LearnChess</title>
+        <title>Play Against the Computer • LearnChess</title>
         <?php include_once "../include/head.php" ?>
         <meta name="description" content="Play Stockfish, the world's strongest free chess engine, on LearnChess for free. No registration required.">
         <link href="css/chessground.css" type="text/css" rel="stylesheet">
@@ -17,7 +17,7 @@ include_once "../include/functions.php";
         <div class="top"><?php include_once "../include/topbar.php" ?></div>
         <div class="page has-header">
             <div class="block">
-                <h1 class="block-title center"><i class="fa fa-laptop"></i> Play Computer</h1>
+                <h1 class="block-title center"><i class="fa fa-laptop"></i> Computer</h1>
             </div>
             <div class="main">
                 <div class="block">
