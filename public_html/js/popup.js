@@ -1,4 +1,4 @@
-/* exported Popup */
+/* eslint-disable no-unused-vars */
 
 const overlay = document.createElement('div');
 overlay.classList = 'overlay';
