@@ -11,20 +11,14 @@ const hintBtn = $("#hint");
 const chess = new Chess();
 let userColor = '',
     computerColor = '',
-    playerTurn = 'user',
-    hint = undefined,
+    playerTurn,
+    hint,
     computerTimePerMove = 100, // In ms
     areMovesMade = false;
 const config = {
     coordinates: false,
-    turnColor: getColor(chess.turn()),
     orientation: getColor(chess.turn()),
     fen: chess.fen(),
-    movable: {
-        free: false,
-        color: getColor(chess.turn()),
-        dests: toDests(chess)
-    },
     premovable: {
         enabled: true
     },
@@ -52,7 +46,6 @@ const pickSideSettings = [
         no() {
             userColor = 'black';
             computerColor = 'white';
-            playerTurn = 'computer';
             pickSidePopup.close({closeOverlay:false});
             cg.set({
                 turnColor: 'black',
@@ -104,11 +97,12 @@ const chooseFENSettings = [
             let validation = chess.validate_fen(inputtedFen);
             if (validation.valid) {
                 chess.load(inputtedFen);
-                chooseFENPopup.close();
-                cg.set({
-                    fen: inputtedFen
-                });
-                startGame();
+                if (chess.game_over()) {
+                    chooseFENPopup.showMessage('error',`FEN is of a game that has ended`);
+                } else {
+                    chooseFENPopup.close();
+                    startGame();
+                }
             } else {
                 chooseFENPopup.showMessage('error',validation.error);
             }
@@ -142,14 +136,11 @@ const evalHelpPopupConfig = {
 const evalHelpPopup = new Popup('alert',evalHelpPopupConfig);
 
 engine.onmessage = function(e) {
-    //console.log(e);
     let result = e;
     if (typeof result === 'string') {
         result = result.split('');
         if (result[0] === 'b') {
             result = result.join('').split(' ');
-            console.log(result[12]);
-            console.log(result);
             if (!hint) {
                 hintBtn.disabled = false;
             }
@@ -162,7 +153,6 @@ engine.onmessage = function(e) {
                     eval = -eval;
                 }
                 let evalText = -(eval / 100).toFixed(2) + '';
-                console.log(typeof evalText);
                 if (!evalText.match(/\./)) {
                     evalText += '.00';
                 } else if (evalText.split('.')[1].length < 2) {
@@ -193,9 +183,21 @@ engine.onmessage = function(e) {
 }
 
 function startGame() {
+    cg.set({
+        fen: chess.fen(),
+        movable: {
+            free: false,
+            color: getColor(chess.turn()),
+            dests: toDests(chess),
+            turnColor: getColor(chess.turn()),
+        },    
+    });
     if ((chess.turn() === 'b' && userColor === 'white') || (chess.turn() === 'w' && userColor === 'black')) {
+        playerTurn = 'computer';
         engine.postMessage('position fen ' + chess.fen());
         engine.postMessage(`go movetime ${computerTimePerMove}`);
+    } else {
+        playerTurn = 'user';
     }
 }
 
@@ -257,8 +259,6 @@ async function handleMove(origin,destination) {
         }
     }
     if (m.flags.includes('e')) {
-        console.log('en passant');
-        console.log(chess.turn());
         removePiece = [destination[0]];
         if (chess.turn() === 'w') {
             removePiece[1] = 1 + destination[1];
@@ -274,7 +274,6 @@ async function handleMove(origin,destination) {
             takeBackBtn.disabled = true;
             engine.postMessage('position fen ' + chess.fen());
             engine.postMessage(`go movetime ${computerTimePerMove}`);
-            console.log('position fen ' + chess.fen());
             playerTurn = 'computer';
         } else {
             if (userColor === 'black' && chess.history().length === 1) {
