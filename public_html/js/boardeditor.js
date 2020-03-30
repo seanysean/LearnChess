@@ -151,19 +151,6 @@ nextStep.addEventListener('click',()=>{
     function getColor(m) {
         return m === 'w' ? 'white' : 'black';
     }
-    function removeHeaders(pgn) {
-        let splitPgn = pgn.split(']\n\n'),
-            moves = splitPgn[splitPgn.length - 1];
-        if (splitPgn.length === 1) { // If there are no moves
-            return '';
-        }
-        if (moves.startsWith('1. ...')) {
-            let spliced = moves.split('');
-            spliced.splice(0,6,'1...');
-            return spliced.join('');
-        }
-        return moves;
-    }
     function changeTurn(c,cground) {
         return async (o, d) => {
             const m = c.move({from: o, to: d, promotion: 'q'});

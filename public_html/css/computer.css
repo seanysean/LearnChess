@@ -3,6 +3,43 @@
     width: 512px;
     margin: 0 auto;
 }
-.buttons .button {
+.buttons {
+    display: flex;
+}
+.buttons .flat-button {
+    flex-grow: 1;
+    overflow: visible;
+}
+.eval-container {
+    height: 20px;
+    background: #ccc;
+}
+body.dark .eval-container {
+    background: #888;
+}
+#eval-bar {
+    background: #777;
+    height: 100%;
+    transition: 0.15s ease;
     width: 50%;
+}
+#eval-help {
+    font-size: 20px;
+    opacity: 0.7;
+}
+#eval-help:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+body.dark #eval-bar {
+    background: #555;
+}
+#moves-block {
+    display: none;
+}
+.right-area .block {
+    padding: 10px 20px;
+}
+.pick-color .no-button {
+    opacity: 1 !important;
 }

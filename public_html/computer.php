@@ -5,18 +5,19 @@ include_once "../include/functions.php";
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Play Computer • LearnChess</title>
+        <title>Play Against the Computer • LearnChess</title>
         <?php include_once "../include/head.php" ?>
         <meta name="description" content="Play Stockfish, the world's strongest free chess engine, on LearnChess for free. No registration required.">
         <link href="css/chessground.css" type="text/css" rel="stylesheet">
         <link href="css/computer.css" type="text/css" rel="stylesheet">
         <link href="css/popup.css" type="text/css" rel="stylesheet">
+        <link href="css/material.css" type="text/css" rel="stylesheet">
     </head>
     <body<?php include_once "../include/attributes.php" ?>>
         <div class="top"><?php include_once "../include/topbar.php" ?></div>
         <div class="page has-header">
             <div class="block">
-                <h1 class="block-title center"><i class="fa fa-laptop"></i> Play Computer</h1>
+                <h1 class="block-title center"><i class="fa fa-laptop"></i> Computer</h1>
             </div>
             <div class="main">
                 <div class="block">
@@ -25,12 +26,23 @@ include_once "../include/functions.php";
             </div>
             <div class="right-area">
                 <div class="block">
-                    <h1 class="block-title center">Moves</h1>
-                    <div id="moves"></div>
                     <div class="buttons">
-                        <button class="flat-button" id="resign"><span class="inner"><i class="fa fa-flag"></i></span></button>
-                        <button class="flat-button" id="flip"><span class="inner"><i class="fa fa-retweet"></i></span></button>
+                        <button class="flat-button" id="resign" data-hint="Resign"><span class="inner"><i class="fa fa-flag"></i></span></button>
+                        <button class="flat-button" id="takeback" data-hint="Takeback"><span class="inner"><i class="fa fa-undo"></i></span></button>
+                        <button class="flat-button" id="flip" data-hint="Flip board (f)"><span class="inner"><i class="fa fa-retweet"></i></span></button>
+                        <button class="flat-button" id="hint" data-hint="Hint (h)" disabled><span class="inner"><i class="fa-lightbulb-o fa"></i></span></button>
                     </div>
+                </div>
+                <div class="block">
+                    <h2 class="block-title">Evaluation <i id="eval-help" class="fa fa-question"></i></h2>   
+                    <p><i class="fa fa-laptop"></i> <span id="eval-text">0.00</span></p>
+                    <div class="eval-container">
+                        <div id="eval-bar"></div>
+                    </div>
+                </div>
+                <div id="moves-block" class="block">
+                    <h2 class="block-title">Moves</h2>
+                    <div id="moves"></div>
                 </div>
             </div>
         </div>

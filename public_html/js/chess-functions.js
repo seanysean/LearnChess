@@ -1,5 +1,15 @@
+/* eslint-disable no-unused-vars */
+
 // Functions that go with the Chess.js and Chessground libraries.
 
+const pieceMap = {
+    p: 'pawn',
+    r: 'rook',
+    n: 'knight',
+    b: 'bishop',
+    q: 'queen',
+    k: 'king'
+}
 function getColor(c) {
     return c === 'w' ? 'white':'black';
 }
@@ -51,4 +61,17 @@ function openPromoteOptions(board,square,cg,turn) {
             });
         });
     });
+}
+function removeHeaders(pgn) {
+    let splitPgn = pgn.split(']\n\n'),
+        moves = splitPgn[splitPgn.length - 1];
+    if (splitPgn.length === 1) {
+        return pgn; // There are no headers
+    }
+    if (moves.startsWith('1. ...')) {
+        let spliced = moves.split('');
+        spliced.splice(0,6,'1...');
+        return spliced.join('');
+    }
+    return moves;
 }

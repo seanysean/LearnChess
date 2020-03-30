@@ -28,10 +28,14 @@ body.dark .popup {
     background: #444;
 }
 .popup .input-container {
-    margin-top: 0;
+    margin-top: 27px;
+    min-height: auto;
+}
+.popup .input-container label {
+    margin-top: 8px;
 }
 .popup .popup-title {
-    margin: 3px;
+    margin: 3px 0;
     font-family: "Roboto",sans-serif;
     color: #555;
     padding-bottom: 10px;
@@ -40,11 +44,11 @@ body.dark .popup {
 }
 body.dark .popup .popup-title {
     border-bottom-color: #555;
-    color: #aaa;
+    color: #efefef;
 }
 .popup .popup-text {
     padding: 3px;
-    color: #888;
+    color: #484848;
     margin: 8px 0;
 }
 body.dark .popup .popup-text {
@@ -53,31 +57,32 @@ body.dark .popup .popup-text {
 .popup button {
     border: none;
     font-family: "Roboto",sans-serif;
-    font-weight: 100;
+    font-weight: 400;
     color: #fff;
-    background-color: #aaa;
+    background-color: #696969;
     font-size: 15px;
     cursor: pointer;
     padding: 10px;
     text-transform: uppercase;
-    border-radius: 3px;
+    border-radius: 2px;
     transition: 0.25s ease;
     box-shadow: 0 0 0 0 RGBa(0,0,0,0);
     margin-top: 10px;
 }
 body.dark .popup button {
-    background-color: #777;
+    background-color: #bfbfbf;
+    color: #333;
 }
 .popup .yes-button {
     margin-right: 10px;
-}                       
+}
 .popup button:hover,
 .popup button:focus {
-    background-color: #888;
+    background-color: #505050;
 }
 body.dark .popup button:hover,
 body.dark .popup button:focus {
-    background-color: #555;
+    background-color: #e6e6e6;
 }
 .popup .no-button {
     opacity: 0.7;
@@ -92,4 +97,7 @@ body.dark .popup button:focus {
 }
 .popup .close:hover {
     color: #777;
+}
+.popup .message {
+    margin-bottom: 10px;
 }

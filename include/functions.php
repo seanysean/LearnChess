@@ -78,6 +78,6 @@ function createUserLink($id,$r=false) {
         }
     }
 }
-function info_message($type,$text) {
+function info_message($type,$text) { # $types are error, success and warning
     return "<div class=\"message $type\">$text</div>";
 }
