@@ -33,10 +33,10 @@ $additional_js_info = isset($more_js_info);
     </div>
     <?php if($l) { ?><div class="icon-links">
         <?php if (isAllowed('puzzle')) { ?>
-            <a class="fa fa-puzzle-piece hint-text-center icon" href="/puzzles/review" data-hint="Review puzzles"><?php if($puzzleUnreviewedCount > 0) { ?><span data-count="<?php echo $puzzleUnreviewedCount ?>"></span><?php } ?></a>
+            <a class="fa fa-puzzle-piece hint-text-center icon permission-only" href="/puzzles/review" data-hint="Review puzzles"><?php if($puzzleUnreviewedCount > 0) { ?><span data-count="<?php echo $puzzleUnreviewedCount ?>"></span><?php } ?></a>
         <?php } ?>
         <?php if (isAllowed('admin')) { ?>
-        <a class="fa fa-shield hint-text-center icon" href="/admin/search" data-hint="Admin"></a>
+        <a class="fa fa-shield hint-text-center icon permission-only" href="/admin/search" data-hint="Admin"></a>
         <?php } ?>
         <div class="icon-dropdown">
             <i class="fa fa-bell hint-text-center icon" data-hint="Notifications" id="notification-icon"><span id="dCount"></span></i>
