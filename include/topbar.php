@@ -20,10 +20,10 @@ $additional_js_info = isset($more_js_info);
 </div>
 <nav class="top-navigation">
     <div class="main-links">
-        <?php if($l) { echo "<a href=\"/home\">Home</a>"; } ?>
-        <a href="/puzzles">Puzzles</a>
-        <a href="/coordinates">Coordinates</a>
-        <a href="/computer">Computer</a>
+        <?php if($l) { echo "<a href=\"/home\"><i class=\"hidden-icon icon fa fa-home\"></i><span class=\"hidden-text\">Home</span></a>"; } ?>
+        <a href="/puzzles"><i class="hidden-icon icon fa fa-puzzle-piece"></i><span class="hidden-text">Puzzles</span></a>
+        <a href="/coordinates"><i class="hidden-icon icon fa fa-bullseye"></i><span class="hidden-text">Coordinates</span></a>
+        <a href="/computer"><i class="hidden-icon icon fa fa-laptop"></i><span class="hidden-text">Computer</span></a>
         <!--<div class="main-dropdown">
             <a href="#">More</a>
             <div class="dropdown">
