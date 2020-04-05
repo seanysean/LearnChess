@@ -690,12 +690,9 @@ a.notification {
     box-shadow: var(--slight-shadow);
     width: 100%;
     margin-bottom: 30px;
-    padding: 10px;
+    padding: 20px;
     border-radius: 3px;
     margin-bottom: 20px;
-}
-.main .block {
-    padding: 20px;
 }
 .block.no-padding {
     padding: 0;
@@ -851,7 +848,7 @@ footer .site-name {
         padding: 20px 15px;
     }
 }
-@media (max-width: 910px) {
+@media (max-width: 950px) {
     .permission-only {
         display: none !important;
     }
@@ -861,7 +858,7 @@ footer .site-name {
         --page-width: 90%;
     }
 }
-@media (max-width: 550px) {
+@media (max-width: 600px) {
     .page {
         grid-template-columns: 100%;
         justify-content: space-between;
