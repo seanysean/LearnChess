@@ -689,7 +689,6 @@ a.notification {
     background: var(--page);
     box-shadow: var(--slight-shadow);
     width: 100%;
-    margin-bottom: 30px;
     padding: 20px;
     border-radius: 3px;
     margin-bottom: 20px;
