@@ -1,8 +1,6 @@
-.accepted-puzzles {
-    text-align: center;
-}
 .accepted-puzzles h2 {
     font-weight: 100;
+    text-align: center;
 }
 .puzzles-to-review {
     margin-top: 30px;
@@ -55,6 +53,13 @@ body.dark .your-puzzles h3 {
     font-weight: 100;
     width: 96px;
     height: 96px;
+}
+.boards {
+    display: grid;
+    grid-gap: 20px;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, var(--board-container-size));
 }
 #chessground {
     width: 512px;
@@ -358,7 +363,12 @@ body.dark .copy-badge {
         margin-top: 135px;
     }
 }
-@media(max-width:950px) {
+@media (max-width:1100px) {
+    .responsive-permission {
+        display: none;
+    }
+}
+@media (max-width:950px) {
     #chessground {
         width: 300px;
         height: 300px;
