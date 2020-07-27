@@ -627,7 +627,8 @@ a.notification {
     grid-template-columns: 100%;
 }
 .page.has-header {
-    grid-template-areas: "page-header page-header";
+    grid-template-areas: "page-header page-header"
+                         "main right";
 }
 .page.has-header > .block {
     grid-area: page-header;
