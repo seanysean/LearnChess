@@ -869,6 +869,8 @@ footer .site-name {
 @media (max-width: 600px) {
     .page {
         grid-template-columns: 100%;
+        grid-template-areas: "main"
+                              "right"
     }                       
     .main {
         row-gap: 20px;
