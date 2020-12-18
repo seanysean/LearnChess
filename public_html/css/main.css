@@ -23,9 +23,10 @@ body {
     background: var(--background);
     display: grid;
     grid-template: 86px 1fr 34px /  1fr var(--page-width) 1fr;
-    grid-template-areas: ". header ."
-                         ". page ."
-                         ". footer .";
+    grid-template-areas:
+        ". header ."
+        ". page ."
+        ". footer .";
     grid-gap: 20px;
 }
 
@@ -872,7 +873,7 @@ footer .site-name {
         grid-template-columns: 100%;
         grid-template-areas: "main"
                               "right"
-    }                       
+    }
     .main {
         row-gap: 20px;
     }
@@ -889,7 +890,7 @@ footer .site-name {
         margin-bottom: 0;
     }
 }
-@media (max-width: 420px) {
+@media (max-width: 425px) {
     footer .responsive {
         display: none;
     }
