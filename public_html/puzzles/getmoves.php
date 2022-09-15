@@ -43,13 +43,26 @@ function puzzle_finished($success,$res_array,$puzzle_id,$rated,$correct_move='')
         $res_array['correct'] = false;
         $res_array['right_move'] = $correct_move;
     }
-    $res = mysqli_query($connection,"SELECT rating,explanation FROM `puzzles_approved` WHERE id='$puzzle_id'")->fetch_assoc();
-    $pRating = $res['rating'];
-    $explain = $res['explanation'];
-    if ($explain) {
-        $res_array['explanation'] = $explain;
+    $pRating;
+    $explain;
+    if (!$puzzle_preview) {
+        $res = mysqli_query($connection,"SELECT rating,explanation FROM `puzzles_approved` WHERE id='$puzzle_id'")->fetch_assoc();
+        $pRating = $res['rating'];
+        $explain = $res['explanation'];
+        if ($explain) {
+            $res_array['explanation'] = $explain;
+        } else {
+            $res_array['explanation'] = false;
+        }
     } else {
-        $res_array['explanation'] = false;
+        $res = mysqli_query($connection,"SELECT explanation FROM `puzzles_to_review` WHERE id='$puzzle_id'")->fetch_assoc();
+        $pRating = 1500;
+        $explain = $res['explanation'];
+        if ($explain) {
+            $res_array['explanation'] = $explain;
+        } else {
+            $res_array['explanation'] = false;
+        }
     }
     if ($l) {
         $res_array['ratings'] = Array('user' => $_SESSION['rating'],'puzzle'=>$pRating);
