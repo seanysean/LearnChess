@@ -9,7 +9,7 @@ if(isset($_GET['move']) && isset($_GET['movenum']) && isset($_GET['puzzle'])) {
     $puzzle_preview = isset($_GET['preview']) && $_GET['preview'] === 'true';
     $move = secure($_GET['move']);
     $movenum = secure($_GET['movenum']);
-    $puzzle = secure($_GET['puzzle']);
+    $puzzle = secure($_GET['puzzle']) + 0;
     $table = $puzzle_preview ? 'puzzles_to_review' : 'puzzles_approved';
     $sql = "SELECT fen,pgn FROM `$table` WHERE id='$puzzle'";
     $result = mysqli_query($connection,$sql);
@@ -43,13 +43,26 @@ function puzzle_finished($success,$res_array,$puzzle_id,$rated,$correct_move='')
         $res_array['correct'] = false;
         $res_array['right_move'] = $correct_move;
     }
-    $res = mysqli_query($connection,"SELECT rating,explanation FROM `puzzles_approved` WHERE id='$puzzle_id'")->fetch_assoc();
-    $pRating = $res['rating'];
-    $explain = $res['explanation'];
-    if ($explain) {
-        $res_array['explanation'] = $explain;
+    $pRating;
+    $explain;
+    if (!$puzzle_preview) {
+        $res = mysqli_query($connection,"SELECT rating,explanation FROM `puzzles_approved` WHERE id='$puzzle_id'")->fetch_assoc();
+        $pRating = $res['rating'];
+        $explain = $res['explanation'];
+        if ($explain) {
+            $res_array['explanation'] = $explain;
+        } else {
+            $res_array['explanation'] = false;
+        }
     } else {
-        $res_array['explanation'] = false;
+        $res = mysqli_query($connection,"SELECT explanation FROM `puzzles_to_review` WHERE id='$puzzle_id'")->fetch_assoc();
+        $pRating = 1500;
+        $explain = $res['explanation'];
+        if ($explain) {
+            $res_array['explanation'] = $explain;
+        } else {
+            $res_array['explanation'] = false;
+        }
     }
     if ($l) {
         $res_array['ratings'] = Array('user' => $_SESSION['rating'],'puzzle'=>$pRating);

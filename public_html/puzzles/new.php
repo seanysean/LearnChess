@@ -14,7 +14,7 @@ if(isset($_POST['fen']) and isset($_POST['pgn']) and $l) {
     if ($result) {
         $msg = info_message('success','Puzzle created successfully! You will be notified when is is approved or disapproved.');
     } else {
-        $msg = info_message('Something went wrong while uploading your puzzle. Please report <a href="https://github.com/seanysean/LearnChess/issues" target="_blank">on github</a>.');
+        $msg = info_message('error','Something went wrong while uploading your puzzle. Please report <a href="https://github.com/seanysean/LearnChess/issues" target="_blank">on github</a>.');
     }
 }
 ?>
